@@ -22,49 +22,69 @@ class _SaveAdressState extends State<SaveAdress> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(32.0),
+            padding:  EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(20)),
             child: Container(
-            child: Center(child:
-            Text(LocationTest().location,style: TextStyle(fontSize: 40,color: AppColors().lightColor),maxLines: 2,)
+              width: double.infinity,
+              child: Row(
+                children: [
+                  Flexible(
+                    child:
+                        Row(
+                          children: [
+                            IconButton(onPressed: ()=> Navigator.of(context).pop(),
+                            icon: Icon(Icons.arrow_back_ios, color: AppColors().lightColor,size: ResponsiveFlutter.of(context).moderateScale(22)),
+
+                            ),
+                            Flexible(
+                              child: Padding(
+                                padding: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(10)),
+                                child: Text(LocationTest().location,style: TextStyle(fontSize: ResponsiveFlutter.of(context).fontSize(2),color: AppColors().lightColor),maxLines: 2,),
+                              ),
+                            ),
+                          ],
+                        ),
+
+                  ),
+                ],
+              ),
             ),
-        ),
           ),
         SizedBox(width: double.infinity,
 
           child: Padding(
-            padding: const EdgeInsets.only(left: 36.0,bottom: 8),
+            padding: EdgeInsets.only(left: ResponsiveFlutter.of(context).moderateScale(20),bottom: ResponsiveFlutter.of(context).moderateScale(5)),
             child: Text('Address name :',textAlign: TextAlign.left,
               style: TextStyle(
-                color: AppColors().lightColor,fontSize: 25,),),
+                color: AppColors().lightColor,fontSize: ResponsiveFlutter.of(context).fontSize(1.5),),),
           ),
         ),
         Padding(
-            padding: const EdgeInsets.only(top: 0,bottom: 32, right: 32,left: 32),
+            padding: EdgeInsets.only(bottom: ResponsiveFlutter.of(context).moderateScale(18), right: ResponsiveFlutter.of(context).moderateScale(18),left: ResponsiveFlutter.of(context).moderateScale(18)),
             child: Container(
               decoration: BoxDecoration(
                   color: Color(0xFFF6F6F6),
                 borderRadius: BorderRadius.all(Radius.circular(15))
               ),
-              padding: EdgeInsets.only(top: 10),
+              padding: EdgeInsets.only(top: ResponsiveFlutter.of(context).moderateScale(5)),
 
               child: Center(
                 child: TextField(
                   textAlignVertical: TextAlignVertical.center,
                   style: TextStyle(
-                    height: 1.5,fontSize: 40,
+                    height:  ResponsiveFlutter.of(context).moderateScale(1),fontSize: ResponsiveFlutter.of(context).fontSize(2),
                   ),
                   decoration: InputDecoration(
 
-                    labelStyle:TextStyle(fontSize: 40,color: AppColors().appDarkColor,),
+                    labelStyle:TextStyle(fontSize: ResponsiveFlutter.of(context).fontSize(2),color: AppColors().appDarkColor,),
                     hintText: "Exemple : Home address...",
-                    hintStyle: TextStyle(fontSize: 40,color: Colors.black12,),
+                    hintStyle: TextStyle(fontSize: ResponsiveFlutter.of(context).fontSize(2),color: Colors.black12,),
                   ),
                 ),
               ),
             ),
           ),
           Container(
-            child: SizedBox(height: 800, width: 800,
+            child: SizedBox(height:  ResponsiveFlutter.of(context).moderateScale(450), width:  ResponsiveFlutter.of(context).moderateScale(450),
                 child: Image.asset(ImagePath().address,fit: BoxFit.fill,)),
           ),
            ElevatedButton(

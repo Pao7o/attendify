@@ -10,6 +10,7 @@ import 'package:flutter/services.dart' show rootBundle ;
 
 import '../common/app_colors.dart';
 import '../responsive/responsive_flutter.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 
 
@@ -25,7 +26,7 @@ class _LocationTestState extends State<LocationTest> {
   GoogleMapController? mapController; //contrller for Google map
   CameraPosition? cameraPosition;
   LatLng startLocation = LatLng( 48.866667, 2.333333);
-  static String location = "Search Location";
+  static String location = "Search location";
   String? _mapStyle;
 
   @override
@@ -46,7 +47,7 @@ class _LocationTestState extends State<LocationTest> {
         appBar: AppBar(
           toolbarHeight:ResponsiveFlutter.of(context).moderateScale(56),
           backgroundColor: AppColors().appMediumColor,
-          leading: IconButton(
+          leading: IconButton(padding: EdgeInsets.only(left: ResponsiveFlutter.of(context).moderateScale(30)),
             icon: Icon(Icons.arrow_back_ios, color: AppColors().lightColor,size: ResponsiveFlutter.of(context).moderateScale(22),),
             onPressed: () => Navigator.of(context).pop(),
           ),
@@ -93,9 +94,7 @@ class _LocationTestState extends State<LocationTest> {
               ),
 
 
-              Center( //picker image on google map
-                child: Image.asset("assets/images/ic_picker.png", width: ResponsiveFlutter.of(context).moderateScale(30)),
-              ),
+
               Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -110,6 +109,18 @@ class _LocationTestState extends State<LocationTest> {
                             backgroundColor: AppColors().appMediumColor
                         ),
                         onPressed: () {
+                          if(location=="Search location"){
+                            Fluttertoast.showToast(
+                                msg: "Enter your location before ;)",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.CENTER,
+                                timeInSecForIosWeb: 1,
+                                backgroundColor: Colors.red,
+                                textColor: Colors.white,
+                                fontSize: 256
+                            );
+
+                          }else
                         Navigator.push(context,
                         MaterialPageRoute(
                             builder: (context)=> const SaveAdress())

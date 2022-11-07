@@ -49,6 +49,7 @@ dependencies:
   otp_text_field: ^1.1.1                # To create otp text filed
   image_picker: ^0.8.4+4                # To pick image
 
+
   #MAPS Plugin --->>
   flutter_polyline_points: ^1.0.0
   get: ^4.6.5
