@@ -117,7 +117,7 @@ class _LocationTestState extends State<LocationTest> {
                                 timeInSecForIosWeb: 1,
                                 backgroundColor: Colors.red,
                                 textColor: Colors.white,
-                                fontSize: 256
+                                fontSize: 15
                             );
 
                           }else

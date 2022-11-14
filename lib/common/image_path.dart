@@ -60,7 +60,15 @@ class ImagePath {
   static const String mapIcon = base + "ic_map_icon.png";
   static const String check = base + "ic_check.png";
   static const String success = base + "ic_success.png";
+  static const String social = base + "ic_social.png";
+  static const String social_onselected = base + "ic_social_onselected.png";
+  static const String ticket_onselected = base + "ic_ticket_onselected.png";
+  static const String ticket = base + "ic_ticket.png";
   String chatEdit = base + "ic_chat_edit.png";
+  static const String chat = base + "ic_chat.png";
+  String chatSwitch = Constants.darkTheme ? base + "ic_chat.png" : base + "ic_chat_black.png";
+
+
   String edit = Constants.darkTheme ? base + "ic_edit.png" : base + "ic_chat_edit_light.png";
   static const String camera = base + "ic_camera.png";
   static const String send = base + "ic_send.png";

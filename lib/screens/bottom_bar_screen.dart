@@ -5,10 +5,14 @@ import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:attendify/screens/create_event_screen.dart';
 import 'package:attendify/screens/favorites_screen.dart';
 import 'package:attendify/screens/home_page_screen.dart';
+import 'package:attendify/screens/location_map.dart';
 import 'package:attendify/screens/setting_screen.dart';
 import 'package:attendify/screens/wallet_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'chat_screen.dart';
+import 'my_booking_screen.dart';
 
 class BottomBarScreen extends StatefulWidget {
   final String isFrom;
@@ -117,7 +121,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                       GestureDetector(
                         onTap: () {
                           setState(() {
-                            tabBar = const FavoritesScreen();
+                            tabBar = const ChatInterface();
                             home = false;
                             favorites = true;
                             create = false;
@@ -130,8 +134,8 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                           width: ResponsiveFlutter.of(context).verticalScale(30),
                           alignment: Alignment.center,
                           child: Image(
-                            image: AssetImage(favorites! ? ImagePath.favoritesSelect : ImagePath.favorites),
-                            height: ResponsiveFlutter.of(context).verticalScale(20),
+                            image: AssetImage(favorites! ? ImagePath.social_onselected : ImagePath.social),
+                            height: ResponsiveFlutter.of(context).verticalScale(24.5),
                           ),
                         ),
                       ),
@@ -154,7 +158,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                       GestureDetector(
                         onTap: () {
                           setState(() {
-                            tabBar = const WalletScreen();
+                            tabBar = const MyBookingScreen();
                             home = false;
                             favorites = false;
                             create = false;
@@ -167,8 +171,8 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                           width: ResponsiveFlutter.of(context).verticalScale(30),
                           alignment: Alignment.center,
                           child: Image(
-                            image: AssetImage(wallet! ? ImagePath.walletSelect : ImagePath.wallet),
-                            height: ResponsiveFlutter.of(context).verticalScale(20),
+                            image: AssetImage(wallet! ? ImagePath.ticket_onselected : ImagePath.ticket),
+                            height: ResponsiveFlutter.of(context).verticalScale(24.5),
                           ),
                         ),
                       ),

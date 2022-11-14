@@ -3,6 +3,7 @@ import 'package:attendify/common/common_widget.dart';
 import 'package:attendify/common/image_path.dart';
 import 'package:attendify/common/strings.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
+import 'package:attendify/screens/favorites_screen.dart';
 import 'package:attendify/screens/location_controller.dart';
 import 'package:attendify/screens/location_map.dart';
 import 'package:attendify/screens/near_by_event_screen.dart';
@@ -65,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => ChatPage(),
+                                builder: (context) => LocationTest(),
                               ),
                             );
                           },
@@ -97,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const NotificationScreen(),
+                                builder: (context) => const FavoritesScreen(),
                               ),
                             );
                           },
@@ -107,44 +108,69 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Stack(
                               children: [
                                 Image.asset(
-                                  ImagePath.bell,
+                                  ImagePath.favorites,
                                   height: ResponsiveFlutter.of(context).moderateScale(22),
                                   color: appColors.lightColor,
                                 ),
-                                Align(
-                                  alignment: Alignment.topRight,
-                                  child: Container(
-                                    height: ResponsiveFlutter.of(context).moderateScale(15),
-                                    width: ResponsiveFlutter.of(context).moderateScale(15),
-                                    alignment: Alignment.center,
-                                    decoration: BoxDecoration(
-                                      color: appColors.btnColor,
-                                      shape: BoxShape.circle,
-                                      border: Border.all(
-                                        color: appColors.appDarkColor,
-                                        width: ResponsiveFlutter.of(context).moderateScale(2.5),
-                                      ),
-                                    ),
-                                    child: MyTextView(
-                                      "2",
-                                      textAligntNew: TextAlign.center,
-                                      maxLineWrap: true,
-                                      styleNew: MyTextStyle(
-                                        colorNew: appColors.lightColor,
-                                        fontWeightNew: FontWeight.w500,
-                                        textHeight: 1,
-                                        size: ResponsiveFlutter.of(context).fontSize(1),
-                                      ),
-                                    ),
-                                  ),
-                                ),
+
                               ],
                             ),
                           ),
                         ),
-                        SizedBox(
-                          width: ResponsiveFlutter.of(context).moderateScale(15),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const NotificationScreen(),
+                              ),
+                            );
+                          },
+                          child: Padding(
+                            padding:  EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(10)),
+                            child: SizedBox(
+                              height: ResponsiveFlutter.of(context).moderateScale(22),
+                              width: ResponsiveFlutter.of(context).moderateScale(25),
+                              child: Stack(
+                                children: [
+                                  Image.asset(
+                                    ImagePath.bell,
+                                    height: ResponsiveFlutter.of(context).moderateScale(22),
+                                    color: appColors.lightColor,
+                                  ),
+                                  Align(
+                                    alignment: Alignment.topRight,
+                                    child: Container(
+                                      height: ResponsiveFlutter.of(context).moderateScale(15),
+                                      width: ResponsiveFlutter.of(context).moderateScale(15),
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                        color: appColors.btnColor,
+                                        shape: BoxShape.circle,
+                                        border: Border.all(
+                                          color: appColors.appDarkColor,
+                                          width: ResponsiveFlutter.of(context).moderateScale(2.5),
+                                        ),
+                                      ),
+                                      child: MyTextView(
+                                        "2",
+                                        textAligntNew: TextAlign.center,
+                                        maxLineWrap: true,
+                                        styleNew: MyTextStyle(
+                                          colorNew: appColors.lightColor,
+                                          fontWeightNew: FontWeight.w500,
+                                          textHeight: 1,
+                                          size: ResponsiveFlutter.of(context).fontSize(1),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                         ),
+
                         GestureDetector(
                           onTap: () {
                             Navigator.push(
@@ -180,61 +206,61 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     const Spacer(),
-                    Row(
-                      children: [
-                        Expanded(
-                          flex: 9,
-                          child: TabBar(
-                            controller: tabController,
-                            indicator: BoxDecoration(
-                              borderRadius: BorderRadius.circular(
-                                ResponsiveFlutter.of(context).moderateScale(25),
-                              ), // Creates border
-                              color: appColors.btnColor,
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 9,
+                            child: TabBar(
+                              controller: tabController,
+                              indicator: BoxDecoration(
+                                borderRadius: BorderRadius.circular(
+                                  ResponsiveFlutter.of(context).moderateScale(25),
+                                ), // Creates border
+                                color: appColors.btnColor,
+                              ),
+                              onTap: (value) {
+                                tab = value;
+                                setState(() {});
+                                debugPrint("value ------>> $value");
+                              },
+                              tabs: [
+                                Container(
+                                  height: ResponsiveFlutter.of(context).moderateScale(45),
+                                  alignment: Alignment.center,
+                                  child: MyTextView(
+                                    Strings.popularEvent,
+                                    textAligntNew: TextAlign.start,
+                                    maxLineWrap: true,
+                                    styleNew: MyTextStyle(
+                                      colorNew: tab == 0 ? appColors.white : appColors.darkGreyText,
+                                      fontWeightNew: FontWeight.w600,
+                                      size: ResponsiveFlutter.of(context).fontSize(1.8),
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  height: ResponsiveFlutter.of(context).moderateScale(45),
+                                  alignment: Alignment.center,
+                                  child: MyTextView(
+                                    Strings.nearbyEvent,
+                                    textAligntNew: TextAlign.start,
+                                    maxLineWrap: true,
+                                    styleNew: MyTextStyle(
+                                      colorNew: tab == 1 ? appColors.white : appColors.darkGreyText,
+                                      fontWeightNew: FontWeight.w600,
+                                      size: ResponsiveFlutter.of(context).fontSize(1.8),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                            onTap: (value) {
-                              tab = value;
-                              setState(() {});
-                              debugPrint("value ------>> $value");
-                            },
-                            tabs: [
-                              Container(
-                                height: ResponsiveFlutter.of(context).moderateScale(45),
-                                alignment: Alignment.center,
-                                child: MyTextView(
-                                  Strings.popularEvent,
-                                  textAligntNew: TextAlign.start,
-                                  maxLineWrap: true,
-                                  styleNew: MyTextStyle(
-                                    colorNew: tab == 0 ? appColors.white : appColors.darkGreyText,
-                                    fontWeightNew: FontWeight.w600,
-                                    size: ResponsiveFlutter.of(context).fontSize(1.8),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: ResponsiveFlutter.of(context).moderateScale(45),
-                                alignment: Alignment.center,
-                                child: MyTextView(
-                                  Strings.nearbyEvent,
-                                  textAligntNew: TextAlign.start,
-                                  maxLineWrap: true,
-                                  styleNew: MyTextStyle(
-                                    colorNew: tab == 1 ? appColors.white : appColors.darkGreyText,
-                                    fontWeightNew: FontWeight.w600,
-                                    size: ResponsiveFlutter.of(context).fontSize(1.8),
-                                  ),
-                                ),
-                              ),
-                            ],
                           ),
-                        ),
-                        const Expanded(
-                          flex: 2,
-                          child: SizedBox(),
-                        ),
-                      ],
-                    ),
+                          const Expanded(
+                            flex: 2,
+                            child: SizedBox(),
+                          ),
+                        ],
+                      ),
                   ],
                 ),
               ),

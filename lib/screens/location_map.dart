@@ -1,231 +1,367 @@
-import 'dart:convert';
-import 'dart:io';
-
-import 'package:file_picker/file_picker.dart';
+import 'package:attendify/screens/chat_screen.dart';
+import 'package:attendify/screens/feed_screen.dart';
+import 'package:attendify/screens/friends_screen.dart';
+import 'package:attendify/screens/my_events_screen.dart';
+import 'package:attendify/screens/story_view.dart';
+import 'package:dashed_circle/dashed_circle.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show rootBundle;
-import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
-import 'package:flutter_chat_ui/flutter_chat_ui.dart';
-import 'package:http/http.dart' as http;
-import 'package:image_picker/image_picker.dart';
-import 'package:intl/date_symbol_data_local.dart';
-import 'package:mime/mime.dart';
-import 'package:open_filex/open_filex.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:uuid/uuid.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:rect_getter/rect_getter.dart';
 
+import '../common/app_colors.dart';
+import '../common/common_widget.dart';
+import '../common/image_path.dart';
+import '../common/story_data.dart';
+import '../common/strings.dart';
+import '../responsive/responsive_flutter.dart';
+import 'my_booking_screen.dart';
+import 'story_settings.dart';
 
-
-
-class ChatPage extends StatefulWidget {
-  const ChatPage({super.key});
+class ChatInterface extends StatefulWidget {
+  const ChatInterface({Key? key}) : super(key: key);
 
   @override
-  State<ChatPage> createState() => _ChatPageState();
+  State<ChatInterface> createState() => _ChatInterfaceState();
 }
 
-class _ChatPageState extends State<ChatPage> {
-  List<types.Message> _messages = [];
-  final _user = const types.User(
-    id: '82091008-a484-4a89-ae75-a22bf8d6f3ac',
-  );
+class _ChatInterfaceState extends State<ChatInterface> with TickerProviderStateMixin {
+  GlobalKey<RectGetterState> reactGetterkey = RectGetter.createGlobalKey();
+  Rect? rect;
+  AnimationController? storyAnimationController;
+  Animation? storycolorAnimation;
+  static const Duration animationDuration =  Duration(seconds: 1);
+  static const Duration delay =  Duration(seconds: 1);
+  TabController? tabController;
+  int? tab = 0;
 
   @override
   void initState() {
     super.initState();
-    _loadMessages();
-  }
-
-  @override
-  Widget build(BuildContext context) => Scaffold(
-
-    body: Chat(
-      theme: DarkChatTheme(),
-      messages: _messages,
-      onAttachmentPressed: _handleAttachmentPressed,
-      onMessageTap: _handleMessageTap,
-      onPreviewDataFetched: _handlePreviewDataFetched,
-      onSendPressed: _handleSendPressed,
-      showUserAvatars: true,
-      showUserNames: true,
-      user: _user,
-    ),
-  );
-
-  void _addMessage(types.Message message) {
-    setState(() {
-      _messages.insert(0, message);
+    storyAnimationController =
+        AnimationController(vsync: this, duration: animationDuration);
+    storycolorAnimation = ColorTween(begin: Colors.black12, end: Colors.black)
+        .animate(storyAnimationController!);
+    storyAnimationController!.addListener(() {
+      setState(() {});
     });
   }
 
-  void _handleAttachmentPressed() {
-    showModalBottomSheet<void>(
-      context: context,
-      builder: (BuildContext context) => SafeArea(
-        child: SizedBox(
-          height: 144,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                  _handleImageSelection();
-                },
-                child: const Align(
-                  alignment: AlignmentDirectional.centerStart,
-                  child: Text('Photo'),
+  @override
+  AppColors appColors = AppColors();
+  Widget build(BuildContext context) {
+    return SafeArea(
+      top: false,
+      bottom: false,
+      child: DefaultTabController(
+        length: 3,
+        child: Scaffold(
+          backgroundColor: appColors.appMediumColor,
+          body: Padding(
+            padding:  EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(0)),
+            child: Column(
+              children: [
+                Container(
+                  height: ResponsiveFlutter.of(context).moderateScale(185),
+                  decoration: BoxDecoration(
+                    color: appColors.appDarkColor,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(ResponsiveFlutter.of(context).moderateScale(30)),
+                      bottomRight: Radius.circular(ResponsiveFlutter.of(context).moderateScale(30)),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(5)),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            SizedBox(width: ResponsiveFlutter.of(context).moderateScale(110),),
+                            MyTextView("Social".toUpperCase(),
+                              textAligntNew: TextAlign.center,
+                                styleNew: MyTextStyle(
+                                  colorNew: AppColors().lightColor,
+                                  fontWeightNew: FontWeight.w600,
+                                  size: ResponsiveFlutter.of(context).fontSize(2.4),
+                              ),),
+                            SizedBox(width: ResponsiveFlutter.of(context).moderateScale(110),),
+                             GestureDetector(
+                               onTap: () =>    Navigator.push(
+                                 context,
+                                 MaterialPageRoute(
+                                   builder: (context) => const ChatInterface(),
+                                 ),
+                               ),
+                               child: Container(
+                                height: ResponsiveFlutter.of(context).verticalScale(30),
+                                width: ResponsiveFlutter.of(context).verticalScale(30),
+                                alignment: Alignment.center,
+                                child: Image(
+                                  image: AssetImage(ImagePath().chatSwitch),
+                                  height: ResponsiveFlutter.of(context).verticalScale(25),
+                                ),
+                            ),
+                             ),
+                          ],
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top : ResponsiveFlutter.of(context).verticalScale(5), bottom:ResponsiveFlutter.of(context).verticalScale(5) ),
+                          child: SizedBox(height:ResponsiveFlutter.of(context).verticalScale(80),width:double.maxFinite ,
+                          child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          padding:EdgeInsets.symmetric(horizontal: ResponsiveFlutter.of(context).verticalScale(5)),
+                          itemBuilder: (context, index) {
+                            return UserStoryItem(
+                              setRectPoint: (rectpoint) {
+                                print(rect);
+                                setState(() {
+                                  rect = rectpoint;
+                                });
+                                onStoryItemTap(rect, index);
+                              },
+                              index: index,
+                            );
+                          }),
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                              flex: 120,
+                              child: TabBar(
+                                controller: tabController,
+                                indicator: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(
+                                    ResponsiveFlutter.of(context).moderateScale(25),
+                                  ), // Creates border
+                                  color: appColors.btnColor,
+                                ),
+                                onTap: (value) {
+                                  tab = value;
+                                  setState(() {});
+                                  debugPrint("value ------>> $value");
+                                },
+                                tabs: [
+                                  Container(
+                                    height: ResponsiveFlutter.of(context).moderateScale(45),
+                                    alignment: Alignment.center,
+                                    child: MyTextView(
+                                      "Feed",
+                                      textAligntNew: TextAlign.start,
+                                      maxLineWrap: true,
+                                      styleNew: MyTextStyle(
+                                        colorNew: tab == 0 ? appColors.white : appColors.darkGreyText,
+                                        fontWeightNew: FontWeight.w600,
+                                        size: ResponsiveFlutter.of(context).fontSize(1.8),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    height: ResponsiveFlutter.of(context).moderateScale(45),
+                                    alignment: Alignment.center,
+                                    child: MyTextView(
+                                      "Clubs",
+                                      textAligntNew: TextAlign.start,
+                                      maxLineWrap: true,
+                                      styleNew: MyTextStyle(
+                                        colorNew: tab == 1 ? appColors.white : appColors.darkGreyText,
+                                        fontWeightNew: FontWeight.w600,
+                                        size: ResponsiveFlutter.of(context).fontSize(1.8),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    height: ResponsiveFlutter.of(context).moderateScale(45),
+                                    alignment: Alignment.center,
+                                    child: MyTextView(
+                                      "People",
+                                      textAligntNew: TextAlign.start,
+                                      maxLineWrap: true,
+                                      styleNew: MyTextStyle(
+                                        colorNew: tab == 2 ? appColors.white : appColors.darkGreyText,
+                                        fontWeightNew: FontWeight.w600,
+                                        size: ResponsiveFlutter.of(context).fontSize(1.8),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const Expanded(
+                              flex: 3,
+                              child: SizedBox(),
+                            ),
+                          ],
+                        ),
+
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                  _handleFileSelection();
-                },
-                child: const Align(
-                  alignment: AlignmentDirectional.centerStart,
-                  child: Text('File'),
-                ),
-              ),
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: const Align(
-                  alignment: AlignmentDirectional.centerStart,
-                  child: Text('Cancel'),
-                ),
-              ),
-            ],
+
+                Container(
+                  height: ResponsiveFlutter.of(context).moderateScale(460),
+                  alignment: Alignment.topCenter,
+                  decoration: BoxDecoration(
+                    color: appColors.appDarkColor,
+                    borderRadius: BorderRadius.all(
+                       Radius.circular(ResponsiveFlutter.of(context).moderateScale(30)),
+                    ),
+                  ),
+                   child: TabBarView(
+                    controller: tabController,
+                    physics: const NeverScrollableScrollPhysics(),
+                    children: const [
+                    FeedScreen(),
+                    MyEventsScreen(),
+                    MyBookingScreen(),
+                    ]
+                   )
+                )
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  void _handleFileSelection() async {
-    final result = await FilePicker.platform.pickFiles(
-      type: FileType.any,
-    );
-
-    if (result != null && result.files.single.path != null) {
-      final message = types.FileMessage(
-        author: _user,
-        createdAt: DateTime.now().millisecondsSinceEpoch,
-        id: const Uuid().v4(),
-        mimeType: lookupMimeType(result.files.single.path!),
-        name: result.files.single.name,
-        size: result.files.single.size,
-        uri: result.files.single.path!,
-      );
-
-      _addMessage(message);
-    }
-  }
-
-  void _handleImageSelection() async {
-    final result = await ImagePicker().pickImage(
-      imageQuality: 70,
-      maxWidth: 1440,
-      source: ImageSource.gallery,
-    );
-
-    if (result != null) {
-      final bytes = await result.readAsBytes();
-      final image = await decodeImageFromList(bytes);
-
-      final message = types.ImageMessage(
-        author: _user,
-        createdAt: DateTime.now().millisecondsSinceEpoch,
-        height: image.height.toDouble(),
-        id: const Uuid().v4(),
-        name: result.name,
-        size: bytes.length,
-        uri: result.path,
-        width: image.width.toDouble(),
-      );
-
-      _addMessage(message);
-    }
-  }
-
-  void _handleMessageTap(BuildContext _, types.Message message) async {
-    if (message is types.FileMessage) {
-      var localPath = message.uri;
-
-      if (message.uri.startsWith('http')) {
-        try {
-          final index =
-          _messages.indexWhere((element) => element.id == message.id);
-          final updatedMessage =
-          (_messages[index] as types.FileMessage).copyWith(
-            isLoading: true,
-          );
-
-          setState(() {
-            _messages[index] = updatedMessage;
-          });
-
-          final client = http.Client();
-          final request = await client.get(Uri.parse(message.uri));
-          final bytes = request.bodyBytes;
-          final documentsDir = (await getApplicationDocumentsDirectory()).path;
-          localPath = '$documentsDir/${message.name}';
-
-          if (!File(localPath).existsSync()) {
-            final file = File(localPath);
-            await file.writeAsBytes(bytes);
-          }
-        } finally {
-          final index =
-          _messages.indexWhere((element) => element.id == message.id);
-          final updatedMessage =
-          (_messages[index] as types.FileMessage).copyWith(
-            isLoading: null,
-          );
-
-          setState(() {
-            _messages[index] = updatedMessage;
-          });
-        }
-      }
-
-      await OpenFilex.open(localPath);
-    }
-  }
-
-  void _handlePreviewDataFetched(
-      types.TextMessage message,
-      types.PreviewData previewData,
-      ) {
-    final index = _messages.indexWhere((element) => element.id == message.id);
-    final updatedMessage = (_messages[index] as types.TextMessage).copyWith(
-      previewData: previewData,
-    );
-
-    setState(() {
-      _messages[index] = updatedMessage;
-    });
-  }
-
-  void _handleSendPressed(types.PartialText message) {
-    final textMessage = types.TextMessage(
-      author: _user,
-      createdAt: DateTime.now().millisecondsSinceEpoch,
-      id: const Uuid().v4(),
-      text: message.text,
-    );
-
-    _addMessage(textMessage);
-  }
-
-  void _loadMessages() async {
-    final response = await rootBundle.loadString('assets/messages.json');
-    final messages = (jsonDecode(response) as List)
-        .map((e) => types.Message.fromJson(e as Map<String, dynamic>))
-        .toList();
-
-    setState(() {
-      _messages = messages;
+  void onStoryItemTap(reactpoint, index) {
+    setState(() => rect = reactpoint);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      setState(() =>
+      rect = rect!.inflate(1.3 * MediaQuery.of(context).size.longestSide));
+      storyAnimationController!.forward();
+      Future.delayed(animationDuration, () {
+        Navigator.of(context)
+            .push(
+          FadeRouteBuilder(
+            page: StoryFeedView(
+                stories: stories, herotagString: 'index$index'),
+          ),
+        )
+            .then((value) => setState(() => rect = null));
+      });
     });
   }
 }
+class UserStoryItem extends StatefulWidget {
+  const UserStoryItem(
+      {Key? key, required this.index, required this.setRectPoint})
+      : super(key: key);
+
+  final int index;
+  final Function(Rect?) setRectPoint;
+  @override
+  _UserStoryItemState createState() => _UserStoryItemState();
+}
+
+class _UserStoryItemState extends State<UserStoryItem>
+    with TickerProviderStateMixin {
+  /// Variables
+  late Animation<double> gap;
+  late Animation<double> base;
+  late Animation<double> reverse;
+  AnimationController? animationController;
+  Rect? rect;
+  GlobalKey touchPoint = GlobalKey();
+
+  get storyAnimationController => null;
+
+  static const Duration animationDuration =  Duration(seconds: 1);
+  static const Duration delay =  Duration(seconds: 1);
+
+  @override
+  void initState() {
+    super.initState();
+    animationController =
+        AnimationController(vsync: this, duration: const Duration(seconds: 10));
+    base = CurvedAnimation(parent: animationController!, curve: Curves.easeOut);
+    reverse = Tween<double>(begin: 0.0, end: -1.0).animate(base);
+    gap = Tween<double>(begin: 3.0, end: 0.0).animate(base)
+      ..addListener(() {
+        setState(() {});
+      });
+    animationController!.forward();
+    animationController!.addListener(() {
+      if (animationController!.isCompleted) {
+        animationController!.repeat();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    animationController!.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(
+          horizontal: ResponsiveFlutter.of(context).verticalScale(5)),
+      child: GestureDetector(
+        key: touchPoint,
+        behavior: HitTestBehavior.opaque,
+        onTapUp: (detalis) {
+          var object = touchPoint.currentContext?.findRenderObject();
+          var translation = object?.getTransformTo(null).getTranslation();
+          var size = object?.semanticBounds.size;
+          rect = Rect.fromLTWH(
+              translation!.x, translation.y, size!.width, size.height);
+          widget.setRectPoint(rect);
+        },
+        child: Hero(
+          tag: "index${widget.index}",
+          transitionOnUserGestures: true,
+          child: Container(
+            alignment: Alignment.center,
+            child: RotationTransition(
+              turns: base,
+              child: DashedCircle(
+                gapSize: gap.value,
+                dashes: 20,
+                color: const Color(0xffed4634),
+                child: RotationTransition(
+                  turns: reverse,
+                  child: const Padding(
+                    padding: EdgeInsets.all(5.0),
+                    child: CircleAvatar(
+                      radius: 27.5,
+                      backgroundImage: AssetImage(
+                          ImagePath.image_3),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+  void onStoryItemTap(reactpoint, index) {
+    setState(() => rect = reactpoint);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      setState(() =>
+      rect = rect!.inflate(1.3 * MediaQuery.of(context).size.longestSide));
+      storyAnimationController!.forward();
+      Future.delayed(animationDuration, () {
+        Navigator.of(context)
+            .push(
+          FadeRouteBuilder(
+            page: StoryFeedView(
+                stories: stories, herotagString: 'index$index'),
+          ),
+        )
+            .then((value) => setState(() => rect = null));
+      });
+    });
+  }
+}
+
+
+
+

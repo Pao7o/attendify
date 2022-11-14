@@ -20,97 +20,99 @@ class _FriendsScreenState extends State<FriendsScreen> {
       bottom: false,
       child: Scaffold(
         backgroundColor: appColors.appMediumColor,
-        body: Column(
-          children: [
-            Expanded(
-              child: ListView.builder(
-                padding: EdgeInsets.symmetric(horizontal: ResponsiveFlutter.of(context).moderateScale(10)),
-                physics: const BouncingScrollPhysics(),
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return Container(
-                    child: index % 3 == 0 ? senderRow(isSecond: true) : receiverRow(isSecond: index == 2 || index == 5 || index == 8 ? false : true),
-                  );
-                },
+        body: Expanded(
+          child: Column(
+            children: [
+              Expanded(
+                child: ListView.builder(
+                  padding: EdgeInsets.symmetric(horizontal: ResponsiveFlutter.of(context).moderateScale(10)),
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: 10,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      child: index % 3 == 0 ? senderRow(isSecond: true) : receiverRow(isSecond: index == 2 || index == 5 || index == 8 ? false : true),
+                    );
+                  },
+                ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: ResponsiveFlutter.of(context).moderateScale(20),
-                vertical: ResponsiveFlutter.of(context).moderateScale(20),
-              ),
-              child: Stack(
-                alignment: Alignment.topRight,
-                children: [
-                  Container(
-                    height: ResponsiveFlutter.of(context).moderateScale(55),
-                    margin: EdgeInsets.only(
-                      right: ResponsiveFlutter.of(context).moderateScale(25),
-                      bottom: ResponsiveFlutter.of(context).moderateScale(5),
-                    ),
-                    padding: EdgeInsets.symmetric(
-                      horizontal: ResponsiveFlutter.of(context).moderateScale(20),
-                    ),
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: appColors.appMediumColor,
-                      borderRadius: BorderRadius.circular(
-                        ResponsiveFlutter.of(context).moderateScale(30),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: ResponsiveFlutter.of(context).moderateScale(20),
+                  vertical: ResponsiveFlutter.of(context).moderateScale(20),
+                ),
+                child: Stack(
+                  alignment: Alignment.topRight,
+                  children: [
+                    Container(
+                      height: ResponsiveFlutter.of(context).moderateScale(55),
+                      margin: EdgeInsets.only(
+                        right: ResponsiveFlutter.of(context).moderateScale(25),
+                        bottom: ResponsiveFlutter.of(context).moderateScale(5),
                       ),
-                      border: Border.all(
-                        color: appColors.borderColor,
-                        width: 2,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: ResponsiveFlutter.of(context).moderateScale(20),
                       ),
-                    ),
-                    child: Row(
-                      children: [
-                        Container(
-                          height: ResponsiveFlutter.of(context).verticalScale(15),
-                          width: ResponsiveFlutter.of(context).verticalScale(15),
-                          alignment: Alignment.center,
-                          child: Image.asset(ImagePath.emoji),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: appColors.appMediumColor,
+                        borderRadius: BorderRadius.circular(
+                          ResponsiveFlutter.of(context).moderateScale(30),
                         ),
-                        SizedBox(
-                          width: ResponsiveFlutter.of(context).moderateScale(10),
+                        border: Border.all(
+                          color: appColors.borderColor,
+                          width: 2,
                         ),
-                        Expanded(
-                          child: TextField(
-                            style: MyTextStyle(
-                              colorNew: appColors.lightColor,
-                              fontWeightNew: FontWeight.w400,
-                              size: ResponsiveFlutter.of(context).fontSize(1.8),
-                            ),
-                            cursorColor: appColors.lightColor,
-                            keyboardType: TextInputType.multiline,
-                            expands: false,
-                            decoration: InputDecoration(
-                              isDense: true,
-                              border: InputBorder.none,
-                              hintText: Strings.typeHere,
-                              hintStyle: MyTextStyle(
-                                colorNew: appColors.transactionText,
+                      ),
+                      child: Row(
+                        children: [
+                          Container(
+                            height: ResponsiveFlutter.of(context).verticalScale(15),
+                            width: ResponsiveFlutter.of(context).verticalScale(15),
+                            alignment: Alignment.center,
+                            child: Image.asset(ImagePath.emoji),
+                          ),
+                          SizedBox(
+                            width: ResponsiveFlutter.of(context).moderateScale(10),
+                          ),
+                          Expanded(
+                            child: TextField(
+                              style: MyTextStyle(
+                                colorNew: appColors.lightColor,
                                 fontWeightNew: FontWeight.w400,
                                 size: ResponsiveFlutter.of(context).fontSize(1.8),
                               ),
+                              cursorColor: appColors.lightColor,
+                              keyboardType: TextInputType.multiline,
+                              expands: false,
+                              decoration: InputDecoration(
+                                isDense: true,
+                                border: InputBorder.none,
+                                hintText: Strings.typeHere,
+                                hintStyle: MyTextStyle(
+                                  colorNew: appColors.transactionText,
+                                  fontWeightNew: FontWeight.w400,
+                                  size: ResponsiveFlutter.of(context).fontSize(1.8),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  Container(
-                    height: ResponsiveFlutter.of(context).moderateScale(53),
-                    width: ResponsiveFlutter.of(context).moderateScale(53),
-                    decoration: BoxDecoration(
-                      color: appColors.btnColor,
-                      shape: BoxShape.circle,
+                    Container(
+                      height: ResponsiveFlutter.of(context).moderateScale(53),
+                      width: ResponsiveFlutter.of(context).moderateScale(53),
+                      decoration: BoxDecoration(
+                        color: appColors.btnColor,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Image.asset(ImagePath.send),
                     ),
-                    child: Image.asset(ImagePath.send),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
