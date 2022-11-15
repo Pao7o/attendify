@@ -49,8 +49,7 @@ class _SettingScreenState extends State<SettingScreen> {
       ),
     );
     return SafeArea(
-      top: false,
-      bottom: false,
+
       child: Scaffold(
         backgroundColor: appColors.appMediumColor,
         body: Column(

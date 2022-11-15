@@ -30,7 +30,7 @@ class _ChatScreenState extends State<ChatScreen> {
           backgroundColor: appColors.appMediumColor,
           body: Column(
             children: [
-
+            Text("A chat interface will be coded here guys",style: TextStyle(fontSize: 80),)
 
             ],
           ),

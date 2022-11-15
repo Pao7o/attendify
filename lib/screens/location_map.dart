@@ -6,10 +6,12 @@ import 'package:attendify/screens/story_view.dart';
 import 'package:dashed_circle/dashed_circle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:rect_getter/rect_getter.dart';
 
 import '../common/app_colors.dart';
 import '../common/common_widget.dart';
+import '../common/constants.dart';
 import '../common/image_path.dart';
 import '../common/story_data.dart';
 import '../common/strings.dart';
@@ -51,7 +53,6 @@ class _ChatInterfaceState extends State<ChatInterface> with TickerProviderStateM
   Widget build(BuildContext context) {
     return SafeArea(
       top: false,
-      bottom: false,
       child: DefaultTabController(
         length: 3,
         child: Scaffold(
@@ -61,7 +62,7 @@ class _ChatInterfaceState extends State<ChatInterface> with TickerProviderStateM
             child: Column(
               children: [
                 Container(
-                  height: ResponsiveFlutter.of(context).moderateScale(185),
+                  height: ResponsiveFlutter.of(context).moderateScale(225),
                   decoration: BoxDecoration(
                     color: appColors.appDarkColor,
                     borderRadius: BorderRadius.only(
@@ -70,7 +71,7 @@ class _ChatInterfaceState extends State<ChatInterface> with TickerProviderStateM
                     ),
                   ),
                   child: Padding(
-                    padding: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(5)),
+                    padding: EdgeInsets.only(top : ResponsiveFlutter.of(context).moderateScale(27)),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -91,12 +92,12 @@ class _ChatInterfaceState extends State<ChatInterface> with TickerProviderStateM
                                  onTap: () =>    Navigator.push(
                                    context,
                                    MaterialPageRoute(
-                                     builder: (context) => const ChatInterface(),
+                                     builder: (context) => const ChatScreen(),
                                    ),
                                  ),
                                  child: Container(
-                                  height: ResponsiveFlutter.of(context).verticalScale(30),
-                                  width: ResponsiveFlutter.of(context).verticalScale(30),
+                                  height: ResponsiveFlutter.of(context).verticalScale(40),
+                                  width: ResponsiveFlutter.of(context).verticalScale(40),
                                   alignment: Alignment.center,
                                   child: Image(
                                     image: AssetImage(ImagePath().chatSwitch),
@@ -108,7 +109,7 @@ class _ChatInterfaceState extends State<ChatInterface> with TickerProviderStateM
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(top : ResponsiveFlutter.of(context).verticalScale(5), bottom:ResponsiveFlutter.of(context).verticalScale(5) ),
+                          padding: EdgeInsets.only(top : ResponsiveFlutter.of(context).verticalScale(0), bottom:ResponsiveFlutter.of(context).verticalScale(5) ),
                           child: SizedBox(height:ResponsiveFlutter.of(context).verticalScale(80),width:double.maxFinite ,
                           child: ListView.builder(
                           scrollDirection: Axis.horizontal,
@@ -203,7 +204,7 @@ class _ChatInterfaceState extends State<ChatInterface> with TickerProviderStateM
                 ),
 
                 Container(
-                  height: ResponsiveFlutter.of(context).moderateScale(460),
+                  height: ResponsiveFlutter.of(context).moderateScale(510),
                   alignment: Alignment.topCenter,
                   decoration: BoxDecoration(
                     color: appColors.appDarkColor,

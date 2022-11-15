@@ -17,18 +17,13 @@ class _FeedScreenState extends State<FeedScreen> {
   AppColors appColors = AppColors();
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      top: false,
-      bottom: false,
-      child: Scaffold(
-        backgroundColor: AppColors().appMediumColor,
-        body: Stack(
-          children: [
-            EventsPublications()
-          ],
-        ),
+    return Scaffold(
+      backgroundColor: AppColors().appMediumColor,
+      body: Stack(
+        children: [
+          EventsPublications()
+        ],
       ),
-
     );
   }
 }

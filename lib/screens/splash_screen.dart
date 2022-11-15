@@ -53,7 +53,9 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
         (route) => false,
       ),
+
     );
+
   }
 
   @override
