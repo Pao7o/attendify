@@ -74,36 +74,38 @@ class _ChatInterfaceState extends State<ChatInterface> with TickerProviderStateM
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            SizedBox(width: ResponsiveFlutter.of(context).moderateScale(110),),
-                            MyTextView("Social".toUpperCase(),
-                              textAligntNew: TextAlign.center,
-                                styleNew: MyTextStyle(
-                                  colorNew: AppColors().lightColor,
-                                  fontWeightNew: FontWeight.w600,
-                                  size: ResponsiveFlutter.of(context).fontSize(2.4),
-                              ),),
-                            SizedBox(width: ResponsiveFlutter.of(context).moderateScale(110),),
-                             GestureDetector(
-                               onTap: () =>    Navigator.push(
-                                 context,
-                                 MaterialPageRoute(
-                                   builder: (context) => const ChatInterface(),
+                        Flexible(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              SizedBox(width: ResponsiveFlutter.of(context).moderateScale(110),),
+                              MyTextView("Social".toUpperCase(),
+                                textAligntNew: TextAlign.center,
+                                  styleNew: MyTextStyle(
+                                    colorNew: AppColors().lightColor,
+                                    fontWeightNew: FontWeight.w600,
+                                    size: ResponsiveFlutter.of(context).fontSize(2.4),
+                                ),),
+                              SizedBox(width: ResponsiveFlutter.of(context).moderateScale(110),),
+                               GestureDetector(
+                                 onTap: () =>    Navigator.push(
+                                   context,
+                                   MaterialPageRoute(
+                                     builder: (context) => const ChatInterface(),
+                                   ),
                                  ),
+                                 child: Container(
+                                  height: ResponsiveFlutter.of(context).verticalScale(30),
+                                  width: ResponsiveFlutter.of(context).verticalScale(30),
+                                  alignment: Alignment.center,
+                                  child: Image(
+                                    image: AssetImage(ImagePath().chatSwitch),
+                                    height: ResponsiveFlutter.of(context).verticalScale(25),
+                                  ),
+                              ),
                                ),
-                               child: Container(
-                                height: ResponsiveFlutter.of(context).verticalScale(30),
-                                width: ResponsiveFlutter.of(context).verticalScale(30),
-                                alignment: Alignment.center,
-                                child: Image(
-                                  image: AssetImage(ImagePath().chatSwitch),
-                                  height: ResponsiveFlutter.of(context).verticalScale(25),
-                                ),
-                            ),
-                             ),
-                          ],
+                            ],
+                          ),
                         ),
                         Padding(
                           padding: EdgeInsets.only(top : ResponsiveFlutter.of(context).verticalScale(5), bottom:ResponsiveFlutter.of(context).verticalScale(5) ),

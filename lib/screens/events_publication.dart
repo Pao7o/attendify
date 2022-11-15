@@ -19,6 +19,13 @@ class EventsPublications extends StatefulWidget {
 class _EventsPublicationsState extends State<EventsPublications> {
   AppColors appColors = AppColors();
   ImagePath imagePath = ImagePath();
+  String? dropdownvalue = 'Popular';
+
+  var items = [
+    'Popular',
+    'Near you',
+    'Recommanded for you',
+  ];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -35,14 +42,23 @@ class _EventsPublicationsState extends State<EventsPublications> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                    width: ResponsiveFlutter.of(context).moderateScale(120),
+                    width: ResponsiveFlutter.of(context).moderateScale(205),
                     height:ResponsiveFlutter.of(context).moderateScale(25),
                     child: Row(
-                      children: [
-                        IconButton(onPressed:() {
 
-                          
-                        } , icon: Icon(Icons.arrow_drop_down))
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+
+                       DropdownButton(items: items.map((items) {
+                         return DropdownMenuItem(value: items, child: Text(items,style: TextStyle(color: AppColors().lightColor),));
+                       }).toList(),
+                         onChanged: (String? newValue) {
+                         setState(() {
+                           dropdownvalue = newValue;
+                         });
+                       },
+
+                         value: dropdownvalue,icon: new Icon(Icons.arrow_drop_down),)
                       ],
                     ),
                     decoration: BoxDecoration(
