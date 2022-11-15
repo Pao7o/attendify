@@ -3,7 +3,7 @@ description: Music event creat and booking flutter app
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -30,24 +30,23 @@ dependencies:
   flutter:
     sdk: flutter
 
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
 
   # Common Plugin --->>
-  cupertino_icons: ^1.0.2               # For ios icons
-  fluttertoast: ^8.0.8                  # For show toast massage
-  shared_preferences: ^2.0.12           # For save data in locale
-  connectivity: ^3.0.6                  # For check internet connection
-  flutter_spinkit: ^5.1.0               # For loader
-  intl: ^0.17.0                         # For Date and Time
-  crypto: ^3.0.1                        # For encrypt and decrypt data
-  url_launcher: ^6.0.18                 # Url launcher
+  cupertino_icons: ^1.0.2 # For ios icons
+  fluttertoast: ^8.0.8 # For show toast massage
+  shared_preferences: ^2.0.12 # For save data in locale
+  connectivity: ^3.0.6 # For check internet connection
+  flutter_spinkit: ^5.1.0 # For loader
+  intl: ^0.17.0 # For Date and Time
+  crypto: ^3.0.1 # For encrypt and decrypt data
+  url_launcher: ^6.0.18 # Url launcher
 
   # UI Plugin --->>
-  flutter_switch: ^0.3.2                # for switch
-  otp_text_field: ^1.1.1                # To create otp text filed
-  image_picker: ^0.8.4+4                # To pick image
+  flutter_switch: ^0.3.2 # for switch
+  otp_text_field: ^1.1.1 # To create otp text filed
+  image_picker: ^0.8.4+4 # To pick image
 
   #Chat Plugin
   flutter_chat_ui: ^1.6.6
@@ -77,7 +76,7 @@ dependencies:
   flutter_polyline_points: ^1.0.0
   get: ^4.6.5
   google_maps_flutter: ^2.2.1
-  location: ^4.4.0
+  #location: ^4.4.0
   flutter_svg: ^1.1.6
   geocoding: ^2.0.5
   geolocator: ^9.0.2
@@ -87,7 +86,6 @@ dependencies:
   google_maps_webservice: ^0.0.20-nullsafety.5
   http: any
   uuid: ^3.0.6
-
 
 dev_dependencies:
   flutter_test:
@@ -105,7 +103,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
