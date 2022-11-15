@@ -18,7 +18,6 @@ class MyAppState extends State<MyApp> {
   AppColors appColors = AppColors();
   @override
   void initState() {
-    // TODO: implement initState
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
         overlays: [SystemUiOverlay.top]);
     SystemChrome.setPreferredOrientations([
