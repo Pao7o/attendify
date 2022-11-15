@@ -71,7 +71,7 @@ dependencies:
   dashed_circle: ^0.0.2
   rect_getter: ^1.1.0
   flutter_screenutil: ^5.1.1
-  font_awesome_flutter: ^9.2.0
+  font_awesome_flutter: ^10.2.1
 
   #MAPS Plugin --->>
   flutter_polyline_points: ^1.0.0
