@@ -6,6 +6,8 @@ import '../common/common_widget.dart';
 import '../common/image_path.dart';
 import '../common/strings.dart';
 import '../responsive/responsive_flutter.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+
 import 'chat_screen.dart';
 import 'edit_event_screen.dart';
 
@@ -80,23 +82,29 @@ class _EventsPublicationsState extends State<EventsPublications> {
               child: ListView.separated(
                 itemCount: 2,
                 padding: EdgeInsets.symmetric(
-                  horizontal: ResponsiveFlutter.of(context).moderateScale(20),
+                  horizontal: ResponsiveFlutter.of(context).moderateScale(00),
                 ),
                 itemBuilder: (context, index) => Stack(
                   alignment: Alignment.bottomCenter,
                   children: [
-                    Container(
-                      height: ResponsiveFlutter.of(context).moderateScale(290),
-                      width: double.infinity,
-                      margin: EdgeInsets.only(bottom: ResponsiveFlutter.of(context).moderateScale(40)),
-                      padding: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(15)),
-                      decoration: BoxDecoration(
-                        color: appColors.btnColor,
-                        borderRadius: BorderRadius.circular(
-                          ResponsiveFlutter.of(context).moderateScale(20),
-                        ),
-
-                      ),
+                    CarouselSlider(
+                      options: CarouselOptions(height : ResponsiveFlutter.of(context).moderateScale(290),enlargeCenterPage: true,),
+                      items: [1,2,3,4,5].map((i) {
+                        return Builder(
+                          builder: (BuildContext context) {
+                            return Container(
+                                width: MediaQuery.of(context).size.width,
+                                margin: EdgeInsets.symmetric(horizontal: 7.0,vertical: 15.0),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                    color: Colors.amber,
+                                ),
+                                child: ClipRRect(borderRadius: BorderRadius.circular(20),
+                                    child: Image.asset(ImagePath.image_4,fit: BoxFit.fill,))
+                            );
+                          },
+                        );
+                      }).toList(),
                     ),
                   ],
                 ),
