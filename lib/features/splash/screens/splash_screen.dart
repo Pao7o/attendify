@@ -9,16 +9,17 @@ import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:attendify/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends ConsumerStatefulWidget {
   static const String routeName = "/splash_screen";
   const SplashScreen({Key? key}) : super(key: key);
 
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  SplashScreenState createState() => SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class SplashScreenState extends ConsumerState<SplashScreen> {
   AppColors appColors = AppColors();
   Utils utils = Utils();
   SharedPref pref = SharedPref();
@@ -44,6 +45,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+        overlays: <SystemUiOverlay>[]);
     darkOrLightTheme();
     Timer(
       const Duration(seconds: 3),
@@ -58,7 +61,15 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   @override
+  void dispose() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+        overlays: SystemUiOverlay.values);
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    /*
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
@@ -72,6 +83,7 @@ class _SplashScreenState extends State<SplashScreen> {
             Constants.darkTheme ? Brightness.light : Brightness.dark,
       ),
     );
+    */
     return SafeArea(
       bottom: false,
       top: false,
