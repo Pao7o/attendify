@@ -1,16 +1,17 @@
 import 'dart:async';
 
-import 'package:attendify/common/app_colors.dart';
-import 'package:attendify/common/constants.dart';
-import 'package:attendify/common/image_path.dart';
-import 'package:attendify/common/shared_pref.dart';
-import 'package:attendify/common/utils.dart';
+import 'package:attendify/features/common/app_colors.dart';
+import 'package:attendify/features/common/constants.dart';
+import 'package:attendify/features/common/image_path.dart';
+import 'package:attendify/features/common/shared_pref.dart';
+import 'package:attendify/features/common/utils.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:attendify/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class SplashScreen extends StatefulWidget {
+  static const String routeName = "/splash_screen";
   const SplashScreen({Key? key}) : super(key: key);
 
   @override
@@ -61,11 +62,14 @@ class _SplashScreenState extends State<SplashScreen> {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Constants.darkTheme ? Brightness.light : Brightness.dark,
-        statusBarBrightness: Constants.darkTheme ? Brightness.dark : Brightness.light,
+        statusBarIconBrightness:
+            Constants.darkTheme ? Brightness.light : Brightness.dark,
+        statusBarBrightness:
+            Constants.darkTheme ? Brightness.dark : Brightness.light,
         systemNavigationBarColor: appColors.lightColor,
         // systemNavigationBarDividerColor: appColors.appDarkColor,
-        systemNavigationBarIconBrightness: Constants.darkTheme ? Brightness.light : Brightness.dark,
+        systemNavigationBarIconBrightness:
+            Constants.darkTheme ? Brightness.light : Brightness.dark,
       ),
     );
     return SafeArea(
@@ -87,7 +91,9 @@ class _SplashScreenState extends State<SplashScreen> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: ResponsiveFlutter.of(context).moderateScale(75)),
+                padding: EdgeInsets.symmetric(
+                    horizontal:
+                        ResponsiveFlutter.of(context).moderateScale(75)),
                 child: Image.asset(ImagePath.appLogo),
               ),
               SizedBox(

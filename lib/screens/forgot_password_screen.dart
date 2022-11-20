@@ -1,7 +1,7 @@
-import 'package:attendify/common/app_colors.dart';
-import 'package:attendify/common/common_widget.dart';
-import 'package:attendify/common/image_path.dart';
-import 'package:attendify/common/strings.dart';
+import 'package:attendify/features/common/app_colors.dart';
+import 'package:attendify/features/common/common_widget.dart';
+import 'package:attendify/features/common/image_path.dart';
+import 'package:attendify/features/common/strings.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:attendify/screens/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +29,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             padding: EdgeInsets.zero,
             children: [
               SizedBox(
-                height: MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top,
+                height: MediaQuery.of(context).size.height -
+                    MediaQuery.of(context).padding.top,
                 child: Column(
                   children: [
                     Stack(
@@ -38,12 +39,14 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         Column(
                           children: [
                             Container(
-                              height: ResponsiveFlutter.of(context).verticalScale(256),
+                              height: ResponsiveFlutter.of(context)
+                                  .verticalScale(256),
                               width: double.infinity,
                               color: appColors.appDarkColor,
                             ),
                             Container(
-                              height: ResponsiveFlutter.of(context).verticalScale(19),
+                              height: ResponsiveFlutter.of(context)
+                                  .verticalScale(19),
                               width: double.infinity,
                               color: appColors.appMediumColor,
                             ),
@@ -53,12 +56,18 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                           children: [
                             Image.asset(
                               ImagePath.logo,
-                              height: ResponsiveFlutter.of(context).verticalScale(30),
+                              height: ResponsiveFlutter.of(context)
+                                  .verticalScale(30),
                             ),
-                            SizedBox(height: ResponsiveFlutter.of(context).verticalScale(10)),
+                            SizedBox(
+                                height: ResponsiveFlutter.of(context)
+                                    .verticalScale(10)),
                             Container(
-                              height: ResponsiveFlutter.of(context).verticalScale(210),
-                              padding: EdgeInsets.symmetric(horizontal: ResponsiveFlutter.of(context).moderateScale(25)),
+                              height: ResponsiveFlutter.of(context)
+                                  .verticalScale(210),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: ResponsiveFlutter.of(context)
+                                      .moderateScale(25)),
                               child: Image.asset(
                                 ImagePath.forgotPasswordImage,
                                 alignment: Alignment.bottomCenter,
@@ -69,7 +78,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       ],
                     ),
                     Container(
-                      padding: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(20)),
+                      padding: EdgeInsets.all(
+                          ResponsiveFlutter.of(context).moderateScale(20)),
                       color: appColors.appMediumColor,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,7 +93,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                               fontWeightNew: FontWeight.bold,
                             ),
                           ),
-                          SizedBox(height: ResponsiveFlutter.of(context).verticalScale(5)),
+                          SizedBox(
+                              height: ResponsiveFlutter.of(context)
+                                  .verticalScale(5)),
                           MyTextView(
                             Strings.pleaseFillYourEmail,
                             maxLineWrap: true,
@@ -93,22 +105,30 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                               fontWeightNew: FontWeight.w400,
                             ),
                           ),
-                          SizedBox(height: ResponsiveFlutter.of(context).verticalScale(25)),
+                          SizedBox(
+                              height: ResponsiveFlutter.of(context)
+                                  .verticalScale(25)),
                           Stack(
                             alignment: Alignment.bottomCenter,
                             children: [
                               Container(
-                                height: ResponsiveFlutter.of(context).verticalScale(80),
+                                height: ResponsiveFlutter.of(context)
+                                    .verticalScale(80),
                                 padding: EdgeInsets.symmetric(
-                                  vertical: ResponsiveFlutter.of(context).moderateScale(20),
-                                  horizontal: ResponsiveFlutter.of(context).moderateScale(25),
+                                  vertical: ResponsiveFlutter.of(context)
+                                      .moderateScale(20),
+                                  horizontal: ResponsiveFlutter.of(context)
+                                      .moderateScale(25),
                                 ),
                                 alignment: Alignment.topCenter,
-                                margin: EdgeInsets.only(bottom: ResponsiveFlutter.of(context).moderateScale(25)),
+                                margin: EdgeInsets.only(
+                                    bottom: ResponsiveFlutter.of(context)
+                                        .moderateScale(25)),
                                 decoration: BoxDecoration(
                                   color: appColors.appLightColor,
                                   borderRadius: BorderRadius.circular(
-                                    ResponsiveFlutter.of(context).moderateScale(25),
+                                    ResponsiveFlutter.of(context)
+                                        .moderateScale(25),
                                   ),
                                 ),
                                 child: Column(
@@ -127,14 +147,16 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                               ),
                               Padding(
                                 padding: EdgeInsets.symmetric(
-                                  horizontal: ResponsiveFlutter.of(context).moderateScale(55),
+                                  horizontal: ResponsiveFlutter.of(context)
+                                      .moderateScale(55),
                                 ),
                                 child: GestureDetector(
                                   onTap: () {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => const LoginScreen(),
+                                        builder: (context) =>
+                                            const LoginScreen(),
                                       ),
                                     );
                                   },

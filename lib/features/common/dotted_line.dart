@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:attendify/common/app_colors.dart';
+import 'package:attendify/features/common/app_colors.dart';
 import 'package:flutter/material.dart';
 
 bool _isEmpty(double d) {
@@ -66,7 +66,9 @@ class _FDottedLineState extends State<FDottedLine> {
 
   @override
   Widget build(BuildContext context) {
-    if (_isEmpty(widget.width!) && _isEmpty(widget.height!) && widget.child == null) return Container();
+    if (_isEmpty(widget.width!) &&
+        _isEmpty(widget.height!) &&
+        widget.child == null) return Container();
     if (widget.child != null) {
       tryToGetChildSize();
       List<Widget> children = [];
@@ -75,10 +77,16 @@ class _FDottedLineState extends State<FDottedLine> {
           clipBehavior: widget.corner == null ? Clip.none : Clip.antiAlias,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(widget.corner != null ? widget.corner!.leftTopCorner : 0.0),
-              topRight: Radius.circular(widget.corner != null ? widget.corner!.rightTopCorner : 0.0),
-              bottomLeft: Radius.circular(widget.corner != null ? widget.corner!.leftBottomCorner : 0.0),
-              bottomRight: Radius.circular(widget.corner != null ? widget.corner!.rightBottomCorner : 0.0),
+              topLeft: Radius.circular(
+                  widget.corner != null ? widget.corner!.leftTopCorner : 0.0),
+              topRight: Radius.circular(
+                  widget.corner != null ? widget.corner!.rightTopCorner : 0.0),
+              bottomLeft: Radius.circular(widget.corner != null
+                  ? widget.corner!.leftBottomCorner
+                  : 0.0),
+              bottomRight: Radius.circular(widget.corner != null
+                  ? widget.corner!.rightBottomCorner
+                  : 0.0),
             ),
           ),
           key: childKey,
@@ -116,7 +124,8 @@ class _FDottedLineState extends State<FDottedLine> {
 
   CustomPaint dashPath({double? width, double? height}) {
     return CustomPaint(
-      size: Size(_isEmpty(width!) ? widget.strokeWidth! : width, _isEmpty(height!) ? widget.strokeWidth! : height),
+      size: Size(_isEmpty(width!) ? widget.strokeWidth! : width,
+          _isEmpty(height!) ? widget.strokeWidth! : height),
       foregroundPainter: _DottedLinePainter()
         ..color = widget.color!
         ..dottedLength = widget.dottedLength!
@@ -157,8 +166,14 @@ class _DottedLinePainter extends CustomPainter {
       if (count < 2.0) return;
       var startOffset = const Offset(0, 0);
       for (int i = 0; i < count.toInt(); i++) {
-        canvas.drawLine(startOffset, startOffset.translate((isHorizontal ? dottedLength! : 0), (isHorizontal ? 0 : dottedLength!)), paint);
-        startOffset = startOffset.translate((isHorizontal ? (dottedLength! + space!) : 0), (isHorizontal ? 0 : (dottedLength! + space!)));
+        canvas.drawLine(
+            startOffset,
+            startOffset.translate((isHorizontal ? dottedLength! : 0),
+                (isHorizontal ? 0 : dottedLength!)),
+            paint);
+        startOffset = startOffset.translate(
+            (isHorizontal ? (dottedLength! + space!) : 0),
+            (isHorizontal ? 0 : (dottedLength! + space!)));
       }
     }
 
@@ -171,9 +186,12 @@ class _DottedLinePainter extends CustomPainter {
         size.width,
         size.height,
         topLeft: Radius.circular(corner != null ? corner!.leftTopCorner : 0.0),
-        topRight: Radius.circular(corner != null ? corner!.rightTopCorner : 0.0),
-        bottomLeft: Radius.circular(corner != null ? corner!.leftBottomCorner : 0.0),
-        bottomRight: Radius.circular(corner != null ? corner!.rightBottomCorner : 0.0),
+        topRight:
+            Radius.circular(corner != null ? corner!.rightTopCorner : 0.0),
+        bottomLeft:
+            Radius.circular(corner != null ? corner!.leftBottomCorner : 0.0),
+        bottomRight:
+            Radius.circular(corner != null ? corner!.rightBottomCorner : 0.0),
       ));
 
       Path draw = buildDashPath(path, dottedLength!, space!);

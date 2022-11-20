@@ -1,7 +1,7 @@
-import 'package:attendify/common/app_colors.dart';
-import 'package:attendify/common/common_widget.dart';
-import 'package:attendify/common/image_path.dart';
-import 'package:attendify/common/strings.dart';
+import 'package:attendify/features/common/app_colors.dart';
+import 'package:attendify/features/common/common_widget.dart';
+import 'package:attendify/features/common/image_path.dart';
+import 'package:attendify/features/common/strings.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:flutter/material.dart';
 
@@ -23,13 +23,9 @@ class _FeedScreenState extends State<FeedScreen> {
       child: Scaffold(
         backgroundColor: AppColors().appMediumColor,
         body: Stack(
-          children: [
-            EventsPublications()
-          ],
+          children: [EventsPublications()],
         ),
       ),
-
     );
   }
 }
-

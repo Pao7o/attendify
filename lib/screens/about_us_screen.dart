@@ -1,7 +1,7 @@
-import 'package:attendify/common/app_colors.dart';
-import 'package:attendify/common/common_widget.dart';
-import 'package:attendify/common/image_path.dart';
-import 'package:attendify/common/strings.dart';
+import 'package:attendify/features/common/app_colors.dart';
+import 'package:attendify/features/common/common_widget.dart';
+import 'package:attendify/features/common/image_path.dart';
+import 'package:attendify/features/common/strings.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:flutter/material.dart';
 
@@ -56,7 +56,9 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                     height: ResponsiveFlutter.of(context).verticalScale(10),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: ResponsiveFlutter.of(context).moderateScale(70)),
+                    padding: EdgeInsets.symmetric(
+                        horizontal:
+                            ResponsiveFlutter.of(context).moderateScale(70)),
                     child: Image.asset(
                       ImagePath.appLogo,
                       color: appColors.lightColor,

@@ -1,6 +1,7 @@
-import 'package:attendify/common/app_colors.dart';
-import 'package:attendify/common/constants.dart';
-import 'package:attendify/screens/splash_screen.dart';
+import 'package:attendify/features/common/app_colors.dart';
+import 'package:attendify/features/common/constants.dart';
+import 'package:attendify/router.dart';
+import 'package:attendify/features/splash/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -37,6 +38,7 @@ class MyAppState extends State<MyApp> {
         primarySwatch: appColors.primarySwatchColors,
         fontFamily: Constants.carosSoft,
       ),
+      onGenerateRoute: (settings) => generateRoute(settings),
       home: const SplashScreen(),
     );
   }
