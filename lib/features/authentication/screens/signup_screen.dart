@@ -153,71 +153,73 @@ class SignUpScreenState extends State<SignUpScreen> {
                                   ),
                                   child: Form(
                                     key: _formKey,
-                                    child: Column(
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Expanded(
-                                              child: commonTestField(
-                                                context: context,
-                                                controller: firstName,
-                                                hintText: Strings.firstName,
-                                                image: ImagePath.avatar,
-                                                keyboardType:
-                                                    TextInputType.name,
-                                                obscureText: false,
-                                                icon: true,
+                                    child: SingleChildScrollView(
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Expanded(
+                                                child: commonTestField(
+                                                  context: context,
+                                                  controller: firstName,
+                                                  hintText: Strings.firstName,
+                                                  image: ImagePath.avatar,
+                                                  keyboardType:
+                                                      TextInputType.name,
+                                                  obscureText: false,
+                                                  icon: true,
+                                                ),
                                               ),
-                                            ),
-                                            Expanded(
-                                              child: commonTestField(
-                                                context: context,
-                                                controller: lastName,
-                                                hintText: Strings.lastName,
-                                                image: ImagePath.avatar,
-                                                keyboardType:
-                                                    TextInputType.name,
-                                                obscureText: false,
-                                                icon: true,
+                                              Expanded(
+                                                child: commonTestField(
+                                                  context: context,
+                                                  controller: lastName,
+                                                  hintText: Strings.lastName,
+                                                  image: ImagePath.avatar,
+                                                  keyboardType:
+                                                      TextInputType.name,
+                                                  obscureText: false,
+                                                  icon: true,
+                                                ),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                            height:
-                                                ResponsiveFlutter.of(context)
-                                                    .verticalScale(20)),
-                                        commonTestField(
-                                          validateFunction: (p0) {
-                                            if (p0 == null || p0.isEmpty) {
-                                              return "Field is empty";
-                                            }
-                                            return null;
-                                          },
-                                          context: context,
-                                          controller: email,
-                                          hintText: Strings.emailAddress,
-                                          image: ImagePath.email,
-                                          keyboardType:
-                                              TextInputType.emailAddress,
-                                          obscureText: false,
-                                          icon: true,
-                                        ),
-                                        SizedBox(
-                                            height:
-                                                ResponsiveFlutter.of(context)
-                                                    .verticalScale(20)),
-                                        commonTestField(
-                                          context: context,
-                                          controller: password,
-                                          hintText: Strings.password,
-                                          image: ImagePath.password,
-                                          keyboardType:
-                                              TextInputType.visiblePassword,
-                                          obscureText: true,
-                                          icon: true,
-                                        ),
-                                      ],
+                                            ],
+                                          ),
+                                          SizedBox(
+                                              height:
+                                                  ResponsiveFlutter.of(context)
+                                                      .verticalScale(20)),
+                                          commonTestField(
+                                            validateFunction: (p0) {
+                                              if (p0 == null || p0.isEmpty) {
+                                                return "Field is empty";
+                                              }
+                                              return null;
+                                            },
+                                            context: context,
+                                            controller: email,
+                                            hintText: Strings.emailAddress,
+                                            image: ImagePath.email,
+                                            keyboardType:
+                                                TextInputType.emailAddress,
+                                            obscureText: false,
+                                            icon: true,
+                                          ),
+                                          SizedBox(
+                                              height:
+                                                  ResponsiveFlutter.of(context)
+                                                      .verticalScale(20)),
+                                          commonTestField(
+                                            context: context,
+                                            controller: password,
+                                            hintText: Strings.password,
+                                            image: ImagePath.password,
+                                            keyboardType:
+                                                TextInputType.visiblePassword,
+                                            obscureText: true,
+                                            icon: true,
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -228,13 +230,15 @@ class SignUpScreenState extends State<SignUpScreen> {
                                   ),
                                   child: GestureDetector(
                                     onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const VerificationScreen(),
-                                        ),
-                                      );
+                                      if (_formKey.currentState!.validate()) {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const VerificationScreen(),
+                                          ),
+                                        );
+                                      }
                                     },
                                     child: commonButton(
                                       context: context,
