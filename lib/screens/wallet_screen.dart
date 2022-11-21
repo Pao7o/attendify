@@ -1,7 +1,7 @@
-import 'package:attendify/common/app_colors.dart';
-import 'package:attendify/common/common_widget.dart';
-import 'package:attendify/common/image_path.dart';
-import 'package:attendify/common/strings.dart';
+import 'package:attendify/features/common/app_colors.dart';
+import 'package:attendify/features/common/common_widget.dart';
+import 'package:attendify/features/common/image_path.dart';
+import 'package:attendify/features/common/strings.dart';
 import 'package:attendify/model/common_model.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:attendify/screens/add_money_screen.dart';
@@ -43,7 +43,9 @@ class _WalletScreenState extends State<WalletScreen> {
             Stack(
               children: [
                 Container(
-                  height: AppBar().preferredSize.height + MediaQuery.of(context).padding.top + ResponsiveFlutter.of(context).moderateScale(75),
+                  height: AppBar().preferredSize.height +
+                      MediaQuery.of(context).padding.top +
+                      ResponsiveFlutter.of(context).moderateScale(75),
                   width: double.infinity,
                   alignment: Alignment.bottomCenter,
                   padding: EdgeInsets.symmetric(
@@ -53,8 +55,10 @@ class _WalletScreenState extends State<WalletScreen> {
                   decoration: BoxDecoration(
                     color: appColors.btnColor,
                     borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(ResponsiveFlutter.of(context).moderateScale(30)),
-                      bottomRight: Radius.circular(ResponsiveFlutter.of(context).moderateScale(30)),
+                      bottomLeft: Radius.circular(
+                          ResponsiveFlutter.of(context).moderateScale(30)),
+                      bottomRight: Radius.circular(
+                          ResponsiveFlutter.of(context).moderateScale(30)),
                     ),
                   ),
                   child: Row(
@@ -74,7 +78,8 @@ class _WalletScreenState extends State<WalletScreen> {
                             ),
                           ),
                           SizedBox(
-                            height: ResponsiveFlutter.of(context).moderateScale(3),
+                            height:
+                                ResponsiveFlutter.of(context).moderateScale(3),
                           ),
                           MyTextView(
                             Strings.myBalance,
@@ -98,9 +103,12 @@ class _WalletScreenState extends State<WalletScreen> {
                           );
                         },
                         child: Container(
-                          height: ResponsiveFlutter.of(context).moderateScale(45),
-                          width: ResponsiveFlutter.of(context).moderateScale(45),
-                          padding: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(5)),
+                          height:
+                              ResponsiveFlutter.of(context).moderateScale(45),
+                          width:
+                              ResponsiveFlutter.of(context).moderateScale(45),
+                          padding: EdgeInsets.all(
+                              ResponsiveFlutter.of(context).moderateScale(5)),
                           decoration: BoxDecoration(
                             color: appColors.white,
                             shape: BoxShape.circle,
@@ -121,9 +129,12 @@ class _WalletScreenState extends State<WalletScreen> {
                           );
                         },
                         child: Container(
-                          height: ResponsiveFlutter.of(context).moderateScale(45),
-                          width: ResponsiveFlutter.of(context).moderateScale(45),
-                          padding: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(12)),
+                          height:
+                              ResponsiveFlutter.of(context).moderateScale(45),
+                          width:
+                              ResponsiveFlutter.of(context).moderateScale(45),
+                          padding: EdgeInsets.all(
+                              ResponsiveFlutter.of(context).moderateScale(12)),
                           decoration: BoxDecoration(
                             color: appColors.white,
                             shape: BoxShape.circle,
@@ -173,8 +184,10 @@ class _WalletScreenState extends State<WalletScreen> {
                           children: [
                             data[index].value == 1
                                 ? Container(
-                                    height: ResponsiveFlutter.of(context).moderateScale(50),
-                                    width: ResponsiveFlutter.of(context).moderateScale(50),
+                                    height: ResponsiveFlutter.of(context)
+                                        .moderateScale(50),
+                                    width: ResponsiveFlutter.of(context)
+                                        .moderateScale(50),
                                     alignment: Alignment.center,
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
@@ -185,12 +198,15 @@ class _WalletScreenState extends State<WalletScreen> {
                                     ),
                                     child: Image.asset(
                                       ImagePath.greenUp,
-                                      height: ResponsiveFlutter.of(context).moderateScale(8),
+                                      height: ResponsiveFlutter.of(context)
+                                          .moderateScale(8),
                                     ),
                                   )
                                 : Container(
-                                    height: ResponsiveFlutter.of(context).moderateScale(50),
-                                    width: ResponsiveFlutter.of(context).moderateScale(50),
+                                    height: ResponsiveFlutter.of(context)
+                                        .moderateScale(50),
+                                    width: ResponsiveFlutter.of(context)
+                                        .moderateScale(50),
                                     alignment: Alignment.center,
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
@@ -201,12 +217,14 @@ class _WalletScreenState extends State<WalletScreen> {
                                     ),
                                     child: Image.asset(
                                       ImagePath.redDown,
-                                      height: ResponsiveFlutter.of(context).moderateScale(8),
+                                      height: ResponsiveFlutter.of(context)
+                                          .moderateScale(8),
                                       alignment: Alignment.center,
                                     ),
                                   ),
                             SizedBox(
-                              width: ResponsiveFlutter.of(context).moderateScale(15),
+                              width: ResponsiveFlutter.of(context)
+                                  .moderateScale(15),
                             ),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -220,7 +238,8 @@ class _WalletScreenState extends State<WalletScreen> {
                                       styleNew: MyTextStyle(
                                         colorNew: appColors.lightColor,
                                         fontWeightNew: FontWeight.w300,
-                                        size: ResponsiveFlutter.of(context).fontSize(2),
+                                        size: ResponsiveFlutter.of(context)
+                                            .fontSize(2),
                                       ),
                                     ),
                                     MyTextView(
@@ -229,13 +248,15 @@ class _WalletScreenState extends State<WalletScreen> {
                                       styleNew: MyTextStyle(
                                         colorNew: appColors.lightColor,
                                         fontWeightNew: FontWeight.w500,
-                                        size: ResponsiveFlutter.of(context).fontSize(2.1),
+                                        size: ResponsiveFlutter.of(context)
+                                            .fontSize(2.1),
                                       ),
                                     ),
                                   ],
                                 ),
                                 SizedBox(
-                                  height: ResponsiveFlutter.of(context).moderateScale(2),
+                                  height: ResponsiveFlutter.of(context)
+                                      .moderateScale(2),
                                 ),
                                 Row(
                                   children: [
@@ -245,7 +266,8 @@ class _WalletScreenState extends State<WalletScreen> {
                                       styleNew: MyTextStyle(
                                         colorNew: appColors.transactionText,
                                         fontWeightNew: FontWeight.w400,
-                                        size: ResponsiveFlutter.of(context).fontSize(1.5),
+                                        size: ResponsiveFlutter.of(context)
+                                            .fontSize(1.5),
                                       ),
                                     ),
                                     MyTextView(
@@ -254,7 +276,8 @@ class _WalletScreenState extends State<WalletScreen> {
                                       styleNew: MyTextStyle(
                                         colorNew: appColors.transactionText,
                                         fontWeightNew: FontWeight.w400,
-                                        size: ResponsiveFlutter.of(context).fontSize(1.5),
+                                        size: ResponsiveFlutter.of(context)
+                                            .fontSize(1.5),
                                       ),
                                     ),
                                   ],
@@ -270,13 +293,17 @@ class _WalletScreenState extends State<WalletScreen> {
                                   Strings.dummyText18,
                                   textAligntNew: TextAlign.start,
                                   styleNew: MyTextStyle(
-                                    colorNew: data[index].value == 1 ? appColors.greenText : appColors.redText,
+                                    colorNew: data[index].value == 1
+                                        ? appColors.greenText
+                                        : appColors.redText,
                                     fontWeightNew: FontWeight.w500,
-                                    size: ResponsiveFlutter.of(context).fontSize(2.2),
+                                    size: ResponsiveFlutter.of(context)
+                                        .fontSize(2.2),
                                   ),
                                 ),
                                 SizedBox(
-                                  height: ResponsiveFlutter.of(context).moderateScale(2),
+                                  height: ResponsiveFlutter.of(context)
+                                      .moderateScale(2),
                                 ),
                                 MyTextView(
                                   Strings.dummyText17,
@@ -284,7 +311,8 @@ class _WalletScreenState extends State<WalletScreen> {
                                   styleNew: MyTextStyle(
                                     colorNew: appColors.transactionText,
                                     fontWeightNew: FontWeight.w400,
-                                    size: ResponsiveFlutter.of(context).fontSize(1.4),
+                                    size: ResponsiveFlutter.of(context)
+                                        .fontSize(1.4),
                                   ),
                                 ),
                               ],

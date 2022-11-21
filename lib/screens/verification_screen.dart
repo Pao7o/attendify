@@ -1,7 +1,7 @@
-import 'package:attendify/common/app_colors.dart';
-import 'package:attendify/common/common_widget.dart';
-import 'package:attendify/common/image_path.dart';
-import 'package:attendify/common/strings.dart';
+import 'package:attendify/features/common/app_colors.dart';
+import 'package:attendify/features/common/common_widget.dart';
+import 'package:attendify/features/common/image_path.dart';
+import 'package:attendify/features/common/strings.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:attendify/screens/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +31,8 @@ class _VerificationScreenState extends State<VerificationScreen> {
             padding: EdgeInsets.zero,
             children: [
               SizedBox(
-                height: MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top,
+                height: MediaQuery.of(context).size.height -
+                    MediaQuery.of(context).padding.top,
                 child: Column(
                   children: [
                     Stack(
@@ -40,12 +41,14 @@ class _VerificationScreenState extends State<VerificationScreen> {
                         Column(
                           children: [
                             Container(
-                              height: ResponsiveFlutter.of(context).verticalScale(256),
+                              height: ResponsiveFlutter.of(context)
+                                  .verticalScale(256),
                               width: double.infinity,
                               color: appColors.appDarkColor,
                             ),
                             Container(
-                              height: ResponsiveFlutter.of(context).verticalScale(19),
+                              height: ResponsiveFlutter.of(context)
+                                  .verticalScale(19),
                               width: double.infinity,
                               color: appColors.appMediumColor,
                             ),
@@ -55,12 +58,18 @@ class _VerificationScreenState extends State<VerificationScreen> {
                           children: [
                             Image.asset(
                               ImagePath.logo,
-                              height: ResponsiveFlutter.of(context).verticalScale(30),
+                              height: ResponsiveFlutter.of(context)
+                                  .verticalScale(30),
                             ),
-                            SizedBox(height: ResponsiveFlutter.of(context).verticalScale(10)),
+                            SizedBox(
+                                height: ResponsiveFlutter.of(context)
+                                    .verticalScale(10)),
                             Container(
-                              height: ResponsiveFlutter.of(context).verticalScale(210),
-                              padding: EdgeInsets.symmetric(horizontal: ResponsiveFlutter.of(context).moderateScale(25)),
+                              height: ResponsiveFlutter.of(context)
+                                  .verticalScale(210),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: ResponsiveFlutter.of(context)
+                                      .moderateScale(25)),
                               child: Image.asset(
                                 ImagePath.forgotPasswordImage,
                                 alignment: Alignment.bottomCenter,
@@ -76,7 +85,9 @@ class _VerificationScreenState extends State<VerificationScreen> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(20)),
+                            padding: EdgeInsets.all(
+                                ResponsiveFlutter.of(context)
+                                    .moderateScale(20)),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -85,17 +96,21 @@ class _VerificationScreenState extends State<VerificationScreen> {
                                   Strings.verification,
                                   styleNew: MyTextStyle(
                                     colorNew: appColors.lightColor,
-                                    size: ResponsiveFlutter.of(context).fontSize(3.7),
+                                    size: ResponsiveFlutter.of(context)
+                                        .fontSize(3.7),
                                     fontWeightNew: FontWeight.bold,
                                   ),
                                 ),
-                                SizedBox(height: ResponsiveFlutter.of(context).verticalScale(5)),
+                                SizedBox(
+                                    height: ResponsiveFlutter.of(context)
+                                        .verticalScale(5)),
                                 MyTextView(
                                   Strings.enterTheVerificationCode,
                                   maxLineWrap: true,
                                   styleNew: MyTextStyle(
                                     colorNew: appColors.mediumGrayColor,
-                                    size: ResponsiveFlutter.of(context).fontSize(1.8),
+                                    size: ResponsiveFlutter.of(context)
+                                        .fontSize(1.8),
                                     fontWeightNew: FontWeight.w400,
                                   ),
                                 ),
@@ -104,12 +119,16 @@ class _VerificationScreenState extends State<VerificationScreen> {
                           ),
                           Container(
                             height: ResponsiveFlutter.of(context).scale(80),
-                            padding: EdgeInsets.symmetric(horizontal: ResponsiveFlutter.of(context).moderateScale(10)),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: ResponsiveFlutter.of(context)
+                                    .moderateScale(10)),
                             child: OTPTextField(
                               length: 4,
                               width: MediaQuery.of(context).size.width,
-                              fieldWidth: ResponsiveFlutter.of(context).scale(60),
-                              outlineBorderRadius: ResponsiveFlutter.of(context).moderateScale(20),
+                              fieldWidth:
+                                  ResponsiveFlutter.of(context).scale(60),
+                              outlineBorderRadius: ResponsiveFlutter.of(context)
+                                  .moderateScale(20),
                               otpFieldStyle: OtpFieldStyle(
                                 borderColor: appColors.lightPinkColor,
                                 disabledBorderColor: appColors.lightPinkColor,
@@ -124,7 +143,9 @@ class _VerificationScreenState extends State<VerificationScreen> {
                                 fontWeightNew: FontWeight.w700,
                                 textHeight: 1.2,
                               ),
-                              margin: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(10)),
+                              margin: EdgeInsets.all(
+                                  ResponsiveFlutter.of(context)
+                                      .moderateScale(10)),
                               textFieldAlignment: MainAxisAlignment.center,
                               fieldStyle: FieldStyle.box,
                               onChanged: (value) {},
@@ -133,9 +154,13 @@ class _VerificationScreenState extends State<VerificationScreen> {
                               },
                             ),
                           ),
-                          SizedBox(height: ResponsiveFlutter.of(context).verticalScale(5)),
+                          SizedBox(
+                              height: ResponsiveFlutter.of(context)
+                                  .verticalScale(5)),
                           Padding(
-                            padding: EdgeInsets.symmetric(horizontal: ResponsiveFlutter.of(context).moderateScale(20)),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: ResponsiveFlutter.of(context)
+                                    .moderateScale(20)),
                             child: GestureDetector(
                               onTap: () {
                                 Navigator.push(
@@ -160,11 +185,14 @@ class _VerificationScreenState extends State<VerificationScreen> {
                               styleNew: MyTextStyle(
                                 colorNew: appColors.mediumGrayColor,
                                 fontWeightNew: FontWeight.w400,
-                                size: ResponsiveFlutter.of(context).fontSize(1.8),
+                                size:
+                                    ResponsiveFlutter.of(context).fontSize(1.8),
                               ),
                             ),
                           ),
-                          SizedBox(height: ResponsiveFlutter.of(context).verticalScale(5)),
+                          SizedBox(
+                              height: ResponsiveFlutter.of(context)
+                                  .verticalScale(5)),
                           GestureDetector(
                             onTap: () {},
                             child: Align(
@@ -175,12 +203,15 @@ class _VerificationScreenState extends State<VerificationScreen> {
                                 styleNew: MyTextStyle(
                                   colorNew: appColors.lightPinkColor,
                                   fontWeightNew: FontWeight.bold,
-                                  size: ResponsiveFlutter.of(context).fontSize(2),
+                                  size:
+                                      ResponsiveFlutter.of(context).fontSize(2),
                                 ),
                               ),
                             ),
                           ),
-                          SizedBox(height: ResponsiveFlutter.of(context).verticalScale(20)),
+                          SizedBox(
+                              height: ResponsiveFlutter.of(context)
+                                  .verticalScale(20)),
                         ],
                       ),
                     ),

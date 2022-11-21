@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../common/app_colors.dart';
-import '../common/common_widget.dart';
-import '../common/image_path.dart';
-import '../common/strings.dart';
+import '../features/common/app_colors.dart';
+import '../features/common/common_widget.dart';
+import '../features/common/image_path.dart';
+import '../features/common/strings.dart';
 import '../responsive/responsive_flutter.dart';
 import 'chat_screen.dart';
 import 'edit_event_screen.dart';
@@ -36,29 +36,36 @@ class _EventsPublicationsState extends State<EventsPublications> {
         body: Column(
           children: [
             Padding(
-              padding: EdgeInsets.only(left : ResponsiveFlutter.of(context).moderateScale(20),
+              padding: EdgeInsets.only(
+                  left: ResponsiveFlutter.of(context).moderateScale(20),
                   top: ResponsiveFlutter.of(context).moderateScale(10)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
                     width: ResponsiveFlutter.of(context).moderateScale(205),
-                    height:ResponsiveFlutter.of(context).moderateScale(25),
+                    height: ResponsiveFlutter.of(context).moderateScale(25),
                     child: Row(
-
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-
-                       DropdownButton(items: items.map((items) {
-                         return DropdownMenuItem(value: items, child: Text(items,style: TextStyle(color: AppColors().lightColor),));
-                       }).toList(),
-                         onChanged: (String? newValue) {
-                         setState(() {
-                           dropdownvalue = newValue;
-                         });
-                       },
-
-                         value: dropdownvalue,icon: new Icon(Icons.arrow_drop_down),)
+                        DropdownButton(
+                          items: items.map((items) {
+                            return DropdownMenuItem(
+                                value: items,
+                                child: Text(
+                                  items,
+                                  style:
+                                      TextStyle(color: AppColors().lightColor),
+                                ));
+                          }).toList(),
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              dropdownvalue = newValue;
+                            });
+                          },
+                          value: dropdownvalue,
+                          icon: new Icon(Icons.arrow_drop_down),
+                        )
                       ],
                     ),
                     decoration: BoxDecoration(
@@ -66,7 +73,6 @@ class _EventsPublicationsState extends State<EventsPublications> {
                       borderRadius: BorderRadius.circular(
                         ResponsiveFlutter.of(context).moderateScale(20),
                       ),
-
                     ),
                   ),
                 ],
@@ -85,14 +91,16 @@ class _EventsPublicationsState extends State<EventsPublications> {
                     Container(
                       height: ResponsiveFlutter.of(context).moderateScale(300),
                       width: double.infinity,
-                      margin: EdgeInsets.only(bottom: ResponsiveFlutter.of(context).moderateScale(40)),
-                      padding: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(15)),
+                      margin: EdgeInsets.only(
+                          bottom:
+                              ResponsiveFlutter.of(context).moderateScale(40)),
+                      padding: EdgeInsets.all(
+                          ResponsiveFlutter.of(context).moderateScale(15)),
                       decoration: BoxDecoration(
                         color: appColors.btnColor,
                         borderRadius: BorderRadius.circular(
                           ResponsiveFlutter.of(context).moderateScale(20),
                         ),
-
                       ),
                     ),
                   ],
@@ -106,4 +114,5 @@ class _EventsPublicationsState extends State<EventsPublications> {
         ),
       ),
     );
-}}
+  }
+}

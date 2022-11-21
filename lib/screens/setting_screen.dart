@@ -1,9 +1,9 @@
-import 'package:attendify/common/app_colors.dart';
-import 'package:attendify/common/common_widget.dart';
-import 'package:attendify/common/constants.dart';
-import 'package:attendify/common/image_path.dart';
-import 'package:attendify/common/shared_pref.dart';
-import 'package:attendify/common/strings.dart';
+import 'package:attendify/features/common/app_colors.dart';
+import 'package:attendify/features/common/common_widget.dart';
+import 'package:attendify/features/common/constants.dart';
+import 'package:attendify/features/common/image_path.dart';
+import 'package:attendify/features/common/shared_pref.dart';
+import 'package:attendify/features/common/strings.dart';
 import 'package:attendify/model/common_model.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:attendify/screens/about_us_screen.dart';
@@ -29,7 +29,8 @@ class _SettingScreenState extends State<SettingScreen> {
   SharedPref pref = SharedPref();
 
   List<CommonModel>? settingsList = [
-    CommonModel(image: ImagePath.notifications, title: Strings.notificationSettings),
+    CommonModel(
+        image: ImagePath.notifications, title: Strings.notificationSettings),
     CommonModel(image: ImagePath.privacy, title: Strings.changePassword),
     CommonModel(image: ImagePath.question, title: Strings.helpAndSupport),
     CommonModel(image: ImagePath.lock, title: Strings.privacyPolicy),
@@ -41,11 +42,14 @@ class _SettingScreenState extends State<SettingScreen> {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Constants.darkTheme ? Brightness.light : Brightness.dark,
-        statusBarBrightness: Constants.darkTheme ? Brightness.dark : Brightness.light,
+        statusBarIconBrightness:
+            Constants.darkTheme ? Brightness.light : Brightness.dark,
+        statusBarBrightness:
+            Constants.darkTheme ? Brightness.dark : Brightness.light,
         systemNavigationBarColor: appColors.lightColor,
         // systemNavigationBarDividerColor: appColors.appDarkColor,
-        systemNavigationBarIconBrightness: Constants.darkTheme ? Brightness.light : Brightness.dark,
+        systemNavigationBarIconBrightness:
+            Constants.darkTheme ? Brightness.light : Brightness.dark,
       ),
     );
     return SafeArea(
@@ -88,7 +92,8 @@ class _SettingScreenState extends State<SettingScreen> {
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     padding: EdgeInsets.symmetric(
-                      horizontal: ResponsiveFlutter.of(context).moderateScale(20),
+                      horizontal:
+                          ResponsiveFlutter.of(context).moderateScale(20),
                       vertical: ResponsiveFlutter.of(context).moderateScale(15),
                     ),
                     itemCount: settingsList!.length,
@@ -98,21 +103,24 @@ class _SettingScreenState extends State<SettingScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const NotificationSettingsScreen(),
+                              builder: (context) =>
+                                  const NotificationSettingsScreen(),
                             ),
                           );
                         } else if (index == 1) {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const ChangePasswordScreen(),
+                              builder: (context) =>
+                                  const ChangePasswordScreen(),
                             ),
                           );
                         } else if (index == 2) {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const HelpAndSupportScreen(),
+                              builder: (context) =>
+                                  const HelpAndSupportScreen(),
                             ),
                           );
                         } else if (index == 3) {
@@ -126,7 +134,8 @@ class _SettingScreenState extends State<SettingScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const TermsAndConditionScreen(),
+                              builder: (context) =>
+                                  const TermsAndConditionScreen(),
                             ),
                           );
                         } else if (index == 5) {
@@ -142,14 +151,18 @@ class _SettingScreenState extends State<SettingScreen> {
                         alignment: Alignment.centerLeft,
                         children: [
                           Container(
-                            height: ResponsiveFlutter.of(context).verticalScale(52),
+                            height:
+                                ResponsiveFlutter.of(context).verticalScale(52),
                             width: double.infinity,
                             margin: EdgeInsets.only(
-                              left: ResponsiveFlutter.of(context).moderateScale(15),
+                              left: ResponsiveFlutter.of(context)
+                                  .moderateScale(15),
                             ),
                             padding: EdgeInsets.only(
-                              right: ResponsiveFlutter.of(context).moderateScale(20),
-                              left: ResponsiveFlutter.of(context).moderateScale(40),
+                              right: ResponsiveFlutter.of(context)
+                                  .moderateScale(20),
+                              left: ResponsiveFlutter.of(context)
+                                  .moderateScale(40),
                             ),
                             decoration: BoxDecoration(
                               color: appColors.appLightColor,
@@ -167,20 +180,25 @@ class _SettingScreenState extends State<SettingScreen> {
                                   styleNew: MyTextStyle(
                                     colorNew: appColors.lightColor,
                                     fontWeightNew: FontWeight.w400,
-                                    size: ResponsiveFlutter.of(context).fontSize(1.8),
+                                    size: ResponsiveFlutter.of(context)
+                                        .fontSize(1.8),
                                   ),
                                 ),
                                 Image(
                                   image: const AssetImage(ImagePath.back),
-                                  height: ResponsiveFlutter.of(context).verticalScale(13),
+                                  height: ResponsiveFlutter.of(context)
+                                      .verticalScale(13),
                                 ),
                               ],
                             ),
                           ),
                           Container(
-                            height: ResponsiveFlutter.of(context).verticalScale(40),
+                            height:
+                                ResponsiveFlutter.of(context).verticalScale(40),
                             width: ResponsiveFlutter.of(context).scale(40),
-                            padding: EdgeInsets.symmetric(vertical: ResponsiveFlutter.of(context).moderateScale(12)),
+                            padding: EdgeInsets.symmetric(
+                                vertical: ResponsiveFlutter.of(context)
+                                    .moderateScale(12)),
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
@@ -206,7 +224,8 @@ class _SettingScreenState extends State<SettingScreen> {
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(
-                      horizontal: ResponsiveFlutter.of(context).moderateScale(120),
+                      horizontal:
+                          ResponsiveFlutter.of(context).moderateScale(120),
                     ),
                     child: GestureDetector(
                       onTap: () {
@@ -232,7 +251,8 @@ class _SettingScreenState extends State<SettingScreen> {
                           children: [
                             Image(
                               image: const AssetImage(ImagePath.logout),
-                              height: ResponsiveFlutter.of(context).moderateScale(18),
+                              height: ResponsiveFlutter.of(context)
+                                  .moderateScale(18),
                             ),
                             SizedBox(
                               width: ResponsiveFlutter.of(context).scale(10),
@@ -243,7 +263,8 @@ class _SettingScreenState extends State<SettingScreen> {
                               styleNew: MyTextStyle(
                                 colorNew: appColors.black,
                                 fontWeightNew: FontWeight.w600,
-                                size: ResponsiveFlutter.of(context).fontSize(2.2),
+                                size:
+                                    ResponsiveFlutter.of(context).fontSize(2.2),
                               ),
                             ),
                           ],

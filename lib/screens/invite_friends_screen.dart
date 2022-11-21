@@ -1,7 +1,7 @@
-import 'package:attendify/common/app_colors.dart';
-import 'package:attendify/common/common_widget.dart';
-import 'package:attendify/common/image_path.dart';
-import 'package:attendify/common/strings.dart';
+import 'package:attendify/features/common/app_colors.dart';
+import 'package:attendify/features/common/common_widget.dart';
+import 'package:attendify/features/common/image_path.dart';
+import 'package:attendify/features/common/strings.dart';
 import 'package:attendify/model/common_model.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +62,8 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
                           left: ResponsiveFlutter.of(context).moderateScale(15),
                         ),
                         padding: EdgeInsets.only(
-                          right: ResponsiveFlutter.of(context).moderateScale(20),
+                          right:
+                              ResponsiveFlutter.of(context).moderateScale(20),
                           left: ResponsiveFlutter.of(context).moderateScale(40),
                         ),
                         decoration: BoxDecoration(
@@ -81,28 +82,39 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
                               styleNew: MyTextStyle(
                                 colorNew: appColors.lightColor,
                                 fontWeightNew: FontWeight.w400,
-                                size: ResponsiveFlutter.of(context).fontSize(1.8),
+                                size:
+                                    ResponsiveFlutter.of(context).fontSize(1.8),
                               ),
                             ),
                             Container(
-                              height: ResponsiveFlutter.of(context).verticalScale(28),
+                              height: ResponsiveFlutter.of(context)
+                                  .verticalScale(28),
                               width: ResponsiveFlutter.of(context).scale(60),
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
-                                color: settingsList![index].value == 1 ? appColors.appLightColor : appColors.lightPinkColor,
-                                borderRadius: BorderRadius.circular(ResponsiveFlutter.of(context).moderateScale(30)),
+                                color: settingsList![index].value == 1
+                                    ? appColors.appLightColor
+                                    : appColors.lightPinkColor,
+                                borderRadius: BorderRadius.circular(
+                                    ResponsiveFlutter.of(context)
+                                        .moderateScale(30)),
                                 border: Border.all(
                                   color: appColors.lightPinkColor,
                                   width: ResponsiveFlutter.of(context).scale(2),
                                 ),
                               ),
                               child: MyTextView(
-                                settingsList![index].value == 1 ? Strings.invite : Strings.invited,
+                                settingsList![index].value == 1
+                                    ? Strings.invite
+                                    : Strings.invited,
                                 textAligntNew: TextAlign.center,
                                 styleNew: MyTextStyle(
-                                  colorNew: settingsList![index].value == 1 ? appColors.lightPinkColor : appColors.black,
+                                  colorNew: settingsList![index].value == 1
+                                      ? appColors.lightPinkColor
+                                      : appColors.black,
                                   fontWeightNew: FontWeight.w500,
-                                  size: ResponsiveFlutter.of(context).fontSize(1.6),
+                                  size: ResponsiveFlutter.of(context)
+                                      .fontSize(1.6),
                                 ),
                               ),
                             ),

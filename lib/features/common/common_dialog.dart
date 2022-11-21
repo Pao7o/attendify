@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:attendify/common/app_colors.dart';
-import 'package:attendify/common/common_widget.dart';
-import 'package:attendify/common/strings.dart';
+import 'package:attendify/features/common/app_colors.dart';
+import 'package:attendify/features/common/common_widget.dart';
+import 'package:attendify/features/common/strings.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +39,8 @@ class CommonDialog {
       },
       child: cancelTitle != null
           ? Container(
-              height: ResponsiveFlutter.of(context).verticalScale(Platform.isIOS ? 40 : 35),
+              height: ResponsiveFlutter.of(context)
+                  .verticalScale(Platform.isIOS ? 40 : 35),
               width: ResponsiveFlutter.of(context).scale(75),
               alignment: Alignment.center,
               color: appColors.black,
@@ -53,7 +54,8 @@ class CommonDialog {
               ),
             )
           : Container(
-              height: ResponsiveFlutter.of(context).verticalScale(Platform.isIOS ? 40 : 35),
+              height: ResponsiveFlutter.of(context)
+                  .verticalScale(Platform.isIOS ? 40 : 35),
               width: ResponsiveFlutter.of(context).scale(75),
               alignment: Alignment.center,
               color: appColors.black,
@@ -67,7 +69,8 @@ class CommonDialog {
               ),
             ),
     );
-    if (cancelTitle != null && cancelTitle!.isNotEmpty) actions.add(actionButton);
+    if (cancelTitle != null && cancelTitle!.isNotEmpty)
+      actions.add(actionButton);
     for (int i = 0; i < alertActionTitles!.length; i++) {
       Widget actionButton = GestureDetector(
         onTap: () {
@@ -75,7 +78,8 @@ class CommonDialog {
           onAlertAction!(i);
         },
         child: Container(
-          height: ResponsiveFlutter.of(context).verticalScale(Platform.isIOS ? 40 : 35),
+          height: ResponsiveFlutter.of(context)
+              .verticalScale(Platform.isIOS ? 40 : 35),
           width: ResponsiveFlutter.of(context).scale(75),
           alignment: Alignment.center,
           color: appColors.black,

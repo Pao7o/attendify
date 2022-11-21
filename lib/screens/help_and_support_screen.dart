@@ -1,8 +1,8 @@
-import 'package:attendify/common/app_colors.dart';
-import 'package:attendify/common/common_widget.dart';
-import 'package:attendify/common/constants.dart';
-import 'package:attendify/common/image_path.dart';
-import 'package:attendify/common/strings.dart';
+import 'package:attendify/features/common/app_colors.dart';
+import 'package:attendify/features/common/common_widget.dart';
+import 'package:attendify/features/common/constants.dart';
+import 'package:attendify/features/common/image_path.dart';
+import 'package:attendify/features/common/strings.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:flutter/material.dart';
 
@@ -75,30 +75,42 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
                         children: [
                           Expanded(
                             child: Container(
-                              height: ResponsiveFlutter.of(context).verticalScale(150),
+                              height: ResponsiveFlutter.of(context)
+                                  .verticalScale(150),
                               padding: EdgeInsets.symmetric(
-                                vertical: ResponsiveFlutter.of(context).moderateScale(25),
-                                horizontal: ResponsiveFlutter.of(context).moderateScale(20),
+                                vertical: ResponsiveFlutter.of(context)
+                                    .moderateScale(25),
+                                horizontal: ResponsiveFlutter.of(context)
+                                    .moderateScale(20),
                               ),
                               decoration: BoxDecoration(
                                 color: appColors.appLightColor,
                                 borderRadius: BorderRadius.circular(
-                                  ResponsiveFlutter.of(context).moderateScale(30),
+                                  ResponsiveFlutter.of(context)
+                                      .moderateScale(30),
                                 ),
                               ),
                               child: Column(
                                 children: [
                                   Container(
-                                    height: ResponsiveFlutter.of(context).moderateScale(65),
-                                    width: ResponsiveFlutter.of(context).moderateScale(65),
-                                    padding: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(15)),
+                                    height: ResponsiveFlutter.of(context)
+                                        .moderateScale(65),
+                                    width: ResponsiveFlutter.of(context)
+                                        .moderateScale(65),
+                                    padding: EdgeInsets.all(
+                                        ResponsiveFlutter.of(context)
+                                            .moderateScale(15)),
                                     decoration: BoxDecoration(
-                                      color: Constants.darkTheme ? appColors.appDarkColor : appColors.lightPinkColor.withOpacity(0.1),
+                                      color: Constants.darkTheme
+                                          ? appColors.appDarkColor
+                                          : appColors.lightPinkColor
+                                              .withOpacity(0.1),
                                       shape: BoxShape.circle,
                                     ),
                                     child: Image.asset(
                                       ImagePath.phone,
-                                      height: ResponsiveFlutter.of(context).moderateScale(70),
+                                      height: ResponsiveFlutter.of(context)
+                                          .moderateScale(70),
                                     ),
                                   ),
                                   const Spacer(),
@@ -108,11 +120,13 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
                                     styleNew: MyTextStyle(
                                       colorNew: appColors.lightColor,
                                       fontWeightNew: FontWeight.w600,
-                                      size: ResponsiveFlutter.of(context).fontSize(2),
+                                      size: ResponsiveFlutter.of(context)
+                                          .fontSize(2),
                                     ),
                                   ),
                                   SizedBox(
-                                    height: ResponsiveFlutter.of(context).verticalScale(3),
+                                    height: ResponsiveFlutter.of(context)
+                                        .verticalScale(3),
                                   ),
                                   MyTextView(
                                     Strings.dummyText2,
@@ -121,7 +135,8 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
                                     styleNew: MyTextStyle(
                                       colorNew: appColors.greyTextColor,
                                       fontWeightNew: FontWeight.w500,
-                                      size: ResponsiveFlutter.of(context).fontSize(1.5),
+                                      size: ResponsiveFlutter.of(context)
+                                          .fontSize(1.5),
                                     ),
                                   ),
                                 ],
@@ -129,34 +144,47 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
                             ),
                           ),
                           SizedBox(
-                            width: ResponsiveFlutter.of(context).moderateScale(20),
+                            width:
+                                ResponsiveFlutter.of(context).moderateScale(20),
                           ),
                           Expanded(
                             child: Container(
-                              height: ResponsiveFlutter.of(context).verticalScale(150),
+                              height: ResponsiveFlutter.of(context)
+                                  .verticalScale(150),
                               padding: EdgeInsets.symmetric(
-                                vertical: ResponsiveFlutter.of(context).moderateScale(25),
-                                horizontal: ResponsiveFlutter.of(context).moderateScale(20),
+                                vertical: ResponsiveFlutter.of(context)
+                                    .moderateScale(25),
+                                horizontal: ResponsiveFlutter.of(context)
+                                    .moderateScale(20),
                               ),
                               decoration: BoxDecoration(
                                 color: appColors.appLightColor,
                                 borderRadius: BorderRadius.circular(
-                                  ResponsiveFlutter.of(context).moderateScale(30),
+                                  ResponsiveFlutter.of(context)
+                                      .moderateScale(30),
                                 ),
                               ),
                               child: Column(
                                 children: [
                                   Container(
-                                    height: ResponsiveFlutter.of(context).moderateScale(65),
-                                    width: ResponsiveFlutter.of(context).moderateScale(65),
-                                    padding: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(17)),
+                                    height: ResponsiveFlutter.of(context)
+                                        .moderateScale(65),
+                                    width: ResponsiveFlutter.of(context)
+                                        .moderateScale(65),
+                                    padding: EdgeInsets.all(
+                                        ResponsiveFlutter.of(context)
+                                            .moderateScale(17)),
                                     decoration: BoxDecoration(
-                                      color: Constants.darkTheme ? appColors.appDarkColor : appColors.lightPinkColor.withOpacity(0.1),
+                                      color: Constants.darkTheme
+                                          ? appColors.appDarkColor
+                                          : appColors.lightPinkColor
+                                              .withOpacity(0.1),
                                       shape: BoxShape.circle,
                                     ),
                                     child: Image.asset(
                                       ImagePath.mail,
-                                      height: ResponsiveFlutter.of(context).moderateScale(70),
+                                      height: ResponsiveFlutter.of(context)
+                                          .moderateScale(70),
                                     ),
                                   ),
                                   const Spacer(),
@@ -166,11 +194,13 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
                                     styleNew: MyTextStyle(
                                       colorNew: appColors.lightColor,
                                       fontWeightNew: FontWeight.w600,
-                                      size: ResponsiveFlutter.of(context).fontSize(2),
+                                      size: ResponsiveFlutter.of(context)
+                                          .fontSize(2),
                                     ),
                                   ),
                                   SizedBox(
-                                    height: ResponsiveFlutter.of(context).verticalScale(3),
+                                    height: ResponsiveFlutter.of(context)
+                                        .verticalScale(3),
                                   ),
                                   MyTextView(
                                     Strings.dummyText3,
@@ -179,7 +209,8 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
                                     styleNew: MyTextStyle(
                                       colorNew: appColors.greyTextColor,
                                       fontWeightNew: FontWeight.w500,
-                                      size: ResponsiveFlutter.of(context).fontSize(1.5),
+                                      size: ResponsiveFlutter.of(context)
+                                          .fontSize(1.5),
                                     ),
                                   ),
                                 ],

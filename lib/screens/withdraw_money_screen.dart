@@ -1,7 +1,7 @@
-import 'package:attendify/common/app_colors.dart';
-import 'package:attendify/common/common_widget.dart';
-import 'package:attendify/common/image_path.dart';
-import 'package:attendify/common/strings.dart';
+import 'package:attendify/features/common/app_colors.dart';
+import 'package:attendify/features/common/common_widget.dart';
+import 'package:attendify/features/common/image_path.dart';
+import 'package:attendify/features/common/strings.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:attendify/screens/cancel_withdrawal_screen.dart';
 import 'package:flutter/material.dart';
@@ -70,7 +70,8 @@ class _WithdrawMoneyScreenState extends State<WithdrawMoneyScreen> {
                   ),
                   Container(
                     width: double.infinity,
-                    padding: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(20)),
+                    padding: EdgeInsets.all(
+                        ResponsiveFlutter.of(context).moderateScale(20)),
                     decoration: BoxDecoration(
                       color: appColors.appLightColor,
                       border: Border.all(
@@ -94,7 +95,8 @@ class _WithdrawMoneyScreenState extends State<WithdrawMoneyScreen> {
                           ),
                         ),
                         SizedBox(
-                          height: ResponsiveFlutter.of(context).moderateScale(5),
+                          height:
+                              ResponsiveFlutter.of(context).moderateScale(5),
                         ),
                         commonTestField(
                           context: context,
@@ -111,7 +113,8 @@ class _WithdrawMoneyScreenState extends State<WithdrawMoneyScreen> {
                   Container(
                     height: ResponsiveFlutter.of(context).verticalScale(50),
                     padding: EdgeInsets.symmetric(
-                      horizontal: ResponsiveFlutter.of(context).moderateScale(20),
+                      horizontal:
+                          ResponsiveFlutter.of(context).moderateScale(20),
                     ),
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
@@ -138,7 +141,8 @@ class _WithdrawMoneyScreenState extends State<WithdrawMoneyScreen> {
                       iconSize: ResponsiveFlutter.of(context).moderateScale(30),
                       isExpanded: true,
                       dropdownColor: appColors.appLightColor,
-                      borderRadius: BorderRadius.circular(ResponsiveFlutter.of(context).moderateScale(20)),
+                      borderRadius: BorderRadius.circular(
+                          ResponsiveFlutter.of(context).moderateScale(20)),
                       underline: Container(),
                       alignment: Alignment.bottomCenter,
                       items: items.map((String items) {
@@ -168,7 +172,8 @@ class _WithdrawMoneyScreenState extends State<WithdrawMoneyScreen> {
                   ),
                   Container(
                     width: double.infinity,
-                    padding: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(20)),
+                    padding: EdgeInsets.all(
+                        ResponsiveFlutter.of(context).moderateScale(20)),
                     decoration: BoxDecoration(
                       color: appColors.appLightColor,
                       border: Border.all(
@@ -192,7 +197,8 @@ class _WithdrawMoneyScreenState extends State<WithdrawMoneyScreen> {
                           ),
                         ),
                         SizedBox(
-                          height: ResponsiveFlutter.of(context).moderateScale(5),
+                          height:
+                              ResponsiveFlutter.of(context).moderateScale(5),
                         ),
                         commonTestField(
                           context: context,
@@ -208,7 +214,8 @@ class _WithdrawMoneyScreenState extends State<WithdrawMoneyScreen> {
                   ),
                   Container(
                     width: double.infinity,
-                    padding: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(20)),
+                    padding: EdgeInsets.all(
+                        ResponsiveFlutter.of(context).moderateScale(20)),
                     decoration: BoxDecoration(
                       color: appColors.appLightColor,
                       border: Border.all(
@@ -232,7 +239,8 @@ class _WithdrawMoneyScreenState extends State<WithdrawMoneyScreen> {
                           ),
                         ),
                         SizedBox(
-                          height: ResponsiveFlutter.of(context).moderateScale(5),
+                          height:
+                              ResponsiveFlutter.of(context).moderateScale(5),
                         ),
                         Row(
                           children: [
@@ -246,7 +254,8 @@ class _WithdrawMoneyScreenState extends State<WithdrawMoneyScreen> {
                             ),
                             Image.asset(
                               ImagePath.masterCard,
-                              height: ResponsiveFlutter.of(context).moderateScale(25),
+                              height: ResponsiveFlutter.of(context)
+                                  .moderateScale(25),
                             ),
                           ],
                         ),
@@ -261,7 +270,8 @@ class _WithdrawMoneyScreenState extends State<WithdrawMoneyScreen> {
                       Expanded(
                         child: Container(
                           width: double.infinity,
-                          padding: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(20)),
+                          padding: EdgeInsets.all(
+                              ResponsiveFlutter.of(context).moderateScale(20)),
                           decoration: BoxDecoration(
                             color: appColors.appLightColor,
                             border: Border.all(
@@ -281,11 +291,13 @@ class _WithdrawMoneyScreenState extends State<WithdrawMoneyScreen> {
                                 styleNew: MyTextStyle(
                                   colorNew: appColors.transactionText,
                                   fontWeightNew: FontWeight.w400,
-                                  size: ResponsiveFlutter.of(context).fontSize(1.8),
+                                  size: ResponsiveFlutter.of(context)
+                                      .fontSize(1.8),
                                 ),
                               ),
                               SizedBox(
-                                height: ResponsiveFlutter.of(context).moderateScale(5),
+                                height: ResponsiveFlutter.of(context)
+                                    .moderateScale(5),
                               ),
                               commonTestField(
                                 context: context,
@@ -303,7 +315,8 @@ class _WithdrawMoneyScreenState extends State<WithdrawMoneyScreen> {
                       Expanded(
                         child: Container(
                           width: double.infinity,
-                          padding: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(20)),
+                          padding: EdgeInsets.all(
+                              ResponsiveFlutter.of(context).moderateScale(20)),
                           decoration: BoxDecoration(
                             color: appColors.appLightColor,
                             border: Border.all(
@@ -323,11 +336,13 @@ class _WithdrawMoneyScreenState extends State<WithdrawMoneyScreen> {
                                 styleNew: MyTextStyle(
                                   colorNew: appColors.transactionText,
                                   fontWeightNew: FontWeight.w400,
-                                  size: ResponsiveFlutter.of(context).fontSize(1.8),
+                                  size: ResponsiveFlutter.of(context)
+                                      .fontSize(1.8),
                                 ),
                               ),
                               SizedBox(
-                                height: ResponsiveFlutter.of(context).moderateScale(5),
+                                height: ResponsiveFlutter.of(context)
+                                    .moderateScale(5),
                               ),
                               commonTestField(
                                 context: context,
@@ -376,7 +391,9 @@ class _WithdrawMoneyScreenState extends State<WithdrawMoneyScreen> {
                   Container(
                     height: ResponsiveFlutter.of(context).scale(45),
                     alignment: Alignment.center,
-                    padding: EdgeInsets.symmetric(horizontal: ResponsiveFlutter.of(context).moderateScale(30)),
+                    padding: EdgeInsets.symmetric(
+                        horizontal:
+                            ResponsiveFlutter.of(context).moderateScale(30)),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(
                         ResponsiveFlutter.of(context).moderateScale(30),
@@ -390,11 +407,13 @@ class _WithdrawMoneyScreenState extends State<WithdrawMoneyScreen> {
                       children: [
                         Image.asset(
                           ImagePath.paypal,
-                          height: ResponsiveFlutter.of(context).moderateScale(22),
+                          height:
+                              ResponsiveFlutter.of(context).moderateScale(22),
                           color: appColors.white,
                         ),
                         SizedBox(
-                          width: ResponsiveFlutter.of(context).moderateScale(15),
+                          width:
+                              ResponsiveFlutter.of(context).moderateScale(15),
                         ),
                         MyTextView(
                           Strings.payPal,

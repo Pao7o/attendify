@@ -1,7 +1,7 @@
-import 'package:attendify/common/app_colors.dart';
-import 'package:attendify/common/common_widget.dart';
-import 'package:attendify/common/image_path.dart';
-import 'package:attendify/common/strings.dart';
+import 'package:attendify/features/common/app_colors.dart';
+import 'package:attendify/features/common/common_widget.dart';
+import 'package:attendify/features/common/image_path.dart';
+import 'package:attendify/features/common/strings.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:flutter/material.dart';
 
@@ -32,15 +32,21 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       width: double.infinity,
                       alignment: Alignment.bottomCenter,
                       padding: EdgeInsets.symmetric(
-                        vertical: ResponsiveFlutter.of(context).moderateScale(20),
-                        horizontal: ResponsiveFlutter.of(context).moderateScale(20),
+                        vertical:
+                            ResponsiveFlutter.of(context).moderateScale(20),
+                        horizontal:
+                            ResponsiveFlutter.of(context).moderateScale(20),
                       ),
-                      margin: EdgeInsets.only(bottom: ResponsiveFlutter.of(context).moderateScale(50)),
+                      margin: EdgeInsets.only(
+                          bottom:
+                              ResponsiveFlutter.of(context).moderateScale(50)),
                       decoration: BoxDecoration(
                         color: appColors.appDarkColor,
                         borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(ResponsiveFlutter.of(context).moderateScale(30)),
-                          bottomRight: Radius.circular(ResponsiveFlutter.of(context).moderateScale(30)),
+                          bottomLeft: Radius.circular(
+                              ResponsiveFlutter.of(context).moderateScale(30)),
+                          bottomRight: Radius.circular(
+                              ResponsiveFlutter.of(context).moderateScale(30)),
                         ),
                       ),
                     ),
@@ -63,8 +69,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       Align(
                         alignment: Alignment.center,
                         child: Container(
-                          height: ResponsiveFlutter.of(context).moderateScale(120),
-                          width: ResponsiveFlutter.of(context).moderateScale(120),
+                          height:
+                              ResponsiveFlutter.of(context).moderateScale(120),
+                          width:
+                              ResponsiveFlutter.of(context).moderateScale(120),
                           decoration: BoxDecoration(
                             color: appColors.appMediumColor,
                             shape: BoxShape.circle,
@@ -99,7 +107,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               children: [
                 Container(
                   width: double.infinity,
-                  padding: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(20)),
+                  padding: EdgeInsets.all(
+                      ResponsiveFlutter.of(context).moderateScale(20)),
                   decoration: BoxDecoration(
                     color: appColors.appLightColor,
                     borderRadius: BorderRadius.circular(
@@ -118,7 +127,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           size: ResponsiveFlutter.of(context).fontSize(1.8),
                         ),
                       ),
-                      SizedBox(height: ResponsiveFlutter.of(context).moderateScale(5)),
+                      SizedBox(
+                          height:
+                              ResponsiveFlutter.of(context).moderateScale(5)),
                       commonTestField(
                         context: context,
                         hintText: Strings.enterYourName,
@@ -128,10 +139,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     ],
                   ),
                 ),
-                SizedBox(height: ResponsiveFlutter.of(context).moderateScale(10)),
+                SizedBox(
+                    height: ResponsiveFlutter.of(context).moderateScale(10)),
                 Container(
                   width: double.infinity,
-                  padding: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(20)),
+                  padding: EdgeInsets.all(
+                      ResponsiveFlutter.of(context).moderateScale(20)),
                   decoration: BoxDecoration(
                     color: appColors.appLightColor,
                     borderRadius: BorderRadius.circular(
@@ -150,7 +163,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           size: ResponsiveFlutter.of(context).fontSize(1.8),
                         ),
                       ),
-                      SizedBox(height: ResponsiveFlutter.of(context).moderateScale(5)),
+                      SizedBox(
+                          height:
+                              ResponsiveFlutter.of(context).moderateScale(5)),
                       commonTestField(
                         context: context,
                         hintText: Strings.enterYourEmail,
@@ -160,13 +175,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     ],
                   ),
                 ),
-                SizedBox(height: ResponsiveFlutter.of(context).moderateScale(10)),
+                SizedBox(
+                    height: ResponsiveFlutter.of(context).moderateScale(10)),
                 Container(
                   width: double.infinity,
-                  padding: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(20)),
+                  padding: EdgeInsets.all(
+                      ResponsiveFlutter.of(context).moderateScale(20)),
                   decoration: BoxDecoration(
                     color: appColors.appLightColor,
-                    borderRadius: BorderRadius.circular(ResponsiveFlutter.of(context).moderateScale(20)),
+                    borderRadius: BorderRadius.circular(
+                        ResponsiveFlutter.of(context).moderateScale(20)),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -180,7 +198,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           size: ResponsiveFlutter.of(context).fontSize(1.8),
                         ),
                       ),
-                      SizedBox(height: ResponsiveFlutter.of(context).moderateScale(5)),
+                      SizedBox(
+                          height:
+                              ResponsiveFlutter.of(context).moderateScale(5)),
                       commonTestField(
                         context: context,
                         hintText: Strings.enterYourPhoneNumber,
@@ -190,7 +210,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     ],
                   ),
                 ),
-                SizedBox(height: ResponsiveFlutter.of(context).moderateScale(25)),
+                SizedBox(
+                    height: ResponsiveFlutter.of(context).moderateScale(25)),
                 GestureDetector(
                   onTap: () {
                     Navigator.pop(context);

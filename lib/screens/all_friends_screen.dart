@@ -1,7 +1,7 @@
-import 'package:attendify/common/app_colors.dart';
-import 'package:attendify/common/common_widget.dart';
-import 'package:attendify/common/image_path.dart';
-import 'package:attendify/common/strings.dart';
+import 'package:attendify/features/common/app_colors.dart';
+import 'package:attendify/features/common/common_widget.dart';
+import 'package:attendify/features/common/image_path.dart';
+import 'package:attendify/features/common/strings.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:flutter/material.dart';
 
@@ -24,12 +24,19 @@ class _AllFriendsScreenState extends State<AllFriendsScreen> {
           children: [
             Expanded(
               child: ListView.builder(
-                padding: EdgeInsets.symmetric(horizontal: ResponsiveFlutter.of(context).moderateScale(10)),
+                padding: EdgeInsets.symmetric(
+                    horizontal:
+                        ResponsiveFlutter.of(context).moderateScale(10)),
                 physics: const BouncingScrollPhysics(),
                 itemCount: 10,
                 itemBuilder: (context, index) {
                   return Container(
-                    child: index % 3 == 0 ? senderRow(isSecond: true) : receiverRow(isSecond: index == 2 || index == 5 || index == 8 ? false : true),
+                    child: index % 3 == 0
+                        ? senderRow(isSecond: true)
+                        : receiverRow(
+                            isSecond: index == 2 || index == 5 || index == 8
+                                ? false
+                                : true),
                   );
                 },
               ),
@@ -49,7 +56,8 @@ class _AllFriendsScreenState extends State<AllFriendsScreen> {
                       bottom: ResponsiveFlutter.of(context).moderateScale(5),
                     ),
                     padding: EdgeInsets.symmetric(
-                      horizontal: ResponsiveFlutter.of(context).moderateScale(20),
+                      horizontal:
+                          ResponsiveFlutter.of(context).moderateScale(20),
                     ),
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
@@ -65,13 +73,16 @@ class _AllFriendsScreenState extends State<AllFriendsScreen> {
                     child: Row(
                       children: [
                         Container(
-                          height: ResponsiveFlutter.of(context).verticalScale(15),
-                          width: ResponsiveFlutter.of(context).verticalScale(15),
+                          height:
+                              ResponsiveFlutter.of(context).verticalScale(15),
+                          width:
+                              ResponsiveFlutter.of(context).verticalScale(15),
                           alignment: Alignment.center,
                           child: Image.asset(ImagePath.emoji),
                         ),
                         SizedBox(
-                          width: ResponsiveFlutter.of(context).moderateScale(10),
+                          width:
+                              ResponsiveFlutter.of(context).moderateScale(10),
                         ),
                         Expanded(
                           child: TextField(
@@ -90,7 +101,8 @@ class _AllFriendsScreenState extends State<AllFriendsScreen> {
                               hintStyle: MyTextStyle(
                                 colorNew: appColors.transactionText,
                                 fontWeightNew: FontWeight.w400,
-                                size: ResponsiveFlutter.of(context).fontSize(1.8),
+                                size:
+                                    ResponsiveFlutter.of(context).fontSize(1.8),
                               ),
                             ),
                           ),
@@ -122,7 +134,8 @@ class _AllFriendsScreenState extends State<AllFriendsScreen> {
       child: Container(
         padding: EdgeInsets.only(
           top: ResponsiveFlutter.of(context).moderateScale(10),
-          bottom: isSecond! ? ResponsiveFlutter.of(context).moderateScale(10) : 0,
+          bottom:
+              isSecond! ? ResponsiveFlutter.of(context).moderateScale(10) : 0,
           left: MediaQuery.of(context).size.width * 0.3,
         ),
         child: Row(
@@ -136,14 +149,20 @@ class _AllFriendsScreenState extends State<AllFriendsScreen> {
                     decoration: BoxDecoration(
                       color: appColors.white,
                       borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(ResponsiveFlutter.of(context).moderateScale(30)),
-                        topLeft: Radius.circular(ResponsiveFlutter.of(context).moderateScale(30)),
-                        bottomRight: Radius.circular(ResponsiveFlutter.of(context).moderateScale(30)),
-                        topRight: Radius.circular(!isSecond ? ResponsiveFlutter.of(context).moderateScale(30) : 0),
+                        bottomLeft: Radius.circular(
+                            ResponsiveFlutter.of(context).moderateScale(30)),
+                        topLeft: Radius.circular(
+                            ResponsiveFlutter.of(context).moderateScale(30)),
+                        bottomRight: Radius.circular(
+                            ResponsiveFlutter.of(context).moderateScale(30)),
+                        topRight: Radius.circular(!isSecond
+                            ? ResponsiveFlutter.of(context).moderateScale(30)
+                            : 0),
                       ),
                     ),
                     padding: EdgeInsets.symmetric(
-                      horizontal: ResponsiveFlutter.of(context).moderateScale(20),
+                      horizontal:
+                          ResponsiveFlutter.of(context).moderateScale(20),
                       vertical: ResponsiveFlutter.of(context).moderateScale(15),
                     ),
                     child: MyTextView(
@@ -176,7 +195,9 @@ class _AllFriendsScreenState extends State<AllFriendsScreen> {
                 ],
               ),
             ),
-            SizedBox(width: ResponsiveFlutter.of(context).moderateScale(!isSecond ? 48 : 10)),
+            SizedBox(
+                width: ResponsiveFlutter.of(context)
+                    .moderateScale(!isSecond ? 48 : 10)),
             Visibility(
               visible: isSecond,
               child: Container(
@@ -206,7 +227,8 @@ class _AllFriendsScreenState extends State<AllFriendsScreen> {
       child: Container(
         padding: EdgeInsets.only(
           top: ResponsiveFlutter.of(context).moderateScale(10),
-          bottom: !isSecond! ? ResponsiveFlutter.of(context).moderateScale(10) : 0,
+          bottom:
+              !isSecond! ? ResponsiveFlutter.of(context).moderateScale(10) : 0,
           right: MediaQuery.of(context).size.width * 0.3,
         ),
         child: Row(
@@ -228,7 +250,9 @@ class _AllFriendsScreenState extends State<AllFriendsScreen> {
                 ),
               ),
             ),
-            SizedBox(width: ResponsiveFlutter.of(context).moderateScale(!isSecond ? 48 : 10)),
+            SizedBox(
+                width: ResponsiveFlutter.of(context)
+                    .moderateScale(!isSecond ? 48 : 10)),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -237,14 +261,20 @@ class _AllFriendsScreenState extends State<AllFriendsScreen> {
                     decoration: BoxDecoration(
                       color: appColors.chatReceiverContainerColor,
                       borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(ResponsiveFlutter.of(context).moderateScale(30)),
-                        topRight: Radius.circular(ResponsiveFlutter.of(context).moderateScale(30)),
-                        bottomRight: Radius.circular(ResponsiveFlutter.of(context).moderateScale(30)),
-                        topLeft: Radius.circular(!isSecond ? ResponsiveFlutter.of(context).moderateScale(30) : 0),
+                        bottomLeft: Radius.circular(
+                            ResponsiveFlutter.of(context).moderateScale(30)),
+                        topRight: Radius.circular(
+                            ResponsiveFlutter.of(context).moderateScale(30)),
+                        bottomRight: Radius.circular(
+                            ResponsiveFlutter.of(context).moderateScale(30)),
+                        topLeft: Radius.circular(!isSecond
+                            ? ResponsiveFlutter.of(context).moderateScale(30)
+                            : 0),
                       ),
                     ),
                     padding: EdgeInsets.symmetric(
-                      horizontal: ResponsiveFlutter.of(context).moderateScale(20),
+                      horizontal:
+                          ResponsiveFlutter.of(context).moderateScale(20),
                       vertical: ResponsiveFlutter.of(context).moderateScale(15),
                     ),
                     child: MyTextView(

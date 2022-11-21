@@ -1,7 +1,7 @@
-import 'package:attendify/common/app_colors.dart';
-import 'package:attendify/common/common_widget.dart';
-import 'package:attendify/common/image_path.dart';
-import 'package:attendify/common/strings.dart';
+import 'package:attendify/features/common/app_colors.dart';
+import 'package:attendify/features/common/common_widget.dart';
+import 'package:attendify/features/common/image_path.dart';
+import 'package:attendify/features/common/strings.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:attendify/screens/bottom_bar_screen.dart';
 import 'package:attendify/screens/forgot_password_screen.dart';
@@ -34,7 +34,8 @@ class _LoginScreenState extends State<LoginScreen> {
             physics: const BouncingScrollPhysics(),
             children: [
               SizedBox(
-                height: MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top,
+                height: MediaQuery.of(context).size.height -
+                    MediaQuery.of(context).padding.top,
                 child: Column(
                   children: [
                     Stack(
@@ -43,12 +44,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         Column(
                           children: [
                             Container(
-                              height: ResponsiveFlutter.of(context).verticalScale(260),
+                              height: ResponsiveFlutter.of(context)
+                                  .verticalScale(260),
                               width: double.infinity,
                               color: appColors.appDarkColor,
                             ),
                             Container(
-                              height: ResponsiveFlutter.of(context).verticalScale(15),
+                              height: ResponsiveFlutter.of(context)
+                                  .verticalScale(15),
                               width: double.infinity,
                               color: appColors.appMediumColor,
                             ),
@@ -58,13 +61,19 @@ class _LoginScreenState extends State<LoginScreen> {
                           children: [
                             Image.asset(
                               ImagePath.logo,
-                              height: ResponsiveFlutter.of(context).verticalScale(30),
+                              height: ResponsiveFlutter.of(context)
+                                  .verticalScale(30),
                               color: appColors.lightColor,
                             ),
-                            SizedBox(height: ResponsiveFlutter.of(context).verticalScale(20)),
+                            SizedBox(
+                                height: ResponsiveFlutter.of(context)
+                                    .verticalScale(20)),
                             Container(
-                              height: ResponsiveFlutter.of(context).verticalScale(200),
-                              padding: EdgeInsets.symmetric(horizontal: ResponsiveFlutter.of(context).moderateScale(25)),
+                              height: ResponsiveFlutter.of(context)
+                                  .verticalScale(200),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: ResponsiveFlutter.of(context)
+                                      .moderateScale(25)),
                               child: Image.asset(
                                 imagePath.loginImage,
                                 alignment: Alignment.bottomCenter,
@@ -76,7 +85,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     Expanded(
                       child: Container(
-                        padding: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(20)),
+                        padding: EdgeInsets.all(
+                            ResponsiveFlutter.of(context).moderateScale(20)),
                         color: appColors.appMediumColor,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -86,34 +96,46 @@ class _LoginScreenState extends State<LoginScreen> {
                               Strings.login,
                               styleNew: MyTextStyle(
                                 colorNew: appColors.lightColor,
-                                size: ResponsiveFlutter.of(context).fontSize(3.7),
+                                size:
+                                    ResponsiveFlutter.of(context).fontSize(3.7),
                                 fontWeightNew: FontWeight.bold,
                               ),
                             ),
-                            SizedBox(height: ResponsiveFlutter.of(context).verticalScale(5)),
+                            SizedBox(
+                                height: ResponsiveFlutter.of(context)
+                                    .verticalScale(5)),
                             MyTextView(
                               Strings.pleaseFillTheDetails,
                               styleNew: MyTextStyle(
                                 colorNew: appColors.mediumGrayColor,
-                                size: ResponsiveFlutter.of(context).fontSize(1.8),
+                                size:
+                                    ResponsiveFlutter.of(context).fontSize(1.8),
                                 fontWeightNew: FontWeight.w400,
                               ),
                             ),
-                            SizedBox(height: ResponsiveFlutter.of(context).verticalScale(25)),
+                            SizedBox(
+                                height: ResponsiveFlutter.of(context)
+                                    .verticalScale(25)),
                             Stack(
                               alignment: Alignment.bottomCenter,
                               children: [
                                 Container(
-                                  height: ResponsiveFlutter.of(context).verticalScale(120),
+                                  height: ResponsiveFlutter.of(context)
+                                      .verticalScale(120),
                                   padding: EdgeInsets.symmetric(
-                                    vertical: ResponsiveFlutter.of(context).moderateScale(20),
-                                    horizontal: ResponsiveFlutter.of(context).moderateScale(25),
+                                    vertical: ResponsiveFlutter.of(context)
+                                        .moderateScale(20),
+                                    horizontal: ResponsiveFlutter.of(context)
+                                        .moderateScale(25),
                                   ),
-                                  margin: EdgeInsets.only(bottom: ResponsiveFlutter.of(context).moderateScale(25)),
+                                  margin: EdgeInsets.only(
+                                      bottom: ResponsiveFlutter.of(context)
+                                          .moderateScale(25)),
                                   decoration: BoxDecoration(
                                     color: appColors.appLightColor,
                                     borderRadius: BorderRadius.circular(
-                                      ResponsiveFlutter.of(context).moderateScale(25),
+                                      ResponsiveFlutter.of(context)
+                                          .moderateScale(25),
                                     ),
                                   ),
                                   child: SingleChildScrollView(
@@ -124,16 +146,21 @@ class _LoginScreenState extends State<LoginScreen> {
                                           controller: email,
                                           hintText: Strings.emailAddress,
                                           image: ImagePath.email,
-                                          keyboardType: TextInputType.emailAddress,
+                                          keyboardType:
+                                              TextInputType.emailAddress,
                                           icon: true,
                                         ),
-                                        SizedBox(height: ResponsiveFlutter.of(context).verticalScale(20)),
+                                        SizedBox(
+                                            height:
+                                                ResponsiveFlutter.of(context)
+                                                    .verticalScale(20)),
                                         commonTestField(
                                           context: context,
                                           controller: password,
                                           hintText: Strings.password,
                                           image: ImagePath.password,
-                                          keyboardType: TextInputType.visiblePassword,
+                                          keyboardType:
+                                              TextInputType.visiblePassword,
                                           obscureText: true,
                                           icon: true,
                                         ),
@@ -142,13 +169,16 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: ResponsiveFlutter.of(context).moderateScale(55)),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: ResponsiveFlutter.of(context)
+                                          .moderateScale(55)),
                                   child: GestureDetector(
                                     onTap: () {
                                       Navigator.pushAndRemoveUntil(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => const BottomBarScreen(),
+                                          builder: (context) =>
+                                              const BottomBarScreen(),
                                         ),
                                         (route) => false,
                                       );
@@ -161,13 +191,16 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               ],
                             ),
-                            SizedBox(height: ResponsiveFlutter.of(context).verticalScale(25)),
+                            SizedBox(
+                                height: ResponsiveFlutter.of(context)
+                                    .verticalScale(25)),
                             GestureDetector(
                               onTap: () {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => const ForgotPasswordScreen(),
+                                    builder: (context) =>
+                                        const ForgotPasswordScreen(),
                                   ),
                                 );
                               },
@@ -179,7 +212,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   styleNew: MyTextStyle(
                                     colorNew: appColors.lightColor,
                                     fontWeightNew: FontWeight.bold,
-                                    size: ResponsiveFlutter.of(context).fontSize(2),
+                                    size: ResponsiveFlutter.of(context)
+                                        .fontSize(2),
                                   ),
                                 ),
                               ),
@@ -193,7 +227,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 styleNew: MyTextStyle(
                                   colorNew: appColors.mediumGrayColor,
                                   fontWeightNew: FontWeight.w400,
-                                  size: ResponsiveFlutter.of(context).fontSize(1.8),
+                                  size: ResponsiveFlutter.of(context)
+                                      .fontSize(1.8),
                                 ),
                               ),
                             ),
@@ -214,7 +249,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   styleNew: MyTextStyle(
                                     colorNew: appColors.lightPinkColor,
                                     fontWeightNew: FontWeight.bold,
-                                    size: ResponsiveFlutter.of(context).fontSize(2),
+                                    size: ResponsiveFlutter.of(context)
+                                        .fontSize(2),
                                   ),
                                 ),
                               ),

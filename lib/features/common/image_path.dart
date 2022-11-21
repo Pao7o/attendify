@@ -1,19 +1,24 @@
-import 'package:attendify/common/constants.dart';
+import 'package:attendify/features/common/constants.dart';
 
 class ImagePath {
   static const String base = "assets/images/";
-  static const String appLogo = base + "app_logo.png";
+  static const String appLogo = "${base}app_logo.png";
   static const String logo = base + "logo.png";
   static const String avatar = base + "ic_avatar.png";
   static const String email = base + "ic_email.png";
   static const String eye = base + "ic_eye.png";
-  static const String forgotPasswordImage = base + "ic_forgot_password_image.png";
+  static const String forgotPasswordImage =
+      base + "ic_forgot_password_image.png";
   static const String password = base + "ic_password.png";
   static const String registerImage = base + "ic_register_image.png";
-  String registerImageBG = Constants.darkTheme ? base + "ic_register_image_bg.png" : base + "ic_register_image_bg_light.png";
+  String registerImageBG = Constants.darkTheme
+      ? base + "ic_register_image_bg.png"
+      : base + "ic_register_image_bg_light.png";
   static const String splash = base + "ic_splash.png";
   static const String splashImage = base + "ic_splash_image.png";
-  String loginImage = Constants.darkTheme ? base + "ic_login_image.png" : base + "ic_login_image_light.png";
+  String loginImage = Constants.darkTheme
+      ? base + "ic_login_image.png"
+      : base + "ic_login_image_light.png";
   static const String dislike = base + "ic_dislike.png";
   static const String favorites = base + "ic_favorites.png";
   static const String like = base + "ic_like.png";
@@ -22,7 +27,9 @@ class ImagePath {
   static const String time = base + "ic_time.png";
   static const String wallet = base + "ic_wallet.png";
   static const String calender = base + "ic_calender.png";
-  String bottomBar = Constants.darkTheme ? base + "ic_bottom_bar.png" : base + "ic_bottom_bar_light.png";
+  String bottomBar = Constants.darkTheme
+      ? base + "ic_bottom_bar.png"
+      : base + "ic_bottom_bar_light.png";
   static const String bell = base + "ic_bell.png";
   static const String create = base + "ic_create.png";
   static const String back = base + "ic_back.png";
@@ -37,7 +44,9 @@ class ImagePath {
   static const String home = base + "ic_home.png";
   static const String homeSelect = base + "ic_home_select.png";
   static const String logout = base + "ic_logout.png";
-  String settingSelect = Constants.darkTheme ? base + "ic_setting_select.png" : base + "ic_setting_select_light.png";
+  String settingSelect = Constants.darkTheme
+      ? base + "ic_setting_select.png"
+      : base + "ic_setting_select_light.png";
   static const String walletSelect = base + "ic_wallet_select.png";
   static const String favoritesSelect = base + "ic_favorites_select.png";
   static const String aboutUs = base + "ic_about_us.png";
@@ -66,15 +75,20 @@ class ImagePath {
   static const String ticket = base + "ic_ticket.png";
   String chatEdit = base + "ic_chat_edit.png";
   static const String chat = base + "ic_chat.png";
-  String chatSwitch = Constants.darkTheme ? base + "ic_chat.png" : base + "ic_chat_black.png";
+  String chatSwitch =
+      Constants.darkTheme ? base + "ic_chat.png" : base + "ic_chat_black.png";
 
-
-  String edit = Constants.darkTheme ? base + "ic_edit.png" : base + "ic_chat_edit_light.png";
+  String edit = Constants.darkTheme
+      ? base + "ic_edit.png"
+      : base + "ic_chat_edit_light.png";
   static const String camera = base + "ic_camera.png";
   static const String send = base + "ic_send.png";
   static const String emoji = base + "ic_emoji.png";
-  String search = Constants.darkTheme ? base + "ic_search_4.png" : base + "ic_search_3.png";
-  String address = Constants.darkTheme ? base + "ic_address_theme.png" : base + "ic_address_theme.png";
+  String search =
+      Constants.darkTheme ? base + "ic_search_4.png" : base + "ic_search_3.png";
+  String address = Constants.darkTheme
+      ? base + "ic_address_theme.png"
+      : base + "ic_address_theme.png";
 
   static const String image_1 = base + "image_1.png";
   static const String image_2 = base + "image_2.png";
@@ -85,5 +99,4 @@ class ImagePath {
   static const String image_7 = base + "image_7.png";
   static const String image_8 = base + "image_8.png";
   static const String map = base + "map.png";
-
 }

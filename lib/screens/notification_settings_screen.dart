@@ -1,8 +1,8 @@
-import 'package:attendify/common/app_colors.dart';
-import 'package:attendify/common/common_widget.dart';
-import 'package:attendify/common/constants.dart';
-import 'package:attendify/common/image_path.dart';
-import 'package:attendify/common/strings.dart';
+import 'package:attendify/features/common/app_colors.dart';
+import 'package:attendify/features/common/common_widget.dart';
+import 'package:attendify/features/common/constants.dart';
+import 'package:attendify/features/common/image_path.dart';
+import 'package:attendify/features/common/strings.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
@@ -10,10 +10,12 @@ import 'package:flutter_switch/flutter_switch.dart';
 class NotificationSettingsScreen extends StatefulWidget {
   const NotificationSettingsScreen({Key? key}) : super(key: key);
   @override
-  _NotificationSettingsScreenState createState() => _NotificationSettingsScreenState();
+  _NotificationSettingsScreenState createState() =>
+      _NotificationSettingsScreenState();
 }
 
-class _NotificationSettingsScreenState extends State<NotificationSettingsScreen> {
+class _NotificationSettingsScreenState
+    extends State<NotificationSettingsScreen> {
   AppColors appColors = AppColors();
   bool? showNotification = true;
   bool? paymentNotification = true;
@@ -65,19 +67,25 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
                                   styleNew: MyTextStyle(
                                     colorNew: appColors.lightColor,
                                     fontWeightNew: FontWeight.w400,
-                                    size: ResponsiveFlutter.of(context).fontSize(1.5),
+                                    size: ResponsiveFlutter.of(context)
+                                        .fontSize(1.5),
                                   ),
                                 ),
                                 FlutterSwitch(
                                   value: showNotification!,
-                                  width: ResponsiveFlutter.of(context).moderateScale(38),
-                                  height: ResponsiveFlutter.of(context).moderateScale(20),
+                                  width: ResponsiveFlutter.of(context)
+                                      .moderateScale(38),
+                                  height: ResponsiveFlutter.of(context)
+                                      .moderateScale(20),
                                   activeToggleColor: appColors.white,
                                   inactiveToggleColor: appColors.white,
                                   activeColor: appColors.btnColor,
                                   toggleColor: appColors.switchColor,
-                                  inactiveColor: !Constants.darkTheme ? appColors.darkGreyText : appColors.white,
-                                  toggleSize: ResponsiveFlutter.of(context).moderateScale(12),
+                                  inactiveColor: !Constants.darkTheme
+                                      ? appColors.darkGreyText
+                                      : appColors.white,
+                                  toggleSize: ResponsiveFlutter.of(context)
+                                      .moderateScale(12),
                                   onToggle: (val) {
                                     setState(() {
                                       showNotification = val;
@@ -87,7 +95,8 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
                               ],
                             ),
                             Divider(
-                              height: ResponsiveFlutter.of(context).moderateScale(40),
+                              height: ResponsiveFlutter.of(context)
+                                  .moderateScale(40),
                               color: appColors.dividerColor,
                               thickness: 1.5,
                             ),
@@ -100,19 +109,25 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
                                   styleNew: MyTextStyle(
                                     colorNew: appColors.lightColor,
                                     fontWeightNew: FontWeight.w400,
-                                    size: ResponsiveFlutter.of(context).fontSize(1.5),
+                                    size: ResponsiveFlutter.of(context)
+                                        .fontSize(1.5),
                                   ),
                                 ),
                                 FlutterSwitch(
                                   value: paymentNotification!,
-                                  width: ResponsiveFlutter.of(context).moderateScale(38),
-                                  height: ResponsiveFlutter.of(context).moderateScale(20),
+                                  width: ResponsiveFlutter.of(context)
+                                      .moderateScale(38),
+                                  height: ResponsiveFlutter.of(context)
+                                      .moderateScale(20),
                                   activeToggleColor: appColors.white,
                                   activeColor: appColors.btnColor,
                                   inactiveToggleColor: appColors.white,
                                   toggleColor: appColors.switchColor,
-                                  inactiveColor: !Constants.darkTheme ? appColors.darkGreyText : appColors.white,
-                                  toggleSize: ResponsiveFlutter.of(context).moderateScale(12),
+                                  inactiveColor: !Constants.darkTheme
+                                      ? appColors.darkGreyText
+                                      : appColors.white,
+                                  toggleSize: ResponsiveFlutter.of(context)
+                                      .moderateScale(12),
                                   onToggle: (val) {
                                     setState(() {
                                       paymentNotification = val;
@@ -122,7 +137,8 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
                               ],
                             ),
                             SizedBox(
-                              height: ResponsiveFlutter.of(context).moderateScale(15),
+                              height: ResponsiveFlutter.of(context)
+                                  .moderateScale(15),
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -133,19 +149,26 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
                                   styleNew: MyTextStyle(
                                     colorNew: appColors.lightColor,
                                     fontWeightNew: FontWeight.w400,
-                                    size: ResponsiveFlutter.of(context).fontSize(1.5),
+                                    size: ResponsiveFlutter.of(context)
+                                        .fontSize(1.5),
                                   ),
                                 ),
                                 FlutterSwitch(
                                   value: liveNotification!,
-                                  width: ResponsiveFlutter.of(context).moderateScale(38),
-                                  height: ResponsiveFlutter.of(context).moderateScale(20),
+                                  width: ResponsiveFlutter.of(context)
+                                      .moderateScale(38),
+                                  height: ResponsiveFlutter.of(context)
+                                      .moderateScale(20),
                                   activeToggleColor: appColors.white,
                                   activeColor: appColors.btnColor,
-                                  inactiveToggleColor: appColors.switchToggleColor,
+                                  inactiveToggleColor:
+                                      appColors.switchToggleColor,
                                   toggleColor: appColors.switchColor,
-                                  inactiveColor: !Constants.darkTheme ? appColors.darkGreyText : appColors.white,
-                                  toggleSize: ResponsiveFlutter.of(context).moderateScale(12),
+                                  inactiveColor: !Constants.darkTheme
+                                      ? appColors.darkGreyText
+                                      : appColors.white,
+                                  toggleSize: ResponsiveFlutter.of(context)
+                                      .moderateScale(12),
                                   onToggle: (val) {
                                     setState(() {
                                       liveNotification = val;
@@ -155,7 +178,8 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
                               ],
                             ),
                             SizedBox(
-                              height: ResponsiveFlutter.of(context).moderateScale(15),
+                              height: ResponsiveFlutter.of(context)
+                                  .moderateScale(15),
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -166,19 +190,26 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
                                   styleNew: MyTextStyle(
                                     colorNew: appColors.lightColor,
                                     fontWeightNew: FontWeight.w400,
-                                    size: ResponsiveFlutter.of(context).fontSize(1.5),
+                                    size: ResponsiveFlutter.of(context)
+                                        .fontSize(1.5),
                                   ),
                                 ),
                                 FlutterSwitch(
                                   value: invitationNotification!,
-                                  width: ResponsiveFlutter.of(context).moderateScale(38),
-                                  height: ResponsiveFlutter.of(context).moderateScale(20),
+                                  width: ResponsiveFlutter.of(context)
+                                      .moderateScale(38),
+                                  height: ResponsiveFlutter.of(context)
+                                      .moderateScale(20),
                                   activeToggleColor: appColors.white,
                                   activeColor: appColors.btnColor,
-                                  inactiveToggleColor: appColors.switchToggleColor,
+                                  inactiveToggleColor:
+                                      appColors.switchToggleColor,
                                   toggleColor: appColors.switchColor,
-                                  inactiveColor: !Constants.darkTheme ? appColors.darkGreyText : appColors.white,
-                                  toggleSize: ResponsiveFlutter.of(context).moderateScale(12),
+                                  inactiveColor: !Constants.darkTheme
+                                      ? appColors.darkGreyText
+                                      : appColors.white,
+                                  toggleSize: ResponsiveFlutter.of(context)
+                                      .moderateScale(12),
                                   onToggle: (val) {
                                     setState(() {
                                       invitationNotification = val;
@@ -193,8 +224,12 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
                       Container(
                         height: ResponsiveFlutter.of(context).verticalScale(43),
                         width: ResponsiveFlutter.of(context).scale(43),
-                        padding: EdgeInsets.symmetric(vertical: ResponsiveFlutter.of(context).moderateScale(10)),
-                        margin: EdgeInsets.only(top: ResponsiveFlutter.of(context).moderateScale(10)),
+                        padding: EdgeInsets.symmetric(
+                            vertical: ResponsiveFlutter.of(context)
+                                .moderateScale(10)),
+                        margin: EdgeInsets.only(
+                            top: ResponsiveFlutter.of(context)
+                                .moderateScale(10)),
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,

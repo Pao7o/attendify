@@ -1,7 +1,7 @@
-import 'package:attendify/common/app_colors.dart';
-import 'package:attendify/common/common_widget.dart';
-import 'package:attendify/common/image_path.dart';
-import 'package:attendify/common/strings.dart';
+import 'package:attendify/features/common/app_colors.dart';
+import 'package:attendify/features/common/common_widget.dart';
+import 'package:attendify/features/common/image_path.dart';
+import 'package:attendify/features/common/strings.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:attendify/screens/check_out_screen.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +61,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 height: ResponsiveFlutter.of(context).moderateScale(50),
                 width: double.infinity,
                 margin: EdgeInsets.only(
-                  top: MediaQuery.of(context).padding.top + ResponsiveFlutter.of(context).moderateScale(5),
+                  top: MediaQuery.of(context).padding.top +
+                      ResponsiveFlutter.of(context).moderateScale(5),
                   right: ResponsiveFlutter.of(context).moderateScale(20),
                   left: ResponsiveFlutter.of(context).moderateScale(20),
                 ),
@@ -89,11 +90,13 @@ class _DetailsScreenState extends State<DetailsScreen> {
               ),
               Container(
                 height: MediaQuery.of(context).size.height * 0.55,
-                margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.45),
+                margin: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height * 0.45),
                 padding: EdgeInsets.only(
                   right: ResponsiveFlutter.of(context).moderateScale(20),
                   left: ResponsiveFlutter.of(context).moderateScale(20),
-                  top: MediaQuery.of(context).padding.top + ResponsiveFlutter.of(context).moderateScale(55),
+                  top: MediaQuery.of(context).padding.top +
+                      ResponsiveFlutter.of(context).moderateScale(55),
                 ),
                 child: SingleChildScrollView(
                   child: Column(
@@ -111,10 +114,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               size: ResponsiveFlutter.of(context).fontSize(3.3),
                             ),
                           ),
-                          SizedBox(width: ResponsiveFlutter.of(context).moderateScale(15)),
+                          SizedBox(
+                              width: ResponsiveFlutter.of(context)
+                                  .moderateScale(15)),
                           Container(
-                            height: ResponsiveFlutter.of(context).moderateScale(30),
-                            width: ResponsiveFlutter.of(context).moderateScale(60),
+                            height:
+                                ResponsiveFlutter.of(context).moderateScale(30),
+                            width:
+                                ResponsiveFlutter.of(context).moderateScale(60),
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
                               color: appColors.blurBtnColor,
@@ -129,13 +136,16 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               styleNew: MyTextStyle(
                                 colorNew: appColors.lightPinkColor,
                                 fontWeightNew: FontWeight.w500,
-                                size: ResponsiveFlutter.of(context).fontSize(1.4),
+                                size:
+                                    ResponsiveFlutter.of(context).fontSize(1.4),
                               ),
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(height: ResponsiveFlutter.of(context).moderateScale(20)),
+                      SizedBox(
+                          height:
+                              ResponsiveFlutter.of(context).moderateScale(20)),
                       MyTextView(
                         Strings.dummyText27,
                         textAligntNew: TextAlign.start,
@@ -147,15 +157,20 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           size: ResponsiveFlutter.of(context).fontSize(1.7),
                         ),
                       ),
-                      SizedBox(height: ResponsiveFlutter.of(context).moderateScale(15)),
+                      SizedBox(
+                          height:
+                              ResponsiveFlutter.of(context).moderateScale(15)),
                       Row(
                         children: [
                           Image.asset(
                             ImagePath.calender,
                             color: appColors.lightColor,
-                            height: ResponsiveFlutter.of(context).moderateScale(15),
+                            height:
+                                ResponsiveFlutter.of(context).moderateScale(15),
                           ),
-                          SizedBox(width: ResponsiveFlutter.of(context).moderateScale(8)),
+                          SizedBox(
+                              width: ResponsiveFlutter.of(context)
+                                  .moderateScale(8)),
                           MyTextView(
                             Strings.dummyText22,
                             textAligntNew: TextAlign.start,
@@ -166,13 +181,18 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               size: ResponsiveFlutter.of(context).fontSize(1.6),
                             ),
                           ),
-                          SizedBox(width: ResponsiveFlutter.of(context).moderateScale(20)),
+                          SizedBox(
+                              width: ResponsiveFlutter.of(context)
+                                  .moderateScale(20)),
                           Image.asset(
                             ImagePath.time,
                             color: appColors.lightColor,
-                            height: ResponsiveFlutter.of(context).moderateScale(15),
+                            height:
+                                ResponsiveFlutter.of(context).moderateScale(15),
                           ),
-                          SizedBox(width: ResponsiveFlutter.of(context).moderateScale(8)),
+                          SizedBox(
+                              width: ResponsiveFlutter.of(context)
+                                  .moderateScale(8)),
                           MyTextView(
                             Strings.dummyText23,
                             textAligntNew: TextAlign.start,
@@ -185,11 +205,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           ),
                         ],
                       ),
-                      SizedBox(height: ResponsiveFlutter.of(context).moderateScale(20)),
+                      SizedBox(
+                          height:
+                              ResponsiveFlutter.of(context).moderateScale(20)),
                       Container(
                         height: ResponsiveFlutter.of(context).moderateScale(65),
                         width: double.infinity,
-                        padding: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(10)),
+                        padding: EdgeInsets.all(
+                            ResponsiveFlutter.of(context).moderateScale(10)),
                         decoration: BoxDecoration(
                           color: appColors.appLightColor,
                           borderRadius: BorderRadius.circular(
@@ -198,13 +221,18 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         ),
                         child: Row(
                           children: [
-                            SizedBox(width: ResponsiveFlutter.of(context).moderateScale(10)),
+                            SizedBox(
+                                width: ResponsiveFlutter.of(context)
+                                    .moderateScale(10)),
                             Image.asset(
                               ImagePath.location,
                               color: appColors.lightColor,
-                              height: ResponsiveFlutter.of(context).moderateScale(20),
+                              height: ResponsiveFlutter.of(context)
+                                  .moderateScale(20),
                             ),
-                            SizedBox(width: ResponsiveFlutter.of(context).moderateScale(8)),
+                            SizedBox(
+                                width: ResponsiveFlutter.of(context)
+                                    .moderateScale(8)),
                             MyTextView(
                               Strings.dummyText36,
                               textAligntNew: TextAlign.start,
@@ -212,18 +240,23 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               styleNew: MyTextStyle(
                                 colorNew: appColors.lightColor,
                                 fontWeightNew: FontWeight.w500,
-                                size: ResponsiveFlutter.of(context).fontSize(1.8),
+                                size:
+                                    ResponsiveFlutter.of(context).fontSize(1.8),
                               ),
                             ),
                             const Spacer(),
                             Container(
-                              width: ResponsiveFlutter.of(context).moderateScale(45),
+                              width: ResponsiveFlutter.of(context)
+                                  .moderateScale(45),
                               height: double.infinity,
-                              padding: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(15)),
+                              padding: EdgeInsets.all(
+                                  ResponsiveFlutter.of(context)
+                                      .moderateScale(15)),
                               decoration: BoxDecoration(
                                 color: appColors.lightPinkColor,
                                 borderRadius: BorderRadius.circular(
-                                  ResponsiveFlutter.of(context).moderateScale(13),
+                                  ResponsiveFlutter.of(context)
+                                      .moderateScale(13),
                                 ),
                               ),
                               child: Image.asset(ImagePath.mapIcon),
@@ -231,21 +264,26 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           ],
                         ),
                       ),
-                      SizedBox(height: ResponsiveFlutter.of(context).moderateScale(25)),
+                      SizedBox(
+                          height:
+                              ResponsiveFlutter.of(context).moderateScale(25)),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Stack(
                             children: [
                               Container(
-                                height: ResponsiveFlutter.of(context).moderateScale(45),
-                                width: ResponsiveFlutter.of(context).moderateScale(45),
+                                height: ResponsiveFlutter.of(context)
+                                    .moderateScale(45),
+                                width: ResponsiveFlutter.of(context)
+                                    .moderateScale(45),
                                 decoration: BoxDecoration(
                                   color: appColors.appLightColor,
                                   shape: BoxShape.circle,
                                   border: Border.all(
                                     color: appColors.appMediumColor,
-                                    width: ResponsiveFlutter.of(context).moderateScale(2.5),
+                                    width: ResponsiveFlutter.of(context)
+                                        .moderateScale(2.5),
                                   ),
                                 ),
                                 child: Image.asset(
@@ -254,15 +292,20 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                 ),
                               ),
                               Container(
-                                height: ResponsiveFlutter.of(context).moderateScale(45),
-                                width: ResponsiveFlutter.of(context).moderateScale(45),
-                                margin: EdgeInsets.only(left: ResponsiveFlutter.of(context).moderateScale(30)),
+                                height: ResponsiveFlutter.of(context)
+                                    .moderateScale(45),
+                                width: ResponsiveFlutter.of(context)
+                                    .moderateScale(45),
+                                margin: EdgeInsets.only(
+                                    left: ResponsiveFlutter.of(context)
+                                        .moderateScale(30)),
                                 decoration: BoxDecoration(
                                   color: appColors.appLightColor,
                                   shape: BoxShape.circle,
                                   border: Border.all(
                                     color: appColors.appMediumColor,
-                                    width: ResponsiveFlutter.of(context).moderateScale(2.5),
+                                    width: ResponsiveFlutter.of(context)
+                                        .moderateScale(2.5),
                                   ),
                                 ),
                                 child: Image.asset(
@@ -271,15 +314,20 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                 ),
                               ),
                               Container(
-                                height: ResponsiveFlutter.of(context).moderateScale(45),
-                                width: ResponsiveFlutter.of(context).moderateScale(45),
-                                margin: EdgeInsets.only(left: ResponsiveFlutter.of(context).moderateScale(60)),
+                                height: ResponsiveFlutter.of(context)
+                                    .moderateScale(45),
+                                width: ResponsiveFlutter.of(context)
+                                    .moderateScale(45),
+                                margin: EdgeInsets.only(
+                                    left: ResponsiveFlutter.of(context)
+                                        .moderateScale(60)),
                                 decoration: BoxDecoration(
                                   color: appColors.appLightColor,
                                   shape: BoxShape.circle,
                                   border: Border.all(
                                     color: appColors.appMediumColor,
-                                    width: ResponsiveFlutter.of(context).moderateScale(2.5),
+                                    width: ResponsiveFlutter.of(context)
+                                        .moderateScale(2.5),
                                   ),
                                 ),
                                 child: Image.asset(
@@ -289,7 +337,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               ),
                             ],
                           ),
-                          SizedBox(width: ResponsiveFlutter.of(context).moderateScale(10)),
+                          SizedBox(
+                              width: ResponsiveFlutter.of(context)
+                                  .moderateScale(10)),
                           MyTextView(
                             "26 " + Strings.participate,
                             textAligntNew: TextAlign.start,
@@ -311,7 +361,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                 styleNew: MyTextStyle(
                                   colorNew: appColors.lightColor,
                                   fontWeightNew: FontWeight.w600,
-                                  size: ResponsiveFlutter.of(context).fontSize(3),
+                                  size:
+                                      ResponsiveFlutter.of(context).fontSize(3),
                                 ),
                               ),
                               MyTextView(
@@ -321,14 +372,17 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                 styleNew: MyTextStyle(
                                   colorNew: appColors.lightPinkColor,
                                   fontWeightNew: FontWeight.w600,
-                                  size: ResponsiveFlutter.of(context).fontSize(1.8),
+                                  size: ResponsiveFlutter.of(context)
+                                      .fontSize(1.8),
                                 ),
                               ),
                             ],
                           ),
                         ],
                       ),
-                      SizedBox(height: ResponsiveFlutter.of(context).moderateScale(20)),
+                      SizedBox(
+                          height:
+                              ResponsiveFlutter.of(context).moderateScale(20)),
                       GestureDetector(
                         onTap: () {
                           Navigator.push(
