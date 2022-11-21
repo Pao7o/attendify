@@ -188,6 +188,12 @@ class SignUpScreenState extends State<SignUpScreen> {
                                                 ResponsiveFlutter.of(context)
                                                     .verticalScale(20)),
                                         commonTestField(
+                                          validateFunction: (p0) {
+                                            if (p0 == null || p0.isEmpty) {
+                                              return "Field is empty";
+                                            }
+                                            return null;
+                                          },
                                           context: context,
                                           controller: email,
                                           hintText: Strings.emailAddress,

@@ -92,15 +92,15 @@ Widget commonButton({
   );
 }
 
-Widget commonTestField({
-  BuildContext? context,
-  bool? icon = false,
-  String? image = "",
-  String? hintText,
-  bool? obscureText = false,
-  TextInputType? keyboardType,
-  TextEditingController? controller,
-}) {
+Widget commonTestField(
+    {BuildContext? context,
+    bool? icon = false,
+    String? image = "",
+    String? hintText,
+    bool? obscureText = false,
+    TextInputType? keyboardType,
+    TextEditingController? controller,
+    String? Function(String?)? validateFunction}) {
   AppColors appColors = AppColors();
   return Row(
     children: [
@@ -119,13 +119,14 @@ Widget commonTestField({
         ),
       ),
       Expanded(
-        child: TextField(
+        child: TextFormField(
           style: MyTextStyle(
             colorNew: appColors.lightColor,
             fontWeightNew: FontWeight.w500,
             size: ResponsiveFlutter.of(context).fontSize(1.9),
           ),
           obscureText: obscureText!,
+          validator: validateFunction,
           cursorColor: appColors.lightColor,
           keyboardType: keyboardType,
           controller: controller,
