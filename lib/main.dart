@@ -1,12 +1,19 @@
 import 'package:attendify/features/common/app_colors.dart';
 import 'package:attendify/features/common/constants.dart';
+import 'package:attendify/firebase_options.dart';
 import 'package:attendify/router.dart';
 import 'package:attendify/features/splash/screens/splash_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatefulWidget {

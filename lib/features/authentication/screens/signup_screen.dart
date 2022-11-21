@@ -10,16 +10,17 @@ class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
 
   @override
-  _SignUpScreenState createState() => _SignUpScreenState();
+  SignUpScreenState createState() => SignUpScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class SignUpScreenState extends State<SignUpScreen> {
   AppColors appColors = AppColors();
   ImagePath imagePath = ImagePath();
   TextEditingController? email = TextEditingController();
   TextEditingController? password = TextEditingController();
   TextEditingController? firstName = TextEditingController();
   TextEditingController? lastName = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -150,61 +151,68 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           .moderateScale(25),
                                     ),
                                   ),
-                                  child: Column(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Expanded(
-                                            child: commonTestField(
-                                              context: context,
-                                              controller: firstName,
-                                              hintText: Strings.firstName,
-                                              image: ImagePath.avatar,
-                                              keyboardType: TextInputType.name,
-                                              obscureText: false,
-                                              icon: true,
+                                  child: Form(
+                                    key: _formKey,
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: commonTestField(
+                                                context: context,
+                                                controller: firstName,
+                                                hintText: Strings.firstName,
+                                                image: ImagePath.avatar,
+                                                keyboardType:
+                                                    TextInputType.name,
+                                                obscureText: false,
+                                                icon: true,
+                                              ),
                                             ),
-                                          ),
-                                          Expanded(
-                                            child: commonTestField(
-                                              context: context,
-                                              controller: lastName,
-                                              hintText: Strings.lastName,
-                                              image: ImagePath.avatar,
-                                              keyboardType: TextInputType.name,
-                                              obscureText: false,
-                                              icon: true,
+                                            Expanded(
+                                              child: commonTestField(
+                                                context: context,
+                                                controller: lastName,
+                                                hintText: Strings.lastName,
+                                                image: ImagePath.avatar,
+                                                keyboardType:
+                                                    TextInputType.name,
+                                                obscureText: false,
+                                                icon: true,
+                                              ),
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                          height: ResponsiveFlutter.of(context)
-                                              .verticalScale(20)),
-                                      commonTestField(
-                                        context: context,
-                                        controller: email,
-                                        hintText: Strings.emailAddress,
-                                        image: ImagePath.email,
-                                        keyboardType:
-                                            TextInputType.emailAddress,
-                                        obscureText: false,
-                                        icon: true,
-                                      ),
-                                      SizedBox(
-                                          height: ResponsiveFlutter.of(context)
-                                              .verticalScale(20)),
-                                      commonTestField(
-                                        context: context,
-                                        controller: password,
-                                        hintText: Strings.password,
-                                        image: ImagePath.password,
-                                        keyboardType:
-                                            TextInputType.visiblePassword,
-                                        obscureText: true,
-                                        icon: true,
-                                      ),
-                                    ],
+                                          ],
+                                        ),
+                                        SizedBox(
+                                            height:
+                                                ResponsiveFlutter.of(context)
+                                                    .verticalScale(20)),
+                                        commonTestField(
+                                          context: context,
+                                          controller: email,
+                                          hintText: Strings.emailAddress,
+                                          image: ImagePath.email,
+                                          keyboardType:
+                                              TextInputType.emailAddress,
+                                          obscureText: false,
+                                          icon: true,
+                                        ),
+                                        SizedBox(
+                                            height:
+                                                ResponsiveFlutter.of(context)
+                                                    .verticalScale(20)),
+                                        commonTestField(
+                                          context: context,
+                                          controller: password,
+                                          hintText: Strings.password,
+                                          image: ImagePath.password,
+                                          keyboardType:
+                                              TextInputType.visiblePassword,
+                                          obscureText: true,
+                                          icon: true,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                                 Padding(
