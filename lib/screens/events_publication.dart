@@ -106,7 +106,7 @@ class _EventsPublicationsState extends State<EventsPublications> {
                   ],
                 ),
                 separatorBuilder: (context, index) => SizedBox(
-                  height: ResponsiveFlutter.of(context).moderateScale(20),
+                  height: ResponsiveFlutter.of(context).moderateScale(40),
                 ),
               ),
             ),
