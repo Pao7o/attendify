@@ -1,11 +1,11 @@
 import 'dart:io';
 import 'dart:ui';
 
-import 'package:attendify/common/app_colors.dart';
-import 'package:attendify/common/common_widget.dart';
-import 'package:attendify/common/dotted_line.dart';
-import 'package:attendify/common/image_path.dart';
-import 'package:attendify/common/strings.dart';
+import 'package:attendify/features/common/app_colors.dart';
+import 'package:attendify/features/common/common_widget.dart';
+import 'package:attendify/features/common/dotted_line.dart';
+import 'package:attendify/features/common/image_path.dart';
+import 'package:attendify/features/common/strings.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -23,15 +23,25 @@ class _EditEventScreenState extends State<EditEventScreen> {
   String? selectedDate = "26 / 03 / 2021";
   String? selectedTime = "06:00";
 
-  TextEditingController name = TextEditingController(text: "Musical Event 2021");
+  TextEditingController name =
+      TextEditingController(text: "Musical Event 2021");
   TextEditingController price = TextEditingController(text: "\$ 200");
   TextEditingController date = TextEditingController(text: "26 / 03 / 2021");
   TextEditingController timeText = TextEditingController(text: "06:00");
-  TextEditingController location = TextEditingController(text: "Royal Ln, San Francisco, USA");
-  TextEditingController emailDetail = TextEditingController(text: "Some artists will really blow you away with their humility and inspire you to be better human being.");
+  TextEditingController location =
+      TextEditingController(text: "Royal Ln, San Francisco, USA");
+  TextEditingController emailDetail = TextEditingController(
+      text:
+          "Some artists will really blow you away with their humility and inspire you to be better human being.");
 
   String dropDownValue = 'Category ';
-  var items = ['Category ', 'Category 1', 'Category 2', 'Category 3', 'Category 4'];
+  var items = [
+    'Category ',
+    'Category 1',
+    'Category 2',
+    'Category 3',
+    'Category 4'
+  ];
 
   final ImagePicker picker = ImagePicker();
   XFile? image;
@@ -48,12 +58,15 @@ class _EditEventScreenState extends State<EditEventScreen> {
         filter: ImageFilter.blur(sigmaX: 14, sigmaY: 14),
         child: Container(
           width: MediaQuery.of(context).size.width,
-          margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.15),
+          margin:
+              EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.15),
           decoration: BoxDecoration(
             color: appColors.appDarkColor,
             borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(ResponsiveFlutter.of(context).moderateScale(20)),
-              topRight: Radius.circular(ResponsiveFlutter.of(context).moderateScale(20)),
+              topLeft: Radius.circular(
+                  ResponsiveFlutter.of(context).moderateScale(20)),
+              topRight: Radius.circular(
+                  ResponsiveFlutter.of(context).moderateScale(20)),
             ),
           ),
           child: ListView(
@@ -73,7 +86,8 @@ class _EditEventScreenState extends State<EditEventScreen> {
                   space: 3.5,
                   height: ResponsiveFlutter.of(context).verticalScale(100),
                   width: double.infinity,
-                  corner: FDottedLineCorner.all(ResponsiveFlutter.of(context).moderateScale(20)),
+                  corner: FDottedLineCorner.all(
+                      ResponsiveFlutter.of(context).moderateScale(20)),
                   child: Container(
                     height: ResponsiveFlutter.of(context).verticalScale(100),
                     width: double.infinity,
@@ -89,11 +103,13 @@ class _EditEventScreenState extends State<EditEventScreen> {
                             children: [
                               Image.asset(
                                 ImagePath.image,
-                                height: ResponsiveFlutter.of(context).moderateScale(25),
+                                height: ResponsiveFlutter.of(context)
+                                    .moderateScale(25),
                                 color: appColors.lightColor,
                               ),
                               SizedBox(
-                                height: ResponsiveFlutter.of(context).verticalScale(5),
+                                height: ResponsiveFlutter.of(context)
+                                    .verticalScale(5),
                               ),
                               MyTextView(
                                 Strings.tapToAddImage,
@@ -101,7 +117,8 @@ class _EditEventScreenState extends State<EditEventScreen> {
                                 styleNew: MyTextStyle(
                                   colorNew: appColors.lightColor,
                                   fontWeightNew: FontWeight.w400,
-                                  size: ResponsiveFlutter.of(context).fontSize(2),
+                                  size:
+                                      ResponsiveFlutter.of(context).fontSize(2),
                                 ),
                               ),
                             ],
@@ -144,7 +161,8 @@ class _EditEventScreenState extends State<EditEventScreen> {
                   iconSize: ResponsiveFlutter.of(context).moderateScale(30),
                   isExpanded: true,
                   dropdownColor: appColors.appLightColor,
-                  borderRadius: BorderRadius.circular(ResponsiveFlutter.of(context).moderateScale(20)),
+                  borderRadius: BorderRadius.circular(
+                      ResponsiveFlutter.of(context).moderateScale(20)),
                   underline: Container(),
                   alignment: Alignment.bottomCenter,
                   items: items.map((String items) {
@@ -232,7 +250,8 @@ class _EditEventScreenState extends State<EditEventScreen> {
                           lastDate: DateTime(2035),
                         );
                         if (picked != null) {
-                          selectedDate = ("${picked.day} / ${picked.month} / ${picked.year}");
+                          selectedDate =
+                              ("${picked.day} / ${picked.month} / ${picked.year}");
                           setState(() {});
                         }
                       },
@@ -240,7 +259,8 @@ class _EditEventScreenState extends State<EditEventScreen> {
                         height: ResponsiveFlutter.of(context).verticalScale(50),
                         width: double.infinity,
                         padding: EdgeInsets.symmetric(
-                          horizontal: ResponsiveFlutter.of(context).moderateScale(20),
+                          horizontal:
+                              ResponsiveFlutter.of(context).moderateScale(20),
                         ),
                         decoration: BoxDecoration(
                           color: appColors.appLightColor,
@@ -262,21 +282,24 @@ class _EditEventScreenState extends State<EditEventScreen> {
                                 styleNew: MyTextStyle(
                                   colorNew: appColors.lightColor,
                                   fontWeightNew: FontWeight.w400,
-                                  size: ResponsiveFlutter.of(context).fontSize(1.8),
+                                  size: ResponsiveFlutter.of(context)
+                                      .fontSize(1.8),
                                 ),
                               ),
                             ),
                             Image.asset(
                               ImagePath.pinkCalendar,
                               color: appColors.lightPinkColor,
-                              height: ResponsiveFlutter.of(context).moderateScale(23),
+                              height: ResponsiveFlutter.of(context)
+                                  .moderateScale(23),
                             )
                           ],
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(width: ResponsiveFlutter.of(context).moderateScale(10)),
+                  SizedBox(
+                      width: ResponsiveFlutter.of(context).moderateScale(10)),
                   Expanded(
                     child: GestureDetector(
                       onTap: () {
@@ -286,7 +309,8 @@ class _EditEventScreenState extends State<EditEventScreen> {
                         height: ResponsiveFlutter.of(context).verticalScale(50),
                         width: double.infinity,
                         padding: EdgeInsets.symmetric(
-                          horizontal: ResponsiveFlutter.of(context).moderateScale(20),
+                          horizontal:
+                              ResponsiveFlutter.of(context).moderateScale(20),
                         ),
                         decoration: BoxDecoration(
                           color: appColors.appLightColor,
@@ -307,13 +331,15 @@ class _EditEventScreenState extends State<EditEventScreen> {
                               styleNew: MyTextStyle(
                                 colorNew: appColors.lightColor,
                                 fontWeightNew: FontWeight.w400,
-                                size: ResponsiveFlutter.of(context).fontSize(1.8),
+                                size:
+                                    ResponsiveFlutter.of(context).fontSize(1.8),
                               ),
                             ),
                             Image.asset(
                               ImagePath.pinkTime,
                               color: appColors.lightPinkColor,
-                              height: ResponsiveFlutter.of(context).moderateScale(23),
+                              height: ResponsiveFlutter.of(context)
+                                  .moderateScale(23),
                             ),
                           ],
                         ),
@@ -437,7 +463,8 @@ class _EditEventScreenState extends State<EditEventScreen> {
     if (timeOfDay != null && timeOfDay != time) {
       time = timeOfDay;
       debugPrint("time ------------- >>>> $timeOfDay");
-      selectedTime = timeOfDay.hour.toString() + " : " + timeOfDay.minute.toString();
+      selectedTime =
+          timeOfDay.hour.toString() + " : " + timeOfDay.minute.toString();
       setState(() {});
     } else {
       debugPrint("<<<< ------------- Time Not Selected ------------- >>>>");

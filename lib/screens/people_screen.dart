@@ -1,7 +1,5 @@
 import "package:flutter/material.dart";
-import 'package:attendify/common/app_colors.dart';
-
-
+import 'package:attendify/features/common/app_colors.dart';
 
 class PeopleScreen extends StatefulWidget {
   const PeopleScreen({Key? key}) : super(key: key);
@@ -20,12 +18,9 @@ class _PeopleScreenState extends State<PeopleScreen> {
       child: Scaffold(
         backgroundColor: AppColors().appMediumColor,
         body: Stack(
-          children: [
-
-          ],
+          children: [],
         ),
       ),
-
     );
   }
 }

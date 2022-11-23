@@ -1,6 +1,6 @@
-import 'package:attendify/common/app_colors.dart';
-import 'package:attendify/common/common_widget.dart';
-import 'package:attendify/common/strings.dart';
+import 'package:attendify/features/common/app_colors.dart';
+import 'package:attendify/features/common/common_widget.dart';
+import 'package:attendify/features/common/strings.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:flutter/material.dart';
 
@@ -36,7 +36,9 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   Container(
                     height: ResponsiveFlutter.of(context).verticalScale(50),
                     width: double.infinity,
-                    padding: EdgeInsets.symmetric(horizontal: ResponsiveFlutter.of(context).moderateScale(20)),
+                    padding: EdgeInsets.symmetric(
+                        horizontal:
+                            ResponsiveFlutter.of(context).moderateScale(20)),
                     decoration: BoxDecoration(
                       color: appColors.appLightColor,
                       borderRadius: BorderRadius.circular(
@@ -61,7 +63,9 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   Container(
                     height: ResponsiveFlutter.of(context).verticalScale(50),
                     width: double.infinity,
-                    padding: EdgeInsets.symmetric(horizontal: ResponsiveFlutter.of(context).moderateScale(20)),
+                    padding: EdgeInsets.symmetric(
+                        horizontal:
+                            ResponsiveFlutter.of(context).moderateScale(20)),
                     decoration: BoxDecoration(
                       color: appColors.appLightColor,
                       borderRadius: BorderRadius.circular(
@@ -86,7 +90,9 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   Container(
                     height: ResponsiveFlutter.of(context).verticalScale(50),
                     width: double.infinity,
-                    padding: EdgeInsets.symmetric(horizontal: ResponsiveFlutter.of(context).moderateScale(20)),
+                    padding: EdgeInsets.symmetric(
+                        horizontal:
+                            ResponsiveFlutter.of(context).moderateScale(20)),
                     decoration: BoxDecoration(
                       color: appColors.appLightColor,
                       borderRadius: BorderRadius.circular(

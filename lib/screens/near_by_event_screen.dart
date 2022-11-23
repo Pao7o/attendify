@@ -1,7 +1,7 @@
-import 'package:attendify/common/app_colors.dart';
-import 'package:attendify/common/common_widget.dart';
-import 'package:attendify/common/image_path.dart';
-import 'package:attendify/common/strings.dart';
+import 'package:attendify/features/common/app_colors.dart';
+import 'package:attendify/features/common/common_widget.dart';
+import 'package:attendify/features/common/image_path.dart';
+import 'package:attendify/features/common/strings.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:attendify/screens/details_screen.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +36,8 @@ class _NearbyEventScreenState extends State<NearbyEventScreen> {
                     width: MediaQuery.of(context).size.width,
                     color: appColors.appMediumColor,
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(ResponsiveFlutter.of(context).moderateScale(20)),
+                      borderRadius: BorderRadius.circular(
+                          ResponsiveFlutter.of(context).moderateScale(20)),
                       child: Image.asset(
                         ImagePath.map,
                         fit: BoxFit.cover,
@@ -45,14 +46,17 @@ class _NearbyEventScreenState extends State<NearbyEventScreen> {
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(
-                      horizontal: ResponsiveFlutter.of(context).moderateScale(15),
+                      horizontal:
+                          ResponsiveFlutter.of(context).moderateScale(15),
                       vertical: ResponsiveFlutter.of(context).moderateScale(15),
                     ),
                     child: Container(
                       height: ResponsiveFlutter.of(context).moderateScale(80),
                       padding: EdgeInsets.symmetric(
-                        horizontal: ResponsiveFlutter.of(context).moderateScale(17),
-                        vertical: ResponsiveFlutter.of(context).moderateScale(15),
+                        horizontal:
+                            ResponsiveFlutter.of(context).moderateScale(17),
+                        vertical:
+                            ResponsiveFlutter.of(context).moderateScale(15),
                       ),
                       decoration: BoxDecoration(
                         color: appColors.appLightColor,
@@ -75,7 +79,8 @@ class _NearbyEventScreenState extends State<NearbyEventScreen> {
                                 styleNew: MyTextStyle(
                                   colorNew: appColors.lightColor,
                                   fontWeightNew: FontWeight.w600,
-                                  size: ResponsiveFlutter.of(context).fontSize(2.5),
+                                  size: ResponsiveFlutter.of(context)
+                                      .fontSize(2.5),
                                 ),
                               ),
                               Row(
@@ -83,10 +88,12 @@ class _NearbyEventScreenState extends State<NearbyEventScreen> {
                                   Image.asset(
                                     ImagePath.calender,
                                     color: appColors.lightColor,
-                                    height: ResponsiveFlutter.of(context).moderateScale(15),
+                                    height: ResponsiveFlutter.of(context)
+                                        .moderateScale(15),
                                   ),
                                   SizedBox(
-                                    width: ResponsiveFlutter.of(context).moderateScale(6),
+                                    width: ResponsiveFlutter.of(context)
+                                        .moderateScale(6),
                                   ),
                                   MyTextView(
                                     Strings.dummyText22,
@@ -95,19 +102,23 @@ class _NearbyEventScreenState extends State<NearbyEventScreen> {
                                     styleNew: MyTextStyle(
                                       colorNew: appColors.lightColor,
                                       fontWeightNew: FontWeight.w500,
-                                      size: ResponsiveFlutter.of(context).fontSize(1.5),
+                                      size: ResponsiveFlutter.of(context)
+                                          .fontSize(1.5),
                                     ),
                                   ),
                                   SizedBox(
-                                    width: ResponsiveFlutter.of(context).moderateScale(10),
+                                    width: ResponsiveFlutter.of(context)
+                                        .moderateScale(10),
                                   ),
                                   Image.asset(
                                     ImagePath.time,
                                     color: appColors.lightColor,
-                                    height: ResponsiveFlutter.of(context).moderateScale(15),
+                                    height: ResponsiveFlutter.of(context)
+                                        .moderateScale(15),
                                   ),
                                   SizedBox(
-                                    width: ResponsiveFlutter.of(context).moderateScale(6),
+                                    width: ResponsiveFlutter.of(context)
+                                        .moderateScale(6),
                                   ),
                                   MyTextView(
                                     Strings.dummyText23,
@@ -116,7 +127,8 @@ class _NearbyEventScreenState extends State<NearbyEventScreen> {
                                     styleNew: MyTextStyle(
                                       colorNew: appColors.lightColor,
                                       fontWeightNew: FontWeight.w500,
-                                      size: ResponsiveFlutter.of(context).fontSize(1.5),
+                                      size: ResponsiveFlutter.of(context)
+                                          .fontSize(1.5),
                                     ),
                                   ),
                                 ],
@@ -133,13 +145,16 @@ class _NearbyEventScreenState extends State<NearbyEventScreen> {
                               );
                             },
                             child: Container(
-                              width: ResponsiveFlutter.of(context).moderateScale(70),
-                              height: ResponsiveFlutter.of(context).moderateScale(35),
+                              width: ResponsiveFlutter.of(context)
+                                  .moderateScale(70),
+                              height: ResponsiveFlutter.of(context)
+                                  .moderateScale(35),
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
                                 color: appColors.lightPinkColor,
                                 borderRadius: BorderRadius.circular(
-                                  ResponsiveFlutter.of(context).moderateScale(20),
+                                  ResponsiveFlutter.of(context)
+                                      .moderateScale(20),
                                 ),
                               ),
                               child: MyTextView(
@@ -149,7 +164,8 @@ class _NearbyEventScreenState extends State<NearbyEventScreen> {
                                 styleNew: MyTextStyle(
                                   colorNew: appColors.black,
                                   fontWeightNew: FontWeight.w600,
-                                  size: ResponsiveFlutter.of(context).fontSize(1.6),
+                                  size: ResponsiveFlutter.of(context)
+                                      .fontSize(1.6),
                                 ),
                               ),
                             ),

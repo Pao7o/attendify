@@ -1,7 +1,7 @@
-import 'package:attendify/common/app_colors.dart';
-import 'package:attendify/common/common_widget.dart';
-import 'package:attendify/common/image_path.dart';
-import 'package:attendify/common/strings.dart';
+import 'package:attendify/features/common/app_colors.dart';
+import 'package:attendify/features/common/common_widget.dart';
+import 'package:attendify/features/common/image_path.dart';
+import 'package:attendify/features/common/strings.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:attendify/screens/verification_screen.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +34,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
             physics: const BouncingScrollPhysics(),
             children: [
               SizedBox(
-                height: MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top,
+                height: MediaQuery.of(context).size.height -
+                    MediaQuery.of(context).padding.top,
                 child: Column(
                   children: [
                     Stack(
@@ -43,12 +44,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         Column(
                           children: [
                             Container(
-                              height: ResponsiveFlutter.of(context).verticalScale(260),
+                              height: ResponsiveFlutter.of(context)
+                                  .verticalScale(260),
                               width: double.infinity,
                               color: appColors.appDarkColor,
                             ),
                             Container(
-                              height: ResponsiveFlutter.of(context).verticalScale(15),
+                              height: ResponsiveFlutter.of(context)
+                                  .verticalScale(15),
                               width: double.infinity,
                               color: appColors.appMediumColor,
                             ),
@@ -57,7 +60,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         Positioned(
                           top: 0,
                           child: Padding(
-                            padding: EdgeInsets.only(top: ResponsiveFlutter.of(context).verticalScale(30)),
+                            padding: EdgeInsets.only(
+                                top: ResponsiveFlutter.of(context)
+                                    .verticalScale(30)),
                             child: Image.asset(
                               imagePath.registerImageBG,
                               alignment: Alignment.bottomCenter,
@@ -68,12 +73,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           children: [
                             Image.asset(
                               ImagePath.logo,
-                              height: ResponsiveFlutter.of(context).verticalScale(30),
+                              height: ResponsiveFlutter.of(context)
+                                  .verticalScale(30),
                             ),
-                            SizedBox(height: ResponsiveFlutter.of(context).verticalScale(20)),
+                            SizedBox(
+                                height: ResponsiveFlutter.of(context)
+                                    .verticalScale(20)),
                             Container(
-                              height: ResponsiveFlutter.of(context).verticalScale(200),
-                              padding: EdgeInsets.symmetric(horizontal: ResponsiveFlutter.of(context).moderateScale(25)),
+                              height: ResponsiveFlutter.of(context)
+                                  .verticalScale(200),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: ResponsiveFlutter.of(context)
+                                      .moderateScale(25)),
                               child: Image.asset(
                                 ImagePath.registerImage,
                                 alignment: Alignment.bottomCenter,
@@ -85,7 +96,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     Expanded(
                       child: Container(
-                        padding: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(20)),
+                        padding: EdgeInsets.all(
+                            ResponsiveFlutter.of(context).moderateScale(20)),
                         color: appColors.appMediumColor,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,35 +107,47 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               Strings.signUp,
                               styleNew: MyTextStyle(
                                 colorNew: appColors.lightColor,
-                                size: ResponsiveFlutter.of(context).fontSize(3.7),
+                                size:
+                                    ResponsiveFlutter.of(context).fontSize(3.7),
                                 fontWeightNew: FontWeight.bold,
                               ),
                             ),
-                            SizedBox(height: ResponsiveFlutter.of(context).verticalScale(5)),
+                            SizedBox(
+                                height: ResponsiveFlutter.of(context)
+                                    .verticalScale(5)),
                             MyTextView(
                               Strings.pleaseFillTheDetails,
                               styleNew: MyTextStyle(
                                 colorNew: appColors.mediumGrayColor,
-                                size: ResponsiveFlutter.of(context).fontSize(1.8),
+                                size:
+                                    ResponsiveFlutter.of(context).fontSize(1.8),
                                 fontWeightNew: FontWeight.w400,
                               ),
                             ),
-                            SizedBox(height: ResponsiveFlutter.of(context).verticalScale(25)),
+                            SizedBox(
+                                height: ResponsiveFlutter.of(context)
+                                    .verticalScale(25)),
                             Stack(
                               alignment: Alignment.bottomCenter,
                               children: [
                                 Container(
-                                  height: ResponsiveFlutter.of(context).verticalScale(170),
+                                  height: ResponsiveFlutter.of(context)
+                                      .verticalScale(170),
                                   padding: EdgeInsets.symmetric(
-                                    vertical: ResponsiveFlutter.of(context).moderateScale(20),
-                                    horizontal: ResponsiveFlutter.of(context).moderateScale(25),
+                                    vertical: ResponsiveFlutter.of(context)
+                                        .moderateScale(20),
+                                    horizontal: ResponsiveFlutter.of(context)
+                                        .moderateScale(25),
                                   ),
                                   alignment: Alignment.topCenter,
-                                  margin: EdgeInsets.only(bottom: ResponsiveFlutter.of(context).moderateScale(25)),
+                                  margin: EdgeInsets.only(
+                                      bottom: ResponsiveFlutter.of(context)
+                                          .moderateScale(25)),
                                   decoration: BoxDecoration(
                                     color: appColors.appLightColor,
                                     borderRadius: BorderRadius.circular(
-                                      ResponsiveFlutter.of(context).moderateScale(25),
+                                      ResponsiveFlutter.of(context)
+                                          .moderateScale(25),
                                     ),
                                   ),
                                   child: Column(
@@ -154,23 +178,29 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           ),
                                         ],
                                       ),
-                                      SizedBox(height: ResponsiveFlutter.of(context).verticalScale(20)),
+                                      SizedBox(
+                                          height: ResponsiveFlutter.of(context)
+                                              .verticalScale(20)),
                                       commonTestField(
                                         context: context,
                                         controller: email,
                                         hintText: Strings.emailAddress,
                                         image: ImagePath.email,
-                                        keyboardType: TextInputType.emailAddress,
+                                        keyboardType:
+                                            TextInputType.emailAddress,
                                         obscureText: false,
                                         icon: true,
                                       ),
-                                      SizedBox(height: ResponsiveFlutter.of(context).verticalScale(20)),
+                                      SizedBox(
+                                          height: ResponsiveFlutter.of(context)
+                                              .verticalScale(20)),
                                       commonTestField(
                                         context: context,
                                         controller: password,
                                         hintText: Strings.password,
                                         image: ImagePath.password,
-                                        keyboardType: TextInputType.visiblePassword,
+                                        keyboardType:
+                                            TextInputType.visiblePassword,
                                         obscureText: true,
                                         icon: true,
                                       ),
@@ -179,14 +209,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 ),
                                 Padding(
                                   padding: EdgeInsets.symmetric(
-                                    horizontal: ResponsiveFlutter.of(context).moderateScale(55),
+                                    horizontal: ResponsiveFlutter.of(context)
+                                        .moderateScale(55),
                                   ),
                                   child: GestureDetector(
                                     onTap: () {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => const VerificationScreen(),
+                                          builder: (context) =>
+                                              const VerificationScreen(),
                                         ),
                                       );
                                     },
@@ -207,11 +239,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 styleNew: MyTextStyle(
                                   colorNew: appColors.mediumGrayColor,
                                   fontWeightNew: FontWeight.w400,
-                                  size: ResponsiveFlutter.of(context).fontSize(1.8),
+                                  size: ResponsiveFlutter.of(context)
+                                      .fontSize(1.8),
                                 ),
                               ),
                             ),
-                            SizedBox(height: ResponsiveFlutter.of(context).verticalScale(5)),
+                            SizedBox(
+                                height: ResponsiveFlutter.of(context)
+                                    .verticalScale(5)),
                             GestureDetector(
                               onTap: () {
                                 Navigator.pop(context);
@@ -224,7 +259,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   styleNew: MyTextStyle(
                                     colorNew: appColors.lightPinkColor,
                                     fontWeightNew: FontWeight.bold,
-                                    size: ResponsiveFlutter.of(context).fontSize(2),
+                                    size: ResponsiveFlutter.of(context)
+                                        .fontSize(2),
                                   ),
                                 ),
                               ),

@@ -1,13 +1,14 @@
-import 'package:attendify/common/app_colors.dart';
-import 'package:attendify/common/common_widget.dart';
-import 'package:attendify/common/strings.dart';
+import 'package:attendify/features/common/app_colors.dart';
+import 'package:attendify/features/common/common_widget.dart';
+import 'package:attendify/features/common/strings.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:flutter/material.dart';
 
 class TermsAndConditionScreen extends StatefulWidget {
   const TermsAndConditionScreen({Key? key}) : super(key: key);
   @override
-  _TermsAndConditionScreenState createState() => _TermsAndConditionScreenState();
+  _TermsAndConditionScreenState createState() =>
+      _TermsAndConditionScreenState();
 }
 
 class _TermsAndConditionScreenState extends State<TermsAndConditionScreen> {
@@ -72,22 +73,27 @@ class _TermsAndConditionScreenState extends State<TermsAndConditionScreen> {
                     height: ResponsiveFlutter.of(context).verticalScale(15),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: ResponsiveFlutter.of(context).moderateScale(20)),
+                    padding: EdgeInsets.symmetric(
+                        horizontal:
+                            ResponsiveFlutter.of(context).moderateScale(20)),
                     child: Column(
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Container(
-                              height: ResponsiveFlutter.of(context).moderateScale(10),
-                              width: ResponsiveFlutter.of(context).moderateScale(10),
+                              height: ResponsiveFlutter.of(context)
+                                  .moderateScale(10),
+                              width: ResponsiveFlutter.of(context)
+                                  .moderateScale(10),
                               decoration: BoxDecoration(
                                 color: appColors.btnColor,
                                 shape: BoxShape.circle,
                               ),
                             ),
                             SizedBox(
-                              width: ResponsiveFlutter.of(context).moderateScale(10),
+                              width: ResponsiveFlutter.of(context)
+                                  .moderateScale(10),
                             ),
                             MyTextView(
                               Strings.dummyText10,
@@ -97,27 +103,32 @@ class _TermsAndConditionScreenState extends State<TermsAndConditionScreen> {
                                 colorNew: appColors.lightColor,
                                 fontWeightNew: FontWeight.w400,
                                 textHeight: 1.3,
-                                size: ResponsiveFlutter.of(context).fontSize(2.2),
+                                size:
+                                    ResponsiveFlutter.of(context).fontSize(2.2),
                               ),
                             ),
                           ],
                         ),
                         SizedBox(
-                          height: ResponsiveFlutter.of(context).verticalScale(10),
+                          height:
+                              ResponsiveFlutter.of(context).verticalScale(10),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Container(
-                              height: ResponsiveFlutter.of(context).moderateScale(10),
-                              width: ResponsiveFlutter.of(context).moderateScale(10),
+                              height: ResponsiveFlutter.of(context)
+                                  .moderateScale(10),
+                              width: ResponsiveFlutter.of(context)
+                                  .moderateScale(10),
                               decoration: BoxDecoration(
                                 color: appColors.btnColor,
                                 shape: BoxShape.circle,
                               ),
                             ),
                             SizedBox(
-                              width: ResponsiveFlutter.of(context).moderateScale(10),
+                              width: ResponsiveFlutter.of(context)
+                                  .moderateScale(10),
                             ),
                             MyTextView(
                               Strings.dummyText10,
@@ -127,27 +138,32 @@ class _TermsAndConditionScreenState extends State<TermsAndConditionScreen> {
                                 colorNew: appColors.lightColor,
                                 fontWeightNew: FontWeight.w400,
                                 textHeight: 1.3,
-                                size: ResponsiveFlutter.of(context).fontSize(2.2),
+                                size:
+                                    ResponsiveFlutter.of(context).fontSize(2.2),
                               ),
                             ),
                           ],
                         ),
                         SizedBox(
-                          height: ResponsiveFlutter.of(context).verticalScale(10),
+                          height:
+                              ResponsiveFlutter.of(context).verticalScale(10),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Container(
-                              height: ResponsiveFlutter.of(context).moderateScale(10),
-                              width: ResponsiveFlutter.of(context).moderateScale(10),
+                              height: ResponsiveFlutter.of(context)
+                                  .moderateScale(10),
+                              width: ResponsiveFlutter.of(context)
+                                  .moderateScale(10),
                               decoration: BoxDecoration(
                                 color: appColors.btnColor,
                                 shape: BoxShape.circle,
                               ),
                             ),
                             SizedBox(
-                              width: ResponsiveFlutter.of(context).moderateScale(10),
+                              width: ResponsiveFlutter.of(context)
+                                  .moderateScale(10),
                             ),
                             MyTextView(
                               Strings.dummyText10,
@@ -157,27 +173,32 @@ class _TermsAndConditionScreenState extends State<TermsAndConditionScreen> {
                                 colorNew: appColors.lightColor,
                                 fontWeightNew: FontWeight.w400,
                                 textHeight: 1.3,
-                                size: ResponsiveFlutter.of(context).fontSize(2.2),
+                                size:
+                                    ResponsiveFlutter.of(context).fontSize(2.2),
                               ),
                             ),
                           ],
                         ),
                         SizedBox(
-                          height: ResponsiveFlutter.of(context).verticalScale(10),
+                          height:
+                              ResponsiveFlutter.of(context).verticalScale(10),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Container(
-                              height: ResponsiveFlutter.of(context).moderateScale(10),
-                              width: ResponsiveFlutter.of(context).moderateScale(10),
+                              height: ResponsiveFlutter.of(context)
+                                  .moderateScale(10),
+                              width: ResponsiveFlutter.of(context)
+                                  .moderateScale(10),
                               decoration: BoxDecoration(
                                 color: appColors.btnColor,
                                 shape: BoxShape.circle,
                               ),
                             ),
                             SizedBox(
-                              width: ResponsiveFlutter.of(context).moderateScale(10),
+                              width: ResponsiveFlutter.of(context)
+                                  .moderateScale(10),
                             ),
                             MyTextView(
                               Strings.dummyText10,
@@ -187,7 +208,8 @@ class _TermsAndConditionScreenState extends State<TermsAndConditionScreen> {
                                 colorNew: appColors.lightColor,
                                 fontWeightNew: FontWeight.w400,
                                 textHeight: 1.3,
-                                size: ResponsiveFlutter.of(context).fontSize(2.2),
+                                size:
+                                    ResponsiveFlutter.of(context).fontSize(2.2),
                               ),
                             ),
                           ],

@@ -7,12 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:video_player/video_player.dart';
 
-import '../common/story_data.dart';
-import '../common/story_model.dart';
+import '../features/common/story_data.dart';
+import '../features/common/story_model.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../common/strings.dart';
-
+import '../features/common/strings.dart';
 
 class StoryFeedView extends StatefulWidget {
   const StoryFeedView(
@@ -33,8 +32,6 @@ class _StoryFeedViewState extends State<StoryFeedView>
   VideoPlayerController? _videoPlayerController;
   int _currentIndex = 0;
   final _pageNotifier = ValueNotifier(0.0);
-
-
 
   @override
   void initState() {
@@ -88,7 +85,7 @@ class _StoryFeedViewState extends State<StoryFeedView>
     );
     var borderRadius = BorderRadius.circular(11);
     var outlineInput =
-    OutlineInputBorder(borderSide: borderside, borderRadius: borderRadius);
+        OutlineInputBorder(borderSide: borderside, borderRadius: borderRadius);
     return Material(
       child: Scaffold(
         backgroundColor: Colors.black,
@@ -170,11 +167,12 @@ class _StoryFeedViewState extends State<StoryFeedView>
                                 top: 10.0,
                                 left: 10.0,
                                 right: 10.0,
-                                child: SafeArea(top: false,
+                                child: SafeArea(
+                                  top: false,
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: <Widget>[
                                       Flexible(
                                         fit: FlexFit.loose,
@@ -183,14 +181,14 @@ class _StoryFeedViewState extends State<StoryFeedView>
                                               .asMap()
                                               .map((key, value) {
                                                 return MapEntry(
-                                                key,
-                                                AnimatedBar(
-                                                    animationController:
-                                                    _animationController!,
-                                                    position: key,
-                                                    currentindex:
-                                                    _currentIndex));
-                                          })
+                                                    key,
+                                                    AnimatedBar(
+                                                        animationController:
+                                                            _animationController!,
+                                                        position: key,
+                                                        currentindex:
+                                                            _currentIndex));
+                                              })
                                               .values
                                               .toList(),
                                         ),
@@ -221,78 +219,80 @@ class _StoryFeedViewState extends State<StoryFeedView>
                                   bottom: 10,
                                   child: SafeArea(
                                       child: Row(
-                                        children: [
-                                          SizedBox(
-                                            width: 10,
-                                          ),
-                                          GestureDetector(
-                                            child: Container(
-                                              padding: EdgeInsets.all(4),
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
+                                    children: [
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      GestureDetector(
+                                        child: Container(
+                                          padding: EdgeInsets.all(4),
+                                          decoration: BoxDecoration(
+                                              borderRadius:
                                                   BorderRadius.circular(10),
-                                                  border: Border.all(
-                                                    color: Colors.grey.shade300,
-                                                  )),
-                                              child: Icon(
-                                                Icons.camera_alt_rounded,
-                                                color: Colors.white,
-                                                size: 20,
-                                              ),
-                                            ),
+                                              border: Border.all(
+                                                color: Colors.grey.shade300,
+                                              )),
+                                          child: Icon(
+                                            Icons.camera_alt_rounded,
+                                            color: Colors.white,
+                                            size: 20,
                                           ),
-                                          SizedBox(
-                                            width: 10,
-                                          ),
-                                          Expanded(
-                                            child: TextField(
-                                              style: textsize12.copyWith(
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Expanded(
+                                        child: TextField(
+                                          style: textsize12.copyWith(
+                                              color: Colors.white),
+                                          cursorColor: Colors.white,
+                                          decoration: InputDecoration(
+                                              errorBorder: outlineInput,
+                                              hintText: 'Send Message',
+                                              hintStyle: textsize12.copyWith(
                                                   color: Colors.white),
-                                              cursorColor: Colors.white,
-                                              decoration: InputDecoration(
-                                                  errorBorder: outlineInput,
-                                                  hintText: 'Send Message',
-                                                  hintStyle: textsize12.copyWith(
-                                                      color: Colors.white),
-                                                  disabledBorder: outlineInput.copyWith(
-                                                      borderSide: borderside.copyWith(
-                                                          color: Colors.grey.shade300
-                                                      )
-                                                  ),
-                                                  focusedBorder: outlineInput,
-                                                  enabledBorder: outlineInput.copyWith(
-                                                      borderSide: borderside.copyWith(
-                                                          color: Colors.grey.shade300
-                                                      )
-                                                  ),
-                                                  border: outlineInput,
-                                                  isDense: true,
-                                                  suffixIconConstraints:
+                                              disabledBorder: outlineInput
+                                                  .copyWith(
+                                                      borderSide:
+                                                          borderside.copyWith(
+                                                              color: Colors.grey
+                                                                  .shade300)),
+                                              focusedBorder: outlineInput,
+                                              enabledBorder:
+                                                  outlineInput.copyWith(
+                                                      borderSide:
+                                                          borderside.copyWith(
+                                                              color: Colors.grey
+                                                                  .shade300)),
+                                              border: outlineInput,
+                                              isDense: true,
+                                              suffixIconConstraints:
                                                   BoxConstraints(
                                                       maxHeight: 20,
                                                       maxWidth: 20),
-                                                  contentPadding:
+                                              contentPadding:
                                                   EdgeInsets.fromLTRB(
                                                       10, 6, 6, 5),
-                                                  suffixIcon: Padding(
-                                                      padding: EdgeInsets.only(
-                                                          right: 6),
-                                                      child: Icon(
-                                                        Icons.more_vert_rounded,
-                                                        color: Colors.white,
-                                                        size: 10,
-                                                      ))),
-                                            ),
-                                          ),
-                                          IconButton(
-                                              onPressed: null,
-                                              icon: FaIcon(
-                                                FontAwesomeIcons.solidPaperPlane,
-                                                color: Colors.white,
-                                                size: 20,
-                                              ))
-                                        ],
-                                      )))
+                                              suffixIcon: Padding(
+                                                  padding:
+                                                      EdgeInsets.only(right: 6),
+                                                  child: Icon(
+                                                    Icons.more_vert_rounded,
+                                                    color: Colors.white,
+                                                    size: 10,
+                                                  ))),
+                                        ),
+                                      ),
+                                      IconButton(
+                                          onPressed: null,
+                                          icon: FaIcon(
+                                            FontAwesomeIcons.solidPaperPlane,
+                                            color: Colors.white,
+                                            size: 20,
+                                          ))
+                                    ],
+                                  )))
                             ],
                           ),
                           Positioned.fill(
@@ -377,8 +377,6 @@ class _StoryFeedViewState extends State<StoryFeedView>
   }
 }
 
-
-
 class UserInfo extends StatelessWidget {
   const UserInfo({Key? key, required this.user}) : super(key: key);
   final User user;
@@ -413,14 +411,12 @@ class UserInfo extends StatelessWidget {
   }
 }
 
-
-
 class AnimatedBar extends StatelessWidget {
   const AnimatedBar(
       {Key? key,
-        required this.animationController,
-        required this.position,
-        required this.currentindex})
+      required this.animationController,
+      required this.position,
+      required this.currentindex})
       : super(key: key);
   final AnimationController animationController;
   final int position;
@@ -440,12 +436,12 @@ class AnimatedBar extends StatelessWidget {
                       : Colors.white.withOpacity(0.5)),
               position == currentindex
                   ? AnimatedBuilder(
-                  animation: animationController,
-                  builder: (context, child) {
-                    return _buildContainer(
-                        constraints.maxWidth * animationController.value,
-                        Colors.white);
-                  })
+                      animation: animationController,
+                      builder: (context, child) {
+                        return _buildContainer(
+                            constraints.maxWidth * animationController.value,
+                            Colors.white);
+                      })
                   : const SizedBox.shrink(),
             ],
           );

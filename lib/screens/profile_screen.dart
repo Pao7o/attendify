@@ -1,7 +1,7 @@
-import 'package:attendify/common/app_colors.dart';
-import 'package:attendify/common/common_widget.dart';
-import 'package:attendify/common/image_path.dart';
-import 'package:attendify/common/strings.dart';
+import 'package:attendify/features/common/app_colors.dart';
+import 'package:attendify/features/common/common_widget.dart';
+import 'package:attendify/features/common/image_path.dart';
+import 'package:attendify/features/common/strings.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:attendify/screens/edit_profile_screen.dart';
 import 'package:attendify/screens/my_booking_screen.dart';
@@ -37,13 +37,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     alignment: Alignment.bottomCenter,
                     padding: EdgeInsets.symmetric(
                       vertical: ResponsiveFlutter.of(context).moderateScale(20),
-                      horizontal: ResponsiveFlutter.of(context).moderateScale(20),
+                      horizontal:
+                          ResponsiveFlutter.of(context).moderateScale(20),
                     ),
                     decoration: BoxDecoration(
                       color: appColors.appDarkColor,
                       borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(ResponsiveFlutter.of(context).moderateScale(30)),
-                        bottomRight: Radius.circular(ResponsiveFlutter.of(context).moderateScale(30)),
+                        bottomLeft: Radius.circular(
+                            ResponsiveFlutter.of(context).moderateScale(30)),
+                        bottomRight: Radius.circular(
+                            ResponsiveFlutter.of(context).moderateScale(30)),
                       ),
                     ),
                     child: Column(
@@ -51,8 +54,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Container(
-                          height: ResponsiveFlutter.of(context).moderateScale(120),
-                          width: ResponsiveFlutter.of(context).moderateScale(120),
+                          height:
+                              ResponsiveFlutter.of(context).moderateScale(120),
+                          width:
+                              ResponsiveFlutter.of(context).moderateScale(120),
                           decoration: BoxDecoration(
                             color: appColors.appMediumColor,
                             shape: BoxShape.circle,
@@ -62,7 +67,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                         ),
                         SizedBox(
-                          height: ResponsiveFlutter.of(context).moderateScale(5),
+                          height:
+                              ResponsiveFlutter.of(context).moderateScale(5),
                         ),
                         MyTextView(
                           Strings.dummyText37,
@@ -75,7 +81,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                         ),
                         SizedBox(
-                          height: ResponsiveFlutter.of(context).moderateScale(15),
+                          height:
+                              ResponsiveFlutter.of(context).moderateScale(15),
                         ),
                         Row(
                           children: [
@@ -84,7 +91,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 controller: tabController,
                                 indicator: BoxDecoration(
                                   borderRadius: BorderRadius.circular(
-                                    ResponsiveFlutter.of(context).moderateScale(25),
+                                    ResponsiveFlutter.of(context)
+                                        .moderateScale(25),
                                   ), // Creates border
                                   color: appColors.btnColor,
                                 ),
@@ -95,30 +103,38 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 },
                                 tabs: [
                                   Container(
-                                    height: ResponsiveFlutter.of(context).moderateScale(45),
+                                    height: ResponsiveFlutter.of(context)
+                                        .moderateScale(45),
                                     alignment: Alignment.center,
                                     child: MyTextView(
                                       Strings.myEvents,
                                       textAligntNew: TextAlign.start,
                                       maxLineWrap: true,
                                       styleNew: MyTextStyle(
-                                        colorNew: tab == 0 ? appColors.white : appColors.darkGreyText,
+                                        colorNew: tab == 0
+                                            ? appColors.white
+                                            : appColors.darkGreyText,
                                         fontWeightNew: FontWeight.w600,
-                                        size: ResponsiveFlutter.of(context).fontSize(1.8),
+                                        size: ResponsiveFlutter.of(context)
+                                            .fontSize(1.8),
                                       ),
                                     ),
                                   ),
                                   Container(
-                                    height: ResponsiveFlutter.of(context).moderateScale(45),
+                                    height: ResponsiveFlutter.of(context)
+                                        .moderateScale(45),
                                     alignment: Alignment.center,
                                     child: MyTextView(
                                       Strings.myBooking,
                                       textAligntNew: TextAlign.start,
                                       maxLineWrap: true,
                                       styleNew: MyTextStyle(
-                                        colorNew: tab == 1 ? appColors.white : appColors.darkGreyText,
+                                        colorNew: tab == 1
+                                            ? appColors.white
+                                            : appColors.darkGreyText,
                                         fontWeightNew: FontWeight.w600,
-                                        size: ResponsiveFlutter.of(context).fontSize(1.8),
+                                        size: ResponsiveFlutter.of(context)
+                                            .fontSize(1.8),
                                       ),
                                     ),
                                   ),
@@ -126,7 +142,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                             ),
                             SizedBox(
-                              width: ResponsiveFlutter.of(context).moderateScale(80),
+                              width: ResponsiveFlutter.of(context)
+                                  .moderateScale(80),
                             ),
                           ],
                         ),

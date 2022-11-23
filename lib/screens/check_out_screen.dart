@@ -1,8 +1,8 @@
-import 'package:attendify/common/app_colors.dart';
-import 'package:attendify/common/common_widget.dart';
-import 'package:attendify/common/constants.dart';
-import 'package:attendify/common/image_path.dart';
-import 'package:attendify/common/strings.dart';
+import 'package:attendify/features/common/app_colors.dart';
+import 'package:attendify/features/common/common_widget.dart';
+import 'package:attendify/features/common/constants.dart';
+import 'package:attendify/features/common/image_path.dart';
+import 'package:attendify/features/common/strings.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:attendify/screens/payment_successed_screen.dart';
 import 'package:flutter/material.dart';
@@ -51,8 +51,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   decoration: BoxDecoration(
                     color: appColors.appDarkColor,
                     borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(ResponsiveFlutter.of(context).moderateScale(30)),
-                      bottomRight: Radius.circular(ResponsiveFlutter.of(context).moderateScale(30)),
+                      bottomLeft: Radius.circular(
+                          ResponsiveFlutter.of(context).moderateScale(30)),
+                      bottomRight: Radius.circular(
+                          ResponsiveFlutter.of(context).moderateScale(30)),
                     ),
                   ),
                   child: Row(
@@ -72,10 +74,14 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         alignment: Alignment.centerLeft,
                         children: [
                           Container(
-                            height: ResponsiveFlutter.of(context).moderateScale(35),
-                            width: ResponsiveFlutter.of(context).moderateScale(70),
+                            height:
+                                ResponsiveFlutter.of(context).moderateScale(35),
+                            width:
+                                ResponsiveFlutter.of(context).moderateScale(70),
                             alignment: Alignment.center,
-                            margin: EdgeInsets.symmetric(horizontal: ResponsiveFlutter.of(context).moderateScale(10)),
+                            margin: EdgeInsets.symmetric(
+                                horizontal: ResponsiveFlutter.of(context)
+                                    .moderateScale(10)),
                             decoration: BoxDecoration(
                               color: appColors.appMediumColor,
                               borderRadius: BorderRadius.circular(
@@ -104,11 +110,15 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                   setState(() {});
                                 },
                                 child: Container(
-                                  height: ResponsiveFlutter.of(context).moderateScale(20),
-                                  width: ResponsiveFlutter.of(context).moderateScale(20),
+                                  height: ResponsiveFlutter.of(context)
+                                      .moderateScale(20),
+                                  width: ResponsiveFlutter.of(context)
+                                      .moderateScale(20),
                                   alignment: Alignment.center,
                                   decoration: BoxDecoration(
-                                    color: Constants.darkTheme ? appColors.appDarkColor : appColors.btnColor,
+                                    color: Constants.darkTheme
+                                        ? appColors.appDarkColor
+                                        : appColors.btnColor,
                                     shape: BoxShape.circle,
                                     border: Border.all(
                                       color: appColors.btnColor,
@@ -117,20 +127,25 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                   ),
                                   child: Icon(
                                     Icons.remove,
-                                    size: ResponsiveFlutter.of(context).moderateScale(13),
+                                    size: ResponsiveFlutter.of(context)
+                                        .moderateScale(13),
                                     color: appColors.white,
                                   ),
                                 ),
                               ),
-                              SizedBox(width: ResponsiveFlutter.of(context).moderateScale(50)),
+                              SizedBox(
+                                  width: ResponsiveFlutter.of(context)
+                                      .moderateScale(50)),
                               GestureDetector(
                                 onTap: () {
                                   count = count! + 1;
                                   setState(() {});
                                 },
                                 child: Container(
-                                  height: ResponsiveFlutter.of(context).moderateScale(20),
-                                  width: ResponsiveFlutter.of(context).moderateScale(20),
+                                  height: ResponsiveFlutter.of(context)
+                                      .moderateScale(20),
+                                  width: ResponsiveFlutter.of(context)
+                                      .moderateScale(20),
                                   alignment: Alignment.center,
                                   decoration: BoxDecoration(
                                     color: appColors.btnColor,
@@ -138,7 +153,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                   ),
                                   child: Icon(
                                     Icons.add,
-                                    size: ResponsiveFlutter.of(context).moderateScale(15),
+                                    size: ResponsiveFlutter.of(context)
+                                        .moderateScale(15),
                                     color: appColors.white,
                                   ),
                                 ),
@@ -186,11 +202,13 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       ),
                     ],
                   ),
-                  SizedBox(height: ResponsiveFlutter.of(context).moderateScale(20)),
+                  SizedBox(
+                      height: ResponsiveFlutter.of(context).moderateScale(20)),
                   Container(
                     height: ResponsiveFlutter.of(context).verticalScale(50),
                     padding: EdgeInsets.symmetric(
-                      horizontal: ResponsiveFlutter.of(context).moderateScale(20),
+                      horizontal:
+                          ResponsiveFlutter.of(context).moderateScale(20),
                     ),
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
@@ -217,7 +235,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       iconSize: ResponsiveFlutter.of(context).moderateScale(30),
                       isExpanded: true,
                       dropdownColor: appColors.appLightColor,
-                      borderRadius: BorderRadius.circular(ResponsiveFlutter.of(context).moderateScale(20)),
+                      borderRadius: BorderRadius.circular(
+                          ResponsiveFlutter.of(context).moderateScale(20)),
                       underline: Container(),
                       alignment: Alignment.bottomCenter,
                       items: items.map((String items) {
@@ -242,10 +261,12 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       },
                     ),
                   ),
-                  SizedBox(height: ResponsiveFlutter.of(context).moderateScale(10)),
+                  SizedBox(
+                      height: ResponsiveFlutter.of(context).moderateScale(10)),
                   Container(
                     width: double.infinity,
-                    padding: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(20)),
+                    padding: EdgeInsets.all(
+                        ResponsiveFlutter.of(context).moderateScale(20)),
                     decoration: BoxDecoration(
                       color: appColors.appLightColor,
                       border: Border.all(
@@ -269,7 +290,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           ),
                         ),
                         SizedBox(
-                          height: ResponsiveFlutter.of(context).moderateScale(5),
+                          height:
+                              ResponsiveFlutter.of(context).moderateScale(5),
                         ),
                         commonTestField(
                           context: context,
@@ -281,17 +303,20 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(height: ResponsiveFlutter.of(context).moderateScale(10)),
+                  SizedBox(
+                      height: ResponsiveFlutter.of(context).moderateScale(10)),
                   Container(
                     width: double.infinity,
-                    padding: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(20)),
+                    padding: EdgeInsets.all(
+                        ResponsiveFlutter.of(context).moderateScale(20)),
                     decoration: BoxDecoration(
                       color: appColors.appLightColor,
                       border: Border.all(
                         color: appColors.borderColor,
                         width: ResponsiveFlutter.of(context).moderateScale(1.5),
                       ),
-                      borderRadius: BorderRadius.circular(ResponsiveFlutter.of(context).moderateScale(20)),
+                      borderRadius: BorderRadius.circular(
+                          ResponsiveFlutter.of(context).moderateScale(20)),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -305,7 +330,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             size: ResponsiveFlutter.of(context).fontSize(1.8),
                           ),
                         ),
-                        SizedBox(height: ResponsiveFlutter.of(context).moderateScale(5)),
+                        SizedBox(
+                            height:
+                                ResponsiveFlutter.of(context).moderateScale(5)),
                         Row(
                           children: [
                             Expanded(
@@ -318,27 +345,33 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             ),
                             Image.asset(
                               ImagePath.masterCard,
-                              height: ResponsiveFlutter.of(context).moderateScale(25),
+                              height: ResponsiveFlutter.of(context)
+                                  .moderateScale(25),
                             ),
                           ],
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(height: ResponsiveFlutter.of(context).moderateScale(10)),
+                  SizedBox(
+                      height: ResponsiveFlutter.of(context).moderateScale(10)),
                   Row(
                     children: [
                       Expanded(
                         child: Container(
                           width: double.infinity,
-                          padding: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(20)),
+                          padding: EdgeInsets.all(
+                              ResponsiveFlutter.of(context).moderateScale(20)),
                           decoration: BoxDecoration(
                             color: appColors.appLightColor,
                             border: Border.all(
                               color: appColors.borderColor,
-                              width: ResponsiveFlutter.of(context).moderateScale(1.5),
+                              width: ResponsiveFlutter.of(context)
+                                  .moderateScale(1.5),
                             ),
-                            borderRadius: BorderRadius.circular(ResponsiveFlutter.of(context).moderateScale(20)),
+                            borderRadius: BorderRadius.circular(
+                                ResponsiveFlutter.of(context)
+                                    .moderateScale(20)),
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -349,10 +382,13 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                 styleNew: MyTextStyle(
                                   colorNew: appColors.transactionText,
                                   fontWeightNew: FontWeight.w500,
-                                  size: ResponsiveFlutter.of(context).fontSize(1.8),
+                                  size: ResponsiveFlutter.of(context)
+                                      .fontSize(1.8),
                                 ),
                               ),
-                              SizedBox(height: ResponsiveFlutter.of(context).moderateScale(5)),
+                              SizedBox(
+                                  height: ResponsiveFlutter.of(context)
+                                      .moderateScale(5)),
                               commonTestField(
                                 context: context,
                                 hintText: Strings.enterExpiryDate,
@@ -363,16 +399,20 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           ),
                         ),
                       ),
-                      SizedBox(width: ResponsiveFlutter.of(context).moderateScale(10)),
+                      SizedBox(
+                          width:
+                              ResponsiveFlutter.of(context).moderateScale(10)),
                       Expanded(
                         child: Container(
                           width: double.infinity,
-                          padding: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(20)),
+                          padding: EdgeInsets.all(
+                              ResponsiveFlutter.of(context).moderateScale(20)),
                           decoration: BoxDecoration(
                             color: appColors.appLightColor,
                             border: Border.all(
                               color: appColors.borderColor,
-                              width: ResponsiveFlutter.of(context).moderateScale(1.5),
+                              width: ResponsiveFlutter.of(context)
+                                  .moderateScale(1.5),
                             ),
                             borderRadius: BorderRadius.circular(
                               ResponsiveFlutter.of(context).moderateScale(20),
@@ -387,10 +427,13 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                 styleNew: MyTextStyle(
                                   colorNew: appColors.transactionText,
                                   fontWeightNew: FontWeight.w400,
-                                  size: ResponsiveFlutter.of(context).fontSize(1.8),
+                                  size: ResponsiveFlutter.of(context)
+                                      .fontSize(1.8),
                                 ),
                               ),
-                              SizedBox(height: ResponsiveFlutter.of(context).moderateScale(5)),
+                              SizedBox(
+                                  height: ResponsiveFlutter.of(context)
+                                      .moderateScale(5)),
                               commonTestField(
                                 context: context,
                                 hintText: Strings.enterCvv,
@@ -403,7 +446,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       ),
                     ],
                   ),
-                  SizedBox(height: ResponsiveFlutter.of(context).moderateScale(15)),
+                  SizedBox(
+                      height: ResponsiveFlutter.of(context).moderateScale(15)),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -414,8 +458,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           });
                         },
                         child: Container(
-                          height: ResponsiveFlutter.of(context).moderateScale(25),
-                          width: ResponsiveFlutter.of(context).moderateScale(25),
+                          height:
+                              ResponsiveFlutter.of(context).moderateScale(25),
+                          width:
+                              ResponsiveFlutter.of(context).moderateScale(25),
                           decoration: BoxDecoration(
                             color: appColors.appMediumColor,
                             shape: BoxShape.circle,
@@ -432,7 +478,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                               : Container(),
                         ),
                       ),
-                      SizedBox(width: ResponsiveFlutter.of(context).moderateScale(10)),
+                      SizedBox(
+                          width:
+                              ResponsiveFlutter.of(context).moderateScale(10)),
                       MyTextView(
                         Strings.saveYourCard,
                         textAligntNew: TextAlign.center,
@@ -444,7 +492,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       ),
                     ],
                   ),
-                  SizedBox(height: ResponsiveFlutter.of(context).moderateScale(20)),
+                  SizedBox(
+                      height: ResponsiveFlutter.of(context).moderateScale(20)),
                   GestureDetector(
                     onTap: () {
                       Navigator.push(
@@ -459,7 +508,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       title: Strings.pay,
                     ),
                   ),
-                  SizedBox(height: ResponsiveFlutter.of(context).moderateScale(15)),
+                  SizedBox(
+                      height: ResponsiveFlutter.of(context).moderateScale(15)),
                   MyTextView(
                     Strings.or,
                     textAligntNew: TextAlign.center,
@@ -469,11 +519,14 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       size: ResponsiveFlutter.of(context).fontSize(1.6),
                     ),
                   ),
-                  SizedBox(height: ResponsiveFlutter.of(context).moderateScale(15)),
+                  SizedBox(
+                      height: ResponsiveFlutter.of(context).moderateScale(15)),
                   Container(
                     height: ResponsiveFlutter.of(context).scale(45),
                     alignment: Alignment.center,
-                    padding: EdgeInsets.symmetric(horizontal: ResponsiveFlutter.of(context).moderateScale(30)),
+                    padding: EdgeInsets.symmetric(
+                        horizontal:
+                            ResponsiveFlutter.of(context).moderateScale(30)),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(
                         ResponsiveFlutter.of(context).moderateScale(30),
@@ -487,9 +540,12 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       children: [
                         Image.asset(
                           ImagePath.paypal,
-                          height: ResponsiveFlutter.of(context).moderateScale(22),
+                          height:
+                              ResponsiveFlutter.of(context).moderateScale(22),
                         ),
-                        SizedBox(width: ResponsiveFlutter.of(context).moderateScale(15)),
+                        SizedBox(
+                            width: ResponsiveFlutter.of(context)
+                                .moderateScale(15)),
                         MyTextView(
                           Strings.payPal,
                           textAligntNew: TextAlign.center,
@@ -502,7 +558,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(height: ResponsiveFlutter.of(context).moderateScale(20)),
+                  SizedBox(
+                      height: ResponsiveFlutter.of(context).moderateScale(20)),
                 ],
               ),
             ),
