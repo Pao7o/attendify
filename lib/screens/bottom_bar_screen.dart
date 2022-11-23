@@ -1,6 +1,6 @@
-import 'package:attendify/common/app_colors.dart';
-import 'package:attendify/common/constants.dart';
-import 'package:attendify/common/image_path.dart';
+import 'package:attendify/features/common/app_colors.dart';
+import 'package:attendify/features/common/constants.dart';
+import 'package:attendify/features/common/image_path.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:attendify/screens/create_event_screen.dart';
 import 'package:attendify/screens/favorites_screen.dart';
@@ -60,11 +60,14 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Constants.darkTheme ? Brightness.light : Brightness.dark,
-        statusBarBrightness: Constants.darkTheme ? Brightness.dark : Brightness.light,
+        statusBarIconBrightness:
+            Constants.darkTheme ? Brightness.light : Brightness.dark,
+        statusBarBrightness:
+            Constants.darkTheme ? Brightness.dark : Brightness.light,
         systemNavigationBarColor: appColors.lightColor,
         // systemNavigationBarDividerColor: appColors.appDarkColor,
-        systemNavigationBarIconBrightness: Constants.darkTheme ? Brightness.light : Brightness.dark,
+        systemNavigationBarIconBrightness:
+            Constants.darkTheme ? Brightness.light : Brightness.dark,
       ),
     );
     return SafeArea(
@@ -81,7 +84,8 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
               children: [
                 Container(
                   height: ResponsiveFlutter.of(context).verticalScale(72),
-                  margin: EdgeInsets.only(top: ResponsiveFlutter.of(context).moderateScale(10)),
+                  margin: EdgeInsets.only(
+                      top: ResponsiveFlutter.of(context).moderateScale(10)),
                   decoration: BoxDecoration(
                     color: Colors.transparent,
                     image: DecorationImage(
@@ -109,12 +113,16 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                           });
                         },
                         child: Container(
-                          height: ResponsiveFlutter.of(context).verticalScale(30),
-                          width: ResponsiveFlutter.of(context).verticalScale(30),
+                          height:
+                              ResponsiveFlutter.of(context).verticalScale(30),
+                          width:
+                              ResponsiveFlutter.of(context).verticalScale(30),
                           alignment: Alignment.center,
                           child: Image(
-                            image: AssetImage(home! ? ImagePath.homeSelect : ImagePath.home),
-                            height: ResponsiveFlutter.of(context).verticalScale(20),
+                            image: AssetImage(
+                                home! ? ImagePath.homeSelect : ImagePath.home),
+                            height:
+                                ResponsiveFlutter.of(context).verticalScale(20),
                           ),
                         ),
                       ),
@@ -130,12 +138,17 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                           });
                         },
                         child: Container(
-                          height: ResponsiveFlutter.of(context).verticalScale(30),
-                          width: ResponsiveFlutter.of(context).verticalScale(30),
+                          height:
+                              ResponsiveFlutter.of(context).verticalScale(30),
+                          width:
+                              ResponsiveFlutter.of(context).verticalScale(30),
                           alignment: Alignment.center,
                           child: Image(
-                            image: AssetImage(favorites! ? ImagePath.social_onselected : ImagePath.social),
-                            height: ResponsiveFlutter.of(context).verticalScale(24.5),
+                            image: AssetImage(favorites!
+                                ? ImagePath.social_onselected
+                                : ImagePath.social),
+                            height: ResponsiveFlutter.of(context)
+                                .verticalScale(24.5),
                           ),
                         ),
                       ),
@@ -152,7 +165,8 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                         },
                         child: Image(
                           image: const AssetImage(ImagePath.create),
-                          height: ResponsiveFlutter.of(context).verticalScale(45),
+                          height:
+                              ResponsiveFlutter.of(context).verticalScale(45),
                         ),
                       ),
                       GestureDetector(
@@ -167,12 +181,17 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                           });
                         },
                         child: Container(
-                          height: ResponsiveFlutter.of(context).verticalScale(30),
-                          width: ResponsiveFlutter.of(context).verticalScale(30),
+                          height:
+                              ResponsiveFlutter.of(context).verticalScale(30),
+                          width:
+                              ResponsiveFlutter.of(context).verticalScale(30),
                           alignment: Alignment.center,
                           child: Image(
-                            image: AssetImage(wallet! ? ImagePath.ticket_onselected : ImagePath.ticket),
-                            height: ResponsiveFlutter.of(context).verticalScale(24.5),
+                            image: AssetImage(wallet!
+                                ? ImagePath.ticket_onselected
+                                : ImagePath.ticket),
+                            height: ResponsiveFlutter.of(context)
+                                .verticalScale(24.5),
                           ),
                         ),
                       ),
@@ -188,12 +207,17 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                           });
                         },
                         child: Container(
-                          height: ResponsiveFlutter.of(context).verticalScale(30),
-                          width: ResponsiveFlutter.of(context).verticalScale(30),
+                          height:
+                              ResponsiveFlutter.of(context).verticalScale(30),
+                          width:
+                              ResponsiveFlutter.of(context).verticalScale(30),
                           alignment: Alignment.center,
                           child: Image(
-                            image: AssetImage(setting! ? imagePath.settingSelect : ImagePath.setting),
-                            height: ResponsiveFlutter.of(context).verticalScale(20),
+                            image: AssetImage(setting!
+                                ? imagePath.settingSelect
+                                : ImagePath.setting),
+                            height:
+                                ResponsiveFlutter.of(context).verticalScale(20),
                           ),
                         ),
                       ),

@@ -1,7 +1,7 @@
-import 'package:attendify/common/app_colors.dart';
-import 'package:attendify/common/common_widget.dart';
-import 'package:attendify/common/image_path.dart';
-import 'package:attendify/common/strings.dart';
+import 'package:attendify/features/common/app_colors.dart';
+import 'package:attendify/features/common/common_widget.dart';
+import 'package:attendify/features/common/image_path.dart';
+import 'package:attendify/features/common/strings.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:attendify/screens/all_friends_screen.dart';
 import 'package:attendify/screens/friends_screen.dart';
@@ -29,10 +29,7 @@ class _ChatScreenState extends State<ChatScreen> {
         child: Scaffold(
           backgroundColor: appColors.appMediumColor,
           body: Column(
-            children: [
-            Text("A chat interface will be coded here guys",style: TextStyle(fontSize: 80),)
-
-            ],
+            children: [],
           ),
         ),
       ),

@@ -1,11 +1,11 @@
 import 'dart:io';
 import 'dart:ui';
 
-import 'package:attendify/common/app_colors.dart';
-import 'package:attendify/common/common_widget.dart';
-import 'package:attendify/common/dotted_line.dart';
-import 'package:attendify/common/image_path.dart';
-import 'package:attendify/common/strings.dart';
+import 'package:attendify/features/common/app_colors.dart';
+import 'package:attendify/features/common/common_widget.dart';
+import 'package:attendify/features/common/dotted_line.dart';
+import 'package:attendify/features/common/image_path.dart';
+import 'package:attendify/features/common/strings.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -69,9 +69,11 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                       space: 3.5,
                       height: ResponsiveFlutter.of(context).verticalScale(130),
                       width: double.infinity,
-                      corner: FDottedLineCorner.all(ResponsiveFlutter.of(context).moderateScale(20)),
+                      corner: FDottedLineCorner.all(
+                          ResponsiveFlutter.of(context).moderateScale(20)),
                       child: Container(
-                        height: ResponsiveFlutter.of(context).verticalScale(130),
+                        height:
+                            ResponsiveFlutter.of(context).verticalScale(130),
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color: appColors.appLightColor,
@@ -85,11 +87,13 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                 children: [
                                   Image.asset(
                                     ImagePath.image,
-                                    height: ResponsiveFlutter.of(context).moderateScale(25),
+                                    height: ResponsiveFlutter.of(context)
+                                        .moderateScale(25),
                                     color: appColors.lightColor,
                                   ),
                                   SizedBox(
-                                    height: ResponsiveFlutter.of(context).verticalScale(5),
+                                    height: ResponsiveFlutter.of(context)
+                                        .verticalScale(5),
                                   ),
                                   MyTextView(
                                     Strings.tapToAddImage,
@@ -97,7 +101,8 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                     styleNew: MyTextStyle(
                                       colorNew: appColors.lightColor,
                                       fontWeightNew: FontWeight.w400,
-                                      size: ResponsiveFlutter.of(context).fontSize(2),
+                                      size: ResponsiveFlutter.of(context)
+                                          .fontSize(2),
                                     ),
                                   ),
                                 ],
@@ -115,7 +120,8 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                   Container(
                     height: ResponsiveFlutter.of(context).verticalScale(50),
                     padding: EdgeInsets.symmetric(
-                      horizontal: ResponsiveFlutter.of(context).moderateScale(20),
+                      horizontal:
+                          ResponsiveFlutter.of(context).moderateScale(20),
                     ),
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
@@ -142,7 +148,8 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                       iconSize: ResponsiveFlutter.of(context).moderateScale(30),
                       isExpanded: true,
                       dropdownColor: appColors.appLightColor,
-                      borderRadius: BorderRadius.circular(ResponsiveFlutter.of(context).moderateScale(20)),
+                      borderRadius: BorderRadius.circular(
+                          ResponsiveFlutter.of(context).moderateScale(20)),
                       underline: Container(),
                       alignment: Alignment.bottomCenter,
                       items: items.map((String items) {
@@ -174,7 +181,8 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                     height: ResponsiveFlutter.of(context).verticalScale(50),
                     width: double.infinity,
                     padding: EdgeInsets.symmetric(
-                      horizontal: ResponsiveFlutter.of(context).moderateScale(20),
+                      horizontal:
+                          ResponsiveFlutter.of(context).moderateScale(20),
                     ),
                     decoration: BoxDecoration(
                       color: appColors.appLightColor,
@@ -200,7 +208,8 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                     height: ResponsiveFlutter.of(context).verticalScale(50),
                     width: double.infinity,
                     padding: EdgeInsets.symmetric(
-                      horizontal: ResponsiveFlutter.of(context).moderateScale(20),
+                      horizontal:
+                          ResponsiveFlutter.of(context).moderateScale(20),
                     ),
                     decoration: BoxDecoration(
                       color: appColors.appLightColor,
@@ -234,15 +243,18 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                               lastDate: DateTime(2035),
                             );
                             if (picked != null) {
-                              selectedDate = ("${picked.day} / ${picked.month} / ${picked.year}");
+                              selectedDate =
+                                  ("${picked.day} / ${picked.month} / ${picked.year}");
                               setState(() {});
                             }
                           },
                           child: Container(
-                            height: ResponsiveFlutter.of(context).verticalScale(50),
+                            height:
+                                ResponsiveFlutter.of(context).verticalScale(50),
                             width: double.infinity,
                             padding: EdgeInsets.symmetric(
-                              horizontal: ResponsiveFlutter.of(context).moderateScale(20),
+                              horizontal: ResponsiveFlutter.of(context)
+                                  .moderateScale(20),
                             ),
                             decoration: BoxDecoration(
                               color: appColors.appLightColor,
@@ -264,14 +276,16 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                     styleNew: MyTextStyle(
                                       colorNew: appColors.lightColor,
                                       fontWeightNew: FontWeight.w400,
-                                      size: ResponsiveFlutter.of(context).fontSize(1.8),
+                                      size: ResponsiveFlutter.of(context)
+                                          .fontSize(1.8),
                                     ),
                                   ),
                                 ),
                                 Image.asset(
                                   ImagePath.pinkCalendar,
                                   color: appColors.lightPinkColor,
-                                  height: ResponsiveFlutter.of(context).moderateScale(23),
+                                  height: ResponsiveFlutter.of(context)
+                                      .moderateScale(23),
                                 )
                               ],
                             ),
@@ -287,10 +301,12 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                             selectTime(context);
                           },
                           child: Container(
-                            height: ResponsiveFlutter.of(context).verticalScale(50),
+                            height:
+                                ResponsiveFlutter.of(context).verticalScale(50),
                             width: double.infinity,
                             padding: EdgeInsets.symmetric(
-                              horizontal: ResponsiveFlutter.of(context).moderateScale(20),
+                              horizontal: ResponsiveFlutter.of(context)
+                                  .moderateScale(20),
                             ),
                             decoration: BoxDecoration(
                               color: appColors.appLightColor,
@@ -311,13 +327,15 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                   styleNew: MyTextStyle(
                                     colorNew: appColors.lightColor,
                                     fontWeightNew: FontWeight.w400,
-                                    size: ResponsiveFlutter.of(context).fontSize(1.8),
+                                    size: ResponsiveFlutter.of(context)
+                                        .fontSize(1.8),
                                   ),
                                 ),
                                 Image.asset(
                                   ImagePath.pinkTime,
                                   color: appColors.lightPinkColor,
-                                  height: ResponsiveFlutter.of(context).moderateScale(23),
+                                  height: ResponsiveFlutter.of(context)
+                                      .moderateScale(23),
                                 ),
                               ],
                             ),
@@ -333,7 +351,8 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                     height: ResponsiveFlutter.of(context).verticalScale(50),
                     width: double.infinity,
                     padding: EdgeInsets.symmetric(
-                      horizontal: ResponsiveFlutter.of(context).moderateScale(20),
+                      horizontal:
+                          ResponsiveFlutter.of(context).moderateScale(20),
                     ),
                     decoration: BoxDecoration(
                       color: appColors.appLightColor,
@@ -359,7 +378,8 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                         Image.asset(
                           ImagePath.pinkLocation,
                           color: appColors.lightPinkColor,
-                          height: ResponsiveFlutter.of(context).moderateScale(23),
+                          height:
+                              ResponsiveFlutter.of(context).moderateScale(23),
                         ),
                       ],
                     ),
@@ -370,7 +390,8 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                   Container(
                     width: double.infinity,
                     padding: EdgeInsets.symmetric(
-                      horizontal: ResponsiveFlutter.of(context).moderateScale(20),
+                      horizontal:
+                          ResponsiveFlutter.of(context).moderateScale(20),
                       vertical: ResponsiveFlutter.of(context).moderateScale(15),
                     ),
                     decoration: BoxDecoration(
@@ -418,19 +439,24 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                             return WillPopScope(
                               onWillPop: () async => false,
                               child: BackdropFilter(
-                                filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                                filter:
+                                    ImageFilter.blur(sigmaX: 10, sigmaY: 10),
                                 child: Stack(
                                   children: [
                                     Center(
                                       child: Container(
-                                        height: ResponsiveFlutter.of(context).verticalScale(200),
+                                        height: ResponsiveFlutter.of(context)
+                                            .verticalScale(200),
                                         width: double.infinity,
                                         margin: EdgeInsets.symmetric(
-                                          horizontal: ResponsiveFlutter.of(context).moderateScale(30),
+                                          horizontal:
+                                              ResponsiveFlutter.of(context)
+                                                  .moderateScale(30),
                                         ),
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(
-                                            ResponsiveFlutter.of(context).moderateScale(20),
+                                            ResponsiveFlutter.of(context)
+                                                .moderateScale(20),
                                           ),
                                           image: const DecorationImage(
                                             image: AssetImage(ImagePath.hurray),
@@ -438,31 +464,43 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                           ),
                                         ),
                                         child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
                                           children: [
                                             Image.asset(
                                               ImagePath.ok,
-                                              height: ResponsiveFlutter.of(context).verticalScale(55),
+                                              height:
+                                                  ResponsiveFlutter.of(context)
+                                                      .verticalScale(55),
                                             ),
                                             SizedBox(
-                                              height: ResponsiveFlutter.of(context).verticalScale(10),
+                                              height:
+                                                  ResponsiveFlutter.of(context)
+                                                      .verticalScale(10),
                                             ),
                                             MyTextView(
                                               Strings.hurray,
                                               styleNew: MyTextStyle(
                                                 colorNew: appColors.white,
-                                                size: ResponsiveFlutter.of(context).fontSize(3.3),
+                                                size: ResponsiveFlutter.of(
+                                                        context)
+                                                    .fontSize(3.3),
                                                 fontWeightNew: FontWeight.bold,
                                               ),
                                             ),
                                             SizedBox(
-                                              height: ResponsiveFlutter.of(context).verticalScale(10),
+                                              height:
+                                                  ResponsiveFlutter.of(context)
+                                                      .verticalScale(10),
                                             ),
                                             MyTextView(
-                                              Strings.yourEventSuccessfullyCreated,
+                                              Strings
+                                                  .yourEventSuccessfullyCreated,
                                               styleNew: MyTextStyle(
                                                 colorNew: appColors.white,
-                                                size: ResponsiveFlutter.of(context).fontSize(2.2),
+                                                size: ResponsiveFlutter.of(
+                                                        context)
+                                                    .fontSize(2.2),
                                                 fontWeightNew: FontWeight.w400,
                                               ),
                                             ),
@@ -477,10 +515,15 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                           Navigator.pop(context);
                                         },
                                         child: Padding(
-                                          padding: EdgeInsets.only(bottom: ResponsiveFlutter.of(context).moderateScale(20)),
+                                          padding: EdgeInsets.only(
+                                              bottom:
+                                                  ResponsiveFlutter.of(context)
+                                                      .moderateScale(20)),
                                           child: Image.asset(
                                             ImagePath.close,
-                                            height: ResponsiveFlutter.of(context).verticalScale(45),
+                                            height:
+                                                ResponsiveFlutter.of(context)
+                                                    .verticalScale(45),
                                           ),
                                         ),
                                       ),
@@ -528,7 +571,8 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
     if (timeOfDay != null && timeOfDay != time) {
       time = timeOfDay;
       debugPrint("time ------------- >>>> $timeOfDay");
-      selectedTime = timeOfDay.hour.toString() + " : " + timeOfDay.minute.toString();
+      selectedTime =
+          timeOfDay.hour.toString() + " : " + timeOfDay.minute.toString();
       setState(() {});
     } else {
       debugPrint("<<<< ------------- Time Not Selected ------------- >>>>");

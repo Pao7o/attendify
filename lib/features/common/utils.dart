@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:attendify/common/app_colors.dart';
-import 'package:attendify/common/common_dialog.dart';
-import 'package:attendify/common/common_widget.dart';
-import 'package:attendify/common/strings.dart';
+import 'package:attendify/features/common/app_colors.dart';
+import 'package:attendify/features/common/common_dialog.dart';
+import 'package:attendify/features/common/common_widget.dart';
+import 'package:attendify/features/common/strings.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:crypto/crypto.dart';
@@ -114,7 +114,8 @@ class Utils {
   /// Email Validator ------------>>
   bool emailValidator(String email) {
     debugPrint("<<<< ------- emailValidator ------- >>>>");
-    String p = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+    String p =
+        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
     RegExp regExp = RegExp(p);
     if (regExp.hasMatch(email)) {
       return true;
@@ -161,7 +162,11 @@ class Utils {
 
   /// Is Empty Validator ------------>>
   bool isEmpty(String? val) {
-    if (val == null || val.isEmpty || val == "null" || val == "" || val == "NULL") {
+    if (val == null ||
+        val.isEmpty ||
+        val == "null" ||
+        val == "" ||
+        val == "NULL") {
       return true;
     } else {
       return false;
@@ -224,7 +229,11 @@ class Utils {
     if (hoursStr == '00' || hoursStr == '0') {
       strTime = minutesStr.toString() + ':' + secondsStr.toString();
     } else {
-      strTime = hoursStr.toString() + ':' + minutesStr.toString() + ':' + secondsStr.toString();
+      strTime = hoursStr.toString() +
+          ':' +
+          minutesStr.toString() +
+          ':' +
+          secondsStr.toString();
     }
     return strTime;
   }
@@ -250,7 +259,13 @@ class Utils {
     String month = DateFormat.M().format(DateTime.now().toUtc());
     String day = DateFormat.d().format(DateTime.now().toUtc());
     String time = DateFormat.Hm().format(DateTime.now().toUtc());
-    String timeDate = DateFormat.y().format(DateTime.now().toUtc()) + '-' + (month.length == 1 ? '0$month' : month) + '-' + (day.length == 1 ? '0$day' : day) + ' ' + time;
+    String timeDate = DateFormat.y().format(DateTime.now().toUtc()) +
+        '-' +
+        (month.length == 1 ? '0$month' : month) +
+        '-' +
+        (day.length == 1 ? '0$day' : day) +
+        ' ' +
+        time;
     return timeDate;
   }
 
@@ -280,7 +295,8 @@ class Utils {
   }
 
   /// To Change Date Format ------------>>
-  Future<String> changeDateFormat(String? date, String? formatInput, String? formatOutput) async {
+  Future<String> changeDateFormat(
+      String? date, String? formatInput, String? formatOutput) async {
     if (date != null && date.isNotEmpty) {
       final format = DateFormat(formatInput);
       DateTime gettingDate = format.parse(date);
@@ -321,7 +337,10 @@ class Utils {
     var diff = date.difference(now);
     var time = '';
 
-    if (diff.inSeconds <= 0 || diff.inSeconds > 0 && diff.inMinutes == 0 || diff.inMinutes > 0 && diff.inHours == 0 || diff.inHours > 0 && diff.inDays == 0) {
+    if (diff.inSeconds <= 0 ||
+        diff.inSeconds > 0 && diff.inMinutes == 0 ||
+        diff.inMinutes > 0 && diff.inHours == 0 ||
+        diff.inHours > 0 && diff.inDays == 0) {
       time = format.format(date);
     } else {
       if (diff.inDays == 1) {

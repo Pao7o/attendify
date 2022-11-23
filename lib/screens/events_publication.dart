@@ -1,13 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../common/app_colors.dart';
-import '../common/common_widget.dart';
-import '../common/image_path.dart';
-import '../common/strings.dart';
+import '../features/common/app_colors.dart';
+import '../features/common/common_widget.dart';
+import '../features/common/image_path.dart';
+import '../features/common/strings.dart';
 import '../responsive/responsive_flutter.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-
 import 'chat_screen.dart';
 import 'edit_event_screen.dart';
 
@@ -26,7 +24,7 @@ class _EventsPublicationsState extends State<EventsPublications> {
   var items = [
     'Popular',
     'Near you',
-    'Recommanded',
+    'Recommanded for you',
   ];
   @override
   Widget build(BuildContext context) {
@@ -38,40 +36,42 @@ class _EventsPublicationsState extends State<EventsPublications> {
         body: Column(
           children: [
             Padding(
-              padding: EdgeInsets.only(left : ResponsiveFlutter.of(context).moderateScale(20),
-                  top: ResponsiveFlutter.of(context).moderateScale(10),
-              bottom: ResponsiveFlutter.of(context).moderateScale(10)),
+              padding: EdgeInsets.only(
+                  left: ResponsiveFlutter.of(context).moderateScale(20),
+                  top: ResponsiveFlutter.of(context).moderateScale(10)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                    width: ResponsiveFlutter.of(context).moderateScale(150),
-                    height:ResponsiveFlutter.of(context).moderateScale(25),
+                    width: ResponsiveFlutter.of(context).moderateScale(205),
+                    height: ResponsiveFlutter.of(context).moderateScale(25),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        DropdownButton(
+                          items: items.map((items) {
+                            return DropdownMenuItem(
+                                value: items,
+                                child: Text(
+                                  items,
+                                  style:
+                                      TextStyle(color: AppColors().lightColor),
+                                ));
+                          }).toList(),
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              dropdownvalue = newValue;
+                            });
+                          },
+                          value: dropdownvalue,
+                          icon: new Icon(Icons.arrow_drop_down),
+                        )
+                      ],
+                    ),
                     decoration: BoxDecoration(
                       color: appColors.appDarkColor,
                       borderRadius: BorderRadius.circular(
                         ResponsiveFlutter.of(context).moderateScale(20),
-                      ),
-
-                    ),
-                    child: DropdownButtonHideUnderline(
-                      child: Theme(
-                        data: Theme.of(context).copyWith(canvasColor: AppColors().appMediumColor),
-                        child: DropdownButton(items: items.map((items) {
-                          return DropdownMenuItem(value: items, child: Center(
-                            child: Text(items,
-                              style: TextStyle(color: AppColors().lightColor,),),
-                          ));
-                        }).toList(),
-                          isExpanded: true,
-                          hint: Text("Sort by"),
-                          onChanged: (String? newValue) {
-                          setState(() {
-                            dropdownvalue = newValue;
-                          });
-                        },
-
-                          value: dropdownvalue,icon: new Icon(Icons.arrow_drop_down,color:AppColors().lightColor,),),
                       ),
                     ),
                   ),
@@ -82,41 +82,31 @@ class _EventsPublicationsState extends State<EventsPublications> {
               child: ListView.separated(
                 itemCount: 2,
                 padding: EdgeInsets.symmetric(
-                  horizontal: ResponsiveFlutter.of(context).moderateScale(0),vertical: ResponsiveFlutter.of(context).moderateScale(5)
+                  horizontal: ResponsiveFlutter.of(context).moderateScale(20),
+                  vertical: ResponsiveFlutter.of(context).moderateScale(10),
                 ),
                 itemBuilder: (context, index) => Stack(
                   alignment: Alignment.bottomCenter,
                   children: [
-                    CarouselSlider(
-                      options: CarouselOptions(height : ResponsiveFlutter.of(context).moderateScale(380),enlargeCenterPage: true,),
-                      items: [1,2,3,4,5].map((i) {
-                        return Builder(
-                          builder: (BuildContext context) {
-                            return Container(
-                                width: MediaQuery.of(context).size.width,
-                                margin: EdgeInsets.symmetric(vertical: ResponsiveFlutter.of(context).moderateScale(10)),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                    color: Colors.amber,
-                                ),
-                                child: ClipRRect(borderRadius: BorderRadius.circular(20),
-                                    child: Image.asset(ImagePath.image_4,fit: BoxFit.fill,))
-                            );
-                          },
-                        );
-                      }).toList(),
+                    Container(
+                      height: ResponsiveFlutter.of(context).moderateScale(300),
+                      width: double.infinity,
+                      margin: EdgeInsets.only(
+                          bottom:
+                              ResponsiveFlutter.of(context).moderateScale(40)),
+                      padding: EdgeInsets.all(
+                          ResponsiveFlutter.of(context).moderateScale(15)),
+                      decoration: BoxDecoration(
+                        color: appColors.btnColor,
+                        borderRadius: BorderRadius.circular(
+                          ResponsiveFlutter.of(context).moderateScale(20),
+                        ),
+                      ),
                     ),
                   ],
                 ),
                 separatorBuilder: (context, index) => SizedBox(
-                  height: ResponsiveFlutter.of(context).moderateScale(40),
-                  child:Padding(
-                    padding: EdgeInsets.only(left : ResponsiveFlutter.of(context).moderateScale(45)),
-                    child: Text("Username",style: TextStyle(
-                        color: AppColors().lightColor
-                    ),
-                    ),
-                  ),
+                  height: ResponsiveFlutter.of(context).moderateScale(20),
                 ),
               ),
             ),
@@ -124,4 +114,5 @@ class _EventsPublicationsState extends State<EventsPublications> {
         ),
       ),
     );
-}}
+  }
+}

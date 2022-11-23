@@ -1,5 +1,5 @@
-import 'package:attendify/common/constants.dart';
-import 'package:attendify/common/image_path.dart';
+import 'package:attendify/features/common/constants.dart';
+import 'package:attendify/features/common/image_path.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:flutter/material.dart';
 
@@ -109,7 +109,8 @@ Widget commonTestField({
         child: Container(
           height: ResponsiveFlutter.of(context).verticalScale(17),
           width: ResponsiveFlutter.of(context).verticalScale(17),
-          margin: EdgeInsets.only(right: ResponsiveFlutter.of(context).scale(10)),
+          margin:
+              EdgeInsets.only(right: ResponsiveFlutter.of(context).scale(10)),
           alignment: Alignment.center,
           child: Image.asset(
             image!,
@@ -162,120 +163,128 @@ Widget commonAppBar({
   double? iconsize,
   double? textSize,
   double? appBarHeight,
-
-
-
 }) {
   AppColors appColors = AppColors();
   ImagePath imagePath = ImagePath();
   return Container(
-    height:appBarHeight?? AppBar().preferredSize.height + MediaQuery.of(context!).padding.top,
+    height: appBarHeight ??
+        AppBar().preferredSize.height + MediaQuery.of(context!).padding.top,
     width: double.infinity,
-    padding: editPadding ?? EdgeInsets.only(
-      bottom: ResponsiveFlutter.of(context).moderateScale(20),
-      left: ResponsiveFlutter.of(context).moderateScale(20),
-      right: ResponsiveFlutter.of(context).moderateScale(20),
-    ),
+    padding: editPadding ??
+        EdgeInsets.only(
+          bottom: ResponsiveFlutter.of(context).moderateScale(20),
+          left: ResponsiveFlutter.of(context).moderateScale(20),
+          right: ResponsiveFlutter.of(context).moderateScale(20),
+        ),
     decoration: BoxDecoration(
       color: appBarColor ?? appColors.appMediumColor,
       borderRadius: BorderRadius.only(
-        bottomLeft: Radius.circular(ResponsiveFlutter.of(context).moderateScale(30)),
-        bottomRight: Radius.circular(ResponsiveFlutter.of(context).moderateScale(30)),
+        bottomLeft:
+            Radius.circular(ResponsiveFlutter.of(context).moderateScale(30)),
+        bottomRight:
+            Radius.circular(ResponsiveFlutter.of(context).moderateScale(30)),
       ),
     ),
     alignment: Alignment.bottomCenter,
-
-      child: Stack(
-        fit: editStack ?? StackFit.loose,
-        alignment: Alignment.center,
-        children: [
-          Visibility(
-            visible: backArrow!,
-            child: Row(
-
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pop(context!);
-                  },
-                  child: Container(
-                    height:iconsize ?? ResponsiveFlutter.of(context).moderateScale(30),
-                    width: iconsize ?? ResponsiveFlutter.of(context).moderateScale(30),
-                    alignment: Alignment.center,
-                    child: Icon(
-                      Icons.arrow_back_ios,
-                      color: appColors.lightColor,
-                      size: ResponsiveFlutter.of(context).moderateScale(20),
-                    ),
-                  ),
-                ),
-                const Spacer(),
-                Visibility(
-                  visible: edit!,
-                  child: GestureDetector(
-                    onTap: editClick,
-                    child: Container(
-                      height:iconsize ?? ResponsiveFlutter.of(context).moderateScale(25),
-                      width:iconsize ?? ResponsiveFlutter.of(context).moderateScale(25),
-                      padding: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(2)),
-                      child: Image.asset(imagePath.edit),
-                    ),
-                  ),
-                ),
-                Visibility(
-                  visible: search!,
-                  child: GestureDetector(
-                    onTap: searchClick,
-                    child: Container(
-                      height:iconsize ?? ResponsiveFlutter.of(context).moderateScale(40),
-                      width:iconsize ?? ResponsiveFlutter.of(context).moderateScale(40),
-                      padding: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(1)),
-                      child: Image.asset(imagePath.search),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+    child: Stack(
+      fit: editStack ?? StackFit.loose,
+      alignment: Alignment.center,
+      children: [
+        Visibility(
+          visible: backArrow!,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              GestureDetector(
+                onTap: () {
+                  Navigator.pop(context!);
+                },
+                child: Container(
+                  height: iconsize ??
+                      ResponsiveFlutter.of(context).moderateScale(30),
+                  width: iconsize ??
+                      ResponsiveFlutter.of(context).moderateScale(30),
+                  alignment: Alignment.center,
+                  child: Icon(
+                    Icons.arrow_back_ios,
+                    color: appColors.lightColor,
+                    size: ResponsiveFlutter.of(context).moderateScale(20),
+                  ),
+                ),
+              ),
+              const Spacer(),
               Visibility(
-                visible: theme!,
+                visible: edit!,
                 child: GestureDetector(
-                  onTap: themeClick,
+                  onTap: editClick,
                   child: Container(
-                    height: ResponsiveFlutter.of(context).moderateScale(25),
-                    width: ResponsiveFlutter.of(context).moderateScale(25),
-                    padding: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(2)),
-                    child: Constants.darkTheme
-                        ? Icon(
-                            Icons.light_mode,
-                            color: appColors.lightColor,
-                          )
-                        : Icon(
-                            Icons.dark_mode,
-                            color: appColors.lightColor,
-                          ),
+                    height: iconsize ??
+                        ResponsiveFlutter.of(context).moderateScale(25),
+                    width: iconsize ??
+                        ResponsiveFlutter.of(context).moderateScale(25),
+                    padding: EdgeInsets.all(
+                        ResponsiveFlutter.of(context).moderateScale(2)),
+                    child: Image.asset(imagePath.edit),
+                  ),
+                ),
+              ),
+              Visibility(
+                visible: search!,
+                child: GestureDetector(
+                  onTap: searchClick,
+                  child: Container(
+                    height: iconsize ??
+                        ResponsiveFlutter.of(context).moderateScale(40),
+                    width: iconsize ??
+                        ResponsiveFlutter.of(context).moderateScale(40),
+                    padding: EdgeInsets.all(
+                        ResponsiveFlutter.of(context).moderateScale(1)),
+                    child: Image.asset(imagePath.search),
                   ),
                 ),
               ),
             ],
           ),
-          Center(
-            child: MyTextView(
-              title!.toUpperCase(),
-              textAligntNew: TextAlign.center,
-              styleNew: MyTextStyle(
-                colorNew: appColors.lightColor,
-                fontWeightNew: FontWeight.w600,
-                size: textSize?? ResponsiveFlutter.of(context).fontSize(2),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Visibility(
+              visible: theme!,
+              child: GestureDetector(
+                onTap: themeClick,
+                child: Container(
+                  height: ResponsiveFlutter.of(context).moderateScale(25),
+                  width: ResponsiveFlutter.of(context).moderateScale(25),
+                  padding: EdgeInsets.all(
+                      ResponsiveFlutter.of(context).moderateScale(2)),
+                  child: Constants.darkTheme
+                      ? Icon(
+                          Icons.light_mode,
+                          color: appColors.lightColor,
+                        )
+                      : Icon(
+                          Icons.dark_mode,
+                          color: appColors.lightColor,
+                        ),
+                ),
               ),
             ),
+          ],
+        ),
+        Center(
+          child: MyTextView(
+            title!.toUpperCase(),
+            textAligntNew: TextAlign.center,
+            styleNew: MyTextStyle(
+              colorNew: appColors.lightColor,
+              fontWeightNew: FontWeight.w600,
+              size: textSize ?? ResponsiveFlutter.of(context).fontSize(2),
+            ),
           ),
-        ],
+        ),
+      ],
     ),
   );
 }

@@ -1,7 +1,7 @@
-import 'package:attendify/common/app_colors.dart';
-import 'package:attendify/common/common_widget.dart';
-import 'package:attendify/common/image_path.dart';
-import 'package:attendify/common/strings.dart';
+import 'package:attendify/features/common/app_colors.dart';
+import 'package:attendify/features/common/common_widget.dart';
+import 'package:attendify/features/common/image_path.dart';
+import 'package:attendify/features/common/strings.dart';
 import 'package:attendify/model/common_model.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:flutter/material.dart';
@@ -55,8 +55,11 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                     Container(
                       height: ResponsiveFlutter.of(context).moderateScale(200),
                       width: double.infinity,
-                      margin: EdgeInsets.only(bottom: ResponsiveFlutter.of(context).moderateScale(40)),
-                      padding: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(15)),
+                      margin: EdgeInsets.only(
+                          bottom:
+                              ResponsiveFlutter.of(context).moderateScale(40)),
+                      padding: EdgeInsets.all(
+                          ResponsiveFlutter.of(context).moderateScale(15)),
                       decoration: BoxDecoration(
                         color: appColors.btnColor,
                         borderRadius: BorderRadius.circular(
@@ -71,10 +74,14 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                     Container(
                       height: ResponsiveFlutter.of(context).moderateScale(100),
                       width: double.infinity,
-                      margin: EdgeInsets.only(bottom: ResponsiveFlutter.of(context).moderateScale(40)),
-                      padding: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(15)),
+                      margin: EdgeInsets.only(
+                          bottom:
+                              ResponsiveFlutter.of(context).moderateScale(40)),
+                      padding: EdgeInsets.all(
+                          ResponsiveFlutter.of(context).moderateScale(15)),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(ResponsiveFlutter.of(context).moderateScale(20)),
+                        borderRadius: BorderRadius.circular(
+                            ResponsiveFlutter.of(context).moderateScale(20)),
                         gradient: LinearGradient(
                           begin: Alignment.bottomCenter,
                           end: Alignment.topCenter,
@@ -103,14 +110,20 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                           setState(() {});
                         },
                         child: Container(
-                          height: ResponsiveFlutter.of(context).moderateScale(40),
-                          width: ResponsiveFlutter.of(context).moderateScale(40),
-                          margin: EdgeInsets.symmetric(horizontal: ResponsiveFlutter.of(context).moderateScale(15)),
+                          height:
+                              ResponsiveFlutter.of(context).moderateScale(40),
+                          width:
+                              ResponsiveFlutter.of(context).moderateScale(40),
+                          margin: EdgeInsets.symmetric(
+                              horizontal: ResponsiveFlutter.of(context)
+                                  .moderateScale(15)),
                           decoration: BoxDecoration(
                             color: appColors.lightColor,
                             shape: BoxShape.circle,
                             image: DecorationImage(
-                              image: AssetImage(select![index].isSelect! ? ImagePath.like : ImagePath.dislike),
+                              image: AssetImage(select![index].isSelect!
+                                  ? ImagePath.like
+                                  : ImagePath.dislike),
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -119,10 +132,14 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                     ),
                     Container(
                       height: ResponsiveFlutter.of(context).moderateScale(80),
-                      margin: EdgeInsets.symmetric(horizontal: ResponsiveFlutter.of(context).moderateScale(15)),
+                      margin: EdgeInsets.symmetric(
+                          horizontal:
+                              ResponsiveFlutter.of(context).moderateScale(15)),
                       padding: EdgeInsets.symmetric(
-                        horizontal: ResponsiveFlutter.of(context).moderateScale(17),
-                        vertical: ResponsiveFlutter.of(context).moderateScale(15),
+                        horizontal:
+                            ResponsiveFlutter.of(context).moderateScale(17),
+                        vertical:
+                            ResponsiveFlutter.of(context).moderateScale(15),
                       ),
                       decoration: BoxDecoration(
                         color: appColors.appLightColor,
@@ -145,7 +162,8 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                                 styleNew: MyTextStyle(
                                   colorNew: appColors.lightColor,
                                   fontWeightNew: FontWeight.w600,
-                                  size: ResponsiveFlutter.of(context).fontSize(2.5),
+                                  size: ResponsiveFlutter.of(context)
+                                      .fontSize(2.5),
                                 ),
                               ),
                               Row(
@@ -153,10 +171,12 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                                   Image.asset(
                                     ImagePath.calender,
                                     color: appColors.lightColor,
-                                    height: ResponsiveFlutter.of(context).moderateScale(15),
+                                    height: ResponsiveFlutter.of(context)
+                                        .moderateScale(15),
                                   ),
                                   SizedBox(
-                                    width: ResponsiveFlutter.of(context).moderateScale(6),
+                                    width: ResponsiveFlutter.of(context)
+                                        .moderateScale(6),
                                   ),
                                   MyTextView(
                                     Strings.dummyText22,
@@ -165,19 +185,23 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                                     styleNew: MyTextStyle(
                                       colorNew: appColors.lightColor,
                                       fontWeightNew: FontWeight.w500,
-                                      size: ResponsiveFlutter.of(context).fontSize(1.5),
+                                      size: ResponsiveFlutter.of(context)
+                                          .fontSize(1.5),
                                     ),
                                   ),
                                   SizedBox(
-                                    width: ResponsiveFlutter.of(context).moderateScale(10),
+                                    width: ResponsiveFlutter.of(context)
+                                        .moderateScale(10),
                                   ),
                                   Image.asset(
                                     ImagePath.time,
                                     color: appColors.lightColor,
-                                    height: ResponsiveFlutter.of(context).moderateScale(15),
+                                    height: ResponsiveFlutter.of(context)
+                                        .moderateScale(15),
                                   ),
                                   SizedBox(
-                                    width: ResponsiveFlutter.of(context).moderateScale(6),
+                                    width: ResponsiveFlutter.of(context)
+                                        .moderateScale(6),
                                   ),
                                   MyTextView(
                                     Strings.dummyText23,
@@ -186,7 +210,8 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                                     styleNew: MyTextStyle(
                                       colorNew: appColors.lightColor,
                                       fontWeightNew: FontWeight.w500,
-                                      size: ResponsiveFlutter.of(context).fontSize(1.5),
+                                      size: ResponsiveFlutter.of(context)
+                                          .fontSize(1.5),
                                     ),
                                   ),
                                 ],
@@ -203,13 +228,16 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                               );
                             },
                             child: Container(
-                              width: ResponsiveFlutter.of(context).moderateScale(70),
-                              height: ResponsiveFlutter.of(context).moderateScale(35),
+                              width: ResponsiveFlutter.of(context)
+                                  .moderateScale(70),
+                              height: ResponsiveFlutter.of(context)
+                                  .moderateScale(35),
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
                                 color: appColors.lightPinkColor,
                                 borderRadius: BorderRadius.circular(
-                                  ResponsiveFlutter.of(context).moderateScale(20),
+                                  ResponsiveFlutter.of(context)
+                                      .moderateScale(20),
                                 ),
                               ),
                               child: MyTextView(
@@ -219,7 +247,8 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                                 styleNew: MyTextStyle(
                                   colorNew: appColors.black,
                                   fontWeightNew: FontWeight.w600,
-                                  size: ResponsiveFlutter.of(context).fontSize(1.6),
+                                  size: ResponsiveFlutter.of(context)
+                                      .fontSize(1.6),
                                 ),
                               ),
                             ),
