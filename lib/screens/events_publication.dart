@@ -1,12 +1,11 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../common/app_colors.dart';
-import '../common/common_widget.dart';
-import '../common/image_path.dart';
-import '../common/strings.dart';
+
+import '../features/common/app_colors.dart';
+import '../features/common/image_path.dart';
 import '../responsive/responsive_flutter.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 
 import 'chat_screen.dart';
 import 'edit_event_screen.dart';
