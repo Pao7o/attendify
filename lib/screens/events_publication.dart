@@ -40,7 +40,7 @@ class _EventsPublicationsState extends State<EventsPublications> {
             Padding(
               padding: EdgeInsets.only(left : ResponsiveFlutter.of(context).moderateScale(20),
                   top: ResponsiveFlutter.of(context).moderateScale(10),
-              bottom: ResponsiveFlutter.of(context).moderateScale(10)),
+                  bottom: ResponsiveFlutter.of(context).moderateScale(10)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -66,10 +66,10 @@ class _EventsPublicationsState extends State<EventsPublications> {
                           isExpanded: true,
                           hint: Text("Sort by"),
                           onChanged: (String? newValue) {
-                          setState(() {
-                            dropdownvalue = newValue;
-                          });
-                        },
+                            setState(() {
+                              dropdownvalue = newValue;
+                            });
+                          },
 
                           value: dropdownvalue,icon: new Icon(Icons.arrow_drop_down,color:AppColors().lightColor,),),
                       ),
@@ -82,22 +82,22 @@ class _EventsPublicationsState extends State<EventsPublications> {
               child: ListView.separated(
                 itemCount: 2,
                 padding: EdgeInsets.symmetric(
-                  horizontal: ResponsiveFlutter.of(context).moderateScale(00),
+                    horizontal: ResponsiveFlutter.of(context).moderateScale(0),vertical: ResponsiveFlutter.of(context).moderateScale(5)
                 ),
                 itemBuilder: (context, index) => Stack(
                   alignment: Alignment.bottomCenter,
                   children: [
                     CarouselSlider(
-                      options: CarouselOptions(height : ResponsiveFlutter.of(context).moderateScale(290),enlargeCenterPage: true,),
+                      options: CarouselOptions(height : ResponsiveFlutter.of(context).moderateScale(380),enlargeCenterPage: true,),
                       items: [1,2,3,4,5].map((i) {
                         return Builder(
                           builder: (BuildContext context) {
                             return Container(
                                 width: MediaQuery.of(context).size.width,
-                                margin: EdgeInsets.symmetric(horizontal: 7.0,vertical: 15.0),
+                                margin: EdgeInsets.symmetric(vertical: ResponsiveFlutter.of(context).moderateScale(10)),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
-                                    color: Colors.amber,
+                                  color: Colors.amber,
                                 ),
                                 child: ClipRRect(borderRadius: BorderRadius.circular(20),
                                     child: Image.asset(ImagePath.image_4,fit: BoxFit.fill,))
@@ -109,7 +109,14 @@ class _EventsPublicationsState extends State<EventsPublications> {
                   ],
                 ),
                 separatorBuilder: (context, index) => SizedBox(
-                  height: ResponsiveFlutter.of(context).moderateScale(10),
+                  height: ResponsiveFlutter.of(context).moderateScale(40),
+                  child:Padding(
+                    padding: EdgeInsets.only(left : ResponsiveFlutter.of(context).moderateScale(45)),
+                    child: Text("Username",style: TextStyle(
+                        color: AppColors().lightColor
+                    ),
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -117,4 +124,4 @@ class _EventsPublicationsState extends State<EventsPublications> {
         ),
       ),
     );
-}}
+  }}
