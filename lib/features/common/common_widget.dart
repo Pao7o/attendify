@@ -1,3 +1,4 @@
+
 import 'package:attendify/features/common/constants.dart';
 import 'package:attendify/features/common/image_path.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
@@ -288,3 +289,7 @@ Widget commonAppBar({
     ),
   );
 }
+
+
+
+

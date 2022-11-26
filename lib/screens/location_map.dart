@@ -51,7 +51,6 @@ class _ChatInterfaceState extends State<ChatInterface>
   AppColors appColors = AppColors();
   Widget build(BuildContext context) {
     return SafeArea(
-      top: false,
       bottom: false,
       child: DefaultTabController(
         length: 3,
