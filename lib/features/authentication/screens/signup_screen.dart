@@ -160,6 +160,17 @@ class SignUpScreenState extends State<SignUpScreen> {
                                             children: [
                                               Expanded(
                                                 child: commonTestField(
+                                                  validateFunction: (p0) {
+                                                    if (p0 == null ||
+                                                        p0.isEmpty) {
+                                                      return "Enter First Name";
+                                                    }
+                                                    if (!RegExp(r'^[a-zA-Z]')
+                                                        .hasMatch(p0)) {
+                                                      return "Enter a valid First Name";
+                                                    }
+                                                    return null;
+                                                  },
                                                   context: context,
                                                   controller: firstName,
                                                   hintText: Strings.firstName,
@@ -172,6 +183,17 @@ class SignUpScreenState extends State<SignUpScreen> {
                                               ),
                                               Expanded(
                                                 child: commonTestField(
+                                                  validateFunction: (p0) {
+                                                    if (p0 == null ||
+                                                        p0.isEmpty) {
+                                                      return "Enter Last Name";
+                                                    }
+                                                    if (!RegExp(r'^[a-zA-Z]')
+                                                        .hasMatch(p0)) {
+                                                      return "Enter a valid First Name";
+                                                    }
+                                                    return null;
+                                                  },
                                                   context: context,
                                                   controller: lastName,
                                                   hintText: Strings.lastName,
@@ -209,6 +231,12 @@ class SignUpScreenState extends State<SignUpScreen> {
                                                   ResponsiveFlutter.of(context)
                                                       .verticalScale(20)),
                                           commonTestField(
+                                            validateFunction: (p0) {
+                                              if (p0 == null || p0.isEmpty) {
+                                                return "Field is empty";
+                                              }
+                                              return null;
+                                            },
                                             context: context,
                                             controller: password,
                                             hintText: Strings.password,
