@@ -4,7 +4,9 @@ import 'package:attendify/features/common/image_path.dart';
 import 'package:attendify/features/common/strings.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:attendify/screens/verification_screen.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_pw_validator/flutter_pw_validator.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -215,6 +217,10 @@ class SignUpScreenState extends State<SignUpScreen> {
                                               if (p0 == null || p0.isEmpty) {
                                                 return "Field is empty";
                                               }
+                                              if (!EmailValidator.validate(
+                                                  p0)) {
+                                                return "Enter a valid Email Address";
+                                              }
                                               return null;
                                             },
                                             context: context,
@@ -246,6 +252,14 @@ class SignUpScreenState extends State<SignUpScreen> {
                                             obscureText: true,
                                             icon: true,
                                           ),
+                                          Visibility(
+                                            child: FlutterPwValidator(
+                                                width: 400,
+                                                height: 150,
+                                                minLength: 0,
+                                                onSuccess: () {},
+                                                controller: password!),
+                                          )
                                         ],
                                       ),
                                     ),
