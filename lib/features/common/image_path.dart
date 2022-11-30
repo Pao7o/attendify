@@ -90,6 +90,8 @@ class ImagePath {
       ? base + "ic_address_theme.png"
       : base + "ic_address_theme.png";
 
+  String confetti = Constants.darkTheme ?base + "ic_confetti_empty" : base + "ic_confetti_filled";
+
   static const String image_1 = base + "image_1.png";
   static const String image_2 = base + "image_2.png";
   static const String image_3 = base + "image_3.png";

@@ -8,6 +8,7 @@ import '../features/common/app_colors.dart';
 import '../features/common/common_widget.dart';
 import '../features/common/image_path.dart';
 import '../responsive/responsive_flutter.dart';
+import "dart:math";
 
 import 'chat_screen.dart';
 import 'edit_event_screen.dart';
@@ -30,10 +31,24 @@ class _EventsPublicationsState extends State<EventsPublications> {
     'Near you',
     'Recommanded',
   ];
+   static var postOrigin = [
+    'Reposted by @friendUser',
+    'Based on your interests',
+    'Followed by 3 friends',
+    'Posted near you',
+    'Popular this month',
+    'Sponsored'
+  ];
+
+   static var _random = new Random();
+
+// generate a random index based on the list length
+// and use it to retrieve the element
+  var element = postOrigin[_random.nextInt(postOrigin.length)];
+
   var itemCount = 2;
 
-  Widget buildText(String text){
-
+  Widget buildText(String text) {
     return ReadMoreText(
         text,
         colorClickableText: AppColors().btnColor,
@@ -112,11 +127,21 @@ class _EventsPublicationsState extends State<EventsPublications> {
                 ),
                 itemBuilder: (context, index) => Column(
                   children: [
+                    Row(
+                      children: [
+                        Padding(
+                          padding:  EdgeInsets.only(left: ResponsiveFlutter.of(context).moderateScale(40)),
+                          child: SizedBox(height:ResponsiveFlutter.of(context).moderateScale(15),
+                              width : ResponsiveFlutter.of(context).moderateScale(200),
+                            child:buildText(element),),
+                        ),
+                      ],
+                    ),
                     Stack(
                       alignment: Alignment.bottomCenter,
                       children: [
                         CarouselSlider(
-                          options: CarouselOptions(height : ResponsiveFlutter.of(context).moderateScale(310),enlargeCenterPage: true,),
+                          options: CarouselOptions(height : ResponsiveFlutter.of(context).moderateScale(310),enlargeCenterPage: true,enableInfiniteScroll: false,initialPage: 1),
                           items: [1,2,3,4,5].map((i) {
                             return Builder(
                               builder: (BuildContext context) {
@@ -142,18 +167,33 @@ class _EventsPublicationsState extends State<EventsPublications> {
 
                       ],
                     ),
+                    Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(left : ResponsiveFlutter.of(context).moderateScale(35),right:ResponsiveFlutter.of(context).moderateScale(20)),
+                          child: SizedBox(
+                            height:ResponsiveFlutter.of(context).moderateScale(45),width: ResponsiveFlutter.of(context).moderateScale(30),
+                            child: Image(image: AssetImage(ImagePath().confetti)),
+                          ),
+                        )
+                      ],
+                    ),
                     ClipRect(
                       child: Padding(
-                        padding: EdgeInsets.only(left : ResponsiveFlutter.of(context).moderateScale(40),right:ResponsiveFlutter.of(context).moderateScale(40)  ),
+                        padding: EdgeInsets.only(left : ResponsiveFlutter.of(context).moderateScale(35),right:ResponsiveFlutter.of(context).moderateScale(20)  ),
                         child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            SizedBox(height: 40,
-                              width: 80,
-                              child: Text("Username",style: TextStyle(
-                                  color: AppColors().lightColor
-                              ),
-                              ),
+                            Padding(
+                              padding:  EdgeInsets.only(right : ResponsiveFlutter.of(context).moderateScale(10)),
+                              child: SizedBox(height:ResponsiveFlutter.of(context).moderateScale(18),width: ResponsiveFlutter.of(context).moderateScale(18),
+                                child:CircleAvatar(
+                                  backgroundImage: AssetImage(ImagePath.image_3,),
+                                ) ,),
+                            ),
+                            Text("Username",style: TextStyle(
+                                color: AppColors().lightColor
+                            ),
                             ),
                             SizedBox(width:ResponsiveFlutter.of(context).moderateScale(10),),
                             Padding(
@@ -162,7 +202,7 @@ class _EventsPublicationsState extends State<EventsPublications> {
                                 child: SizedBox(
                                     width: ResponsiveFlutter.of(context).moderateScale(185),child: Column(
                                   children: [
-                                    buildText("The best description you ever seen in your life aaaaaaaaaaaaaaaaa"),
+                                    buildText("The best description you ever seen in your life hehe" " "),
                                   ],
                                 )),
                               ),
