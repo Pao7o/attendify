@@ -2,20 +2,22 @@ import 'package:attendify/features/common/app_colors.dart';
 import 'package:attendify/features/common/common_widget.dart';
 import 'package:attendify/features/common/image_path.dart';
 import 'package:attendify/features/common/strings.dart';
+import 'package:attendify/features/firebase/controller/firebase_auth_controller.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:attendify/screens/verification_screen.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pw_validator/flutter_pw_validator.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SignUpScreen extends StatefulWidget {
+class SignUpScreen extends ConsumerStatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
 
   @override
   SignUpScreenState createState() => SignUpScreenState();
 }
 
-class SignUpScreenState extends State<SignUpScreen> {
+class SignUpScreenState extends ConsumerState<SignUpScreen> {
   AppColors appColors = AppColors();
   ImagePath imagePath = ImagePath();
   TextEditingController? email = TextEditingController();
@@ -271,15 +273,26 @@ class SignUpScreenState extends State<SignUpScreen> {
                                         .moderateScale(55),
                                   ),
                                   child: GestureDetector(
-                                    onTap: () {
+                                    onTap: () async {
                                       if (_formKey.currentState!.validate()) {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                const VerificationScreen(),
-                                          ),
-                                        );
+                                        await ref
+                                            .read(
+                                                firebaseAutheControllerProvider)
+                                            .signupWithEmailandPassword(
+                                                email: email!.text,
+                                                password: password!.text)
+                                            .then((value) {
+                                          print("the value is $value");
+                                          if (value == true) {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const VerificationScreen(),
+                                              ),
+                                            );
+                                          }
+                                        });
                                       }
                                     },
                                     child: commonButton(
