@@ -16,8 +16,10 @@ class FirebaseAuthentication {
         email: emailAddress,
         password: password,
       )
-          .then((value) {
-        return true;
+          .then((value) async {
+        await value.user!.sendEmailVerification().then((value) {
+          return true;
+        });
       });
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
