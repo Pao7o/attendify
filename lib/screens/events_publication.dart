@@ -16,6 +16,7 @@ import 'edit_event_screen.dart';
 class EventsPublications extends StatefulWidget {
   const EventsPublications({Key? key}) : super(key: key);
 
+
   @override
   State<EventsPublications> createState() => _EventsPublicationsState();
 }
@@ -31,6 +32,19 @@ class _EventsPublicationsState extends State<EventsPublications> {
     'Near you',
     'Recommanded',
   ];
+
+  final List<String> imgList = [
+    'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
+    'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
+    'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80',
+    'https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=89719a0d55dd05e2deae4120227e6efc&auto=format&fit=crop&w=1953&q=80',
+    'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
+    'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
+  ];
+
+
+  bool confetti = false;
+
    static var postOrigin = [
     'Reposted by @friendUser',
     'Based on your interests',
@@ -42,11 +56,14 @@ class _EventsPublicationsState extends State<EventsPublications> {
 
    static var _random = new Random();
 
+  int _current = 0;
+  final CarouselController _controller = CarouselController();
+
 // generate a random index based on the list length
 // and use it to retrieve the element
   var element = postOrigin[_random.nextInt(postOrigin.length)];
 
-  var itemCount = 2;
+  var itemCount = 7;
 
   Widget buildText(String text) {
     return ReadMoreText(
@@ -70,6 +87,8 @@ class _EventsPublicationsState extends State<EventsPublications> {
       onPressed: () =>setState(() =>
         isReadMore = !isReadMore
       ), child: Text(isReadMore ? 'Less' : 'More'));
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +140,7 @@ class _EventsPublicationsState extends State<EventsPublications> {
             ),
             Expanded(
               child: ListView.separated(
-                itemCount: itemCount+1,
+                itemCount: itemCount,
                 padding: EdgeInsets.only(
                     bottom: ResponsiveFlutter.of(context).moderateScale(100),
                 ),
@@ -141,8 +160,18 @@ class _EventsPublicationsState extends State<EventsPublications> {
                       alignment: Alignment.bottomCenter,
                       children: [
                         CarouselSlider(
-                          options: CarouselOptions(height : ResponsiveFlutter.of(context).moderateScale(310),enlargeCenterPage: true,enableInfiniteScroll: false,initialPage: 1),
-                          items: [1,2,3,4,5].map((i) {
+                          carouselController: _controller,
+                          options: CarouselOptions(height : ResponsiveFlutter.of(context).moderateScale(310),
+                              enlargeCenterPage: true,
+                              enableInfiniteScroll: false,
+                              initialPage: 1,
+                              viewportFraction: 1.0,
+                              onPageChanged: (index, reason) {
+                                setState(() {
+                                  _current = index;
+                                });
+                              }),
+                          items: [1,2,3,4,5,6].map((i) {
                             return Builder(
                               builder: (BuildContext context) {
                                 return Stack(
@@ -151,32 +180,68 @@ class _EventsPublicationsState extends State<EventsPublications> {
                                       width: MediaQuery.of(context).size.width,
                                       margin: EdgeInsets.symmetric(vertical : ResponsiveFlutter.of(context).moderateScale(5)),
                                       decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(20),
                                         color: Colors.amber,
                                       ),
-                                      child: ClipRRect(borderRadius: BorderRadius.circular(20),
-                                          child: Image.asset(ImagePath.image_4,fit: BoxFit.fill,))
+                                      child: Image.asset(ImagePath.image_4,fit: BoxFit.fill,)
                                   ),
 
                                   ],
                                 );
                                 },
                             );
+
                           }).toList(),
                         ),
-
                       ],
                     ),
                     Row(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(left : ResponsiveFlutter.of(context).moderateScale(35),right:ResponsiveFlutter.of(context).moderateScale(20)),
-                          child: SizedBox(
-                            height:ResponsiveFlutter.of(context).moderateScale(45),width: ResponsiveFlutter.of(context).moderateScale(30),
-                            child: Image(image: AssetImage(ImagePath().confetti)),
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: imgList.asMap().entries.map((entry) {
+                        return GestureDetector(
+                          onTap: () => _controller.animateToPage(entry.key),
+                          child: Container(
+                            width: 12.0,
+                            height: 12.0,
+                            margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: (AppColors().btnColor)
+                                    .withOpacity(_current == entry.key ? 0.9 : 0.4)),
                           ),
-                        )
-                      ],
+                        );
+                      }).toList(),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: ResponsiveFlutter.of(context).moderateScale(6),bottom:ResponsiveFlutter.of(context).moderateScale(16) ),
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(left : ResponsiveFlutter.of(context).moderateScale(45),right:ResponsiveFlutter.of(context).moderateScale(15)),
+                            child: SizedBox(
+                              height:ResponsiveFlutter.of(context).moderateScale(25),width: ResponsiveFlutter.of(context).moderateScale(25),
+                              child: IconButton(icon: Image.asset(!confetti ? ImagePath.confetti : ImagePath.confettiFilled),
+                                iconSize: 10,
+                                padding: new EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(0)),
+                                onPressed: () { setState(() {
+                                  confetti = !confetti;
+                                }); },),
+                            ),
+                          ),
+                          Text("1273 loved this",style: TextStyle(color: AppColors().lightColor),),
+                          Padding(
+                            padding: EdgeInsets.only(left:ResponsiveFlutter.of(context).moderateScale(15),top:ResponsiveFlutter.of(context).moderateScale(4),right:ResponsiveFlutter.of(context).moderateScale(10) ),
+                            child: SizedBox(
+                              height:ResponsiveFlutter.of(context).moderateScale(30),width: ResponsiveFlutter.of(context).moderateScale(30),
+                              child: IconButton(icon: Image.asset(ImagePath.comment),
+                                iconSize: 10,
+                                padding: new EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(0)),
+                                onPressed: () {
+                                },),
+                            ),
+                          ),
+                          Text("35 comments",style: TextStyle(color: AppColors().lightColor),),
+                        ],
+                      ),
                     ),
                     ClipRect(
                       child: Padding(
@@ -198,14 +263,12 @@ class _EventsPublicationsState extends State<EventsPublications> {
                             SizedBox(width:ResponsiveFlutter.of(context).moderateScale(10),),
                             Padding(
                               padding: EdgeInsets.only(top : ResponsiveFlutter.of(context).moderateScale(3)),
-                              child: Expanded(
-                                child: SizedBox(
-                                    width: ResponsiveFlutter.of(context).moderateScale(185),child: Column(
-                                  children: [
-                                    buildText("The best description you ever seen in your life hehe" " "),
-                                  ],
-                                )),
-                              ),
+                              child: SizedBox(
+                                  width: ResponsiveFlutter.of(context).moderateScale(185),child: Column(
+                                children: [
+                                  buildText("The best description you ever seen in your life hehe"),
+                                ],
+                              )),
                             )
                           ],
                         ),

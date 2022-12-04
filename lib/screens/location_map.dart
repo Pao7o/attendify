@@ -62,7 +62,7 @@ class _ChatInterfaceState extends State<ChatInterface>
             child: Column(
               children: [
                 Container(
-                  height: ResponsiveFlutter.of(context).moderateScale(185),
+                  height: ResponsiveFlutter.of(context).moderateScale(217),
                   decoration: BoxDecoration(
                     color: appColors.appDarkColor,
                     borderRadius: BorderRadius.only(
