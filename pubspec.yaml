@@ -47,6 +47,7 @@ dependencies:
   flutter_switch: ^0.3.2 # for switch
   otp_text_field: ^1.1.1 # To create otp text filed
   image_picker: ^0.8.4+4 # To pick image
+  lottie: ^2.0.0 #For animations
 
   #Chat Plugin
   flutter_chat_ui: ^1.6.6
@@ -63,7 +64,8 @@ dependencies:
   file_picker: ^5.2.2
   mime: ^1.0.2
   path_provider: ^2.0.11
-
+  carousel_slider: ^4.1.1
+  readmore: ^2.2.0
   #Story plugin
   cached_network_image: ^3.2.0
   video_player: ^2.2.18
@@ -119,6 +121,7 @@ flutter:
     - assets/images/
     - assets/fonts/
     - assets/map_styles/
+    - assets/animations/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

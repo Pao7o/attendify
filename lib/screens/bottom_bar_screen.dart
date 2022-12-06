@@ -33,6 +33,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
   bool? wallet = false;
   bool? setting = false;
 
+
   @override
   void initState() {
     super.initState();

@@ -90,6 +90,10 @@ class ImagePath {
       ? base + "ic_address_theme.png"
       : base + "ic_address_theme.png";
 
+  static const String confetti = base + "ic_confetti_void.png";
+  static const String confettiFilled = base + "ic_confetti_full.png";
+  static const String comment = base + "ic_comment_2.png";
+
   static const String image_1 = base + "image_1.png";
   static const String image_2 = base + "image_2.png";
   static const String image_3 = base + "image_3.png";
