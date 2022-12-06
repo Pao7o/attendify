@@ -186,7 +186,9 @@ class _EventsPublicationsState extends State<EventsPublications> {
                                       ),
                                       child: Image.asset(ImagePath.image_4,fit: BoxFit.fill,)
                                   ),
+                                    Container(
 
+                                    )
                                   ],
                                 );
                                 },
@@ -218,7 +220,7 @@ class _EventsPublicationsState extends State<EventsPublications> {
                       child: Row(
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(left : ResponsiveFlutter.of(context).moderateScale(45),right:ResponsiveFlutter.of(context).moderateScale(15)),
+                            padding: EdgeInsets.only(left : ResponsiveFlutter.of(context).moderateScale(35),right:ResponsiveFlutter.of(context).moderateScale(15)),
                             child: SizedBox(
                               height:ResponsiveFlutter.of(context).moderateScale(25),width: ResponsiveFlutter.of(context).moderateScale(25),
                               child: IconButton(icon: Image.asset(!confetti ? ImagePath.confetti : ImagePath.confettiFilled),
