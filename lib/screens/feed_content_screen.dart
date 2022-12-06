@@ -1,4 +1,6 @@
+import 'package:attendify/screens/comment_screen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:comment_box/comment/comment.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
@@ -200,9 +202,9 @@ class _EventsPublicationsState extends State<EventsPublications> {
                         return GestureDetector(
                           onTap: () => _controller.animateToPage(entry.key),
                           child: Container(
-                            width: 12.0,
-                            height: 12.0,
-                            margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+                            width: ResponsiveFlutter.of(context).moderateScale(5),
+                            height: ResponsiveFlutter.of(context).moderateScale(5),
+                            margin: EdgeInsets.symmetric(vertical: ResponsiveFlutter.of(context).moderateScale(3), horizontal: ResponsiveFlutter.of(context).moderateScale(3)),
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: (AppColors().btnColor)
@@ -236,6 +238,12 @@ class _EventsPublicationsState extends State<EventsPublications> {
                                 iconSize: 10,
                                 padding: new EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(0)),
                                 onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => CommentClass(),
+                                    ),
+                                  );
                                 },),
                             ),
                           ),
