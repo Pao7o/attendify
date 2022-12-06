@@ -95,6 +95,9 @@ dependencies:
   #Firebase
   firebase_core: ^2.3.0
   firebase_auth: ^4.1.3
+  email_validator: ^2.1.17
+  flutter_pw_validator: ^1.4.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -122,6 +125,7 @@ flutter:
     - assets/fonts/
     - assets/map_styles/
     - assets/animations/
+    - assets/lottie/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

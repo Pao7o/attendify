@@ -9,6 +9,12 @@ class FirebaseAuthController {
   Stream authStateChanges() {
     return _firebaseAuthentication.checkUserAuthState();
   }
+
+  Future<bool> signupWithEmailandPassword(
+      {required String email, required String password}) async {
+    return await _firebaseAuthentication.signUpWithEmailAndPassword(
+        emailAddress: email, password: password);
+  }
 }
 
 final firebaseAutheControllerProvider = Provider((ref) {
