@@ -51,7 +51,6 @@ class _ChatInterfaceState extends State<ChatInterface>
   AppColors appColors = AppColors();
   Widget build(BuildContext context) {
     return SafeArea(
-      top: false,
       bottom: false,
       child: DefaultTabController(
         length: 3,
@@ -63,7 +62,7 @@ class _ChatInterfaceState extends State<ChatInterface>
             child: Column(
               children: [
                 Container(
-                  height: ResponsiveFlutter.of(context).moderateScale(185),
+                  height: ResponsiveFlutter.of(context).moderateScale(217),
                   decoration: BoxDecoration(
                     color: appColors.appDarkColor,
                     borderRadius: BorderRadius.only(

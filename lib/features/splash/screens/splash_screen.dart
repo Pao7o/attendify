@@ -57,7 +57,9 @@ class SplashScreenState extends ConsumerState<SplashScreen> {
         ),
         (route) => false,
       ),
+
     );
+
   }
 
   @override
