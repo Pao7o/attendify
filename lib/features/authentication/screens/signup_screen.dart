@@ -1,3 +1,4 @@
+import 'package:attendify/features/authentication/screens/email_verification.dart';
 import 'package:attendify/features/common/app_colors.dart';
 import 'package:attendify/features/common/common_widget.dart';
 import 'package:attendify/features/common/image_path.dart';
@@ -5,13 +6,13 @@ import 'package:attendify/features/common/screens/loading_screen.dart';
 import 'package:attendify/features/common/strings.dart';
 import 'package:attendify/features/firebase/controller/firebase_auth_controller.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
-import 'package:attendify/screens/verification_screen.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pw_validator/flutter_pw_validator.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SignUpScreen extends ConsumerStatefulWidget {
+  static const String routeName = "/signup_screen";
   const SignUpScreen({Key? key}) : super(key: key);
 
   @override
@@ -303,20 +304,19 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
                                                   .read(
                                                       firebaseAutheControllerProvider)
                                                   .signupWithEmailandPassword(
-                                                      email: email!.text,
+                                                      email: email!.text.trim(),
                                                       password: password!.text)
                                                   .then((value) {
                                                 setState(() {
                                                   isLoading = false;
                                                 });
                                                 if (value == true) {
-                                                  Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          const VerificationScreen(),
-                                                    ),
-                                                  );
+                                                  Navigator.pushNamed(
+                                                      context,
+                                                      EmailVerificationScreen
+                                                          .routeName,
+                                                      arguments:
+                                                          email!.text.trim());
                                                 }
                                               });
                                             }
