@@ -27,6 +27,8 @@ class ImagePath {
   static const String time = base + "ic_time.png";
   static const String wallet = base + "ic_wallet.png";
   static const String calender = base + "ic_calender.png";
+  static const String mailSent = base + "img_email_check.png";
+
   String bottomBar = Constants.darkTheme
       ? base + "ic_bottom_bar.png"
       : base + "ic_bottom_bar_light.png";

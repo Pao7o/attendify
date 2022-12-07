@@ -75,12 +75,14 @@ dependencies:
   flutter_screenutil: ^5.1.1
   font_awesome_flutter: ^10.2.1
   comment_box: ^0.0.18
+  pin_code_fields: ^7.4.0
 
 
   #MAPS Plugin --->>
   flutter_polyline_points: ^1.0.0
   get: ^4.6.5
   google_maps_flutter: ^2.2.1
+
   #location: ^4.4.0
   flutter_svg: ^1.1.6
   geocoding: ^2.0.5
