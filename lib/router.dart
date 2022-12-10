@@ -1,4 +1,4 @@
-import 'package:attendify/features/authentication/screens/email_verification.dart';
+import 'package:attendify/features/authentication/screens/phone_verification_screen.dart';
 import 'package:attendify/features/authentication/screens/signup_screen.dart';
 import 'package:attendify/features/common/screens/error_screen.dart';
 import 'package:attendify/features/splash/screens/splash_screen.dart';

@@ -1,4 +1,5 @@
-import 'package:attendify/features/authentication/screens/email_verification.dart';
+import 'package:attendify/features/authentication/screens/email_verification_screen.dart';
+import 'package:attendify/features/authentication/screens/phone_verification_screen.dart';
 import 'package:attendify/features/common/app_colors.dart';
 import 'package:attendify/features/common/common_widget.dart';
 import 'package:attendify/features/common/image_path.dart';
@@ -295,7 +296,14 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
                                         ),
                                         child: GestureDetector(
                                           onTap: () async {
-                                            if (_formKey.currentState!
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) => EmailVerification(),
+                                              ),
+                                            );
+                                          },
+                                           /* if (_formKey.currentState!
                                                 .validate()) {
                                               setState(() {
                                                 isLoading = true;
@@ -320,7 +328,7 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
                                                 }
                                               });
                                             }
-                                          },
+                                          },*/
                                           child: commonButton(
                                             context: context,
                                             title: Strings.signUp,
