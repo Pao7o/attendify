@@ -2,8 +2,8 @@ import 'package:attendify/features/authentication/screens/email_verification.dar
 import 'package:attendify/features/common/app_colors.dart';
 import 'package:attendify/features/common/common_widget.dart';
 import 'package:attendify/features/common/image_path.dart';
-import 'package:attendify/features/common/screens/loading_screen.dart';
 import 'package:attendify/features/common/strings.dart';
+import 'package:attendify/features/common/utils.dart';
 import 'package:attendify/features/firebase/controller/firebase_auth_controller.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:email_validator/email_validator.dart';
@@ -35,345 +35,323 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
       bottom: false,
       child: Scaffold(
         backgroundColor: appColors.appMediumColor,
-        body: isLoading
-            ? const LoadingScreen(loadingMsg: "Sending Email....")
-            : Padding(
-                padding:
-                    EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-                child: ListView(
-                  padding: EdgeInsets.zero,
-                  physics: const BouncingScrollPhysics(),
+        body: Padding(
+          padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+          child: ListView(
+            padding: EdgeInsets.zero,
+            physics: const BouncingScrollPhysics(),
+            children: [
+              SizedBox(
+                height: MediaQuery.of(context).size.height -
+                    MediaQuery.of(context).padding.top,
+                child: Column(
                   children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height -
-                          MediaQuery.of(context).padding.top,
-                      child: Column(
-                        children: [
-                          Stack(
-                            alignment: Alignment.bottomCenter,
-                            children: [
-                              Column(
-                                children: [
-                                  Container(
-                                    height: ResponsiveFlutter.of(context)
-                                        .verticalScale(260),
-                                    width: double.infinity,
-                                    color: appColors.appDarkColor,
-                                  ),
-                                  Container(
-                                    height: ResponsiveFlutter.of(context)
-                                        .verticalScale(15),
-                                    width: double.infinity,
-                                    color: appColors.appMediumColor,
-                                  ),
-                                ],
-                              ),
-                              Positioned(
-                                top: 0,
-                                child: Padding(
-                                  padding: EdgeInsets.only(
-                                      top: ResponsiveFlutter.of(context)
-                                          .verticalScale(30)),
-                                  child: Image.asset(
-                                    imagePath.registerImageBG,
-                                    alignment: Alignment.bottomCenter,
-                                  ),
-                                ),
-                              ),
-                              Column(
-                                children: [
-                                  Image.asset(
-                                    ImagePath.logo,
-                                    height: ResponsiveFlutter.of(context)
-                                        .verticalScale(30),
-                                  ),
-                                  SizedBox(
-                                      height: ResponsiveFlutter.of(context)
-                                          .verticalScale(20)),
-                                  Container(
-                                    height: ResponsiveFlutter.of(context)
-                                        .verticalScale(200),
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal:
-                                            ResponsiveFlutter.of(context)
-                                                .moderateScale(25)),
-                                    child: Image.asset(
-                                      ImagePath.registerImage,
-                                      alignment: Alignment.bottomCenter,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          Expanded(
-                            child: Container(
-                              padding: EdgeInsets.all(
-                                  ResponsiveFlutter.of(context)
-                                      .moderateScale(20)),
+                    Stack(
+                      alignment: Alignment.bottomCenter,
+                      children: [
+                        Column(
+                          children: [
+                            Container(
+                              height: ResponsiveFlutter.of(context)
+                                  .verticalScale(260),
+                              width: double.infinity,
+                              color: appColors.appDarkColor,
+                            ),
+                            Container(
+                              height: ResponsiveFlutter.of(context)
+                                  .verticalScale(15),
+                              width: double.infinity,
                               color: appColors.appMediumColor,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  MyTextView(
-                                    Strings.signUp,
-                                    styleNew: MyTextStyle(
-                                      colorNew: appColors.lightColor,
-                                      size: ResponsiveFlutter.of(context)
-                                          .fontSize(3.7),
-                                      fontWeightNew: FontWeight.bold,
+                            ),
+                          ],
+                        ),
+                        Positioned(
+                          top: 0,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                top: ResponsiveFlutter.of(context)
+                                    .verticalScale(30)),
+                            child: Image.asset(
+                              imagePath.registerImageBG,
+                              alignment: Alignment.bottomCenter,
+                            ),
+                          ),
+                        ),
+                        Column(
+                          children: [
+                            Image.asset(
+                              ImagePath.logo,
+                              height: ResponsiveFlutter.of(context)
+                                  .verticalScale(30),
+                            ),
+                            SizedBox(
+                                height: ResponsiveFlutter.of(context)
+                                    .verticalScale(20)),
+                            Container(
+                              height: ResponsiveFlutter.of(context)
+                                  .verticalScale(200),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: ResponsiveFlutter.of(context)
+                                      .moderateScale(25)),
+                              child: Image.asset(
+                                ImagePath.registerImage,
+                                alignment: Alignment.bottomCenter,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.all(
+                            ResponsiveFlutter.of(context).moderateScale(20)),
+                        color: appColors.appMediumColor,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            MyTextView(
+                              Strings.signUp,
+                              styleNew: MyTextStyle(
+                                colorNew: appColors.lightColor,
+                                size:
+                                    ResponsiveFlutter.of(context).fontSize(3.7),
+                                fontWeightNew: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(
+                                height: ResponsiveFlutter.of(context)
+                                    .verticalScale(5)),
+                            MyTextView(
+                              Strings.pleaseFillTheDetails,
+                              styleNew: MyTextStyle(
+                                colorNew: appColors.mediumGrayColor,
+                                size:
+                                    ResponsiveFlutter.of(context).fontSize(1.8),
+                                fontWeightNew: FontWeight.w400,
+                              ),
+                            ),
+                            SizedBox(
+                                height: ResponsiveFlutter.of(context)
+                                    .verticalScale(25)),
+                            Stack(
+                              alignment: Alignment.bottomCenter,
+                              children: [
+                                Container(
+                                  height: ResponsiveFlutter.of(context)
+                                      .verticalScale(170),
+                                  padding: EdgeInsets.symmetric(
+                                    vertical: ResponsiveFlutter.of(context)
+                                        .moderateScale(20),
+                                    horizontal: ResponsiveFlutter.of(context)
+                                        .moderateScale(25),
+                                  ),
+                                  alignment: Alignment.topCenter,
+                                  margin: EdgeInsets.only(
+                                      bottom: ResponsiveFlutter.of(context)
+                                          .moderateScale(25)),
+                                  decoration: BoxDecoration(
+                                    color: appColors.appLightColor,
+                                    borderRadius: BorderRadius.circular(
+                                      ResponsiveFlutter.of(context)
+                                          .moderateScale(25),
                                     ),
                                   ),
-                                  SizedBox(
-                                      height: ResponsiveFlutter.of(context)
-                                          .verticalScale(5)),
-                                  MyTextView(
-                                    Strings.pleaseFillTheDetails,
-                                    styleNew: MyTextStyle(
-                                      colorNew: appColors.mediumGrayColor,
-                                      size: ResponsiveFlutter.of(context)
-                                          .fontSize(1.8),
-                                      fontWeightNew: FontWeight.w400,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                      height: ResponsiveFlutter.of(context)
-                                          .verticalScale(25)),
-                                  Stack(
-                                    alignment: Alignment.bottomCenter,
-                                    children: [
-                                      Container(
-                                        height: ResponsiveFlutter.of(context)
-                                            .verticalScale(170),
-                                        padding: EdgeInsets.symmetric(
-                                          vertical:
-                                              ResponsiveFlutter.of(context)
-                                                  .moderateScale(20),
-                                          horizontal:
-                                              ResponsiveFlutter.of(context)
-                                                  .moderateScale(25),
-                                        ),
-                                        alignment: Alignment.topCenter,
-                                        margin: EdgeInsets.only(
-                                            bottom:
-                                                ResponsiveFlutter.of(context)
-                                                    .moderateScale(25)),
-                                        decoration: BoxDecoration(
-                                          color: appColors.appLightColor,
-                                          borderRadius: BorderRadius.circular(
-                                            ResponsiveFlutter.of(context)
-                                                .moderateScale(25),
-                                          ),
-                                        ),
-                                        child: Form(
-                                          key: _formKey,
-                                          child: SingleChildScrollView(
-                                            child: Column(
-                                              children: [
-                                                Row(
-                                                  children: [
-                                                    Expanded(
-                                                      child: commonTestField(
-                                                        validateFunction: (p0) {
-                                                          if (p0 == null ||
-                                                              p0.isEmpty) {
-                                                            return "Enter First Name";
-                                                          }
-                                                          if (!RegExp(
-                                                                  r'^[a-zA-Z]')
-                                                              .hasMatch(p0)) {
-                                                            return "Enter a valid First Name";
-                                                          }
-                                                          return null;
-                                                        },
-                                                        context: context,
-                                                        controller: firstName,
-                                                        hintText:
-                                                            Strings.firstName,
-                                                        image: ImagePath.avatar,
-                                                        keyboardType:
-                                                            TextInputType.name,
-                                                        obscureText: false,
-                                                        icon: true,
-                                                      ),
-                                                    ),
-                                                    Expanded(
-                                                      child: commonTestField(
-                                                        validateFunction: (p0) {
-                                                          if (p0 == null ||
-                                                              p0.isEmpty) {
-                                                            return "Enter Last Name";
-                                                          }
-                                                          if (!RegExp(
-                                                                  r'^[a-zA-Z]')
-                                                              .hasMatch(p0)) {
-                                                            return "Enter a valid First Name";
-                                                          }
-                                                          return null;
-                                                        },
-                                                        context: context,
-                                                        controller: lastName,
-                                                        hintText:
-                                                            Strings.lastName,
-                                                        image: ImagePath.avatar,
-                                                        keyboardType:
-                                                            TextInputType.name,
-                                                        obscureText: false,
-                                                        icon: true,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                    height:
-                                                        ResponsiveFlutter.of(
-                                                                context)
-                                                            .verticalScale(20)),
-                                                commonTestField(
+                                  child: Form(
+                                    key: _formKey,
+                                    child: SingleChildScrollView(
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Expanded(
+                                                child: commonTestField(
                                                   validateFunction: (p0) {
                                                     if (p0 == null ||
                                                         p0.isEmpty) {
-                                                      return "Field is empty";
+                                                      return "Enter First Name";
                                                     }
-                                                    if (!EmailValidator
-                                                        .validate(p0)) {
-                                                      return "Enter a valid Email Address";
+                                                    if (!RegExp(r'^[a-zA-Z]')
+                                                        .hasMatch(p0)) {
+                                                      return "Enter a valid First Name";
                                                     }
                                                     return null;
                                                   },
                                                   context: context,
-                                                  controller: email,
-                                                  hintText:
-                                                      Strings.emailAddress,
-                                                  image: ImagePath.email,
-                                                  keyboardType: TextInputType
-                                                      .emailAddress,
+                                                  controller: firstName,
+                                                  hintText: Strings.firstName,
+                                                  image: ImagePath.avatar,
+                                                  keyboardType:
+                                                      TextInputType.name,
                                                   obscureText: false,
                                                   icon: true,
                                                 ),
-                                                SizedBox(
-                                                    height:
-                                                        ResponsiveFlutter.of(
-                                                                context)
-                                                            .verticalScale(20)),
-                                                commonTestField(
+                                              ),
+                                              Expanded(
+                                                child: commonTestField(
                                                   validateFunction: (p0) {
                                                     if (p0 == null ||
                                                         p0.isEmpty) {
-                                                      return "Field is empty";
+                                                      return "Enter Last Name";
+                                                    }
+                                                    if (!RegExp(r'^[a-zA-Z]')
+                                                        .hasMatch(p0)) {
+                                                      return "Enter a valid First Name";
                                                     }
                                                     return null;
                                                   },
                                                   context: context,
-                                                  controller: password,
-                                                  hintText: Strings.password,
-                                                  image: ImagePath.password,
-                                                  keyboardType: TextInputType
-                                                      .visiblePassword,
-                                                  obscureText: true,
+                                                  controller: lastName,
+                                                  hintText: Strings.lastName,
+                                                  image: ImagePath.avatar,
+                                                  keyboardType:
+                                                      TextInputType.name,
+                                                  obscureText: false,
                                                   icon: true,
                                                 ),
-                                                Visibility(
-                                                  child: FlutterPwValidator(
-                                                      width: 400,
-                                                      height: 150,
-                                                      minLength: 0,
-                                                      onSuccess: () {},
-                                                      controller: password!),
-                                                )
-                                              ],
-                                            ),
+                                              ),
+                                            ],
                                           ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                          horizontal:
-                                              ResponsiveFlutter.of(context)
-                                                  .moderateScale(55),
-                                        ),
-                                        child: GestureDetector(
-                                          onTap: () async {
-                                            if (_formKey.currentState!
-                                                .validate()) {
-                                              setState(() {
-                                                isLoading = true;
-                                              });
-                                              await ref
-                                                  .read(
-                                                      firebaseAutheControllerProvider)
-                                                  .signupWithEmailandPassword(
-                                                      email: email!.text.trim(),
-                                                      password: password!.text)
-                                                  .then((value) {
-                                                setState(() {
-                                                  isLoading = false;
-                                                });
-                                                if (value == true) {
-                                                  Navigator.pushNamed(
-                                                      context,
-                                                      EmailVerificationScreen
-                                                          .routeName,
-                                                      arguments:
-                                                          email!.text.trim());
-                                                }
-                                              });
-                                            }
-                                          },
-                                          child: commonButton(
+                                          SizedBox(
+                                              height:
+                                                  ResponsiveFlutter.of(context)
+                                                      .verticalScale(20)),
+                                          commonTestField(
+                                            validateFunction: (p0) {
+                                              if (p0 == null || p0.isEmpty) {
+                                                return "Field is empty";
+                                              }
+                                              if (!EmailValidator.validate(
+                                                  p0)) {
+                                                return "Enter a valid Email Address";
+                                              }
+                                              return null;
+                                            },
                                             context: context,
-                                            title: Strings.signUp,
+                                            controller: email,
+                                            hintText: Strings.emailAddress,
+                                            image: ImagePath.email,
+                                            keyboardType:
+                                                TextInputType.emailAddress,
+                                            obscureText: false,
+                                            icon: true,
                                           ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  const Spacer(),
-                                  Align(
-                                    alignment: Alignment.center,
-                                    child: MyTextView(
-                                      Strings.doNotHaveAnAccount,
-                                      textAligntNew: TextAlign.center,
-                                      styleNew: MyTextStyle(
-                                        colorNew: appColors.mediumGrayColor,
-                                        fontWeightNew: FontWeight.w400,
-                                        size: ResponsiveFlutter.of(context)
-                                            .fontSize(1.8),
+                                          SizedBox(
+                                              height:
+                                                  ResponsiveFlutter.of(context)
+                                                      .verticalScale(20)),
+                                          commonTestField(
+                                            validateFunction: (p0) {
+                                              if (p0 == null || p0.isEmpty) {
+                                                return "Field is empty";
+                                              }
+                                              return null;
+                                            },
+                                            context: context,
+                                            controller: password,
+                                            hintText: Strings.password,
+                                            image: ImagePath.password,
+                                            keyboardType:
+                                                TextInputType.visiblePassword,
+                                            obscureText: true,
+                                            icon: true,
+                                          ),
+                                          Visibility(
+                                            child: FlutterPwValidator(
+                                                width: 400,
+                                                height: 150,
+                                                minLength: 0,
+                                                onSuccess: () {},
+                                                controller: password!),
+                                          )
+                                        ],
                                       ),
                                     ),
                                   ),
-                                  SizedBox(
-                                      height: ResponsiveFlutter.of(context)
-                                          .verticalScale(5)),
-                                  GestureDetector(
-                                    onTap: () {
-                                      Navigator.pop(context);
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: ResponsiveFlutter.of(context)
+                                        .moderateScale(55),
+                                  ),
+                                  child: GestureDetector(
+                                    onTap: () async {
+                                      if (_formKey.currentState!.validate()) {
+                                        Utils().sendingEmailDialog(
+                                            context: context,
+                                            email: email!.text.trim());
+                                        await ref
+                                            .read(
+                                                firebaseAutheControllerProvider)
+                                            .signupWithEmailandPassword(
+                                                email: email!.text.trim(),
+                                                password: password!.text)
+                                            .then((value) {
+                                          Navigator.pop(context);
+                                          if (value == true) {
+                                            Navigator.pushNamed(
+                                                context,
+                                                EmailVerificationScreen
+                                                    .routeName,
+                                                arguments: email!.text.trim());
+                                          }
+                                        });
+                                      }
                                     },
-                                    child: Align(
-                                      alignment: Alignment.center,
-                                      child: MyTextView(
-                                        Strings.login,
-                                        textAligntNew: TextAlign.center,
-                                        styleNew: MyTextStyle(
-                                          colorNew: appColors.lightPinkColor,
-                                          fontWeightNew: FontWeight.bold,
-                                          size: ResponsiveFlutter.of(context)
-                                              .fontSize(2),
-                                        ),
-                                      ),
+                                    child: commonButton(
+                                      context: context,
+                                      title: Strings.signUp,
                                     ),
                                   ),
-                                ],
+                                ),
+                              ],
+                            ),
+                            const Spacer(),
+                            Align(
+                              alignment: Alignment.center,
+                              child: MyTextView(
+                                Strings.doNotHaveAnAccount,
+                                textAligntNew: TextAlign.center,
+                                styleNew: MyTextStyle(
+                                  colorNew: appColors.mediumGrayColor,
+                                  fontWeightNew: FontWeight.w400,
+                                  size: ResponsiveFlutter.of(context)
+                                      .fontSize(1.8),
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                            SizedBox(
+                                height: ResponsiveFlutter.of(context)
+                                    .verticalScale(5)),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: MyTextView(
+                                  Strings.login,
+                                  textAligntNew: TextAlign.center,
+                                  styleNew: MyTextStyle(
+                                    colorNew: appColors.lightPinkColor,
+                                    fontWeightNew: FontWeight.bold,
+                                    size: ResponsiveFlutter.of(context)
+                                        .fontSize(2),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
                 ),
               ),
+            ],
+          ),
+        ),
       ),
     );
   }

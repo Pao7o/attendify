@@ -14,6 +14,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:material_dialogs/material_dialogs.dart';
 
 class Utils {
   AppColors appColors = AppColors();
@@ -178,12 +179,12 @@ class Utils {
     bool? showDialog,
     BuildContext? context,
   }) async {
-    ConnectivityResult _result;
-    final Connectivity _connectivity = Connectivity();
+    ConnectivityResult result;
+    final Connectivity connectivity = Connectivity();
     try {
-      _result = await _connectivity.checkConnectivity();
-      debugPrint(_result.toString());
-      switch (_result) {
+      result = await connectivity.checkConnectivity();
+      debugPrint(result.toString());
+      switch (result) {
         case ConnectivityResult.wifi:
           return true;
         case ConnectivityResult.mobile:
@@ -227,13 +228,9 @@ class Utils {
     String secondsStr = (seconds % 60).toString().padLeft(2, '0');
     String strTime = '';
     if (hoursStr == '00' || hoursStr == '0') {
-      strTime = minutesStr.toString() + ':' + secondsStr.toString();
+      strTime = '$minutesStr:$secondsStr';
     } else {
-      strTime = hoursStr.toString() +
-          ':' +
-          minutesStr.toString() +
-          ':' +
-          secondsStr.toString();
+      strTime = '$hoursStr:$minutesStr:$secondsStr';
     }
     return strTime;
   }
@@ -259,13 +256,8 @@ class Utils {
     String month = DateFormat.M().format(DateTime.now().toUtc());
     String day = DateFormat.d().format(DateTime.now().toUtc());
     String time = DateFormat.Hm().format(DateTime.now().toUtc());
-    String timeDate = DateFormat.y().format(DateTime.now().toUtc()) +
-        '-' +
-        (month.length == 1 ? '0$month' : month) +
-        '-' +
-        (day.length == 1 ? '0$day' : day) +
-        ' ' +
-        time;
+    String timeDate =
+        '${DateFormat.y().format(DateTime.now().toUtc())}-${month.length == 1 ? '0$month' : month}-${day.length == 1 ? '0$day' : day} $time';
     return timeDate;
   }
 
@@ -287,11 +279,11 @@ class Utils {
 
   /// To Create File Slots ------------>>
   List<String> fillSlots() {
-    List<String> _list = [];
+    List<String> list = [];
     for (int i = 1; i <= 100; i++) {
-      _list.add("$i");
+      list.add("$i");
     }
-    return _list;
+    return list;
   }
 
   /// To Change Date Format ------------>>
@@ -344,11 +336,21 @@ class Utils {
       time = format.format(date);
     } else {
       if (diff.inDays == 1) {
-        time = diff.inDays.toString() + 'DAY AGO';
+        time = '${diff.inDays}DAY AGO';
       } else {
-        time = diff.inDays.toString() + 'DAYS AGO';
+        time = '${diff.inDays}DAYS AGO';
       }
     }
     return time;
+  }
+
+  void sendingEmailDialog(
+      {required BuildContext context, required String email}) {
+    Dialogs.materialDialog(
+      context: context,
+      msg: "Sending verification email to $email",
+      title: "Sending....",
+      lottieBuilder: LottieBuilder.asset("assets/lottie/email_plane.json"),
+    );
   }
 }
