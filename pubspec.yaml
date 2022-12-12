@@ -67,18 +67,25 @@ dependencies:
   path_provider: ^2.0.11
   carousel_slider: ^4.1.1
   readmore: ^2.2.0
-  #Story plugin
+
+  #Story/social plugin
   cached_network_image: ^3.2.0
   video_player: ^2.2.18
   dashed_circle: ^0.0.2
   rect_getter: ^1.1.0
   flutter_screenutil: ^5.1.1
   font_awesome_flutter: ^10.2.1
+  comment_box: ^0.0.18
+  pin_code_fields: ^7.4.0
+  open_mail_app: ^0.4.5
+  intl_phone_number_input: ^0.7.1
+
 
   #MAPS Plugin --->>
   flutter_polyline_points: ^1.0.0
   get: ^4.6.5
   google_maps_flutter: ^2.2.1
+
   #location: ^4.4.0
   flutter_svg: ^1.1.6
   geocoding: ^2.0.5

@@ -1,8 +1,10 @@
-import 'package:attendify/features/authentication/screens/email_verification.dart';
+import 'package:attendify/features/authentication/screens/phone_verification_screen.dart';
 import 'package:attendify/features/authentication/screens/signup_screen.dart';
 import 'package:attendify/features/common/screens/error_screen.dart';
 import 'package:attendify/features/splash/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
+
+import 'features/authentication/screens/email_verification_screen.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -10,10 +12,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (_) => const SplashScreen());
     case SignUpScreen.routeName:
       return MaterialPageRoute(builder: (_) => const SignUpScreen());
-    case EmailVerificationScreen.routeName:
+    case EmailVerification.routeName:
       final emailAddress = settings.arguments as String;
       return MaterialPageRoute(
-          builder: (_) => EmailVerificationScreen(emailAddress: emailAddress));
+          builder: (_) => EmailVerification(emailAddress: emailAddress));
     default:
       return MaterialPageRoute(
           builder: (_) =>
