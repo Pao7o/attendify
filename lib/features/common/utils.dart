@@ -353,4 +353,13 @@ class Utils {
       lottieBuilder: LottieBuilder.asset("assets/lottie/email_plane.json"),
     );
   }
+
+  void errorDialog({required BuildContext context, required String error}) {
+    Dialogs.materialDialog(
+      context: context,
+      msg: "Sending verification email to ",
+      title: "Sending....",
+      lottieBuilder: LottieBuilder.asset("assets/lottie/email_plane.json"),
+    );
+  }
 }
