@@ -1,4 +1,5 @@
 import 'package:attendify/features/firebase/repository/firebase_authentication.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class FirebaseAuthController {
@@ -11,9 +12,11 @@ class FirebaseAuthController {
   }
 
   Future<bool> signupWithEmailandPassword(
-      {required String email, required String password}) async {
+      {required BuildContext context,
+      required String email,
+      required String password}) async {
     return await _firebaseAuthentication.signUpWithEmailAndPassword(
-        emailAddress: email, password: password);
+        context: context, emailAddress: email, password: password);
   }
 }
 

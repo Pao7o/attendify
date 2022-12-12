@@ -1,4 +1,6 @@
+import 'package:attendify/features/common/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class FirebaseAuthentication {
@@ -9,7 +11,9 @@ class FirebaseAuthentication {
   }
 
   Future<bool> signUpWithEmailAndPassword(
-      {required String emailAddress, required String password}) async {
+      {required BuildContext context,
+      required String emailAddress,
+      required String password}) async {
     try {
       await _auth
           .createUserWithEmailAndPassword(
@@ -26,6 +30,10 @@ class FirebaseAuthentication {
         print('The password provided is too weak.');
         return false;
       } else if (e.code == 'email-already-in-use') {
+        Navigator.pop(context);
+        Utils().errorDialog(
+            context: context,
+            error: 'The account already exists for that email.');
         print('The account already exists for that email.');
         return false;
       }

@@ -47,7 +47,8 @@ dependencies:
   flutter_switch: ^0.3.2 # for switch
   otp_text_field: ^1.1.1 # To create otp text filed
   image_picker: ^0.8.4+4 # To pick image
-  lottie: ^2.0.0 #For animations
+  #lottie: ^2.0.0 #For animations
+  material_dialogs: ^1.1.3 #For dialogs
 
   #Chat Plugin
   flutter_chat_ui: ^1.6.6
