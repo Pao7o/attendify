@@ -11,10 +11,10 @@ import '../../common/image_path.dart';
 
 class EmailVerificationScreen extends StatelessWidget {
   static const String routeName = "/email_verification_screen";
-  final String emailAddress;
 
 
-  const EmailVerificationScreen({Key? key, required this.emailAddress})
+
+  const EmailVerificationScreen({Key? key})
       : super(key: key);
 
 
