@@ -285,11 +285,12 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
                                             .read(
                                                 firebaseAutheControllerProvider)
                                             .signupWithEmailandPassword(
+                                                context: context,
                                                 email: email!.text.trim(),
                                                 password: password!.text)
                                             .then((value) {
-                                          Navigator.pop(context);
                                           if (value == true) {
+                                            Navigator.pop(context);
                                             Navigator.pushNamed(
                                                 context,
                                                 EmailVerificationScreen

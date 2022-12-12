@@ -13,6 +13,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
+import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:material_dialogs/material_dialogs.dart';
 
@@ -356,10 +357,18 @@ class Utils {
 
   void errorDialog({required BuildContext context, required String error}) {
     Dialogs.materialDialog(
-      context: context,
-      msg: "Sending verification email to ",
-      title: "Sending....",
-      lottieBuilder: LottieBuilder.asset("assets/lottie/email_plane.json"),
-    );
+        context: context,
+        msg: error,
+        title: "Error",
+        lottieBuilder: LottieBuilder.asset("assets/lottie/error.json"),
+        actions: [
+          IconsButton(
+              color: appColors.switchColor,
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              text: "Okay",
+              iconData: Icons.done)
+        ]);
   }
 }
