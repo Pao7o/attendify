@@ -79,6 +79,7 @@ dependencies:
   pin_code_fields: ^7.4.0
   open_mail_app: ^0.4.5
   intl_phone_number_input: ^0.7.1
+  flutter_expandable_fab: ^1.6.1
 
 
   #MAPS Plugin --->>

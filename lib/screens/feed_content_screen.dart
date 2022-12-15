@@ -1,14 +1,18 @@
 import 'package:attendify/screens/comment_screen.dart';
+import 'package:attendify/screens/fab_try.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:comment_box/comment/comment.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:readmore/readmore.dart';
 
 
 import '../features/common/app_colors.dart';
 import '../features/common/common_widget.dart';
 import '../features/common/image_path.dart';
+import '../features/common/shadows.dart';
 import '../responsive/responsive_flutter.dart';
 import "dart:math";
 
@@ -67,6 +71,8 @@ class _EventsPublicationsState extends State<EventsPublications> {
 
   var itemCount = 7;
 
+  final _counter = ValueNotifier(0);
+
   Widget buildText(String text) {
     return ReadMoreText(
         text,
@@ -94,200 +100,253 @@ class _EventsPublicationsState extends State<EventsPublications> {
 
   @override
   Widget build(BuildContext context) {
+    final key = GlobalObjectKey<ExpandableFabState>(context);
     return SafeArea(
+      top: false,
       child: Scaffold(
         backgroundColor: appColors.appMediumColor,
-        body: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.only(left : ResponsiveFlutter.of(context).moderateScale(20),
-                  top: ResponsiveFlutter.of(context).moderateScale(10),
-                  bottom: ResponsiveFlutter.of(context).moderateScale(10)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    width: ResponsiveFlutter.of(context).moderateScale(150),
-                    height:ResponsiveFlutter.of(context).moderateScale(25),
-                    decoration: BoxDecoration(
-                      color: appColors.appDarkColor,
-                      borderRadius: BorderRadius.circular(
-                        ResponsiveFlutter.of(context).moderateScale(20),
-                      ),
-
-                    ),
-                    child: DropdownButtonHideUnderline(
-                      child: Theme(
-                        data: Theme.of(context).copyWith(canvasColor: AppColors().appMediumColor),
-                        child: DropdownButton(items: items.map((items) {
-                          return DropdownMenuItem(value: items, child: Center(
-                            child: Text(items,
-                              style: TextStyle(color: AppColors().lightColor,),),
-                          ));
-                        }).toList(),
-                          isExpanded: true,
-                          hint: Text("Sort by"),
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              dropdownvalue = newValue;
-                            });
-                          },
-
-                          value: dropdownvalue,icon: new Icon(Icons.arrow_drop_down,color:AppColors().lightColor,),),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: ListView.separated(
-                itemCount: itemCount,
-                padding: EdgeInsets.only(
-                    bottom: ResponsiveFlutter.of(context).moderateScale(100),
-                ),
-                itemBuilder: (context, index) => Column(
+        body: Container(
+          height: ResponsiveFlutter.of(context).moderateScale(500),
+          child: Stack(
+            children: [
+            Column(
+            children: [
+              /* Padding(
+                padding: EdgeInsets.only(left : ResponsiveFlutter.of(context).moderateScale(20),
+                    top: ResponsiveFlutter.of(context).moderateScale(10),
+                    bottom: ResponsiveFlutter.of(context).moderateScale(10)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Row(
-                      children: [
-                        Padding(
-                          padding:  EdgeInsets.only(left: ResponsiveFlutter.of(context).moderateScale(40)),
-                          child: SizedBox(height:ResponsiveFlutter.of(context).moderateScale(15),
-                              width : ResponsiveFlutter.of(context).moderateScale(200),
-                            child:buildText(element),),
+                    Container(
+                      width: ResponsiveFlutter.of(context).moderateScale(150),
+                      height:ResponsiveFlutter.of(context).moderateScale(25),
+                      decoration: BoxDecoration(
+                        color: appColors.appDarkColor,
+                        borderRadius: BorderRadius.circular(
+                          ResponsiveFlutter.of(context).moderateScale(20),
                         ),
-                      ],
-                    ),
-                    Stack(
-                      alignment: Alignment.bottomCenter,
-                      children: [
-                        CarouselSlider(
-                          carouselController: _controller,
-                          options: CarouselOptions(height : ResponsiveFlutter.of(context).moderateScale(310),
-                              enlargeCenterPage: true,
-                              enableInfiniteScroll: false,
-                              initialPage: 1,
-                              viewportFraction: 1.0,
-                              onPageChanged: (index, reason) {
-                                setState(() {
-                                  _current = index;
-                                });
-                              }),
-                          items: [1,2,3,4,5,6].map((i) {
-                            return Builder(
-                              builder: (BuildContext context) {
-                                return Stack(
-                                  children: [
-                                    Container(
-                                      width: MediaQuery.of(context).size.width,
-                                      margin: EdgeInsets.symmetric(vertical : ResponsiveFlutter.of(context).moderateScale(5)),
-                                      decoration: BoxDecoration(
-                                        color: Colors.amber,
-                                      ),
-                                      child: Image.asset(ImagePath.image_4,fit: BoxFit.fill,)
-                                  ),
-                                    Container(
 
-                                    )
-                                  ],
-                                );
-                                },
-                            );
-
-                          }).toList(),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: imgList.asMap().entries.map((entry) {
-                        return GestureDetector(
-                          onTap: () => _controller.animateToPage(entry.key),
-                          child: Container(
-                            width: ResponsiveFlutter.of(context).moderateScale(5),
-                            height: ResponsiveFlutter.of(context).moderateScale(5),
-                            margin: EdgeInsets.symmetric(vertical: ResponsiveFlutter.of(context).moderateScale(3), horizontal: ResponsiveFlutter.of(context).moderateScale(3)),
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: (AppColors().btnColor)
-                                    .withOpacity(_current == entry.key ? 0.9 : 0.4)),
-                          ),
-                        );
-                      }).toList(),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: ResponsiveFlutter.of(context).moderateScale(6),bottom:ResponsiveFlutter.of(context).moderateScale(16) ),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(left : ResponsiveFlutter.of(context).moderateScale(35),right:ResponsiveFlutter.of(context).moderateScale(15)),
-                            child: SizedBox(
-                              height:ResponsiveFlutter.of(context).moderateScale(25),width: ResponsiveFlutter.of(context).moderateScale(25),
-                              child: IconButton(icon: Image.asset(!confetti ? ImagePath.confetti : ImagePath.confettiFilled),
-                                iconSize: 10,
-                                padding: new EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(0)),
-                                onPressed: () { setState(() {
-                                  confetti = !confetti;
-                                }); },),
-                            ),
-                          ),
-                          Text("1273 loved this",style: TextStyle(color: AppColors().lightColor),),
-                          Padding(
-                            padding: EdgeInsets.only(left:ResponsiveFlutter.of(context).moderateScale(15),top:ResponsiveFlutter.of(context).moderateScale(4),right:ResponsiveFlutter.of(context).moderateScale(10) ),
-                            child: SizedBox(
-                              height:ResponsiveFlutter.of(context).moderateScale(30),width: ResponsiveFlutter.of(context).moderateScale(30),
-                              child: IconButton(icon: Image.asset(ImagePath.comment),
-                                iconSize: 10,
-                                padding: new EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(0)),
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => CommentClass(),
-                                    ),
-                                  );
-                                },),
-                            ),
-                          ),
-                          Text("35 comments",style: TextStyle(color: AppColors().lightColor),),
-                        ],
                       ),
-                    ),
-                    ClipRect(
-                      child: Padding(
-                        padding: EdgeInsets.only(left : ResponsiveFlutter.of(context).moderateScale(35),right:ResponsiveFlutter.of(context).moderateScale(20)  ),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding:  EdgeInsets.only(right : ResponsiveFlutter.of(context).moderateScale(10)),
-                              child: SizedBox(height:ResponsiveFlutter.of(context).moderateScale(18),width: ResponsiveFlutter.of(context).moderateScale(18),
-                                child:CircleAvatar(
-                                  backgroundImage: AssetImage(ImagePath.image_3,),
-                                ) ,),
-                            ),
-                            Text("Username",style: TextStyle(
-                                color: AppColors().lightColor
-                            ),
-                            ),
-                            SizedBox(width:ResponsiveFlutter.of(context).moderateScale(10),),
-                            Padding(
-                              padding: EdgeInsets.only(top : ResponsiveFlutter.of(context).moderateScale(3)),
-                              child: SizedBox(
-                                  width: ResponsiveFlutter.of(context).moderateScale(185),child: Column(
-                                children: [
-                                  buildText("The best description you ever seen in your life hehe"),
-                                ],
-                              )),
-                            )
-                          ],
+                      child: DropdownButtonHideUnderline(
+                        child: Theme(
+                          data: Theme.of(context).copyWith(canvasColor: AppColors().appMediumColor),
+                          child: DropdownButton(items: items.map((items) {
+                            return DropdownMenuItem(value: items, child: Center(
+                              child: Text(items,
+                                style: TextStyle(color: AppColors().lightColor,),),
+                            ));
+                          }).toList(),
+                            isExpanded: true,
+                            hint: Text("Sort by"),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                dropdownvalue = newValue;
+                              });
+                            },
+
+                            value: dropdownvalue,icon: new Icon(Icons.arrow_drop_down,color:AppColors().lightColor,),),
                         ),
                       ),
                     ),
                   ],
                 ),
-                separatorBuilder: (context, index) => SizedBox(height: ResponsiveFlutter.of(context).moderateScale(20),)
+              ),*/ //filter button not neccesary
+              Expanded(
+                child: ListView.separated(
+                    itemCount: itemCount,
+                    padding: EdgeInsets.only(
+                      bottom: ResponsiveFlutter.of(context).moderateScale(100),
+                    ),
+                    itemBuilder: (context, index) => Column(
+                      children: [
+                        Row(
+                          children: [
+                            Padding(
+                              padding:  EdgeInsets.only(left: ResponsiveFlutter.of(context).moderateScale(40)),
+                              child: SizedBox(height:ResponsiveFlutter.of(context).moderateScale(15),
+                                width : ResponsiveFlutter.of(context).moderateScale(200),
+                                child:buildText(element),),
+                            ),
+                          ],
+                        ),
+                        Stack(
+                          alignment: Alignment.bottomCenter,
+                          children: [
+                            CarouselSlider(
+                              carouselController: _controller,
+                              options: CarouselOptions(height : ResponsiveFlutter.of(context).moderateScale(310),
+                                  enlargeCenterPage: true,
+                                  enableInfiniteScroll: false,
+                                  initialPage: 1,
+                                  viewportFraction: 1.0,
+                                  onPageChanged: (index, reason) {
+                                    setState(() {
+                                      _current = index;
+                                    });
+                                  }),
+                              items: [1,2,3,4,5,6].map((i) {
+                                return Builder(
+                                  builder: (BuildContext context) {
+                                    return Stack(
+                                      children: [
+                                        Container(
+                                            width: MediaQuery.of(context).size.width,
+                                            margin: EdgeInsets.symmetric(vertical : ResponsiveFlutter.of(context).moderateScale(5)),
+
+                                            child: Image.asset(ImagePath.image_4,fit: BoxFit.fill,)
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+
+                              }).toList(),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: imgList.asMap().entries.map((entry) {
+                            return GestureDetector(
+                              onTap: () => _controller.animateToPage(entry.key),
+                              child: Container(
+                                width: ResponsiveFlutter.of(context).moderateScale(5),
+                                height: ResponsiveFlutter.of(context).moderateScale(5),
+                                margin: EdgeInsets.symmetric(vertical: ResponsiveFlutter.of(context).moderateScale(3), horizontal: ResponsiveFlutter.of(context).moderateScale(3)),
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: (AppColors().btnColor)
+                                        .withOpacity(_current == entry.key ? 0.9 : 0.4)),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: ResponsiveFlutter.of(context).moderateScale(6),bottom:ResponsiveFlutter.of(context).moderateScale(16) ),
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(left : ResponsiveFlutter.of(context).moderateScale(35),right:ResponsiveFlutter.of(context).moderateScale(15)),
+                                child: SizedBox(
+                                  height:ResponsiveFlutter.of(context).moderateScale(25),width: ResponsiveFlutter.of(context).moderateScale(25),
+                                  child: IconButton(icon: Image.asset(!confetti ? ImagePath.confetti : ImagePath.confettiFilled),
+                                    iconSize: 10,
+                                    padding: new EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(0)),
+                                    onPressed: () { setState(() {
+                                      confetti = !confetti;
+                                    }); },),
+                                ),
+                              ),
+                              Text("1273 loved this",style: TextStyle(color: AppColors().lightColor),),
+                              Padding(
+                                padding: EdgeInsets.only(left:ResponsiveFlutter.of(context).moderateScale(15),top:ResponsiveFlutter.of(context).moderateScale(4),right:ResponsiveFlutter.of(context).moderateScale(10) ),
+                                child: SizedBox(
+                                  height:ResponsiveFlutter.of(context).moderateScale(30),width: ResponsiveFlutter.of(context).moderateScale(30),
+                                  child: IconButton(icon: Image.asset(ImagePath.comment),
+                                    iconSize: 10,
+                                    padding: new EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(0)),
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => CommentClass(),
+                                        ),
+                                      );
+                                    },),
+                                ),
+                              ),
+                              Text("35 comments",style: TextStyle(color: AppColors().lightColor),),
+                            ],
+                          ),
+                        ),
+                        ClipRect(
+                          child: Padding(
+                            padding: EdgeInsets.only(left : ResponsiveFlutter.of(context).moderateScale(35),right:ResponsiveFlutter.of(context).moderateScale(20)  ),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding:  EdgeInsets.only(right : ResponsiveFlutter.of(context).moderateScale(10)),
+                                  child: SizedBox(height:ResponsiveFlutter.of(context).moderateScale(18),width: ResponsiveFlutter.of(context).moderateScale(18),
+                                    child:CircleAvatar(
+                                      backgroundImage: AssetImage(ImagePath.image_3,),
+                                    ) ,),
+                                ),
+                                Text("Username",style: TextStyle(
+                                    color: AppColors().lightColor
+                                ),
+                                ),
+                                SizedBox(width:ResponsiveFlutter.of(context).moderateScale(10),),
+                                Padding(
+                                  padding: EdgeInsets.only(top : ResponsiveFlutter.of(context).moderateScale(3)),
+                                  child: SizedBox(
+                                      width: ResponsiveFlutter.of(context).moderateScale(185),child: Column(
+                                    children: [
+                                      buildText("The best description you ever seen in your life hehe"),
+                                    ],
+                                  )),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    separatorBuilder: (context, index) => SizedBox(height: ResponsiveFlutter.of(context).moderateScale(20),)
+                ),
               ),
+            ],
+          ),
+            ],
+
+          )
+        ),
+        floatingActionButtonLocation: ExpandableFab.location,
+        floatingActionButton: ExpandableFab(
+          child: Icon(Icons.photo_camera_outlined),
+          key: key,
+          overlayStyle: ExpandableFabOverlayStyle(
+
+            // color: Colors.black.withOpacity(0.5),
+            blur: 5,
+          ),
+          onOpen: () {
+            debugPrint('onOpen');
+          },
+          afterOpen: () {
+            debugPrint('afterOpen');
+          },
+          onClose: () {
+            debugPrint('onClose');
+          },
+          afterClose: () {
+            debugPrint('afterClose');
+          },
+          children: [
+            FloatingActionButton.small(
+              heroTag: null,
+              child: const Icon(Icons.edit),
+              onPressed: () {},
+            ),
+            FloatingActionButton.small(
+              heroTag: null,
+              child: const Icon(Icons.search),
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: ((context) => const NextPage())));
+              },
+            ),
+            FloatingActionButton.small(
+              heroTag: null,
+              child: const Icon(Icons.share),
+              onPressed: () {
+                final state = key.currentState;
+                if (state != null) {
+                  debugPrint('isOpen:${state.isOpen}');
+                  state.toggle();
+                }
+              },
             ),
           ],
         ),

@@ -14,6 +14,7 @@ import '../features/common/image_path.dart';
 import '../features/common/story_data.dart';
 import '../features/common/strings.dart';
 import '../responsive/responsive_flutter.dart';
+import 'clubs_screen.dart';
 import 'my_booking_screen.dart';
 import 'story_settings.dart';
 
@@ -52,6 +53,7 @@ class _ChatInterfaceState extends State<ChatInterface>
   Widget build(BuildContext context) {
     return SafeArea(
       bottom: false,
+      top: false,
       child: DefaultTabController(
         length: 3,
         child: Scaffold(
@@ -62,7 +64,7 @@ class _ChatInterfaceState extends State<ChatInterface>
             child: Column(
               children: [
                 Container(
-                  height: ResponsiveFlutter.of(context).moderateScale(200),
+                  height: ResponsiveFlutter.of(context).moderateScale(220),
                   decoration: BoxDecoration(
                     color: appColors.appDarkColor,
                     borderRadius: BorderRadius.only(
@@ -78,13 +80,16 @@ class _ChatInterfaceState extends State<ChatInterface>
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        SizedBox(height: ResponsiveFlutter.of(context).moderateScale(25),),
                         Flexible(
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              SizedBox(
+                              Container(
+                                height: ResponsiveFlutter.of(context)
+                                    .verticalScale(30),
                                 width: ResponsiveFlutter.of(context)
-                                    .moderateScale(110),
+                                    .verticalScale(30),
                               ),
                               MyTextView(
                                 "Social".toUpperCase(),
@@ -96,10 +101,7 @@ class _ChatInterfaceState extends State<ChatInterface>
                                       .fontSize(2.4),
                                 ),
                               ),
-                              SizedBox(
-                                width: ResponsiveFlutter.of(context)
-                                    .moderateScale(110),
-                              ),
+
                               GestureDetector(
                                 onTap: () => Navigator.push(
                                   context,
@@ -239,7 +241,7 @@ class _ChatInterfaceState extends State<ChatInterface>
                   ),
                 ),
                 Container(
-                    height: ResponsiveFlutter.of(context).moderateScale(460),
+                    height: ResponsiveFlutter.of(context).moderateScale(500),
                     alignment: Alignment.topCenter,
                     decoration: BoxDecoration(
                       color: appColors.appDarkColor,
@@ -253,7 +255,7 @@ class _ChatInterfaceState extends State<ChatInterface>
                         physics: const NeverScrollableScrollPhysics(),
                         children: const [
                           FeedScreen(),
-                          MyEventsScreen(),
+                          ClubsScreen(),
                           MyBookingScreen(),
                         ]))
               ],
