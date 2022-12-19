@@ -61,204 +61,206 @@ class _ChatInterfaceState extends State<ChatInterface>
           body: Padding(
             padding:
                 EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(0)),
-            child: Column(
-              children: [
-                Container(
-                  height: ResponsiveFlutter.of(context).moderateScale(220),
-                  decoration: BoxDecoration(
-                    color: appColors.appDarkColor,
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(
-                          ResponsiveFlutter.of(context).moderateScale(30)),
-                      bottomRight: Radius.circular(
-                          ResponsiveFlutter.of(context).moderateScale(30)),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Container(
+                    height: ResponsiveFlutter.of(context).moderateScale(220),
+                    decoration: BoxDecoration(
+                      color: appColors.appDarkColor,
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(
+                            ResponsiveFlutter.of(context).moderateScale(30)),
+                        bottomRight: Radius.circular(
+                            ResponsiveFlutter.of(context).moderateScale(30)),
+                      ),
                     ),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.all(
-                        ResponsiveFlutter.of(context).moderateScale(5)),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(height: ResponsiveFlutter.of(context).moderateScale(25),),
-                        Flexible(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                height: ResponsiveFlutter.of(context)
-                                    .verticalScale(30),
-                                width: ResponsiveFlutter.of(context)
-                                    .verticalScale(30),
-                              ),
-                              MyTextView(
-                                "Social".toUpperCase(),
-                                textAligntNew: TextAlign.center,
-                                styleNew: MyTextStyle(
-                                  colorNew: AppColors().lightColor,
-                                  fontWeightNew: FontWeight.w600,
-                                  size: ResponsiveFlutter.of(context)
-                                      .fontSize(2.4),
-                                ),
-                              ),
-
-                              GestureDetector(
-                                onTap: () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const ChatInterface(),
-                                  ),
-                                ),
-                                child: Container(
+                    child: Padding(
+                      padding: EdgeInsets.all(
+                          ResponsiveFlutter.of(context).moderateScale(5)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(height: ResponsiveFlutter.of(context).moderateScale(25),),
+                          Flexible(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
                                   height: ResponsiveFlutter.of(context)
                                       .verticalScale(30),
                                   width: ResponsiveFlutter.of(context)
                                       .verticalScale(30),
-                                  alignment: Alignment.center,
-                                  child: Image(
-                                    image: AssetImage(ImagePath().chatSwitch),
-                                    height: ResponsiveFlutter.of(context)
-                                        .verticalScale(25),
+                                ),
+                                MyTextView(
+                                  "Social".toUpperCase(),
+                                  textAligntNew: TextAlign.center,
+                                  styleNew: MyTextStyle(
+                                    colorNew: AppColors().lightColor,
+                                    fontWeightNew: FontWeight.w600,
+                                    size: ResponsiveFlutter.of(context)
+                                        .fontSize(2.4),
                                   ),
                                 ),
+
+                                GestureDetector(
+                                  onTap: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const ChatInterface(),
+                                    ),
+                                  ),
+                                  child: Container(
+                                    height: ResponsiveFlutter.of(context)
+                                        .verticalScale(30),
+                                    width: ResponsiveFlutter.of(context)
+                                        .verticalScale(30),
+                                    alignment: Alignment.center,
+                                    child: Image(
+                                      image: AssetImage(ImagePath().chatSwitch),
+                                      height: ResponsiveFlutter.of(context)
+                                          .verticalScale(25),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                top: ResponsiveFlutter.of(context)
+                                    .verticalScale(5),
+                                bottom: ResponsiveFlutter.of(context)
+                                    .verticalScale(5)),
+                            child: SizedBox(
+                              height:
+                                  ResponsiveFlutter.of(context).verticalScale(80),
+                              width: double.maxFinite,
+                              child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: ResponsiveFlutter.of(context)
+                                          .verticalScale(5)),
+                                  itemBuilder: (context, index) {
+                                    return UserStoryItem(
+                                      setRectPoint: (rectpoint) {
+                                        print(rect);
+                                        setState(() {
+                                          rect = rectpoint;
+                                        });
+                                        onStoryItemTap(rect, index);
+                                      },
+                                      index: index,
+                                    );
+                                  }),
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                flex: 90,
+                                child: TabBar(
+                                  controller: tabController,
+                                  indicator: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(
+                                      ResponsiveFlutter.of(context)
+                                          .moderateScale(25),
+                                    ), // Creates border
+                                    color: appColors.btnColor,
+                                  ),
+                                  onTap: (value) {
+                                    tab = value;
+                                    setState(() {});
+                                    debugPrint("value ------>> $value");
+                                  },
+                                  tabs: [
+                                    Container(
+                                      height: ResponsiveFlutter.of(context)
+                                          .moderateScale(45),
+                                      alignment: Alignment.center,
+                                      child: MyTextView(
+                                        "Feed",
+                                        textAligntNew: TextAlign.start,
+                                        maxLineWrap: true,
+                                        styleNew: MyTextStyle(
+                                          colorNew: tab == 0
+                                              ? appColors.white
+                                              : appColors.darkGreyText,
+                                          fontWeightNew: FontWeight.w600,
+                                          size: ResponsiveFlutter.of(context)
+                                              .fontSize(1.8),
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      height: ResponsiveFlutter.of(context)
+                                          .moderateScale(45),
+                                      alignment: Alignment.center,
+                                      child: MyTextView(
+                                        "Clubs",
+                                        textAligntNew: TextAlign.start,
+                                        maxLineWrap: true,
+                                        styleNew: MyTextStyle(
+                                          colorNew: tab == 1
+                                              ? appColors.white
+                                              : appColors.darkGreyText,
+                                          fontWeightNew: FontWeight.w600,
+                                          size: ResponsiveFlutter.of(context)
+                                              .fontSize(1.8),
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      height: ResponsiveFlutter.of(context)
+                                          .moderateScale(45),
+                                      alignment: Alignment.center,
+                                      child: MyTextView(
+                                        "People",
+                                        textAligntNew: TextAlign.start,
+                                        maxLineWrap: true,
+                                        styleNew: MyTextStyle(
+                                          colorNew: tab == 2
+                                              ? appColors.white
+                                              : appColors.darkGreyText,
+                                          fontWeightNew: FontWeight.w600,
+                                          size: ResponsiveFlutter.of(context)
+                                              .fontSize(1.8),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const Expanded(
+                                flex: 3,
+                                child: SizedBox(),
                               ),
                             ],
                           ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                              top: ResponsiveFlutter.of(context)
-                                  .verticalScale(5),
-                              bottom: ResponsiveFlutter.of(context)
-                                  .verticalScale(5)),
-                          child: SizedBox(
-                            height:
-                                ResponsiveFlutter.of(context).verticalScale(80),
-                            width: double.maxFinite,
-                            child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: ResponsiveFlutter.of(context)
-                                        .verticalScale(5)),
-                                itemBuilder: (context, index) {
-                                  return UserStoryItem(
-                                    setRectPoint: (rectpoint) {
-                                      print(rect);
-                                      setState(() {
-                                        rect = rectpoint;
-                                      });
-                                      onStoryItemTap(rect, index);
-                                    },
-                                    index: index,
-                                  );
-                                }),
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              flex: 120,
-                              child: TabBar(
-                                controller: tabController,
-                                indicator: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(
-                                    ResponsiveFlutter.of(context)
-                                        .moderateScale(25),
-                                  ), // Creates border
-                                  color: appColors.btnColor,
-                                ),
-                                onTap: (value) {
-                                  tab = value;
-                                  setState(() {});
-                                  debugPrint("value ------>> $value");
-                                },
-                                tabs: [
-                                  Container(
-                                    height: ResponsiveFlutter.of(context)
-                                        .moderateScale(45),
-                                    alignment: Alignment.center,
-                                    child: MyTextView(
-                                      "Feed",
-                                      textAligntNew: TextAlign.start,
-                                      maxLineWrap: true,
-                                      styleNew: MyTextStyle(
-                                        colorNew: tab == 0
-                                            ? appColors.white
-                                            : appColors.darkGreyText,
-                                        fontWeightNew: FontWeight.w600,
-                                        size: ResponsiveFlutter.of(context)
-                                            .fontSize(1.8),
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    height: ResponsiveFlutter.of(context)
-                                        .moderateScale(45),
-                                    alignment: Alignment.center,
-                                    child: MyTextView(
-                                      "Clubs",
-                                      textAligntNew: TextAlign.start,
-                                      maxLineWrap: true,
-                                      styleNew: MyTextStyle(
-                                        colorNew: tab == 1
-                                            ? appColors.white
-                                            : appColors.darkGreyText,
-                                        fontWeightNew: FontWeight.w600,
-                                        size: ResponsiveFlutter.of(context)
-                                            .fontSize(1.8),
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    height: ResponsiveFlutter.of(context)
-                                        .moderateScale(45),
-                                    alignment: Alignment.center,
-                                    child: MyTextView(
-                                      "People",
-                                      textAligntNew: TextAlign.start,
-                                      maxLineWrap: true,
-                                      styleNew: MyTextStyle(
-                                        colorNew: tab == 2
-                                            ? appColors.white
-                                            : appColors.darkGreyText,
-                                        fontWeightNew: FontWeight.w600,
-                                        size: ResponsiveFlutter.of(context)
-                                            .fontSize(1.8),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const Expanded(
-                              flex: 3,
-                              child: SizedBox(),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                    height: ResponsiveFlutter.of(context).moderateScale(500),
-                    alignment: Alignment.topCenter,
-                    decoration: BoxDecoration(
-                      color: appColors.appDarkColor,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(
-                            ResponsiveFlutter.of(context).moderateScale(30)),
+                        ],
                       ),
                     ),
-                    child: TabBarView(
-                        controller: tabController,
-                        physics: const NeverScrollableScrollPhysics(),
-                        children: const [
-                          FeedScreen(),
-                          ClubsScreen(),
-                          MyBookingScreen(),
-                        ]))
-              ],
+                  ),
+                  Container(
+                      height: ResponsiveFlutter.of(context).moderateScale(500),
+                      alignment: Alignment.topCenter,
+                      decoration: BoxDecoration(
+                        color: appColors.appDarkColor,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(
+                              ResponsiveFlutter.of(context).moderateScale(30)),
+                        ),
+                      ),
+                      child: TabBarView(
+                          controller: tabController,
+                          physics: const NeverScrollableScrollPhysics(),
+                          children: const [
+                            FeedScreen(),
+                            ClubsScreen(),
+                            MyBookingScreen(),
+                          ]))
+                ],
+              ),
             ),
           ),
         ),
@@ -362,14 +364,15 @@ class _UserStoryItemState extends State<UserStoryItem>
               turns: base,
               child: DashedCircle(
                 gapSize: gap.value,
-                dashes: 20,
+                dashes: 30,
                 color: const Color(0xffed4634),
                 child: RotationTransition(
                   turns: reverse,
-                  child: const Padding(
+                  child: Padding(
                     padding: EdgeInsets.all(5.0),
                     child: CircleAvatar(
-                      radius: 27.5,
+                      radius: ResponsiveFlutter.of(context)
+                          .moderateScale(30),
                       backgroundImage: AssetImage(ImagePath.image_3),
                     ),
                   ),

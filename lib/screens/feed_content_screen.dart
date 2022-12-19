@@ -106,7 +106,7 @@ class _EventsPublicationsState extends State<EventsPublications> {
       child: Scaffold(
         backgroundColor: appColors.appMediumColor,
         body: Container(
-          height: ResponsiveFlutter.of(context).moderateScale(500),
+          height: ResponsiveFlutter.of(context).verticalScale(500),
           child: Stack(
             children: [
             Column(
@@ -163,8 +163,8 @@ class _EventsPublicationsState extends State<EventsPublications> {
                         Row(
                           children: [
                             Padding(
-                              padding:  EdgeInsets.only(left: ResponsiveFlutter.of(context).moderateScale(40)),
-                              child: SizedBox(height:ResponsiveFlutter.of(context).moderateScale(15),
+                              padding:  EdgeInsets.only(left: ResponsiveFlutter.of(context).moderateScale(40), ),
+                              child: SizedBox(height:ResponsiveFlutter.of(context).moderateScale(20),
                                 width : ResponsiveFlutter.of(context).moderateScale(200),
                                 child:buildText(element),),
                             ),
@@ -225,38 +225,49 @@ class _EventsPublicationsState extends State<EventsPublications> {
                         Padding(
                           padding: EdgeInsets.only(top: ResponsiveFlutter.of(context).moderateScale(6),bottom:ResponsiveFlutter.of(context).moderateScale(16) ),
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Padding(
-                                padding: EdgeInsets.only(left : ResponsiveFlutter.of(context).moderateScale(35),right:ResponsiveFlutter.of(context).moderateScale(15)),
-                                child: SizedBox(
-                                  height:ResponsiveFlutter.of(context).moderateScale(25),width: ResponsiveFlutter.of(context).moderateScale(25),
-                                  child: IconButton(icon: Image.asset(!confetti ? ImagePath.confetti : ImagePath.confettiFilled),
-                                    iconSize: 10,
-                                    padding: new EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(0)),
-                                    onPressed: () { setState(() {
-                                      confetti = !confetti;
-                                    }); },),
-                                ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  SizedBox(
+                                    height:ResponsiveFlutter.of(context).moderateScale(25),width: ResponsiveFlutter.of(context).moderateScale(25),
+                                    child: IconButton(icon: Image.asset(!confetti ? ImagePath.confetti : ImagePath.confettiFilled),
+                                      iconSize: 10,
+                                      padding: new EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(0)),
+                                      onPressed: () { setState(() {
+                                        confetti = !confetti;
+                                      }); },),
+                                  ),
+                                  SizedBox(
+                                    width:ResponsiveFlutter.of(context).moderateScale(15),
+                                  ),
+                                  Text("1273 loved this",style: TextStyle(color: AppColors().lightColor,fontSize: ResponsiveFlutter.of(context).fontSize(1.7)),),
+                                ],
                               ),
-                              Text("1273 loved this",style: TextStyle(color: AppColors().lightColor),),
-                              Padding(
-                                padding: EdgeInsets.only(left:ResponsiveFlutter.of(context).moderateScale(15),top:ResponsiveFlutter.of(context).moderateScale(4),right:ResponsiveFlutter.of(context).moderateScale(10) ),
-                                child: SizedBox(
-                                  height:ResponsiveFlutter.of(context).moderateScale(30),width: ResponsiveFlutter.of(context).moderateScale(30),
-                                  child: IconButton(icon: Image.asset(ImagePath.comment),
-                                    iconSize: 10,
-                                    padding: new EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(0)),
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => CommentClass(),
-                                        ),
-                                      );
-                                    },),
-                                ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  SizedBox(
+                                    height:ResponsiveFlutter.of(context).moderateScale(30),width: ResponsiveFlutter.of(context).moderateScale(30),
+                                    child: IconButton(icon: Image.asset(ImagePath.comment),
+                                      iconSize: 10,
+                                      padding: new EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(0)),
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => CommentClass(),
+                                          ),
+                                        );
+                                      },),
+                                  ),
+                                  SizedBox(
+                                    width:ResponsiveFlutter.of(context).moderateScale(15),
+                                  ),
+                                  Text("35 comments",style: TextStyle(color: AppColors().lightColor,fontSize: ResponsiveFlutter.of(context).fontSize(1.7)),),
+                                ],
                               ),
-                              Text("35 comments",style: TextStyle(color: AppColors().lightColor),),
                             ],
                           ),
                         ),
@@ -299,7 +310,6 @@ class _EventsPublicationsState extends State<EventsPublications> {
             ],
           ),
             ],
-
           )
         ),
         floatingActionButtonLocation: ExpandableFab.location,

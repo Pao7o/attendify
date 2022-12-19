@@ -42,6 +42,7 @@ dependencies:
   intl: ^0.17.0 # For Date and Time
   crypto: ^3.0.1 # For encrypt and decrypt data
   url_launcher: ^6.0.18 # Url launcher
+  flutter_speed_dial: ^6.2.0
 
   # UI Plugin --->>
   flutter_switch: ^0.3.2 # for switch

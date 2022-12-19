@@ -10,8 +10,10 @@ import 'package:attendify/screens/setting_screen.dart';
 import 'package:attendify/screens/wallet_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 
 import 'chat_screen.dart';
+import 'fab_try.dart';
 import 'my_booking_screen.dart';
 
 class BottomBarScreen extends StatefulWidget {
@@ -58,6 +60,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final key = GlobalObjectKey<ExpandableFabState>(context);
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
@@ -164,11 +167,9 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                             setting = false;
                           });
                         },
-                        child: Image(
-                          image: const AssetImage(ImagePath.create),
-                          height:
-                              ResponsiveFlutter.of(context).verticalScale(45),
-                        ),
+                        child: FloatingActionButton(onPressed: (){
+
+                        }),
                       ),
                       GestureDetector(
                         onTap: () {
@@ -229,6 +230,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
             ),
           ],
         ),
+
       ),
     );
   }
