@@ -6,6 +6,10 @@
     <string>The app needs location permission</string>
     <key>io.flutter.embedded_views_preview</key>
     <true/>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Photo Library Access Warning</string>
+    <key>NSCameraUsageDescription</key>
+    <string>Photo Library Access Warning</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>

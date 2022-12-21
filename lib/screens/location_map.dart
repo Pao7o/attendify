@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:attendify/screens/chat_screen.dart';
 import 'package:attendify/screens/feed_screen.dart';
 import 'package:attendify/screens/friends_screen.dart';
@@ -6,6 +8,9 @@ import 'package:attendify/screens/story_view.dart';
 import 'package:dashed_circle/dashed_circle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:rect_getter/rect_getter.dart';
 
 import '../features/common/app_colors.dart';
@@ -35,6 +40,42 @@ class _ChatInterfaceState extends State<ChatInterface>
   static const Duration delay = Duration(seconds: 1);
   TabController? tabController;
   int? tab = 0;
+  String _elementSelectionne = 'Elément 1';
+
+  File? imageFile;
+  final ImagePicker _picker = ImagePicker();
+
+  void pickImageFromGallery() async {
+    XFile? imageFile = await _picker.pickImage(source: ImageSource.gallery,
+      maxHeight:1080,
+      maxWidth: 1080,
+    );
+    _cropImage(imageFile!.path);
+    Navigator.pop(context);
+  }
+
+  void pickImageFromCamera() async {
+    XFile? imageFile = await _picker.pickImage(source: ImageSource.camera,
+      maxHeight:1080,
+      maxWidth: 1080,
+    );
+    _cropImage(imageFile!.path);
+    Navigator.pop(context);
+  }
+
+
+  void _cropImage (filePath) async {
+    File? croppedImage = (await ImageCropper().cropImage(
+      sourcePath : filePath, maxHeight : 1080,maxWidth : 1080,
+    )) as File?;
+    if(croppedImage != null){
+      setState(() {
+        imageFile = croppedImage;
+      });
+    }
+  }
+
+
 
   @override
   void initState() {
@@ -81,7 +122,8 @@ class _ChatInterfaceState extends State<ChatInterface>
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(height: ResponsiveFlutter.of(context).moderateScale(25),),
+                          SizedBox(height: ResponsiveFlutter.of(context)
+                          .verticalScale(20),),
                           Flexible(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -90,8 +132,9 @@ class _ChatInterfaceState extends State<ChatInterface>
                                   height: ResponsiveFlutter.of(context)
                                       .verticalScale(30),
                                   width: ResponsiveFlutter.of(context)
-                                      .verticalScale(30),
+                                      .scale(30),
                                 ),
+                                SizedBox(width:ResponsiveFlutter.of(context).moderateScale(0),),
                                 MyTextView(
                                   "Social".toUpperCase(),
                                   textAligntNew: TextAlign.center,
@@ -103,25 +146,51 @@ class _ChatInterfaceState extends State<ChatInterface>
                                   ),
                                 ),
 
-                                GestureDetector(
-                                  onTap: () => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => const ChatInterface(),
-                                    ),
+                                Row(
+                                  children: [
+                                    PopupMenuButton<String>(
+                                child: Image.asset(
+                                ImagePath().addPicture,
+                                  width: ResponsiveFlutter.of(context).moderateScale(40),
+                                  height: ResponsiveFlutter.of(context).moderateScale(40),
+                                ),
+                                    onSelected: (value) {
+                                      setState(() {
+                                        _elementSelectionne = value;
+                                      });
+                                    },
+                                    itemBuilder: (context) => <PopupMenuEntry<String>>[
+                                      PopupMenuItem(height: ResponsiveFlutter.of(context).verticalScale(50),
+                                        value: 'Camera',
+                                        onTap: () {
+                                        pickImageFromCamera();
+                                        },
+                                        child: Text('Camera'),
+
+                                      ),
+                                      PopupMenuItem(height: ResponsiveFlutter.of(context).verticalScale(50),
+                                        value: 'Gallery',
+                                        onTap: () {
+                                        pickImageFromGallery();
+                                        },
+                                        child: Text('Gallery'),
+                                      ),
+                                    ],
                                   ),
-                                  child: Container(
-                                    height: ResponsiveFlutter.of(context)
-                                        .verticalScale(30),
-                                    width: ResponsiveFlutter.of(context)
-                                        .verticalScale(30),
-                                    alignment: Alignment.center,
-                                    child: Image(
-                                      image: AssetImage(ImagePath().chatSwitch),
+                                    SizedBox(width:ResponsiveFlutter.of(context).moderateScale(15) ,),
+                                    Container(
                                       height: ResponsiveFlutter.of(context)
-                                          .verticalScale(25),
+                                          .verticalScale(45),
+                                      width: ResponsiveFlutter.of(context)
+                                          .scale(45),
+                                      alignment: Alignment.center,
+                                      child: Image(
+                                        image: AssetImage(ImagePath().chatSwitch),
+                                        height: ResponsiveFlutter.of(context)
+                                            .moderateScale(30),
+                                      ),
                                     ),
-                                  ),
+                                  ],
                                 ),
                               ],
                             ),

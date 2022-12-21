@@ -1,23 +1,16 @@
 import 'package:attendify/screens/comment_screen.dart';
-import 'package:attendify/screens/fab_try.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:comment_box/comment/comment.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:readmore/readmore.dart';
 
 
 import '../features/common/app_colors.dart';
-import '../features/common/common_widget.dart';
 import '../features/common/image_path.dart';
-import '../features/common/shadows.dart';
 import '../responsive/responsive_flutter.dart';
 import "dart:math";
 
-import 'chat_screen.dart';
-import 'edit_event_screen.dart';
+
 
 class EventsPublications extends StatefulWidget {
   const EventsPublications({Key? key}) : super(key: key);
@@ -71,7 +64,6 @@ class _EventsPublicationsState extends State<EventsPublications> {
 
   var itemCount = 7;
 
-  final _counter = ValueNotifier(0);
 
   Widget buildText(String text) {
     return ReadMoreText(
@@ -100,7 +92,6 @@ class _EventsPublicationsState extends State<EventsPublications> {
 
   @override
   Widget build(BuildContext context) {
-    final key = GlobalObjectKey<ExpandableFabState>(context);
     return SafeArea(
       top: false,
       child: Scaffold(
@@ -193,7 +184,6 @@ class _EventsPublicationsState extends State<EventsPublications> {
                                         Container(
                                             width: MediaQuery.of(context).size.width,
                                             margin: EdgeInsets.symmetric(vertical : ResponsiveFlutter.of(context).moderateScale(5)),
-
                                             child: Image.asset(ImagePath.image_4,fit: BoxFit.fill,)
                                         ),
                                       ],
@@ -311,54 +301,6 @@ class _EventsPublicationsState extends State<EventsPublications> {
           ),
             ],
           )
-        ),
-        floatingActionButtonLocation: ExpandableFab.location,
-        floatingActionButton: ExpandableFab(
-          child: Icon(Icons.photo_camera_outlined),
-          key: key,
-          overlayStyle: ExpandableFabOverlayStyle(
-
-            // color: Colors.black.withOpacity(0.5),
-            blur: 5,
-          ),
-          onOpen: () {
-            debugPrint('onOpen');
-          },
-          afterOpen: () {
-            debugPrint('afterOpen');
-          },
-          onClose: () {
-            debugPrint('onClose');
-          },
-          afterClose: () {
-            debugPrint('afterClose');
-          },
-          children: [
-            FloatingActionButton.small(
-              heroTag: null,
-              child: const Icon(Icons.edit),
-              onPressed: () {},
-            ),
-            FloatingActionButton.small(
-              heroTag: null,
-              child: const Icon(Icons.search),
-              onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: ((context) => const NextPage())));
-              },
-            ),
-            FloatingActionButton.small(
-              heroTag: null,
-              child: const Icon(Icons.share),
-              onPressed: () {
-                final state = key.currentState;
-                if (state != null) {
-                  debugPrint('isOpen:${state.isOpen}');
-                  state.toggle();
-                }
-              },
-            ),
-          ],
         ),
       ),
     );

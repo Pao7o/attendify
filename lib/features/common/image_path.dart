@@ -29,6 +29,10 @@ class ImagePath {
   static const String calender = base + "ic_calender.png";
   static const String mailSent = base + "img_email_check.png";
 
+  String addPicture = Constants.darkTheme
+      ? base + "ic_add_picture_light.png"
+      : base + "ic_add_picture_dark.png";
+
   String bottomBar = Constants.darkTheme
       ? base + "ic_bottom_bar.png"
       : base + "ic_bottom_bar_light.png";
