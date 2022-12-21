@@ -3,7 +3,7 @@ import 'package:attendify/features/common/common_widget.dart';
 import 'package:attendify/features/common/image_path.dart';
 import 'package:attendify/features/common/strings.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
-import 'package:attendify/screens/login_screen.dart';
+import 'package:attendify/features/authentication/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {

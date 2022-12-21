@@ -1,12 +1,14 @@
 import 'dart:async';
 
+import 'package:attendify/features/authentication/screens/login_screen.dart';
 import 'package:attendify/features/common/app_colors.dart';
 import 'package:attendify/features/common/constants.dart';
 import 'package:attendify/features/common/image_path.dart';
 import 'package:attendify/features/common/shared_pref.dart';
 import 'package:attendify/features/common/utils.dart';
+import 'package:attendify/features/firebase/repository/firebase_authentication.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
-import 'package:attendify/screens/login_screen.dart';
+import 'package:attendify/screens/home_page_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -48,18 +50,38 @@ class SplashScreenState extends ConsumerState<SplashScreen> {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
         overlays: <SystemUiOverlay>[]);
     darkOrLightTheme();
-    Timer(
-      const Duration(seconds: 3),
-      () => Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const LoginScreen(),
-        ),
-        (route) => false,
-      ),
+    Timer(const Duration(seconds: 3), () async {
+      ref
+          .read(firebaseAuthenticationProvider)
+          .checkUserAuthState()
+          .listen((event) {
+        if (event == null) {
+          Navigator.pushNamedAndRemoveUntil(
+              context, LoginScreen.routeName, (route) => false);
+        } else {
+          Navigator.pushNamedAndRemoveUntil(
+              context, HomeScreen.routeName, (route) => false);
+        }
+      });
 
-    );
-
+      /*
+      when(data: (user) {
+        if (user == null) {
+          print("user is null");
+          Navigator.pushNamedAndRemoveUntil(
+              context, LoginScreen.routeName, (route) => false);
+        } else {
+          print("user is not null");
+          Navigator.pushNamedAndRemoveUntil(
+              context, HomeScreen.routeName, (route) => false);
+        }
+      }, error: (error, trace) {
+        print("error is $error");
+      }, loading: () {
+        print("we are loading");
+      });
+      */
+    });
   }
 
   @override

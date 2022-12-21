@@ -10,7 +10,7 @@ import 'package:attendify/screens/about_us_screen.dart';
 import 'package:attendify/screens/bottom_bar_screen.dart';
 import 'package:attendify/screens/change_password_screen.dart';
 import 'package:attendify/screens/help_and_support_screen.dart';
-import 'package:attendify/screens/login_screen.dart';
+import 'package:attendify/features/authentication/screens/login_screen.dart';
 import 'package:attendify/screens/notification_settings_screen.dart';
 import 'package:attendify/screens/privacy_policy_screen.dart';
 import 'package:attendify/screens/terms_and_condition_screen.dart';
@@ -53,7 +53,6 @@ class _SettingScreenState extends State<SettingScreen> {
       ),
     );
     return SafeArea(
-
       child: Scaffold(
         backgroundColor: appColors.appMediumColor,
         body: Column(

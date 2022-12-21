@@ -5,7 +5,6 @@ import 'package:attendify/features/common/strings.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:attendify/screens/favorites_screen.dart';
 import 'package:attendify/screens/location_controller.dart';
-import 'package:attendify/screens/location_map.dart';
 import 'package:attendify/screens/near_by_event_screen.dart';
 import 'package:attendify/screens/notification_screen.dart';
 import 'package:attendify/screens/popular_event_screen.dart';
@@ -13,13 +12,14 @@ import 'package:attendify/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
+  static const routeName = '/home_page_screen';
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  HomeScreenState createState() => HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class HomeScreenState extends State<HomeScreen> {
   AppColors appColors = AppColors();
 
   TabController? tabController;

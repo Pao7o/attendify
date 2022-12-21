@@ -3,7 +3,7 @@ import 'package:attendify/features/common/common_widget.dart';
 import 'package:attendify/features/common/image_path.dart';
 import 'package:attendify/features/common/strings.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
-import 'package:attendify/screens/login_screen.dart';
+import 'package:attendify/features/authentication/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:otp_text_field/otp_text_field.dart';
 import 'package:otp_text_field/style.dart';
@@ -150,7 +150,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                               fieldStyle: FieldStyle.box,
                               onChanged: (value) {},
                               onCompleted: (pin) {
-                                debugPrint("Completed: " + pin);
+                                debugPrint("Completed: $pin");
                               },
                             ),
                           ),
