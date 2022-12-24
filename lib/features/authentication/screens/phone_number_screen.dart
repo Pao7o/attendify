@@ -38,102 +38,104 @@ class _PhoneNumberInputPageState extends State<PhoneNumberInputPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors().appMediumColor,
-      body: Column(
-        children: [
-          SizedBox(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+                height: ResponsiveFlutter.of(context)
+                    .verticalScale(40)),
+            Image.asset(
+              ImagePath.logo,
               height: ResponsiveFlutter.of(context)
-                  .verticalScale(40)),
-          Image.asset(
-            ImagePath.logo,
-            height: ResponsiveFlutter.of(context)
-                .verticalScale(30),
-          ),
-          Container(
-            height: ResponsiveFlutter.of(context)
-                .verticalScale(300),
-            padding: EdgeInsets.symmetric(
-                horizontal: ResponsiveFlutter.of(context)
-                    .moderateScale(25)),
-            child: Image.asset(
-              ImagePath.mailSent,
-              alignment: Alignment.bottomCenter,
+                  .verticalScale(30),
             ),
-          ),
-          Form(
-            child: Container(
-              height: ResponsiveFlutter.of(context).moderateScale(300),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Padding(
-                    padding:  EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(10)),
-                    child: InternationalPhoneNumberInput(hintText: "Enter your phone here",
-                      textStyle: TextStyle(color: Colors.white),
-                      textAlign: TextAlign.center,
-                      onInputChanged: (PhoneNumber number) {
-                        print(number.phoneNumber);
-                      },
-                      onInputValidated: (bool value) {
-                        print(value);
-                      },
-                      selectorConfig: SelectorConfig(
-                        selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
-                      ),
-                      ignoreBlank: false,
-                      inputDecoration: InputDecoration(enabledBorder: OutlineInputBorder(
-                        borderSide:
-                        BorderSide(width: 2, color: Colors.purpleAccent), //<-- SEE HERE
-                        borderRadius: BorderRadius.circular(50.0),
-                      ),),
-                      autoValidateMode: AutovalidateMode.disabled,
-                      selectorTextStyle: TextStyle(color: Colors.white),
-                      initialValue: number1,
-                      textFieldController: controller,
-                      formatInput: false,
-                      keyboardType:
-                      TextInputType.numberWithOptions(signed: true, decimal: true),
-                      inputBorder: OutlineInputBorder(),
-                      onSaved: (PhoneNumber number) {
-                        print('On Saved: $number');
-                      },
-                    ),
-                  ),
-                  ElevatedButton(
-                    style: ButtonStyle(elevation: MaterialStatePropertyAll(15)),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const EmailVerificationScreen(),
+            Container(
+              height: ResponsiveFlutter.of(context)
+                  .verticalScale(300),
+              padding: EdgeInsets.symmetric(
+                  horizontal: ResponsiveFlutter.of(context)
+                      .moderateScale(25)),
+              child: Image.asset(
+                ImagePath.mailSent,
+                alignment: Alignment.bottomCenter,
+              ),
+            ),
+            Form(
+              child: Container(
+                height: ResponsiveFlutter.of(context).moderateScale(300),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Padding(
+                      padding:  EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(10)),
+                      child: InternationalPhoneNumberInput(hintText: "Enter your phone here",
+                        textStyle: TextStyle(color: AppColors().lightColor),
+                        textAlign: TextAlign.center,
+                        onInputChanged: (PhoneNumber number) {
+                          print(number.phoneNumber);
+                        },
+                        onInputValidated: (bool value) {
+                          print(value);
+                        },
+                        selectorConfig: SelectorConfig(
+                          selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
                         ),
-                      );
-                    },
-                    child: Text('Send SMS verification'),
-                  ),
-
-                  SizedBox(height:ResponsiveFlutter.of(context).moderateScale(120) ,),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: TextButton(
-                      child: Text("Verify later",style: TextStyle(color: Colors.white70,decoration:
-                      TextDecoration.underline,
-                        decorationColor: Colors.white70,decorationThickness: 4,),),
+                        ignoreBlank: false,
+                        inputDecoration: InputDecoration(enabledBorder: OutlineInputBorder(
+                          borderSide:
+                          BorderSide(width: 2, color: Colors.purpleAccent), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),),
+                        autoValidateMode: AutovalidateMode.disabled,
+                        selectorTextStyle: TextStyle(color: Colors.white),
+                        initialValue: number1,
+                        textFieldController: controller,
+                        formatInput: false,
+                        keyboardType:
+                        TextInputType.numberWithOptions(signed: true, decimal: true),
+                        inputBorder: OutlineInputBorder(),
+                        onSaved: (PhoneNumber number) {
+                          print('On Saved: $number');
+                        },
+                      ),
+                    ),
+                    ElevatedButton(
+                      style: ButtonStyle(elevation: MaterialStatePropertyAll(15)),
                       onPressed: () {
-                        Navigator.pushAndRemoveUntil(
+                        Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>
-                            const BottomBarScreen(),
+                            builder: (context) => const EmailVerificationScreen(),
                           ),
-                              (route) => false,
                         );
                       },
+                      child: Text('Send SMS verification'),
                     ),
-                  )
-                ],
-              ),
-            ),),
-        ],
+
+                    SizedBox(height:ResponsiveFlutter.of(context).moderateScale(120) ,),
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: TextButton(
+                        child: Text("Verify later",style: TextStyle(color: AppColors().lightColor,decoration:
+                        TextDecoration.underline,
+                          decorationColor: AppColors().lightColor,decorationThickness: 4,),),
+                        onPressed: () {
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                              const BottomBarScreen(),
+                            ),
+                                (route) => false,
+                          );
+                        },
+                      ),
+                    )
+                  ],
+                ),
+              ),),
+          ],
+        ),
       ),
 
     );

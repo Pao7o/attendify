@@ -1,9 +1,11 @@
 import 'dart:io';
 
+import 'package:attendify/screens/bottom_bar_screen.dart';
 import 'package:attendify/screens/chat_screen.dart';
 import 'package:attendify/screens/feed_screen.dart';
 import 'package:attendify/screens/friends_screen.dart';
 import 'package:attendify/screens/my_events_screen.dart';
+import 'package:attendify/screens/share_media_screen.dart';
 import 'package:attendify/screens/story_view.dart';
 import 'package:dashed_circle/dashed_circle.dart';
 import 'package:flutter/cupertino.dart';
@@ -42,39 +44,62 @@ class _ChatInterfaceState extends State<ChatInterface>
   int? tab = 0;
   String _elementSelectionne = 'Elément 1';
 
-  File? imageFile;
-  final ImagePicker _picker = ImagePicker();
+  Image? _image;
 
-  void pickImageFromGallery() async {
-    XFile? imageFile = await _picker.pickImage(source: ImageSource.gallery,
-      maxHeight:1080,
-      maxWidth: 1080,
-    );
-    _cropImage(imageFile!.path);
-    Navigator.pop(context);
-  }
+  void _takePhoto(context) async {
+    // Ouvre la caméra
+    ImagePicker imagePicker = ImagePicker();
+    PickedFile? pickedFile = await imagePicker.getImage(source: ImageSource.camera);
 
-  void pickImageFromCamera() async {
-    XFile? imageFile = await _picker.pickImage(source: ImageSource.camera,
-      maxHeight:1080,
-      maxWidth: 1080,
-    );
-    _cropImage(imageFile!.path);
-    Navigator.pop(context);
-  }
+    // Charge l'image prise avec la caméra
+    Image image = Image.file(File(pickedFile!.path));
+    String imagePath = pickedFile.path;
+    // Ouvre l'image cropper
+    ImageCropper imageCropper = ImageCropper();
+    Image croppedImage = (await imageCropper.cropImage(
+      sourcePath: imagePath,
+    )) as Image;
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ImageViewScreen(),
+        ),);
 
-
-  void _cropImage (filePath) async {
-    File? croppedImage = (await ImageCropper().cropImage(
-      sourcePath : filePath, maxHeight : 1080,maxWidth : 1080,
-    )) as File?;
-    if(croppedImage != null){
       setState(() {
-        imageFile = croppedImage;
+        _image = croppedImage;
       });
+
+
     }
 
-  }
+  void _selectPhoto(context) async {
+    // Ouvre la caméra
+    ImagePicker imagePicker = ImagePicker();
+    PickedFile? pickedFile = await imagePicker.getImage(source: ImageSource.gallery);
+
+    // Charge l'image prise avec la caméra
+    Image image = Image.file(File(pickedFile!.path));
+    String imagePath = pickedFile.path;
+    // Ouvre l'image cropper
+    ImageCropper imageCropper = ImageCropper();
+    Image croppedImage = (await imageCropper.cropImage(
+      sourcePath: imagePath,
+
+    )) as Image;
+    if (croppedImage != null) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ImageViewScreen(),
+        ),
+      );
+
+    // Met à jour l'image affichée
+    setState(() {
+      _image = croppedImage;
+
+    });
+  }}
 
 
 
@@ -165,7 +190,7 @@ class _ChatInterfaceState extends State<ChatInterface>
                                       PopupMenuItem(height: ResponsiveFlutter.of(context).verticalScale(50),
                                         value: 'Camera',
                                         onTap: () {
-                                        pickImageFromCamera();
+                                        _takePhoto(context);
                                         },
                                         child: Text('Camera'),
 
@@ -173,23 +198,33 @@ class _ChatInterfaceState extends State<ChatInterface>
                                       PopupMenuItem(height: ResponsiveFlutter.of(context).verticalScale(50),
                                         value: 'Gallery',
                                         onTap: () {
-                                        pickImageFromGallery();
+                                          _selectPhoto(context);
                                         },
                                         child: Text('Gallery'),
                                       ),
                                     ],
                                   ),
                                     SizedBox(width:ResponsiveFlutter.of(context).moderateScale(15) ,),
-                                    Container(
-                                      height: ResponsiveFlutter.of(context)
-                                          .verticalScale(45),
-                                      width: ResponsiveFlutter.of(context)
-                                          .scale(45),
-                                      alignment: Alignment.center,
-                                      child: Image(
-                                        image: AssetImage(ImagePath().chatSwitch),
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => ImageViewScreen(),
+                                          ),
+                                        );
+                                      },
+                                      child: Container(
                                         height: ResponsiveFlutter.of(context)
-                                            .moderateScale(30),
+                                            .verticalScale(45),
+                                        width: ResponsiveFlutter.of(context)
+                                            .scale(45),
+                                        alignment: Alignment.center,
+                                        child: Image(
+                                          image: AssetImage(ImagePath().chatSwitch),
+                                          height: ResponsiveFlutter.of(context)
+                                              .moderateScale(30),
+                                        ),
                                       ),
                                     ),
                                   ],

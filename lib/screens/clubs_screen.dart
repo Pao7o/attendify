@@ -15,6 +15,40 @@ class ClubsScreen extends StatefulWidget {
   @override
   State<ClubsScreen> createState() => _ClubsScreenState();
 }
+class Filters {
+  final String? name;
+
+  Filters({this.name});
+}
+
+List<Filters> userList = [
+  Filters(name: "Techno",),
+  Filters(name: "Rap",),
+  Filters(name: "Free-party",),
+  Filters(name: "Electro",),
+  Filters(name: "Home-party",),
+  Filters(name: "Board game",),
+  Filters(name: "Nightclub",),
+  Filters(name: "Bar",),
+  Filters(name: "Disguised",),
+  Filters(name: "Dancehall",),
+  Filters(name: "Zouk",),
+  Filters(name: "Festival",),
+  Filters(name: "Concert",),
+  Filters(name: "Afterwork",),
+  Filters(name: "Students",),
+  Filters(name: "School Events",),
+  Filters(name: "Pop",),
+  Filters(name: "Rock",),
+  Filters(name: "Salsa",),
+  Filters(name: "Reggae",),
+  Filters(name: "Dub",),
+  Filters(name: "Reggaeton",),
+  Filters(name: "80's",),
+  Filters(name: "90's",),
+  Filters(name: "2000's",),
+];
+
 
 class _ClubsScreenState extends State<ClubsScreen> {
   AppColors appColors = AppColors();
@@ -32,182 +66,8 @@ class _ClubsScreenState extends State<ClubsScreen> {
             children: [
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Container(
-                        width: 116,
-                        height: 32,
-                        constraints: BoxConstraints(
-                          maxHeight: 32,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Color(0xFF3124A1),
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 4,
-                              color: Color(0x32171717),
-                              offset: Offset(0, 2),
-                            )
-                          ],
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.no_drinks,
-                                color: Colors.white,
-                                size: 20,
-                              ),
-                              Padding(
-                                padding:
-                                EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
-                                child: Text(
-                                  'Bars',
-                              style: TextStyle(fontSize: 12),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(8),
-                      child: Container(
-                        width: 116,
-                        height: 32,
-                        constraints: BoxConstraints(
-                          maxHeight: 32,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Color(0xFF3124A1),
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 4,
-                              color: Color(0x32171717),
-                              offset: Offset(0, 2),
-                            )
-                          ],
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.surround_sound_outlined,
-                                color: Colors.white,
-                                size: 20,
-                              ),
-                              Padding(
-                                padding:
-                                EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
-                                child: Text(
-                                  'Techno ',style: TextStyle(fontSize: 12),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                      child: Container(
-                        width: 116,
-                        height: 32,
-                        constraints: BoxConstraints(
-                          maxHeight: 32,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Color(0xFF3124A1),
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 4,
-                              color: Color(0x32171717),
-                              offset: Offset(0, 2),
-                            )
-                          ],
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.nightlife,
-                                color: Colors.white,
-                                size: 20,
-                              ),
-                              Padding(
-                                padding:
-                                EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
-                                child: Text(
-                                  'Nightclub',
-style: TextStyle(fontSize: 12),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                      child: Container(
-                        width: 116,
-                        height: 32,
-                        constraints: BoxConstraints(
-                          maxHeight: 32,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Color(0xFF3124A1),
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 4,
-                              color: Color(0x32171717),
-                              offset: Offset(0, 2),
-                            )
-                          ],
-                          borderRadius: BorderRadius.circular(30),
-                          shape: BoxShape.rectangle,
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.home_work,
-                                color: Colors.white,
-                                size: 20,
-                              ),
-                              Padding(
-                                padding:
-                                EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
-                                child: Text(
-                                  'Homeparty',
-                                    style: TextStyle(fontSize: 12),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                child: Container(
+
                 ),
               ),
             ],
