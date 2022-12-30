@@ -8,7 +8,6 @@ import 'package:attendify/screens/bottom_bar_screen.dart';
 import 'package:attendify/screens/forgot_password_screen.dart';
 import 'package:attendify/features/authentication/screens/signup_screen.dart';
 
-
 class LoginScreen extends StatefulWidget {
   static const routeName = '/login_screen';
   const LoginScreen({Key? key}) : super(key: key);
@@ -193,23 +192,26 @@ class LoginScreenState extends State<LoginScreen> {
                                 ),
                               ],
                             ),
-                            SizedBox(height:ResponsiveFlutter.of(context)
-                                .verticalScale(7) ,),
+                            SizedBox(
+                              height: ResponsiveFlutter.of(context)
+                                  .verticalScale(7),
+                            ),
                             GestureDetector(
                               onTap: () {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) =>
-                                    const ForgotPasswordScreen(),
+                                        const ForgotPasswordScreen(),
                                   ),
                                 );
                               },
                               child: Align(
-                                alignment:Alignment.center ,
+                                alignment: Alignment.center,
                                 child: Padding(
-                                  padding:EdgeInsets.all(ResponsiveFlutter.of(context)
-                                      .moderateScale(5)) ,
+                                  padding: EdgeInsets.all(
+                                      ResponsiveFlutter.of(context)
+                                          .moderateScale(5)),
                                   child: MyTextView(
                                     Strings.forgotPassword,
                                     textAligntNew: TextAlign.center,
@@ -226,59 +228,69 @@ class LoginScreenState extends State<LoginScreen> {
                             SizedBox(
                                 height: ResponsiveFlutter.of(context)
                                     .verticalScale(8)),
-                                SizedBox(height: ResponsiveFlutter.of(context)
-                                    .verticalScale(40),
-                                width: double.infinity,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                        GestureDetector(
-                          onTap: () {
-                            // code à exécuter lorsque le GestureDetector est tapé
-                          },
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: Container(
-                              width:ResponsiveFlutter.of(context)
-                                  .scale(170),
+                            SizedBox(
                               height: ResponsiveFlutter.of(context)
                                   .verticalScale(40),
-                              child: MaterialButton(
-                                onPressed: () {
-
-                                },
-                                child: Row(
-                                  children: [
-                                    Image.asset(
-                                      "assets/images/ic_google.png",
-                                      width: ResponsiveFlutter.of(context)
-                                          .scale(25),
-                                      height: ResponsiveFlutter.of(context)
-                                          .verticalScale(25),
+                              width: double.infinity,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      // code à exécuter lorsque le GestureDetector est tapé
+                                    },
+                                    child: Align(
+                                      alignment: Alignment.center,
+                                      child: SizedBox(
+                                        width: ResponsiveFlutter.of(context)
+                                            .scale(170),
+                                        height: ResponsiveFlutter.of(context)
+                                            .verticalScale(40),
+                                        child: MaterialButton(
+                                          onPressed: () {},
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30.0),
+                                          ),
+                                          color: Colors.white,
+                                          textColor: Colors.black,
+                                          padding: const EdgeInsets.fromLTRB(
+                                              10, 10, 10, 10),
+                                          child: Row(
+                                            children: [
+                                              Image.asset(
+                                                "assets/images/ic_google.png",
+                                                width: ResponsiveFlutter.of(
+                                                        context)
+                                                    .scale(25),
+                                                height: ResponsiveFlutter.of(
+                                                        context)
+                                                    .verticalScale(25),
+                                              ),
+                                              SizedBox(
+                                                  width: ResponsiveFlutter.of(
+                                                          context)
+                                                      .scale(10)),
+                                              const Text(
+                                                'Sign in with Google',
+                                                style: TextStyle(
+                                                  fontFamily: 'Google',
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
                                     ),
-                                    SizedBox(width: ResponsiveFlutter.of(context)
-                                        .scale(10)),
-                                    Text('Sign in with Google',style: TextStyle(
-                                      fontFamily: 'Google',
-                                      fontWeight: FontWeight.w600,
-                                    ),),
-                                  ],
-                                ),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30.0),
-                                ),
-                                color: Colors.white,
-                                textColor: Colors.black,
-                                padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                  ),
+                                ],
                               ),
                             ),
-                          ),
-                        ),
-                                  ],
-                                ),
-                                ),
-                            SizedBox(height:ResponsiveFlutter.of(context)
-                                .verticalScale(10),),
+                            SizedBox(
+                              height: ResponsiveFlutter.of(context)
+                                  .verticalScale(10),
+                            ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -293,12 +305,14 @@ class LoginScreenState extends State<LoginScreen> {
                                         size: ResponsiveFlutter.of(context)
                                             .fontSize(1.8),
                                       ),
-                                    ),GestureDetector(
+                                    ),
+                                    GestureDetector(
                                       onTap: () {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => const SignUpScreen(),
+                                            builder: (context) =>
+                                                const SignUpScreen(),
                                           ),
                                         );
                                       },
