@@ -1,5 +1,4 @@
 import 'package:attendify/features/authentication/screens/phone_number_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:open_mail_app/open_mail_app.dart';
 
