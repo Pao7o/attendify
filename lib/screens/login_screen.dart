@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:attendify/features/common/app_colors.dart';
 import 'package:attendify/features/common/common_widget.dart';
 import 'package:attendify/features/common/image_path.dart';
@@ -6,7 +7,7 @@ import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:attendify/screens/bottom_bar_screen.dart';
 import 'package:attendify/screens/forgot_password_screen.dart';
 import 'package:attendify/features/authentication/screens/signup_screen.dart';
-import 'package:flutter/material.dart';
+
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -191,69 +192,129 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               ],
                             ),
-                            SizedBox(
-                                height: ResponsiveFlutter.of(context)
-                                    .verticalScale(25)),
+                            SizedBox(height:ResponsiveFlutter.of(context)
+                                .verticalScale(7) ,),
                             GestureDetector(
                               onTap: () {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) =>
-                                        const ForgotPasswordScreen(),
+                                    const ForgotPasswordScreen(),
                                   ),
                                 );
                               },
                               child: Align(
-                                alignment: Alignment.center,
-                                child: MyTextView(
-                                  Strings.forgotPassword,
-                                  textAligntNew: TextAlign.center,
-                                  styleNew: MyTextStyle(
-                                    colorNew: appColors.lightColor,
-                                    fontWeightNew: FontWeight.bold,
-                                    size: ResponsiveFlutter.of(context)
-                                        .fontSize(2),
+                                alignment:Alignment.center ,
+                                child: Padding(
+                                  padding:EdgeInsets.all(ResponsiveFlutter.of(context)
+                                      .moderateScale(5)) ,
+                                  child: MyTextView(
+                                    Strings.forgotPassword,
+                                    textAligntNew: TextAlign.center,
+                                    styleNew: MyTextStyle(
+                                      colorNew: appColors.lightColor,
+                                      fontWeightNew: FontWeight.bold,
+                                      size: ResponsiveFlutter.of(context)
+                                          .fontSize(2),
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                            const Spacer(),
-                            Align(
-                              alignment: Alignment.center,
-                              child: MyTextView(
-                                Strings.doNotHaveAnAccount,
-                                textAligntNew: TextAlign.center,
-                                styleNew: MyTextStyle(
-                                  colorNew: appColors.mediumGrayColor,
-                                  fontWeightNew: FontWeight.w400,
-                                  size: ResponsiveFlutter.of(context)
-                                      .fontSize(1.8),
+                            SizedBox(
+                                height: ResponsiveFlutter.of(context)
+                                    .verticalScale(8)),
+                                SizedBox(height: ResponsiveFlutter.of(context)
+                                    .verticalScale(40),
+                                width: double.infinity,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                        GestureDetector(
+                          onTap: () {
+                            // code à exécuter lorsque le GestureDetector est tapé
+                          },
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Container(
+                              width:ResponsiveFlutter.of(context)
+                                  .scale(170),
+                              height: ResponsiveFlutter.of(context)
+                                  .verticalScale(40),
+                              child: MaterialButton(
+                                onPressed: () {
+
+                                },
+                                child: Row(
+                                  children: [
+                                    Image.asset(
+                                      "assets/images/ic_google.png",
+                                      width: ResponsiveFlutter.of(context)
+                                          .scale(25),
+                                      height: ResponsiveFlutter.of(context)
+                                          .verticalScale(25),
+                                    ),
+                                    SizedBox(width: ResponsiveFlutter.of(context)
+                                        .scale(10)),
+                                    Text('Sign in with Google',style: TextStyle(
+                                      fontFamily: 'Google',
+                                      fontWeight: FontWeight.w600,
+                                    ),),
+                                  ],
                                 ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                                color: Colors.white,
+                                textColor: Colors.black,
+                                padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
                               ),
                             ),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const SignUpScreen(),
-                                  ),
-                                );
-                              },
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: MyTextView(
-                                  Strings.signUp,
-                                  textAligntNew: TextAlign.center,
-                                  styleNew: MyTextStyle(
-                                    colorNew: appColors.lightPinkColor,
-                                    fontWeightNew: FontWeight.bold,
-                                    size: ResponsiveFlutter.of(context)
-                                        .fontSize(2),
-                                  ),
+                          ),
+                        ),
+                                  ],
                                 ),
-                              ),
+                                ),
+                            SizedBox(height:ResponsiveFlutter.of(context)
+                                .verticalScale(10),),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Column(
+                                  children: [
+                                    MyTextView(
+                                      Strings.doNotHaveAnAccount,
+                                      textAligntNew: TextAlign.center,
+                                      styleNew: MyTextStyle(
+                                        colorNew: appColors.mediumGrayColor,
+                                        fontWeightNew: FontWeight.w400,
+                                        size: ResponsiveFlutter.of(context)
+                                            .fontSize(1.8),
+                                      ),
+                                    ),GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => const SignUpScreen(),
+                                          ),
+                                        );
+                                      },
+                                      child: MyTextView(
+                                        Strings.signUp,
+                                        textAligntNew: TextAlign.center,
+                                        styleNew: MyTextStyle(
+                                          colorNew: appColors.lightPinkColor,
+                                          fontWeightNew: FontWeight.bold,
+                                          size: ResponsiveFlutter.of(context)
+                                              .fontSize(2),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
                           ],
                         ),

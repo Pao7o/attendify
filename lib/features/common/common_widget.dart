@@ -129,7 +129,7 @@ Widget commonTestField(
           obscureText: obscureText!,
           validator: validateFunction,
           cursorColor: appColors.lightColor,
-          keyboardType: keyboardType,
+          keyboardType: TextInputType.text,
           controller: controller,
           scrollPadding: EdgeInsets.zero,
           expands: false,

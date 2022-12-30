@@ -18,7 +18,7 @@ class Strings {
 
   static const String login = "Login";
   static const String pleaseFillTheDetails = "Please fill the details to continue.";
-  static const String emailAddress = "Email Address";
+  static const String emailAddress = "Email Address or Phone Number";
   static const String password = "Password";
   static const String doNotHaveAnAccount = "Don't have an account?";
 
@@ -27,7 +27,7 @@ class Strings {
   static const String lastName = "Last Name";
 
   static const String forgotPassword = "Forgot Password";
-  static const String pleaseFillYourEmail = "Please fill your email address associated with\nyour account";
+  static const String pleaseFillYourEmail = "Please fill your email address or phone number associated with your account";
   static const String submit = "SUBMIT";
 
   static const String verification = "Verification";

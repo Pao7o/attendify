@@ -25,36 +25,38 @@ class EmailVerificationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors().appMediumColor,
-      body: Column(
-        children: [
-          SizedBox(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+                height: ResponsiveFlutter.of(context)
+                    .verticalScale(40)),
+            Image.asset(
+              ImagePath.logo,
               height: ResponsiveFlutter.of(context)
-                  .verticalScale(40)),
-          Image.asset(
-            ImagePath.logo,
-            height: ResponsiveFlutter.of(context)
-                .verticalScale(30),
-          ),
-
-          Container(
-            height: ResponsiveFlutter.of(context)
-                .verticalScale(300),
-            padding: EdgeInsets.symmetric(
-                horizontal: ResponsiveFlutter.of(context)
-                    .moderateScale(25)),
-            child: Image.asset(
-              ImagePath.mailSent,
-              alignment: Alignment.bottomCenter,
+                  .verticalScale(30),
             ),
-          ),
 
-          /*SizedBox(
-            height: 80,
-              width: 80,
-              child: LottieBuilder.asset("assets/lottie/sent.json", repeat: true)),*/
-              SizedBox(height: 19,),
-                const PinCodeVerificationScreen(phoneNumber: "+33749363363",)
-                  ]),
+            Container(
+              height: ResponsiveFlutter.of(context)
+                  .verticalScale(300),
+              padding: EdgeInsets.symmetric(
+                  horizontal: ResponsiveFlutter.of(context)
+                      .moderateScale(25)),
+              child: Image.asset(
+                ImagePath.mailSent,
+                alignment: Alignment.bottomCenter,
+              ),
+            ),
+
+            /*SizedBox(
+              height: 80,
+                width: 80,
+                child: LottieBuilder.asset("assets/lottie/sent.json", repeat: true)),*/
+                SizedBox(height: 19,),
+                  const PinCodeVerificationScreen(phoneNumber: "+33749363363",)
+                    ]),
+      ),
                 );
   }
 
@@ -207,7 +209,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30.0),
               child: Text(
-                hasError ? "*Please fill up all the cells properly" : "",
+                hasError ? "*Wrong code" : "",
                 style: const TextStyle(
                   color: Colors.red,
                   fontSize: 12,
@@ -224,7 +226,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                 style: TextStyle(color: AppColors().lightColor, fontSize: 15),
                 ),
                 TextButton(
-                  onPressed: () => snackBar("OTP resend!!"),
+                  onPressed: () => snackBar("Code resent !"),
                   child: Text(
                     "RESEND",
                     style: TextStyle(
