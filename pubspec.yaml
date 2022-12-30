@@ -42,6 +42,8 @@ dependencies:
   intl: ^0.17.0 # For Date and Time
   crypto: ^3.0.1 # For encrypt and decrypt data
   url_launcher: ^6.0.18 # Url launcher
+  flutter_speed_dial: ^6.2.0
+  floating_bottom_bar: ^0.0.1
 
   # UI Plugin --->>
   flutter_switch: ^0.3.2 # for switch
@@ -67,6 +69,7 @@ dependencies:
   path_provider: ^2.0.11
   carousel_slider: ^4.1.1
   readmore: ^2.2.0
+  image_cropper: ^3.0.1
 
   #Story/social plugin
   cached_network_image: ^3.2.0
@@ -79,6 +82,8 @@ dependencies:
   pin_code_fields: ^7.4.0
   open_mail_app: ^0.4.5
   intl_phone_number_input: ^0.7.1
+  flutter_expandable_fab: ^1.6.1
+  filter_list: ^1.0.2
 
 
   #MAPS Plugin --->>
