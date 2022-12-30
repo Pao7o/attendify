@@ -10,13 +10,14 @@ import 'package:attendify/features/authentication/screens/signup_screen.dart';
 
 
 class LoginScreen extends StatefulWidget {
+  static const routeName = '/login_screen';
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  LoginScreenState createState() => LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class LoginScreenState extends State<LoginScreen> {
   AppColors appColors = AppColors();
   ImagePath imagePath = ImagePath();
   TextEditingController email = TextEditingController();

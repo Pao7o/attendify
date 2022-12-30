@@ -6,7 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class FirebaseAuthentication {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Stream checkUserAuthState() {
+  Stream<User?> checkUserAuthState() {
     return _auth.authStateChanges();
   }
 
