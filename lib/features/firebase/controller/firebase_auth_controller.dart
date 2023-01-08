@@ -18,6 +18,10 @@ class FirebaseAuthController {
     return await _firebaseAuthentication.signUpWithEmailAndPassword(
         context: context, emailAddress: email, password: password);
   }
+
+  Future<bool> checkIfEmailVerified() async {
+    return await _firebaseAuthentication.checkIfEmailIsVerified();
+  }
 }
 
 final firebaseAutheControllerProvider = Provider((ref) {
