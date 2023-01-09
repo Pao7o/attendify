@@ -2,16 +2,32 @@ import 'package:attendify/features/common/image_path.dart';
 import 'package:flutter/material.dart';
 import '../features/common/app_colors.dart';
 import 'full_screen_images_screen.dart';
+import 'mini_events_widget.dart';
 
 class ClubDetails extends StatefulWidget {
   final String image; // Ajoutez cette ligne pour passer l'image en paramètre
   final String nameGroup;
   final List<String> passions;
 
-  ClubDetails({required this.image,required this.nameGroup,required this.passions}) : super(); // Et cette ligne pour l'initialiser
+
+  ClubDetails({required this.image,required this.nameGroup,required this.passions,}) : super(); // Et cette ligne pour l'initialiser
 
   @override
-  _ClubDetailsState createState() => _ClubDetailsState();
+  _ClubDetailsState createState() => _ClubDetailsState(events: [ {
+    'name': 'Soirée de fin d\'année',
+    'date': '31 décembre 2022',
+    'numGroupMembers': 50,
+  },
+    {
+      'name': 'Randonnée en montagne',
+      'date': '6 janvier 2023',
+      'numGroupMembers': 12,
+    },
+    {
+      'name': 'Festival de musique',
+      'date': '19-21 août 2023',
+      'numGroupMembers': 35,
+    },]);
 }
 
 class _ClubDetailsState extends State<ClubDetails> {
@@ -24,6 +40,24 @@ class _ClubDetailsState extends State<ClubDetails> {
     );
   }
   String _buttonText = 'Join group';
+
+  List<String> imageAssets = [
+    ImagePath.image_1,
+    ImagePath.image_2,
+    ImagePath.image_3,
+    ImagePath.image_4,
+    ImagePath.image_5,
+    ImagePath.image_6,
+    ImagePath.image_7,
+    ImagePath.image_8,
+
+  ];
+  final List<Map<String, dynamic>> events;
+
+   _ClubDetailsState({
+    required this.events,
+  }) : super();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -105,7 +139,7 @@ class _ClubDetailsState extends State<ClubDetails> {
                               'Public group',
                               style: TextStyle(
                                 fontSize: 14,
-                                color: Colors.white,
+                                color: AppColors().lightColor,
                               ),
                             ),
                             SizedBox(width: 25,),
@@ -113,7 +147,7 @@ class _ClubDetailsState extends State<ClubDetails> {
                               '120 members',
                               style: TextStyle(
                                 fontSize: 14,
-                                color: Colors.white,
+                                color: AppColors().lightColor,
                                   ),
                                 ),
                             SizedBox(width: 25,),
@@ -121,7 +155,7 @@ class _ClubDetailsState extends State<ClubDetails> {
                               '3 friends',
                               style: TextStyle(
                                 fontSize: 14,
-                                color: Colors.white,
+                                color: AppColors().lightColor,
                               ),
                             ),
                               ],
@@ -167,7 +201,7 @@ class _ClubDetailsState extends State<ClubDetails> {
                             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                             style: TextStyle(
                               fontSize: 16,
-                              color: Colors.white,
+                              color: AppColors().lightColor,
                             ),
                           ),
                         ),
@@ -201,7 +235,7 @@ class _ClubDetailsState extends State<ClubDetails> {
                             .toList(),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(16),
+                        padding: const EdgeInsets.only(left: 16,top: 16),
                         child: Align(
                           alignment: Alignment.topLeft,
                           child: Text(
@@ -214,23 +248,21 @@ class _ClubDetailsState extends State<ClubDetails> {
                           ),
                         ),
                       ),
-                      GridView.count(
+                      GridView.count(padding: EdgeInsets.all(16),
                         shrinkWrap: true,
                         primary: false,
-                        crossAxisCount: 3, // Nombre de colonnes
-                        children: List.generate(9, (index) {
+                        crossAxisCount: 6, // Nombre de colonnes
+                        children: List.generate(imageAssets.length, (index) {
                           return InkWell(
                             onTap: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => FullScreenImage(imageAsset:ImagePath.image_2),
+                                  builder: (context) => FullScreenImage(imageAssets: imageAssets,initialIndex: index),
                                 ),
                               );
                             },
                             child: Container(
-                              height: 10,
-                              width: 10,
                               decoration: BoxDecoration(
                                 border: Border.all(color: Colors.grey),
                                 boxShadow: [
@@ -241,15 +273,40 @@ class _ClubDetailsState extends State<ClubDetails> {
                                 ],
                               ),
                               child: Image.asset(
-                                ImagePath.image_2,
+                                imageAssets[index],
                                 fit: BoxFit.cover,
                               ),
-
                             ),
                           );
                         }),
-                      )
-
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16,top: 16),
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            'Events :',
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: AppColors().btnColor,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Column(
+                        children: events.map((event) {
+                          return Column(
+                            children: [
+                              EventWidget(
+                                eventName: event['name'],
+                                // autres propriétés de l'événement
+                              ),
+                              SizedBox(height: 8),
+                            ],
+                          );
+                        }).toList(),
+                      ),
                     ],
                       ),
                     ],

@@ -37,7 +37,7 @@ class HomeScreenState extends State<HomeScreen> {
           body: Column(
             children: [
               Container(
-                height: ResponsiveFlutter.of(context).moderateScale(235),
+                height: ResponsiveFlutter.of(context).moderateScale(240),
                 width: MediaQuery.of(context).size.width,
                 padding: EdgeInsets.only(
                   top: MediaQuery.of(context).padding.top +

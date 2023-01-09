@@ -5,6 +5,7 @@ import 'package:attendify/screens/chat_screen.dart';
 import 'package:attendify/screens/feed_screen.dart';
 import 'package:attendify/screens/friends_screen.dart';
 import 'package:attendify/screens/my_events_screen.dart';
+import 'package:attendify/screens/people_adding_screen.dart';
 import 'package:attendify/screens/share_media_screen.dart';
 import 'package:attendify/screens/story_view.dart';
 import 'package:dashed_circle/dashed_circle.dart';
@@ -363,7 +364,7 @@ class _ChatInterfaceState extends State<ChatInterface>
                           children: const [
                             FeedScreen(),
                             ClubsScreen(),
-                            MyBookingScreen(),
+                            PeopleAdding(),
                           ]))
                 ],
               ),
