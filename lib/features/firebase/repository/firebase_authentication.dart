@@ -11,38 +11,39 @@ class FirebaseAuthentication {
     return _auth.authStateChanges();
   }
 
-  Future<bool> signUpWithEmailAndPassword(
+  Future<UserCredential?> signUpWithEmailAndPassword(
       {required BuildContext context,
       required String emailAddress,
       required String password}) async {
+    UserCredential? userCredential;
     try {
-      await _auth
-          .createUserWithEmailAndPassword(
+      userCredential = await _auth.createUserWithEmailAndPassword(
         email: emailAddress,
         password: password,
-      )
-          .then((value) async {
-        await value.user!.sendEmailVerification().then((value) {
-          return true;
-        });
-      });
+      );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');
-        return false;
       } else if (e.code == 'email-already-in-use') {
         Navigator.pop(context);
         Utils().errorDialog(
             context: context,
             error: 'The account already exists for that email.');
         print('The account already exists for that email.');
-        return false;
       }
     } catch (e) {
       print(e);
-      return false;
     }
-    return true;
+    return userCredential;
+  }
+
+  Future checkIfEmailIsVerified() async {
+    bool isVerified = false;
+    await _auth.currentUser!.reload().then((value) async {
+      isVerified = _auth.currentUser?.emailVerified ?? false;
+    });
+
+    return isVerified;
   }
 
   Future<UserCredential> signInWithGoogle() async {
