@@ -16,17 +16,30 @@ class FirebaseAuthController {
     return firebaseAuthentication.checkUserAuthState();
   }
 
-  Future signupWithEmailandPassword(
-      {required BuildContext context,
-      required String email,
-      required String password}) async {
+  Future<bool> signupWithEmailandPassword({
+    required BuildContext context,
+    required String email,
+    required String password,
+    required String firstName,
+    required String lastName,
+  }) async {
     return await firebaseAuthentication
         .signUpWithEmailAndPassword(
             context: context, emailAddress: email, password: password)
-        .then((value) {
-      firebaseCloudFirestoreController.addNewUser(AppUser(
-        email: email,
-      ));
+        .then((userCredential) async {
+      await firebaseCloudFirestoreController
+          .addNewUser(AppUser(
+              email: email,
+              firstName: firstName,
+              lastName: lastName,
+              username: "",
+              uid: userCredential!.user!.uid,
+              phoneNumber: ""))
+          .then((value) {
+        userCredential.user!.sendEmailVerification();
+        return true;
+      });
+      return true;
     });
   }
 

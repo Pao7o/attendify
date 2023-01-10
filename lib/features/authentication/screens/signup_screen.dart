@@ -23,12 +23,22 @@ class SignUpScreen extends ConsumerStatefulWidget {
 class SignUpScreenState extends ConsumerState<SignUpScreen> {
   AppColors appColors = AppColors();
   ImagePath imagePath = ImagePath();
-  TextEditingController? email = TextEditingController();
-  TextEditingController? password = TextEditingController();
-  TextEditingController? firstName = TextEditingController();
-  TextEditingController? lastName = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
   bool isLoading = false;
   final _formKey = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    firstNameController.dispose();
+    lastNameController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -183,7 +193,8 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
                                                         return null;
                                                       },
                                                       context: context,
-                                                      controller: firstName,
+                                                      controller:
+                                                          firstNameController,
                                                       hintText:
                                                           Strings.firstName,
                                                       image: ImagePath.avatar,
@@ -208,7 +219,8 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
                                                         return null;
                                                       },
                                                       context: context,
-                                                      controller: lastName,
+                                                      controller:
+                                                          lastNameController,
                                                       hintText:
                                                           Strings.lastName,
                                                       image: ImagePath.avatar,
@@ -237,7 +249,7 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
                                                   return null;
                                                 },
                                                 context: context,
-                                                controller: email,
+                                                controller: emailController,
                                                 hintText: Strings.emailAddress,
                                                 image: ImagePath.email,
                                                 keyboardType:
@@ -258,7 +270,7 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
                                                   return null;
                                                 },
                                                 context: context,
-                                                controller: password,
+                                                controller: passwordController,
                                                 hintText: Strings.password,
                                                 image: ImagePath.password,
                                                 keyboardType: TextInputType
@@ -272,7 +284,8 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
                                                     height: 150,
                                                     minLength: 0,
                                                     onSuccess: () {},
-                                                    controller: password!),
+                                                    controller:
+                                                        passwordController),
                                               )
                                             ],
                                           ),
@@ -291,21 +304,32 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
                                               .validate()) {
                                             Utils().sendingEmailDialog(
                                                 context: context,
-                                                email: email!.text.trim());
+                                                email: emailController.text
+                                                    .trim());
                                             await ref
                                                 .read(
                                                     firebaseAutheControllerProvider)
                                                 .signupWithEmailandPassword(
-                                                    context: context,
-                                                    email: email!.text.trim(),
-                                                    password: password!.text)
+                                                  context: context,
+                                                  email: emailController.text
+                                                      .trim(),
+                                                  password:
+                                                      passwordController.text,
+                                                  firstName: firstNameController
+                                                      .text
+                                                      .trim(),
+                                                  lastName: lastNameController
+                                                      .text
+                                                      .trim(),
+                                                )
                                                 .then((value) {
                                               if (value == true) {
                                                 Navigator.pop(context);
                                                 Navigator.pushNamed(context,
                                                     EmailVerification.routeName,
-                                                    arguments:
-                                                        email!.text.trim());
+                                                    arguments: emailController
+                                                        .text
+                                                        .trim());
                                               }
                                             });
                                           }
