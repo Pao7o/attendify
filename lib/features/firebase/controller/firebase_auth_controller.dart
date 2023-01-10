@@ -1,3 +1,4 @@
+import 'package:attendify/features/authentication/screens/email_verification_screen.dart';
 import 'package:attendify/features/firebase/controller/firebase_firestore_controller.dart';
 import 'package:attendify/features/firebase/models/app_user_model.dart';
 import 'package:attendify/features/firebase/repository/firebase_authentication.dart';
@@ -16,7 +17,7 @@ class FirebaseAuthController {
     return firebaseAuthentication.checkUserAuthState();
   }
 
-  Future<bool> signupWithEmailandPassword({
+  Future signupWithEmailandPassword({
     required BuildContext context,
     required String email,
     required String password,
@@ -35,11 +36,12 @@ class FirebaseAuthController {
               username: "",
               uid: userCredential!.user!.uid,
               phoneNumber: ""))
-          .then((value) {
-        userCredential.user!.sendEmailVerification();
-        return true;
+          .then((value) async {
+        await userCredential.user!.sendEmailVerification().then((value) {
+          Navigator.pushNamed(context, EmailVerification.routeName,
+              arguments: email);
+        });
       });
-      return true;
     });
   }
 

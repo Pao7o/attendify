@@ -10,8 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_pw_validator/flutter_pw_validator.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'email_verification_screen.dart';
-
 class SignUpScreen extends ConsumerStatefulWidget {
   static const String routeName = "/signup_screen";
   const SignUpScreen({Key? key}) : super(key: key);
@@ -321,17 +319,7 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
                                                   lastName: lastNameController
                                                       .text
                                                       .trim(),
-                                                )
-                                                .then((value) {
-                                              if (value == true) {
-                                                Navigator.pop(context);
-                                                Navigator.pushNamed(context,
-                                                    EmailVerification.routeName,
-                                                    arguments: emailController
-                                                        .text
-                                                        .trim());
-                                              }
-                                            });
+                                                );
                                           }
                                         },
                                         child: commonButton(
