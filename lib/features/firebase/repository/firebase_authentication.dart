@@ -61,7 +61,11 @@ class FirebaseAuthentication {
     );
 
     // Once signed in, return the UserCredential
-    return await FirebaseAuth.instance.signInWithCredential(credential);
+    return await _auth.signInWithCredential(credential);
+  }
+
+  Future logOut() async {
+    await _auth.signOut();
   }
 }
 

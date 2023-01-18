@@ -4,6 +4,7 @@ import 'package:attendify/features/common/constants.dart';
 import 'package:attendify/features/common/image_path.dart';
 import 'package:attendify/features/common/shared_pref.dart';
 import 'package:attendify/features/common/strings.dart';
+import 'package:attendify/features/firebase/controller/firebase_auth_controller.dart';
 import 'package:attendify/model/common_model.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:attendify/screens/about_us_screen.dart';
@@ -16,15 +17,16 @@ import 'package:attendify/screens/privacy_policy_screen.dart';
 import 'package:attendify/screens/terms_and_condition_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SettingScreen extends StatefulWidget {
+class SettingScreen extends ConsumerStatefulWidget {
   const SettingScreen({Key? key}) : super(key: key);
 
   @override
-  _SettingScreenState createState() => _SettingScreenState();
+  SettingScreenState createState() => SettingScreenState();
 }
 
-class _SettingScreenState extends State<SettingScreen> {
+class SettingScreenState extends ConsumerState<SettingScreen> {
   AppColors appColors = AppColors();
   SharedPref pref = SharedPref();
 
@@ -227,13 +229,16 @@ class _SettingScreenState extends State<SettingScreen> {
                     ),
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const LoginScreen(),
-                          ),
-                          (route) => false,
-                        );
+                        ref
+                            .read(firebaseAutheControllerProvider)
+                            .logout()
+                            .then((value) {
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            LoginScreen.routeName,
+                            (route) => false,
+                          );
+                        });
                       },
                       child: Container(
                         height: ResponsiveFlutter.of(context).scale(50),

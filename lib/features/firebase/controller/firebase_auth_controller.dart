@@ -48,6 +48,10 @@ class FirebaseAuthController {
   Future<bool> checkIfEmailVerified() async {
     return await firebaseAuthentication.checkIfEmailIsVerified();
   }
+
+  Future logout() async {
+    await firebaseAuthentication.logOut();
+  }
 }
 
 final firebaseAutheControllerProvider = Provider((ref) {

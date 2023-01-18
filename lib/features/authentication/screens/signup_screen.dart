@@ -62,7 +62,7 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
                               children: [
                                 Container(
                                   height: ResponsiveFlutter.of(context)
-                                      .verticalScale(260),
+                                      .verticalScale(240),
                                   width: double.infinity,
                                   color: appColors.appDarkColor,
                                 ),
@@ -333,60 +333,134 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
                                 SizedBox(
                                     height: ResponsiveFlutter.of(context)
                                         .verticalScale(10)),
-                                GestureDetector(
-                                  onTap: () {
-                                    // code à exécuter lorsque le GestureDetector est tapé
-                                  },
-                                  child: Padding(
-                                    padding: EdgeInsets.all(
-                                        ResponsiveFlutter.of(context)
-                                            .moderateScale(8.5)),
-                                    child: Align(
-                                      alignment: Alignment.center,
-                                      child: SizedBox(
-                                        width: ResponsiveFlutter.of(context)
-                                            .scale(170),
-                                        height: ResponsiveFlutter.of(context)
-                                            .verticalScale(35),
-                                        child: MaterialButton(
-                                          onPressed: () {},
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(30.0),
-                                          ),
-                                          color: Colors.white,
-                                          textColor: Colors.black,
-                                          padding: const EdgeInsets.fromLTRB(
-                                              10, 10, 10, 10),
-                                          child: Row(
-                                            children: [
-                                              Image.asset(
-                                                "assets/images/ic_google.png",
-                                                width: ResponsiveFlutter.of(
-                                                        context)
-                                                    .scale(25),
-                                                height: ResponsiveFlutter.of(
-                                                        context)
-                                                    .verticalScale(25),
-                                              ),
-                                              SizedBox(
-                                                  width: ResponsiveFlutter.of(
-                                                          context)
-                                                      .scale(10)),
-                                              const Text(
-                                                'Sign up with Google',
-                                                style: TextStyle(
-                                                  fontFamily: 'Google',
-                                                  fontWeight: FontWeight.w600,
+                                Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      GestureDetector(
+                                        onTap: () {
+                                          // code à exécuter lorsque le GestureDetector est tapé
+                                        },
+                                        child: Padding(
+                                          padding: EdgeInsets.all(
+                                              ResponsiveFlutter.of(context)
+                                                  .moderateScale(8.5)),
+                                          child: Align(
+                                            alignment: Alignment.center,
+                                            child: SizedBox(
+                                              width:
+                                                  ResponsiveFlutter.of(context)
+                                                      .scale(120),
+                                              height:
+                                                  ResponsiveFlutter.of(context)
+                                                      .verticalScale(35),
+                                              child: MaterialButton(
+                                                onPressed: () {},
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          30.0),
+                                                ),
+                                                color: Colors.white,
+                                                textColor: Colors.black,
+                                                padding:
+                                                    const EdgeInsets.fromLTRB(
+                                                        10, 10, 10, 10),
+                                                child: Row(
+                                                  children: [
+                                                    Image.asset(
+                                                      "assets/images/ic_google.png",
+                                                      width:
+                                                          ResponsiveFlutter.of(
+                                                                  context)
+                                                              .scale(25),
+                                                      height: ResponsiveFlutter
+                                                              .of(context)
+                                                          .verticalScale(25),
+                                                    ),
+                                                    SizedBox(
+                                                        width: ResponsiveFlutter
+                                                                .of(context)
+                                                            .scale(10)),
+                                                    const Text(
+                                                      'Sign up',
+                                                      style: TextStyle(
+                                                        fontFamily: 'Google',
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
-                                            ],
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ),
-                                ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          // code à exécuter lorsque le GestureDetector est tapé
+                                        },
+                                        child: Padding(
+                                          padding: EdgeInsets.all(
+                                              ResponsiveFlutter.of(context)
+                                                  .moderateScale(8.5)),
+                                          child: Align(
+                                            alignment: Alignment.center,
+                                            child: SizedBox(
+                                              width:
+                                                  ResponsiveFlutter.of(context)
+                                                      .scale(120),
+                                              height:
+                                                  ResponsiveFlutter.of(context)
+                                                      .verticalScale(35),
+                                              child: MaterialButton(
+                                                onPressed: () {},
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          30.0),
+                                                ),
+                                                color: Colors.white,
+                                                textColor: Colors.black,
+                                                padding:
+                                                    const EdgeInsets.fromLTRB(
+                                                        10, 10, 10, 10),
+                                                child: Row(
+                                                  children: [
+                                                    Image.asset(
+                                                      "assets/images/ic_phone_blue.png",
+                                                      width:
+                                                          ResponsiveFlutter.of(
+                                                                  context)
+                                                              .scale(25),
+                                                      height: ResponsiveFlutter
+                                                              .of(context)
+                                                          .verticalScale(25),
+                                                    ),
+                                                    SizedBox(
+                                                        width: ResponsiveFlutter
+                                                                .of(context)
+                                                            .scale(10)),
+                                                    const Text(
+                                                      'Sign up',
+                                                      style: TextStyle(
+                                                        fontFamily: 'Google',
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ]),
+                                SizedBox(
+                                    height: ResponsiveFlutter.of(context)
+                                        .verticalScale(15)),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
