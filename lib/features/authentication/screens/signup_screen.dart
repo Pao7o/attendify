@@ -150,7 +150,7 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
                                   children: [
                                     Container(
                                       height: ResponsiveFlutter.of(context)
-                                          .verticalScale(170),
+                                          .verticalScale(180),
                                       padding: EdgeInsets.symmetric(
                                         vertical: ResponsiveFlutter.of(context)
                                             .moderateScale(20),
