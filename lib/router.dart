@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'features/authentication/screens/email_verification_screen.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
+  print("Recived route is ${settings.name}");
   switch (settings.name) {
     case SplashScreen.routeName:
       return MaterialPageRoute(builder: (_) => const SplashScreen());
