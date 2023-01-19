@@ -39,10 +39,14 @@ class FirebaseAuthentication {
 
   Future checkIfEmailIsVerified() async {
     bool isVerified = false;
-    await _auth.currentUser!.reload().then((value) async {
-      isVerified = _auth.currentUser?.emailVerified ?? false;
-    });
+   try{
+     await _auth.currentUser!.reload().then((value) async {
+       isVerified = _auth.currentUser?.emailVerified ?? false;
+     });
 
+   }catch (e){
+     print("Check if email is verified error is ${e.toString()}");
+   }
     return isVerified;
   }
 

@@ -45,6 +45,23 @@ class FirebaseAuthController {
     });
   }
 
+  Future signUpWithGoogle() async {
+    await firebaseAuthentication.signInWithGoogle().then((credential) {
+      if(credential.additionalUserInfo!.isNewUser){
+        firebaseCloudFirestoreController.addNewUser(AppUser(
+          email: credential.user?.email ?? "",
+          firstName: credential.user?.displayName?[0] ?? "",
+          lastName: credential.user?.displayName?[1] ?? "",
+          username: " ",
+          uid: credential.user!.uid,
+          phoneNumber: '',
+
+        ));
+      }
+
+    });
+  }
+
   Future<bool> checkIfEmailVerified() async {
     return await firebaseAuthentication.checkIfEmailIsVerified();
   }
