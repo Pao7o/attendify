@@ -39,19 +39,19 @@ class FirebaseAuthentication {
 
   Future checkIfEmailIsVerified() async {
     bool isVerified = false;
-   try{
-     await _auth.currentUser!.reload().then((value) async {
-       isVerified = _auth.currentUser?.emailVerified ?? false;
-     });
-
-   }catch (e){
-     print("Check if email is verified error is ${e.toString()}");
-   }
+    try {
+      await _auth.currentUser!.reload().then((value) async {
+        isVerified = _auth.currentUser?.emailVerified ?? false;
+      });
+    } catch (e) {
+      print("Check if email is verified error is ${e.toString()}");
+    }
     return isVerified;
   }
 
   Future<UserCredential> signInWithGoogle() async {
     // Trigger the authentication flow
+    print("sign in with google triggered");
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
     // Obtain the auth details from the request

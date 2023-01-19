@@ -2,6 +2,7 @@ import 'package:attendify/features/authentication/screens/email_verification_scr
 import 'package:attendify/features/firebase/controller/firebase_firestore_controller.dart';
 import 'package:attendify/features/firebase/models/app_user_model.dart';
 import 'package:attendify/features/firebase/repository/firebase_authentication.dart';
+import 'package:attendify/screens/bottom_bar_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -45,20 +46,27 @@ class FirebaseAuthController {
     });
   }
 
-  Future signUpWithGoogle() async {
+  Future signUpWithGoogle(BuildContext context) async {
+    print("sign up with google controller");
     await firebaseAuthentication.signInWithGoogle().then((credential) {
-      if(credential.additionalUserInfo!.isNewUser){
-        firebaseCloudFirestoreController.addNewUser(AppUser(
+      if (credential.additionalUserInfo!.isNewUser) {
+        firebaseCloudFirestoreController
+            .addNewUser(AppUser(
           email: credential.user?.email ?? "",
           firstName: credential.user?.displayName?[0] ?? "",
           lastName: credential.user?.displayName?[1] ?? "",
           username: " ",
           uid: credential.user!.uid,
           phoneNumber: '',
-
-        ));
+        ))
+            .then((value) {
+          Navigator.pushNamedAndRemoveUntil(
+              context, BottomBarScreen.routeName, ((route) => false));
+        });
+      } else {
+        Navigator.pushNamedAndRemoveUntil(
+            context, BottomBarScreen.routeName, ((route) => false));
       }
-
     });
   }
 

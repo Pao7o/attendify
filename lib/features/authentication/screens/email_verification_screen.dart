@@ -1,6 +1,6 @@
-import 'package:attendify/features/authentication/screens/phone_number_screen.dart';
 import 'package:attendify/features/common/utils.dart';
 import 'package:attendify/features/firebase/controller/firebase_auth_controller.dart';
+import 'package:attendify/screens/bottom_bar_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:open_mail_app/open_mail_app.dart';
@@ -103,7 +103,7 @@ class EmailVerification extends ConsumerWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const PhoneNumbers(),
+                      builder: (context) => const BottomBarScreen(),
                     ),
                   );
                 } else {

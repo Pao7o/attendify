@@ -8,9 +8,7 @@ class FirebaseCloudFirestore {
 
   Future addNewUser(AppUser user) async {
     try {
-      db.collection(USERS_DATABASE).add(user.toMap()).then(
-          (DocumentReference doc) =>
-              print('DocumentSnapshot added with ID: ${doc.id}'));
+      db.collection(USERS_DATABASE).doc(user.uid).set(user.toMap());
     } catch (e) {
       print("Add new user error ${e.toString()}");
     }
