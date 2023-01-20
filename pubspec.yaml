@@ -44,6 +44,7 @@ dependencies:
   url_launcher: ^6.0.18 # Url launcher
   flutter_speed_dial: ^6.2.0
   floating_bottom_bar: ^0.0.1
+  permission_handler: ^10.2.0
 
   # UI Plugin --->>
   flutter_switch: ^0.3.2 # for switch

@@ -16,6 +16,8 @@ import 'package:intl/intl.dart';
 import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:material_dialogs/material_dialogs.dart';
+import 'package:lottie/lottie.dart';
+
 
 class Utils {
   AppColors appColors = AppColors();

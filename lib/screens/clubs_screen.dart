@@ -82,17 +82,19 @@ class _ClubsScreenState extends State<ClubsScreen> {
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(8.0)),
                   child: Row(
                     children: [
                       // Ajoutez une icône de loupe pour la recherche
                       Icon(Icons.search),
-                      SizedBox(width: 8.0),
+                      SizedBox(width: ResponsiveFlutter.of(context).moderateScale(8.0)),
                       // Ajoutez une zone de texte pour la barre de recherche
                       Expanded(
                         child: TextField(
                           decoration: InputDecoration.collapsed(
                             hintText: 'Search clubs...',
+                            hintStyle: TextStyle(fontSize:ResponsiveFlutter.of(context).fontSize(1.4)),
+
                           ),
                           onChanged: (value) {
                             // Appelez la fonction de recherche ici
@@ -116,6 +118,7 @@ class _ClubsScreenState extends State<ClubsScreen> {
       Expanded(
         child: DisplayClubs(searchText,selectedFilterList!),
       ),
+
           ],
         ),
       ),
@@ -143,117 +146,129 @@ class _ClubsScreenState extends State<ClubsScreen> {
 
      itemCount = displayedGroups.length;
 
-     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: ListView.separated(
-          padding: EdgeInsets.zero,
-          itemCount: itemCount,
-          itemBuilder: (context, index) {
+     return SingleChildScrollView(
+       child: Container(
+         height: MediaQuery.of(context).size.height-ResponsiveFlutter.of(context).verticalScale(60),
+         child: Padding(
+            padding:  EdgeInsets.symmetric(horizontal: ResponsiveFlutter.of(context).moderateScale(8.0),),
+            child: ListView.separated(
+              shrinkWrap: true,
+              physics: ScrollPhysics(),
+              padding: EdgeInsets.zero,
+              itemCount: itemCount,
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        transitionDuration: Duration(milliseconds: 500),
+                        pageBuilder: (context, animation, secondaryAnimation) => ClubDetails(image: ImagePath.image_2,nameGroup:displayedGroups[index].name,passions: displayedGroups[index]
+                            .passions, members: displayedGroups[index].memberCount, friends: displayedGroups[index].friendsCount, isPublic: displayedGroups[index].isPublic, ),
+                        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                          return FadeTransition(
+                            opacity: animation,
+                            child: child,
+                          );
+                        },
+                      ),
+                    );
+                  },
+                  child: Card(
+                    color: Colors.black87,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Container(
+                      height: ResponsiveFlutter.of(context).verticalScale(150),
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(ImagePath.image_2),
+                          fit: BoxFit.cover,
+                        ),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Padding(
+                        padding:  EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(8.0)),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                CircleAvatar(
+                                  radius: ResponsiveFlutter.of(context).moderateScale(30),
+                                  backgroundImage: NetworkImage(displayedGroups[index].profilePicture),
+                                ),
+                                SizedBox(width: ResponsiveFlutter.of(context).scale(8.0)),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text(
+                                      displayedGroups[index].name,
+                                      style: TextStyle(
+                                        fontSize: ResponsiveFlutter.of(context).fontSize(2),
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
 
-            return GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  PageRouteBuilder(
-                    transitionDuration: Duration(milliseconds: 500),
-                    pageBuilder: (context, animation, secondaryAnimation) => ClubDetails(image: ImagePath.image_2,nameGroup:displayedGroups[index].name,passions: displayedGroups[index]
-                        .passions, ),
-                    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                      return FadeTransition(
-                        opacity: animation,
-                        child: child,
-                      );
-                    },
+                                    Text(isPublicDisplayer(displayedGroups, index), style: TextStyle(color: Colors.white, fontSize: ResponsiveFlutter.of(context).fontSize(1.4))),                              ],
+                                ),
+                                Spacer(),
+                                Row(
+                                  children: <Widget>[
+                                    Icon(Icons.man, color: Colors.white,size: ResponsiveFlutter.of(context).moderateScale(22)),
+                                    SizedBox(width: 8),
+                                    Text('${displayedGroups[index].memberCount}', style: TextStyle(color: Colors.white,fontSize: ResponsiveFlutter.of(context).fontSize(1.4))),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: <Widget>[
+                                Icon(Icons.people_alt_rounded, color: Colors.white,size: ResponsiveFlutter.of(context).moderateScale(22),),
+                                SizedBox(width: 8),
+                                Text('${displayedGroups[index].friendsCount}', style: TextStyle(color: Colors.white,fontSize: ResponsiveFlutter.of(context).fontSize(1.4))),
+                              ],
+                            ),
+                            SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Wrap(
+                                spacing: 8.0,
+                                runSpacing: 4.0,
+                                alignment: WrapAlignment.center,
+                                children: displayedGroups[index]
+                                    .passions
+                                    .map((passion) => Chip(
+                                  label: Text(
+                                    '#$passion',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  backgroundColor: Colors.purple,
+                                  padding: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(10)),
+                                )
+                                )
+                                    .toList(),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
                 );
               },
-              child: Card(
-                color: Colors.black87,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Container(
-                  height: 200,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(ImagePath.image_2),
-                      fit: BoxFit.cover,
-                    ),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            CircleAvatar(
-                              backgroundImage: NetworkImage(displayedGroups[index].profilePicture),
-                            ),
-                            SizedBox(width: 8),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  displayedGroups[index].name,
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text('Public club', style: TextStyle(color: Colors.white)),
-                              ],
-                            ),
-                            Spacer(),
-                            Row(
-                              children: <Widget>[
-                                Icon(Icons.man, color: Colors.white),
-                                SizedBox(width: 8),
-                                Text('${displayedGroups[index].memberCount}', style: TextStyle(color: Colors.white)),
-                              ],
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: <Widget>[
-                            Icon(Icons.people_alt_rounded, color: Colors.white),
-                            SizedBox(width: 8),
-                            Text('${displayedGroups[index].memberCount-6}', style: TextStyle(color: Colors.white)),
-                          ],
-                        ),
-                        SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Wrap(
-                            spacing: 8.0,
-                            runSpacing: 4.0,
-                            alignment: WrapAlignment.center,
-                            children: displayedGroups[index]
-                                .passions
-                                .map((passion) => Chip(
-                              label: Text(
-                                '#$passion',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              backgroundColor: Colors.purple,
-                            ))
-                                .toList(),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            );
-          },
-          separatorBuilder: (context, index) => SizedBox(height: 8),
-        ),
-      );
+              separatorBuilder: (context, index) => SizedBox(height: 8),
+            ),
+          ),
+       ),
+     );
   }
+
+
+   String isPublicDisplayer(List<Group> displayedGroups, int index) => displayedGroups[index].isPublic ? 'Public Club' : 'Private Club';
 
 
 }
@@ -309,6 +324,8 @@ class Group {
   final String profilePicture;
   final List<String> passions;
   final int memberCount;
+  final int friendsCount;
+  final bool isPublic;
 
 
   Group({
@@ -316,7 +333,10 @@ class Group {
     this.profilePicture = '',
     this.passions = const [],
     this.memberCount = 0,
+    this.isPublic = true,
+    this.friendsCount = 4
   });
+
 }
 List<Group> groups = [
   Group(
@@ -332,6 +352,9 @@ List<Group> groups = [
       hobbys[randomIndex8].name,
       hobbys[randomIndex9].name,],
     memberCount: 10,
+    isPublic: true,
+      friendsCount: 7
+
   ),
   Group(
     name: 'Groupe de danse',
@@ -346,6 +369,9 @@ List<Group> groups = [
       hobbys[randomIndex8].name,
       hobbys[randomIndex9].name,],
     memberCount: 15,
+    isPublic: false,
+      friendsCount: 7
+
   ),
   Group(
     name: 'Groupe de sport',
@@ -360,6 +386,9 @@ List<Group> groups = [
       hobbys[randomIndex8].name,
       hobbys[randomIndex9].name,],
     memberCount: 20,
+    isPublic: true,
+      friendsCount: 7
+
   ),
 ];
 

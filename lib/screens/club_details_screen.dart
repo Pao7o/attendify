@@ -8,9 +8,13 @@ class ClubDetails extends StatefulWidget {
   final String image; // Ajoutez cette ligne pour passer l'image en paramètre
   final String nameGroup;
   final List<String> passions;
+  final int members;
+  final int friends;
+  final bool isPublic;
 
 
-  ClubDetails({required this.image,required this.nameGroup,required this.passions,}) : super(); // Et cette ligne pour l'initialiser
+
+  ClubDetails({required this.image,required this.nameGroup,required this.passions, required this.members, required this.friends, required this.isPublic,}) : super(); // Et cette ligne pour l'initialiser
 
   @override
   _ClubDetailsState createState() => _ClubDetailsState(events: [ {
@@ -57,6 +61,7 @@ class _ClubDetailsState extends State<ClubDetails> {
    _ClubDetailsState({
     required this.events,
   }) : super();
+
 
   @override
   Widget build(BuildContext context) {
@@ -136,7 +141,7 @@ class _ClubDetailsState extends State<ClubDetails> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Text(
-                              'Public group',
+                              widget.isPublic? 'Public Club' : 'Private Club',
                               style: TextStyle(
                                 fontSize: 14,
                                 color: AppColors().lightColor,
@@ -144,7 +149,7 @@ class _ClubDetailsState extends State<ClubDetails> {
                             ),
                             SizedBox(width: 25,),
                             Text(
-                              '120 members',
+                              '${widget.members} members',
                               style: TextStyle(
                                 fontSize: 14,
                                 color: AppColors().lightColor,
@@ -152,7 +157,7 @@ class _ClubDetailsState extends State<ClubDetails> {
                                 ),
                             SizedBox(width: 25,),
                             Text(
-                              '3 friends',
+                              '${widget.friends} friends',
                               style: TextStyle(
                                 fontSize: 14,
                                 color: AppColors().lightColor,
