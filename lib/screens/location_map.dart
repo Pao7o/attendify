@@ -22,6 +22,7 @@ import '../features/common/image_path.dart';
 import '../features/common/story_data.dart';
 import '../features/common/strings.dart';
 import '../responsive/responsive_flutter.dart';
+import 'chatlist_screen.dart';
 import 'clubs_screen.dart';
 import 'my_booking_screen.dart';
 import 'story_settings.dart';
@@ -211,7 +212,7 @@ class _ChatInterfaceState extends State<ChatInterface>
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => ImageViewScreen(),
+                                            builder: (context) => ChatList(),
                                           ),
                                         );
                                       },
