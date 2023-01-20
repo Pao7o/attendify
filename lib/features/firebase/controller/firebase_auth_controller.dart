@@ -36,7 +36,8 @@ class FirebaseAuthController {
               lastName: lastName,
               username: "",
               uid: userCredential!.user!.uid,
-              phoneNumber: ""))
+              phoneNumber: "",
+              profilePhotoUrl: userCredential.user!.photoURL ?? ""))
           .then((value) async {
         await userCredential.user!.sendEmailVerification().then((value) {
           Navigator.pushNamed(context, EmailVerification.routeName,
@@ -52,13 +53,13 @@ class FirebaseAuthController {
       if (credential.additionalUserInfo!.isNewUser) {
         firebaseCloudFirestoreController
             .addNewUser(AppUser(
-          email: credential.user?.email ?? "",
-          firstName: credential.user?.displayName?[0] ?? "",
-          lastName: credential.user?.displayName?[1] ?? "",
-          username: " ",
-          uid: credential.user!.uid,
-          phoneNumber: '',
-        ))
+                email: credential.user?.email ?? "",
+                firstName: credential.user?.displayName?[0] ?? "",
+                lastName: credential.user?.displayName?[1] ?? "",
+                username: " ",
+                uid: credential.user!.uid,
+                phoneNumber: '',
+                profilePhotoUrl: credential.user!.photoURL ?? ""))
             .then((value) {
           Navigator.pushNamedAndRemoveUntil(
               context, BottomBarScreen.routeName, ((route) => false));
