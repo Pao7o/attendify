@@ -5,6 +5,7 @@ import 'package:attendify/features/firebase/controller/firebase_firestore_contro
 import 'package:attendify/features/firebase/models/app_user_model.dart';
 import 'package:attendify/features/firebase/repository/firebase_authentication.dart';
 import 'package:attendify/screens/bottom_bar_screen.dart';
+import 'package:attendify/utils/app_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -45,10 +46,14 @@ class FirebaseAuthController {
           await firebaseCloudFirestoreController
               .addNewUser(appUser)
               .then((value) async {
-            ref.read(sharedprefProvider).saveObject("currentUser", appUser);
-            await userCredential.user!.sendEmailVerification().then((value) {
-              Navigator.pushNamed(context, EmailVerification.routeName,
-                  arguments: email);
+            await ref
+                .read(sharedprefProvider)
+                .saveObject(SHARED_PREFS_APP_USER_KEY, appUser)
+                .then((value) async {
+              await userCredential.user!.sendEmailVerification().then((value) {
+                Navigator.pushNamed(context, EmailVerification.routeName,
+                    arguments: email);
+              });
             });
           });
         });

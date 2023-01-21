@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class AppUser {
   String firstName;
   String lastName;
@@ -60,10 +58,30 @@ class AppUser {
         profilePhotoUrl: map['profilePhotoUrl'] ?? '');
   }
 
-  String toJson() => json.encode(toMap());
+  Map<String, dynamic> toJson() {
+    final result = <String, dynamic>{};
 
-  factory AppUser.fromJson(String source) =>
-      AppUser.fromMap(json.decode(source));
+    result.addAll({'firstName': firstName});
+    result.addAll({'lastName': lastName});
+    result.addAll({'username': username});
+    result.addAll({'email': email});
+    result.addAll({'uid': uid});
+    result.addAll({'phoneNumber': phoneNumber});
+    result.addAll({'profilePhotoUrl': profilePhotoUrl});
+
+    return result;
+  }
+
+  factory AppUser.fromJson(Map<String, dynamic> map) {
+    return AppUser(
+        firstName: map['firstName'] ?? '',
+        lastName: map['lastName'] ?? '',
+        username: map['username'] ?? '',
+        email: map['email'] ?? '',
+        uid: map['uid'] ?? '',
+        phoneNumber: map['phoneNumber'] ?? '',
+        profilePhotoUrl: map['profilePhotoUrl'] ?? '');
+  }
 
   @override
   String toString() {

@@ -1,7 +1,9 @@
 import 'package:attendify/features/common/app_colors.dart';
 import 'package:attendify/features/common/common_widget.dart';
 import 'package:attendify/features/common/image_path.dart';
+import 'package:attendify/features/common/repository/shared_pref.dart';
 import 'package:attendify/features/common/strings.dart';
+import 'package:attendify/features/firebase/models/app_user_model.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:attendify/screens/favorites_screen.dart';
 import 'package:attendify/screens/location_controller.dart';
@@ -10,8 +12,9 @@ import 'package:attendify/screens/notification_screen.dart';
 import 'package:attendify/screens/popular_event_screen.dart';
 import 'package:attendify/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   static const routeName = '/home_page_screen';
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -19,7 +22,7 @@ class HomeScreen extends StatefulWidget {
   HomeScreenState createState() => HomeScreenState();
 }
 
-class HomeScreenState extends State<HomeScreen> {
+class HomeScreenState extends ConsumerState<HomeScreen> {
   AppColors appColors = AppColors();
 
   TabController? tabController;
@@ -27,6 +30,8 @@ class HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Future<AppUser> getUserName =
+        ref.read(sharedprefProvider).readCurrentUser();
     return SafeArea(
       top: false,
       bottom: false,
@@ -215,16 +220,35 @@ class HomeScreenState extends State<HomeScreen> {
                         ),
                       ],
                     ),
-                    MyTextView(
-                      Strings.dummyText25,
-                      textAligntNew: TextAlign.start,
-                      maxLineWrap: true,
-                      styleNew: MyTextStyle(
-                        colorNew: appColors.lightColor,
-                        fontWeightNew: FontWeight.w600,
-                        size: ResponsiveFlutter.of(context).fontSize(3.3),
-                      ),
-                    ),
+                    FutureBuilder<AppUser>(
+                        future: getUserName,
+                        builder: (((context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return MyTextView(
+                              Strings.dummyText25,
+                              textAligntNew: TextAlign.start,
+                              maxLineWrap: true,
+                              styleNew: MyTextStyle(
+                                colorNew: appColors.lightColor,
+                                fontWeightNew: FontWeight.w600,
+                                size:
+                                    ResponsiveFlutter.of(context).fontSize(3.3),
+                              ),
+                            );
+                          }
+
+                          return MyTextView(
+                            "Hello,\n${snapshot.data?.firstName ?? ""} ${snapshot.data?.lastName ?? ""}",
+                            textAligntNew: TextAlign.start,
+                            maxLineWrap: true,
+                            styleNew: MyTextStyle(
+                              colorNew: appColors.lightColor,
+                              fontWeightNew: FontWeight.w600,
+                              size: ResponsiveFlutter.of(context).fontSize(3.3),
+                            ),
+                          );
+                        }))),
                     const Spacer(),
                     Row(
                       children: [
