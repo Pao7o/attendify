@@ -160,7 +160,13 @@ class EmailVerification extends ConsumerWidget {
                   }
                 },
               ),
-              ElevatedButton(onPressed: () {}, child: const Text("Resend mail"))
+              ElevatedButton(
+                  onPressed: () {
+                    ref
+                        .read(firebaseAutheControllerProvider)
+                        .resendVerificationEmail();
+                  },
+                  child: const Text("Resend mail"))
             ],
           ),
         ),

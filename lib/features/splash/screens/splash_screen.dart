@@ -5,7 +5,7 @@ import 'package:attendify/features/authentication/screens/login_screen.dart';
 import 'package:attendify/features/common/app_colors.dart';
 import 'package:attendify/features/common/constants.dart';
 import 'package:attendify/features/common/image_path.dart';
-import 'package:attendify/features/common/shared_pref.dart';
+import 'package:attendify/features/common/repository/shared_pref.dart';
 import 'package:attendify/features/common/utils.dart';
 import 'package:attendify/features/firebase/controller/firebase_auth_controller.dart';
 import 'package:attendify/features/firebase/repository/firebase_authentication.dart';

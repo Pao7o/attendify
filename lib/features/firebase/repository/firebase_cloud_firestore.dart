@@ -13,6 +13,15 @@ class FirebaseCloudFirestore {
       print("Add new user error ${e.toString()}");
     }
   }
+
+  Future<DocumentSnapshot?> getUser(String uid) async {
+    try {
+      return await db.collection(USERS_DATABASE).doc(uid).get();
+    } catch (e) {
+      print("Get user error is ${e.toString()}");
+      return null;
+    }
+  }
 }
 
 final firebaseCloudFirestoreProvider = Provider(((ref) {

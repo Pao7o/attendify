@@ -1,10 +1,13 @@
 import 'package:attendify/features/authentication/screens/email_verification_screen.dart';
+import 'package:attendify/features/common/repository/shared_pref.dart';
+import 'package:attendify/features/common/utils.dart';
 import 'package:attendify/features/firebase/controller/firebase_firestore_controller.dart';
 import 'package:attendify/features/firebase/models/app_user_model.dart';
 import 'package:attendify/features/firebase/repository/firebase_authentication.dart';
 import 'package:attendify/screens/bottom_bar_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class FirebaseAuthController {
   final FirebaseAuthentication firebaseAuthentication;
@@ -18,33 +21,48 @@ class FirebaseAuthController {
     return firebaseAuthentication.checkUserAuthState();
   }
 
-  Future signupWithEmailandPassword({
-    required BuildContext context,
-    required String email,
-    required String password,
-    required String firstName,
-    required String lastName,
-  }) async {
-    return await firebaseAuthentication
-        .signUpWithEmailAndPassword(
-            context: context, emailAddress: email, password: password)
-        .then((userCredential) async {
-      await firebaseCloudFirestoreController
-          .addNewUser(AppUser(
+  Future signupWithEmailandPassword(
+      {required BuildContext context,
+      required String email,
+      required String password,
+      required String firstName,
+      required String lastName,
+      required WidgetRef ref}) async {
+    await InternetConnectionChecker().hasConnection.then((value) async {
+      if (value) {
+        return await firebaseAuthentication
+            .signUpWithEmailAndPassword(
+                context: context, emailAddress: email, password: password)
+            .then((userCredential) async {
+          AppUser appUser = AppUser(
               email: email,
               firstName: firstName,
               lastName: lastName,
               username: "",
               uid: userCredential!.user!.uid,
               phoneNumber: "",
-              profilePhotoUrl: userCredential.user!.photoURL ?? ""))
-          .then((value) async {
-        await userCredential.user!.sendEmailVerification().then((value) {
-          Navigator.pushNamed(context, EmailVerification.routeName,
-              arguments: email);
+              profilePhotoUrl: userCredential.user!.photoURL ?? "");
+          await firebaseCloudFirestoreController
+              .addNewUser(appUser)
+              .then((value) async {
+            ref.read(sharedprefProvider).saveObject("currentUser", appUser);
+            await userCredential.user!.sendEmailVerification().then((value) {
+              Navigator.pushNamed(context, EmailVerification.routeName,
+                  arguments: email);
+            });
+          });
         });
-      });
+      } else {
+        Navigator.pop(context);
+        Utils().errorDialog(
+            context: context,
+            error: "Please check your connection and try again");
+      }
     });
+  }
+
+  Future resendVerificationEmail() async {
+    await firebaseAuthentication.resendEmailVerification();
   }
 
   Future signUpWithGoogle(BuildContext context) async {

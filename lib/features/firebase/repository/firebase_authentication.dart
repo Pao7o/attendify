@@ -32,7 +32,7 @@ class FirebaseAuthentication {
         print('The account already exists for that email.');
       }
     } catch (e) {
-      print(e);
+      print("The error for sign up with email is ${e.toString()}");
     }
     return userCredential;
   }
@@ -47,6 +47,10 @@ class FirebaseAuthentication {
       print("Check if email is verified error is ${e.toString()}");
     }
     return isVerified;
+  }
+
+  Future resendEmailVerification() async {
+    await _auth.currentUser!.sendEmailVerification();
   }
 
   Future<UserCredential> signInWithGoogle() async {

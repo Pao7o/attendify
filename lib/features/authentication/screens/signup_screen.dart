@@ -308,6 +308,7 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
                                                 .read(
                                                     firebaseAutheControllerProvider)
                                                 .signupWithEmailandPassword(
+                                                  ref: ref,
                                                   context: context,
                                                   email: emailController.text
                                                       .trim(),

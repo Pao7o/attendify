@@ -2,7 +2,7 @@ import 'package:attendify/features/common/app_colors.dart';
 import 'package:attendify/features/common/common_widget.dart';
 import 'package:attendify/features/common/constants.dart';
 import 'package:attendify/features/common/image_path.dart';
-import 'package:attendify/features/common/shared_pref.dart';
+import 'package:attendify/features/common/repository/shared_pref.dart';
 import 'package:attendify/features/common/strings.dart';
 import 'package:attendify/features/firebase/controller/firebase_auth_controller.dart';
 import 'package:attendify/model/common_model.dart';
