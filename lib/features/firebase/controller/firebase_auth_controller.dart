@@ -6,6 +6,7 @@ import 'package:attendify/features/firebase/models/app_user_model.dart';
 import 'package:attendify/features/firebase/repository/firebase_authentication.dart';
 import 'package:attendify/screens/bottom_bar_screen.dart';
 import 'package:attendify/utils/app_constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -73,25 +74,44 @@ class FirebaseAuthController {
   Future signUpWithGoogle(BuildContext context) async {
     print("sign up with google controller");
     await firebaseAuthentication.signInWithGoogle().then((credential) {
-      if (credential.additionalUserInfo!.isNewUser) {
-        firebaseCloudFirestoreController
-            .addNewUser(AppUser(
-                email: credential.user?.email ?? "",
-                firstName: credential.user?.displayName?[0] ?? "",
-                lastName: credential.user?.displayName?[1] ?? "",
-                username: " ",
-                uid: credential.user!.uid,
-                phoneNumber: '',
-                profilePhotoUrl: credential.user!.photoURL ?? ""))
-            .then((value) {
-          Navigator.pushNamedAndRemoveUntil(
-              context, BottomBarScreen.routeName, ((route) => false));
-        });
-      } else {
+      signupSuccess(credential, context);
+    });
+  }
+
+  void signupSuccess(UserCredential credential, BuildContext context) {
+    if (credential.additionalUserInfo!.isNewUser) {
+      firebaseCloudFirestoreController
+          .addNewUser(AppUser(
+              email: credential.user?.email ?? "",
+              firstName: credential.user?.displayName?[0] ?? "",
+              lastName: credential.user?.displayName?[1] ?? "",
+              username: " ",
+              uid: credential.user!.uid,
+              phoneNumber: '',
+              profilePhotoUrl: credential.user!.photoURL ?? ""))
+          .then((value) {
         Navigator.pushNamedAndRemoveUntil(
             context, BottomBarScreen.routeName, ((route) => false));
-      }
-    });
+      });
+    } else {
+      Navigator.pushNamedAndRemoveUntil(
+          context, BottomBarScreen.routeName, ((route) => false));
+    }
+  }
+
+  Future signInWithPhone(String phone, BuildContext context) async {
+    await firebaseAuthentication.loginWithPhone(
+        phoneNumber: phone,
+        onCompleted: (PhoneAuthCredential credential) async {
+          await firebaseAuthentication.firebaseAuth
+              .signInWithCredential(credential)
+              .then((value) {
+            signupSuccess(value, context);
+          });
+        },
+        onFailed: () {},
+        codeSent: () {},
+        codeTimeout: () {});
   }
 
   Future<bool> checkIfEmailVerified() async {

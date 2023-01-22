@@ -1,3 +1,4 @@
+import 'package:attendify/features/authentication/screens/phone_number_screen.dart';
 import 'package:attendify/features/common/app_colors.dart';
 import 'package:attendify/features/common/common_widget.dart';
 import 'package:attendify/features/common/image_path.dart';
@@ -397,61 +398,60 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
                                           ),
                                         ),
                                       ),
-                                      GestureDetector(
-                                        onTap: () {
-                                          // code à exécuter lorsque le GestureDetector est tapé
-                                        },
-                                        child: Padding(
-                                          padding: EdgeInsets.all(
-                                              ResponsiveFlutter.of(context)
-                                                  .moderateScale(8.5)),
-                                          child: Align(
-                                            alignment: Alignment.center,
-                                            child: SizedBox(
-                                              width:
-                                                  ResponsiveFlutter.of(context)
-                                                      .scale(120),
-                                              height:
-                                                  ResponsiveFlutter.of(context)
-                                                      .verticalScale(35),
-                                              child: MaterialButton(
-                                                onPressed: () {},
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          30.0),
-                                                ),
-                                                color: Colors.white,
-                                                textColor: Colors.black,
-                                                padding:
-                                                    const EdgeInsets.fromLTRB(
-                                                        10, 10, 10, 10),
-                                                child: Row(
-                                                  children: [
-                                                    Image.asset(
-                                                      "assets/images/ic_phone_blue.png",
+                                      Padding(
+                                        padding: EdgeInsets.all(
+                                            ResponsiveFlutter.of(context)
+                                                .moderateScale(8.5)),
+                                        child: Align(
+                                          alignment: Alignment.center,
+                                          child: SizedBox(
+                                            width: ResponsiveFlutter.of(context)
+                                                .scale(120),
+                                            height:
+                                                ResponsiveFlutter.of(context)
+                                                    .verticalScale(35),
+                                            child: MaterialButton(
+                                              onPressed: () {
+                                                Navigator.pushNamed(
+                                                    context,
+                                                    PhoneNumberScreen
+                                                        .routeName);
+                                              },
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(30.0),
+                                              ),
+                                              color: Colors.white,
+                                              textColor: Colors.black,
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      10, 10, 10, 10),
+                                              child: Row(
+                                                children: [
+                                                  Image.asset(
+                                                    "assets/images/ic_phone_blue.png",
+                                                    width: ResponsiveFlutter.of(
+                                                            context)
+                                                        .scale(25),
+                                                    height:
+                                                        ResponsiveFlutter.of(
+                                                                context)
+                                                            .verticalScale(25),
+                                                  ),
+                                                  SizedBox(
                                                       width:
                                                           ResponsiveFlutter.of(
                                                                   context)
-                                                              .scale(25),
-                                                      height: ResponsiveFlutter
-                                                              .of(context)
-                                                          .verticalScale(25),
+                                                              .scale(10)),
+                                                  const Text(
+                                                    'Sign up',
+                                                    style: TextStyle(
+                                                      fontFamily: 'Google',
+                                                      fontWeight:
+                                                          FontWeight.w600,
                                                     ),
-                                                    SizedBox(
-                                                        width: ResponsiveFlutter
-                                                                .of(context)
-                                                            .scale(10)),
-                                                    const Text(
-                                                      'Sign up',
-                                                      style: TextStyle(
-                                                        fontFamily: 'Google',
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
+                                                  ),
+                                                ],
                                               ),
                                             ),
                                           ),

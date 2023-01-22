@@ -1,20 +1,21 @@
-import 'package:attendify/features/authentication/screens/phone_verification_screen.dart';
+import 'package:attendify/features/firebase/controller/firebase_auth_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 import '../../../responsive/responsive_flutter.dart';
-import '../../../screens/bottom_bar_screen.dart';
 import '../../common/app_colors.dart';
 import '../../common/image_path.dart';
 
-class PhoneNumbers extends StatefulWidget {
-  const PhoneNumbers({Key? key}) : super(key: key);
+class PhoneNumberScreen extends ConsumerStatefulWidget {
+  static const String routeName = "phone_number_screen";
+  const PhoneNumberScreen({Key? key}) : super(key: key);
 
   @override
-  State<PhoneNumbers> createState() => PhoneNumbersState();
+  ConsumerState<PhoneNumberScreen> createState() => PhoneNumberScreenState();
 }
 
-class PhoneNumbersState extends State<PhoneNumbers> {
+class PhoneNumberScreenState extends ConsumerState<PhoneNumberScreen> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
@@ -23,19 +24,20 @@ class PhoneNumbersState extends State<PhoneNumbers> {
   }
 }
 
-class PhoneNumberInputPage extends StatefulWidget {
+class PhoneNumberInputPage extends ConsumerStatefulWidget {
   const PhoneNumberInputPage({super.key});
 
   @override
   PhoneNumberInputPageState createState() => PhoneNumberInputPageState();
 }
 
-class PhoneNumberInputPageState extends State<PhoneNumberInputPage> {
+class PhoneNumberInputPageState extends ConsumerState<PhoneNumberInputPage> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   final TextEditingController controller = TextEditingController();
   String initialCountry = 'NG';
   PhoneNumber number1 = PhoneNumber(isoCode: 'FR');
+  bool isValidPhoneNumber = false;
 
   @override
   Widget build(BuildContext context) {
@@ -75,9 +77,11 @@ class PhoneNumberInputPageState extends State<PhoneNumberInputPage> {
                           textAlign: TextAlign.center,
                           onInputChanged: (PhoneNumber number) {
                             print(number.phoneNumber);
+                            number1 = number;
                           },
                           onInputValidated: (bool value) {
-                            print(value);
+                            print("on Input valid $value");
+                            isValidPhoneNumber = value;
                           },
                           selectorConfig: const SelectorConfig(
                             selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
@@ -90,8 +94,15 @@ class PhoneNumberInputPageState extends State<PhoneNumberInputPage> {
                                   color: Colors.purpleAccent), //<-- SEE HERE
                               borderRadius: BorderRadius.circular(50.0),
                             ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                  width: 2,
+                                  color: Colors.purpleAccent), //<-- SEE HERE
+                              borderRadius: BorderRadius.circular(50.0),
+                            ),
                           ),
-                          autoValidateMode: AutovalidateMode.disabled,
+                          autoValidateMode: AutovalidateMode.onUserInteraction,
+                          cursorColor: Colors.white,
                           selectorTextStyle:
                               const TextStyle(color: Colors.white),
                           initialValue: number1,
@@ -109,13 +120,12 @@ class PhoneNumberInputPageState extends State<PhoneNumberInputPage> {
                         style: const ButtonStyle(
                             elevation: MaterialStatePropertyAll(15)),
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  const PhoneVerificationScreen(),
-                            ),
-                          );
+                          if (isValidPhoneNumber) {
+                            ref
+                                .read(firebaseAutheControllerProvider)
+                                .signInWithPhone(
+                                    number1.phoneNumber ?? "", context);
+                          }
                         },
                         child: const Text('Send SMS verification'),
                       ),
@@ -135,15 +145,7 @@ class PhoneNumberInputPageState extends State<PhoneNumberInputPage> {
                               decorationThickness: 4,
                             ),
                           ),
-                          onPressed: () {
-                            Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const BottomBarScreen(),
-                              ),
-                              (route) => false,
-                            );
-                          },
+                          onPressed: () {},
                         ),
                       )
                     ],
