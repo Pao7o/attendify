@@ -1,4 +1,5 @@
 import 'package:attendify/features/authentication/screens/phone_number_screen.dart';
+import 'package:attendify/features/authentication/screens/phone_verification_screen.dart';
 import 'package:attendify/features/authentication/screens/signup_screen.dart';
 import 'package:attendify/features/common/screens/error_screen.dart';
 import 'package:attendify/features/splash/screens/splash_screen.dart';
@@ -28,6 +29,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       final emailAddress = settings.arguments as String;
       return MaterialPageRoute(
           builder: (_) => EmailVerification(emailAddress: emailAddress));
+    case PhoneVerificationScreen.routeName:
+      final phoneNumber = settings.arguments as String;
+      return MaterialPageRoute(
+          builder: (_) => PhoneVerificationScreen(verificationId: phoneNumber));
     default:
       return MaterialPageRoute(
           builder: (_) =>

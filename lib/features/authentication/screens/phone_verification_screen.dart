@@ -8,9 +8,12 @@ import '../../common/app_colors.dart';
 import '../../common/image_path.dart';
 
 class PhoneVerificationScreen extends StatelessWidget {
-  static const String routeName = "email_verification_screen";
+  static const String routeName = "phone_verification_screen";
 
-  const PhoneVerificationScreen({Key? key}) : super(key: key);
+  final String verificationId;
+
+  const PhoneVerificationScreen({Key? key, required this.verificationId})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

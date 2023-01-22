@@ -74,19 +74,23 @@ class FirebaseAuthentication {
 
   Future loginWithPhone({
     required String phoneNumber,
-    required Function onCompleted,
-    required Function onFailed,
-    required Function codeSent,
-    required Function codeTimeout,
+    required Function(PhoneAuthCredential credential) onCompleted,
+    required Function(FirebaseAuthException exception) onFailed,
+    required Function(String verificationId, int? resendToken) codeSent,
+    required Function(String verificationId) codeTimeout,
   }) async {
     await firebaseAuth.verifyPhoneNumber(
         phoneNumber: phoneNumber,
         verificationCompleted: ((phoneAuthCredential) {
           onCompleted(phoneAuthCredential);
         }),
-        verificationFailed: onFailed(),
-        codeSent: codeSent(),
-        codeAutoRetrievalTimeout: codeTimeout());
+        verificationFailed: (FirebaseAuthException e) {
+          onFailed(e);
+        },
+        codeSent: (String verificationId, int? resendToken) {
+          codeSent(verificationId, resendToken);
+        },
+        codeAutoRetrievalTimeout: ((verificationId) {}));
   }
 
   Future logOut() async {

@@ -1,4 +1,5 @@
 import 'package:attendify/features/authentication/screens/email_verification_screen.dart';
+import 'package:attendify/features/authentication/screens/phone_verification_screen.dart';
 import 'package:attendify/features/common/repository/shared_pref.dart';
 import 'package:attendify/features/common/utils.dart';
 import 'package:attendify/features/firebase/controller/firebase_firestore_controller.dart';
@@ -109,9 +110,14 @@ class FirebaseAuthController {
             signupSuccess(value, context);
           });
         },
-        onFailed: () {},
-        codeSent: () {},
-        codeTimeout: () {});
+        onFailed: (FirebaseAuthException exception) {
+          print("Phone authentication error ${exception.toString()}");
+        },
+        codeSent: (String verificationId, int? resendToken) {
+          Navigator.pushNamed(context, PhoneVerificationScreen.routeName,
+              arguments: verificationId);
+        },
+        codeTimeout: (String verificationId) {});
   }
 
   Future<bool> checkIfEmailVerified() async {
