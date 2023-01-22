@@ -5,10 +5,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class FirebaseAuthentication {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
   Stream<User?> checkUserAuthState() {
-    return _auth.authStateChanges();
+    return firebaseAuth.authStateChanges();
   }
 
   Future<UserCredential?> signUpWithEmailAndPassword(
@@ -17,7 +17,7 @@ class FirebaseAuthentication {
       required String password}) async {
     UserCredential? userCredential;
     try {
-      userCredential = await _auth.createUserWithEmailAndPassword(
+      userCredential = await firebaseAuth.createUserWithEmailAndPassword(
         email: emailAddress,
         password: password,
       );
@@ -40,8 +40,8 @@ class FirebaseAuthentication {
   Future checkIfEmailIsVerified() async {
     bool isVerified = false;
     try {
-      await _auth.currentUser!.reload().then((value) async {
-        isVerified = _auth.currentUser?.emailVerified ?? false;
+      await firebaseAuth.currentUser!.reload().then((value) async {
+        isVerified = firebaseAuth.currentUser?.emailVerified ?? false;
       });
     } catch (e) {
       print("Check if email is verified error is ${e.toString()}");
@@ -50,7 +50,7 @@ class FirebaseAuthentication {
   }
 
   Future resendEmailVerification() async {
-    await _auth.currentUser!.sendEmailVerification();
+    await firebaseAuth.currentUser!.sendEmailVerification();
   }
 
   Future<UserCredential> signInWithGoogle() async {
@@ -69,11 +69,28 @@ class FirebaseAuthentication {
     );
 
     // Once signed in, return the UserCredential
-    return await _auth.signInWithCredential(credential);
+    return await firebaseAuth.signInWithCredential(credential);
+  }
+
+  Future loginWithPhone({
+    required String phoneNumber,
+    required Function onCompleted,
+    required Function onFailed,
+    required Function codeSent,
+    required Function codeTimeout,
+  }) async {
+    await firebaseAuth.verifyPhoneNumber(
+        phoneNumber: phoneNumber,
+        verificationCompleted: ((phoneAuthCredential) {
+          onCompleted(phoneAuthCredential);
+        }),
+        verificationFailed: onFailed(),
+        codeSent: codeSent(),
+        codeAutoRetrievalTimeout: codeTimeout());
   }
 
   Future logOut() async {
-    await _auth.signOut();
+    await firebaseAuth.signOut();
   }
 }
 
