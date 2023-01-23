@@ -1,3 +1,4 @@
+import 'package:attendify/features/common/utils.dart';
 import 'package:attendify/features/firebase/controller/firebase_auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -116,10 +117,16 @@ class PhoneNumberInputPageState extends ConsumerState<PhoneNumberInputPage> {
                           },
                         ),
                       ),
+                      const SizedBox(
+                        height: 24,
+                      ),
                       ElevatedButton(
                         style: const ButtonStyle(
                             elevation: MaterialStatePropertyAll(15)),
                         onPressed: () {
+                          Utils().sendingOtpDialog(
+                              context: context,
+                              phone: number1.phoneNumber ?? "");
                           if (isValidPhoneNumber) {
                             ref
                                 .read(firebaseAutheControllerProvider)
@@ -129,25 +136,6 @@ class PhoneNumberInputPageState extends ConsumerState<PhoneNumberInputPage> {
                         },
                         child: const Text('Send SMS verification'),
                       ),
-                      SizedBox(
-                        height:
-                            ResponsiveFlutter.of(context).moderateScale(120),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: TextButton(
-                          child: Text(
-                            "Verify later",
-                            style: TextStyle(
-                              color: AppColors().lightColor,
-                              decoration: TextDecoration.underline,
-                              decorationColor: AppColors().lightColor,
-                              decorationThickness: 4,
-                            ),
-                          ),
-                          onPressed: () {},
-                        ),
-                      )
                     ],
                   ),
                 ),

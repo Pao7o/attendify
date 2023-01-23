@@ -111,13 +111,32 @@ class FirebaseAuthController {
           });
         },
         onFailed: (FirebaseAuthException exception) {
+          Utils().errorDialog(context: context, error: exception.toString());
           print("Phone authentication error ${exception.toString()}");
         },
         codeSent: (String verificationId, int? resendToken) {
           Navigator.pushNamed(context, PhoneVerificationScreen.routeName,
-              arguments: verificationId);
+              arguments: {
+                'verificationId': verificationId,
+                "phoneNumber": phone
+              });
         },
         codeTimeout: (String verificationId) {});
+  }
+
+  Future verifySms(
+      {required BuildContext context,
+      required String verificationId,
+      required String smsCode}) async {
+    await firebaseAuthentication
+        .verifySms(verificationId: verificationId, smsCode: smsCode)
+        .then((value) {
+      firebaseAuthentication.firebaseAuth
+          .signInWithCredential(value)
+          .then((value) {
+        signupSuccess(value, context);
+      });
+    });
   }
 
   Future<bool> checkIfEmailVerified() async {

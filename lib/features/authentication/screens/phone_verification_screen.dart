@@ -11,8 +11,10 @@ class PhoneVerificationScreen extends StatelessWidget {
   static const String routeName = "phone_verification_screen";
 
   final String verificationId;
+  final String phoneNumber;
 
-  const PhoneVerificationScreen({Key? key, required this.verificationId})
+  const PhoneVerificationScreen(
+      {Key? key, required this.verificationId, required this.phoneNumber})
       : super(key: key);
 
   @override
@@ -43,8 +45,8 @@ class PhoneVerificationScreen extends StatelessWidget {
           const SizedBox(
             height: 19,
           ),
-          const PinCodeVerificationScreen(
-            phoneNumber: "+33749363363",
+          PinCodeVerificationScreen(
+            phoneNumber: phoneNumber,
           )
         ]),
       ),

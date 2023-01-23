@@ -30,9 +30,12 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(
           builder: (_) => EmailVerification(emailAddress: emailAddress));
     case PhoneVerificationScreen.routeName:
-      final phoneNumber = settings.arguments as String;
+      final arguments = settings.arguments as Map<String, dynamic>;
       return MaterialPageRoute(
-          builder: (_) => PhoneVerificationScreen(verificationId: phoneNumber));
+          builder: (_) => PhoneVerificationScreen(
+                verificationId: arguments['verificationId'],
+                phoneNumber: arguments['phoneNumber'],
+              ));
     default:
       return MaterialPageRoute(
           builder: (_) =>

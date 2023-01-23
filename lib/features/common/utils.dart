@@ -355,6 +355,16 @@ class Utils {
     );
   }
 
+  void sendingOtpDialog(
+      {required BuildContext context, required String phone}) {
+    Dialogs.materialDialog(
+      context: context,
+      msg: "Sending otp sms to $phone",
+      title: "Sending....",
+      lottieBuilder: LottieBuilder.asset("assets/lottie/otp.json"),
+    );
+  }
+
   void errorDialog({required BuildContext context, required String error}) {
     Dialogs.materialDialog(
         context: context,

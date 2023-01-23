@@ -93,6 +93,12 @@ class FirebaseAuthentication {
         codeAutoRetrievalTimeout: ((verificationId) {}));
   }
 
+  Future<PhoneAuthCredential> verifySms(
+      {required String verificationId, required String smsCode}) async {
+    return PhoneAuthProvider.credential(
+        verificationId: verificationId, smsCode: smsCode);
+  }
+
   Future logOut() async {
     await firebaseAuth.signOut();
   }
