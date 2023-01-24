@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
+import 'package:attendify/screens/tasklist_screen.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
@@ -13,9 +14,9 @@ import 'package:permission_handler/permission_handler.dart';
 
 
 class ImageViewScreen extends StatefulWidget {
+final String name;
 
-
-  ImageViewScreen();
+  ImageViewScreen(this.name);
 
   @override
   State<ImageViewScreen> createState() => _ImageViewScreenState();
@@ -31,7 +32,20 @@ class _ImageViewScreenState extends State<ImageViewScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Chat'),
+        title: Text(widget.name),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.checklist),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Tasklist(),
+                ),
+              );
+            },
+          )
+        ],
       ),
       body: Chat(
         messages: _messages,

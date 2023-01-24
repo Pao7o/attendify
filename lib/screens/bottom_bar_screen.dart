@@ -7,6 +7,7 @@ import 'package:attendify/screens/favorites_screen.dart';
 import 'package:attendify/screens/home_page_screen.dart';
 import 'package:attendify/screens/location_map.dart';
 import 'package:attendify/screens/setting_screen.dart';
+import 'package:attendify/screens/username_screen.dart';
 import 'package:attendify/screens/wallet_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -173,7 +174,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                       GestureDetector(
                         onTap: () {
                           setState(() {
-                            tabBar = const MyBookingScreen();
+                            tabBar =  UsernameScreen();
                             home = false;
                             favorites = false;
                             create = false;

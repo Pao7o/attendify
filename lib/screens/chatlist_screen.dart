@@ -12,11 +12,7 @@ class ChatList extends StatefulWidget {
 }
 
 class _ChatListState extends State<ChatList> {
-  final List<Chat> chats = [
-    Chat(name: 'Alice', message: 'Salut !', time: '16:43'),
-    Chat(name: 'Bob', message: 'Comment vas-tu ?', time: '16:43'),
-    Chat(name: 'Charlie', message: 'Bien, et toi ?', time: '16:43'),
-  ];
+
 
   AppColors appColors = AppColors();
   ImagePath imagePath = ImagePath();
@@ -24,6 +20,7 @@ class _ChatListState extends State<ChatList> {
   bool _isSelected = false;
   Chat _selectedChat = Chat(name: '', message: '', time: '');
   List<Chat> _selectedChats = [];
+  List<GroupChat> groupChats = [];
 
   Widget _showDeleteConfirmationDialog(List<Chat> chats) {
     return AlertDialog(
@@ -106,7 +103,7 @@ class _ChatListState extends State<ChatList> {
         itemCount: chats.length,
         itemBuilder: (context, index) {
           final chat = chats[index];
-          return Container(
+          return (chat is IndividualChat) ? Container(
             decoration: BoxDecoration(
               color: _selectedChats.contains(chat) ? Colors.white24 : null,
             ),
@@ -142,7 +139,7 @@ class _ChatListState extends State<ChatList> {
                       ),
                       child: Center(
                         child:
-                            Text('99', style: TextStyle(color: Colors.white)),
+                        Text('99', style: TextStyle(color: Colors.white)),
                       ),
                     ),
                   ),
@@ -152,7 +149,67 @@ class _ChatListState extends State<ChatList> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ImageViewScreen(),
+                    builder: (context) => ImageViewScreen(chat.name),
+                  ),
+                );
+              },
+              onLongPress: () {
+                setState(() {
+                  if (_selectedChats.contains(chat)) {
+                    _selectedChats.remove(chat);
+                  } else {
+                    _selectedChats.add(chat);
+                  }
+                });
+              },
+            ),
+          ) : Container(
+            decoration: BoxDecoration(
+              color: _selectedChats.contains(chat) ? Colors.white24 : null,
+            ),
+            child: ListTile(
+              leading: CircleAvatar(
+                radius: 25,
+                child: Text(chat.name[0]),
+              ),
+              title: Text(
+                chat.name,
+                style: TextStyle(color: appColors.white),
+              ),
+              subtitle: Text(
+                "${(chat as GroupChat).members[0]} : "+chat.message,
+                style: TextStyle(color: appColors.greyTextColor),
+              ),
+              trailing: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    chat.time,
+                    style: TextStyle(color: Colors.green),
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    right: 0,
+                    child: Container(
+                      width: 20,
+                      height: 20,
+                      decoration: BoxDecoration(
+                        color: Colors.green,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Center(
+                        child:
+                        Text('99', style: TextStyle(color: Colors.white)),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ImageViewScreen(chat.name),
                   ),
                 );
               },
@@ -167,6 +224,7 @@ class _ChatListState extends State<ChatList> {
               },
             ),
           );
+
         },
       ),
     );
@@ -220,7 +278,7 @@ class ChatSearchDelegate extends SearchDelegate {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => ImageViewScreen(),
+                builder: (context) => ImageViewScreen(chat.name),
               ),
             );
           },
@@ -250,7 +308,7 @@ class ChatSearchDelegate extends SearchDelegate {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => ImageViewScreen(),
+                builder: (context) => ImageViewScreen(chat.name),
               ),
             );
           },
@@ -265,5 +323,32 @@ class Chat {
   final String message;
   final String time;
 
+
+
   Chat({required this.name, required this.message, required this.time});
 }
+
+class IndividualChat extends Chat {
+
+  IndividualChat({name, message, time,})
+      : super(name: name, message: message, time: time,);
+}
+
+class GroupChat extends Chat {
+  final List<String> members;
+
+  GroupChat({name, message, time, required this.members})
+      : super(name: name, message: message, time: time,);
+}
+
+final List<Chat> chats = [
+  IndividualChat(
+      name: "Bob", message: "Salut", time: "10:30",),
+  GroupChat(
+      name: "Famille",
+      message: "Rendez-vous dimanche",
+      time: "11:00",
+      members: ["Bob", "Alice", "Charlie"]),
+];
+
+
