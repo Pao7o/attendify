@@ -2,11 +2,9 @@ import 'dart:io';
 
 import 'package:attendify/screens/bottom_bar_screen.dart';
 import 'package:attendify/screens/chat_screen.dart';
-import 'package:attendify/screens/contacts_screen.dart';
 import 'package:attendify/screens/feed_screen.dart';
 import 'package:attendify/screens/friends_screen.dart';
 import 'package:attendify/screens/my_events_screen.dart';
-import 'package:attendify/screens/people_adding_screen.dart';
 import 'package:attendify/screens/share_media_screen.dart';
 import 'package:attendify/screens/story_view.dart';
 import 'package:dashed_circle/dashed_circle.dart';
@@ -23,7 +21,6 @@ import '../features/common/image_path.dart';
 import '../features/common/story_data.dart';
 import '../features/common/strings.dart';
 import '../responsive/responsive_flutter.dart';
-import 'chatlist_screen.dart';
 import 'clubs_screen.dart';
 import 'my_booking_screen.dart';
 import 'story_settings.dart';
@@ -65,7 +62,7 @@ class _ChatInterfaceState extends State<ChatInterface>
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => ImageViewScreen("test"),
+          builder: (context) => ImageViewScreen(),
         ),);
 
       setState(() {
@@ -93,7 +90,7 @@ class _ChatInterfaceState extends State<ChatInterface>
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => ImageViewScreen("test"),
+          builder: (context) => ImageViewScreen(),
         ),
       );
 
@@ -213,7 +210,7 @@ class _ChatInterfaceState extends State<ChatInterface>
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => ChatList(),
+                                            builder: (context) => ImageViewScreen(),
                                           ),
                                         );
                                       },
@@ -235,27 +232,34 @@ class _ChatInterfaceState extends State<ChatInterface>
                               ],
                             ),
                           ),
-                          SizedBox(
-                            height:
-                                ResponsiveFlutter.of(context).verticalScale(85),
-                            width: double.maxFinite,
-                            child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: ResponsiveFlutter.of(context)
-                                        .verticalScale(5)),
-                                itemBuilder: (context, index) {
-                                  return UserStoryItem(
-                                    setRectPoint: (rectpoint) {
-                                      print(rect);
-                                      setState(() {
-                                        rect = rectpoint;
-                                      });
-                                      onStoryItemTap(rect, index);
-                                    },
-                                    index: index,
-                                  );
-                                }),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                top: ResponsiveFlutter.of(context)
+                                    .verticalScale(5),
+                                bottom: ResponsiveFlutter.of(context)
+                                    .verticalScale(5)),
+                            child: SizedBox(
+                              height:
+                                  ResponsiveFlutter.of(context).verticalScale(80),
+                              width: double.maxFinite,
+                              child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: ResponsiveFlutter.of(context)
+                                          .verticalScale(5)),
+                                  itemBuilder: (context, index) {
+                                    return UserStoryItem(
+                                      setRectPoint: (rectpoint) {
+                                        print(rect);
+                                        setState(() {
+                                          rect = rectpoint;
+                                        });
+                                        onStoryItemTap(rect, index);
+                                      },
+                                      index: index,
+                                    );
+                                  }),
+                            ),
                           ),
                           Row(
                             children: [
@@ -359,7 +363,7 @@ class _ChatInterfaceState extends State<ChatInterface>
                           children: const [
                             FeedScreen(),
                             ClubsScreen(),
-                            PeopleAdding(),
+                            MyBookingScreen(),
                           ]))
                 ],
               ),
@@ -443,64 +447,48 @@ class _UserStoryItemState extends State<UserStoryItem>
 
   @override
   Widget build(BuildContext context) {
-    var username = "Paolo_James";
-    return Padding(
-      padding: EdgeInsets.only(top : ResponsiveFlutter.of(context).verticalScale(5)),
-      child: Container(
-        margin: EdgeInsets.symmetric(
-            horizontal: ResponsiveFlutter.of(context).verticalScale(5)),
-        child: GestureDetector(
-          key: touchPoint,
-          behavior: HitTestBehavior.opaque,
-          onTapUp: (detalis) {
-            var object = touchPoint.currentContext?.findRenderObject();
-            var translation = object?.getTransformTo(null).getTranslation();
-            var size = object?.semanticBounds.size;
-            rect = Rect.fromLTWH(
-                translation!.x, translation.y, size!.width, size.height);
-            widget.setRectPoint(rect);
-          },
-          child: Hero(
-            tag: "index${widget.index}",
-            transitionOnUserGestures: true,
-            child: Container(
-              alignment: Alignment.center,
-              child: Column(
-                children: <Widget>[
-                  RotationTransition(
-                    turns: base,
-                    child: DashedCircle(
-                      gapSize: gap.value,
-                      dashes: 30,
-                      color: const Color(0xffed4634),
-                      child: RotationTransition(
-                        turns: reverse,
-                        child: Padding(
-                          padding: EdgeInsets.all(5.0),
-                          child: CircleAvatar(
-                            radius: ResponsiveFlutter.of(context)
-                                .moderateScale(30),
-                            backgroundImage: AssetImage(ImagePath.image_3),
-                          ),
-                        ),
-                      ),
+    return Container(
+      margin: EdgeInsets.symmetric(
+          horizontal: ResponsiveFlutter.of(context).verticalScale(5)),
+      child: GestureDetector(
+        key: touchPoint,
+        behavior: HitTestBehavior.opaque,
+        onTapUp: (detalis) {
+          var object = touchPoint.currentContext?.findRenderObject();
+          var translation = object?.getTransformTo(null).getTranslation();
+          var size = object?.semanticBounds.size;
+          rect = Rect.fromLTWH(
+              translation!.x, translation.y, size!.width, size.height);
+          widget.setRectPoint(rect);
+        },
+        child: Hero(
+          tag: "index${widget.index}",
+          transitionOnUserGestures: true,
+          child: Container(
+            alignment: Alignment.center,
+            child: RotationTransition(
+              turns: base,
+              child: DashedCircle(
+                gapSize: gap.value,
+                dashes: 30,
+                color: const Color(0xffed4634),
+                child: RotationTransition(
+                  turns: reverse,
+                  child: Padding(
+                    padding: EdgeInsets.all(5.0),
+                    child: CircleAvatar(
+                      radius: ResponsiveFlutter.of(context)
+                          .moderateScale(30),
+                      backgroundImage: AssetImage(ImagePath.image_3),
                     ),
                   ),
-                  Padding(
-                    padding:  EdgeInsets.only(top : ResponsiveFlutter.of(context).verticalScale(5)),
-                    child: Text(
-                      "${username.length > 10 ? username.substring(0, 10) + "..." : username}",
-                      style: TextStyle(color: appColors.white,fontSize:ResponsiveFlutter.of(context).fontSize(1.4) ),
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
           ),
         ),
       ),
     );
-
   }
 
   void onStoryItemTap(reactpoint, index) {
