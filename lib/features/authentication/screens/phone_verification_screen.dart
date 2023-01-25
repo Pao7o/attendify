@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:attendify/features/firebase/controller/firebase_auth_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../responsive/responsive_flutter.dart';
@@ -47,6 +49,7 @@ class PhoneVerificationScreen extends StatelessWidget {
           ),
           PinCodeVerificationScreen(
             phoneNumber: phoneNumber,
+            verificationId: verificationId,
           )
         ]),
       ),
@@ -54,20 +57,21 @@ class PhoneVerificationScreen extends StatelessWidget {
   }
 }
 
-class PinCodeVerificationScreen extends StatefulWidget {
-  const PinCodeVerificationScreen({
-    Key? key,
-    this.phoneNumber,
-  }) : super(key: key);
+class PinCodeVerificationScreen extends ConsumerStatefulWidget {
+  const PinCodeVerificationScreen(
+      {Key? key, required this.phoneNumber, required this.verificationId})
+      : super(key: key);
 
-  final String? phoneNumber;
+  final String phoneNumber;
+  final String verificationId;
 
   @override
-  State<PinCodeVerificationScreen> createState() =>
+  ConsumerState<PinCodeVerificationScreen> createState() =>
       _PinCodeVerificationScreenState();
 }
 
-class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
+class _PinCodeVerificationScreenState
+    extends ConsumerState<PinCodeVerificationScreen> {
   TextEditingController textEditingController = TextEditingController();
   // ..text = "123456";
 
@@ -123,7 +127,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                 text: "Enter the code sent to ",
                 children: [
                   TextSpan(
-                    text: "${widget.phoneNumber}",
+                    text: widget.phoneNumber,
                     style: TextStyle(
                       color: AppColors().lightColor,
                       fontWeight: FontWeight.bold,
@@ -257,7 +261,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                   onPressed: () {
                     formKey.currentState!.validate();
                     // conditions for validating
-                    if (currentText.length != 6 || currentText != "123456") {
+                    if (currentText.length != 6) {
                       errorController!.add(ErrorAnimationType
                           .shake); // Triggering error shake animation
                       setState(() => hasError = true);
@@ -265,7 +269,10 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                       setState(
                         () {
                           hasError = false;
-                          snackBar("Number verified.");
+                          ref.read(firebaseAutheControllerProvider).verifySms(
+                              context: context,
+                              verificationId: widget.verificationId,
+                              smsCode: currentText);
                         },
                       );
                     }

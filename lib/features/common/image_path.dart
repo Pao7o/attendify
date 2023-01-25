@@ -4,6 +4,7 @@ class ImagePath {
   static const String base = "assets/images/";
   static const String appLogo = "${base}app_logo.png";
   static const String logo = "${base}logo.png";
+  static const String username = "${base}login_username.png";
   static const String avatar = "${base}ic_avatar.png";
   static const String email = "${base}ic_email.png";
   static const String eye = "${base}ic_eye.png";

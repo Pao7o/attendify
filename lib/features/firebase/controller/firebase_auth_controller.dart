@@ -1,5 +1,6 @@
 import 'package:attendify/features/authentication/screens/email_verification_screen.dart';
 import 'package:attendify/features/authentication/screens/phone_verification_screen.dart';
+import 'package:attendify/features/authentication/screens/set_username_screen.dart';
 import 'package:attendify/features/common/repository/shared_pref.dart';
 import 'package:attendify/features/common/utils.dart';
 import 'package:attendify/features/firebase/controller/firebase_firestore_controller.dart';
@@ -75,11 +76,18 @@ class FirebaseAuthController {
   Future signUpWithGoogle(BuildContext context) async {
     print("sign up with google controller");
     await firebaseAuthentication.signInWithGoogle().then((credential) {
-      signupSuccess(credential, context);
+      signupSuccess(
+        credential: credential,
+        context: context,
+        isPhoneAuth: false,
+      );
     });
   }
 
-  void signupSuccess(UserCredential credential, BuildContext context) {
+  void signupSuccess(
+      {required UserCredential credential,
+      required BuildContext context,
+      required bool isPhoneAuth}) {
     if (credential.additionalUserInfo!.isNewUser) {
       firebaseCloudFirestoreController
           .addNewUser(AppUser(
@@ -91,8 +99,13 @@ class FirebaseAuthController {
               phoneNumber: '',
               profilePhotoUrl: credential.user!.photoURL ?? ""))
           .then((value) {
-        Navigator.pushNamedAndRemoveUntil(
-            context, BottomBarScreen.routeName, ((route) => false));
+        if (isPhoneAuth) {
+          Navigator.pushNamedAndRemoveUntil(
+              context, SetUsernameScreen.routeName, ((route) => false));
+        } else {
+          Navigator.pushNamedAndRemoveUntil(
+              context, BottomBarScreen.routeName, ((route) => false));
+        }
       });
     } else {
       Navigator.pushNamedAndRemoveUntil(
@@ -107,7 +120,8 @@ class FirebaseAuthController {
           await firebaseAuthentication.firebaseAuth
               .signInWithCredential(credential)
               .then((value) {
-            signupSuccess(value, context);
+            signupSuccess(
+                credential: value, context: context, isPhoneAuth: true);
           });
         },
         onFailed: (FirebaseAuthException exception) {
@@ -134,7 +148,7 @@ class FirebaseAuthController {
       firebaseAuthentication.firebaseAuth
           .signInWithCredential(value)
           .then((value) {
-        signupSuccess(value, context);
+        signupSuccess(credential: value, context: context, isPhoneAuth: true);
       });
     });
   }
