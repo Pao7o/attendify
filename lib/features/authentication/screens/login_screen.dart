@@ -8,6 +8,7 @@ import 'package:attendify/screens/bottom_bar_screen.dart';
 import 'package:attendify/screens/forgot_password_screen.dart';
 import 'package:attendify/features/authentication/screens/signup_screen.dart';
 
+
 class LoginScreen extends StatefulWidget {
   static const routeName = '/login_screen';
   const LoginScreen({Key? key}) : super(key: key);
@@ -85,88 +86,62 @@ class LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
                     Expanded(
-                      child: Container(
-                        padding: EdgeInsets.all(
-                            ResponsiveFlutter.of(context).moderateScale(20)),
-                        color: appColors.appMediumColor,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            MyTextView(
-                              Strings.login,
-                              styleNew: MyTextStyle(
-                                colorNew: appColors.lightColor,
-                                size:
-                                    ResponsiveFlutter.of(context).fontSize(3.7),
-                                fontWeightNew: FontWeight.bold,
+                      child: SingleChildScrollView(
+                        child: Container(
+                          padding: EdgeInsets.all(
+                              ResponsiveFlutter.of(context).moderateScale(20)),
+                          color: appColors.appMediumColor,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              MyTextView(
+                                Strings.login,
+                                styleNew: MyTextStyle(
+                                  colorNew: appColors.lightColor,
+                                  size:
+                                      ResponsiveFlutter.of(context).fontSize(3.7),
+                                  fontWeightNew: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                                height: ResponsiveFlutter.of(context)
-                                    .verticalScale(5)),
-                            MyTextView(
-                              Strings.pleaseFillTheDetails,
-                              styleNew: MyTextStyle(
-                                colorNew: appColors.mediumGrayColor,
-                                size:
-                                    ResponsiveFlutter.of(context).fontSize(1.8),
-                                fontWeightNew: FontWeight.w400,
-                              ),
-                            ),
-                            SizedBox(
-                                height: ResponsiveFlutter.of(context)
-                                    .verticalScale(25)),
-                            Stack(
-                              alignment: Alignment.bottomCenter,
-                              children: [
-                                Container(
+                              SizedBox(
                                   height: ResponsiveFlutter.of(context)
-                                      .verticalScale(120),
-                                  padding: EdgeInsets.symmetric(
-                                    vertical: ResponsiveFlutter.of(context)
-                                        .moderateScale(20),
-                                    horizontal: ResponsiveFlutter.of(context)
-                                        .moderateScale(25),
-                                  ),
-                                  margin: EdgeInsets.only(
-                                      bottom: ResponsiveFlutter.of(context)
-                                          .moderateScale(25)),
-                                  decoration: BoxDecoration(
-                                    color: appColors.appLightColor,
-                                    borderRadius: BorderRadius.circular(
-                                      ResponsiveFlutter.of(context)
+                                      .verticalScale(5)),
+                              MyTextView(
+                                Strings.pleaseFillTheDetails,
+                                styleNew: MyTextStyle(
+                                  colorNew: appColors.mediumGrayColor,
+                                  size:
+                                      ResponsiveFlutter.of(context).fontSize(1.8),
+                                  fontWeightNew: FontWeight.w400,
+                                ),
+                              ),
+                              SizedBox(
+                                  height: ResponsiveFlutter.of(context)
+                                      .verticalScale(25)),
+                              Stack(
+                                alignment: Alignment.bottomCenter,
+                                children: [
+                                  Container(
+                                    height: ResponsiveFlutter.of(context)
+                                        .verticalScale(120),
+                                    padding: EdgeInsets.symmetric(
+                                      vertical: ResponsiveFlutter.of(context)
+                                          .moderateScale(20),
+                                      horizontal: ResponsiveFlutter.of(context)
                                           .moderateScale(25),
                                     ),
-                                  ),
-                                  child: SingleChildScrollView(
-                                    child: Column(
-                                      children: [
-                                        commonTestField(
-                                          context: context,
-                                          controller: email,
-                                          hintText: Strings.emailAddress,
-                                          image: ImagePath.email,
-                                          keyboardType:
-                                              TextInputType.emailAddress,
-                                          icon: true,
-                                        ),
-                                        SizedBox(
-                                            height:
-                                                ResponsiveFlutter.of(context)
-                                                    .verticalScale(20)),
-                                        commonTestField(
-                                          context: context,
-                                          controller: password,
-                                          hintText: Strings.password,
-                                          image: ImagePath.password,
-                                          keyboardType:
-                                              TextInputType.visiblePassword,
-                                          obscureText: true,
-                                          icon: true,
-                                        ),
-                                      ],
+                                    margin: EdgeInsets.only(
+                                        bottom: ResponsiveFlutter.of(context)
+                                            .moderateScale(25)),
+                                    decoration: BoxDecoration(
+                                      color: appColors.appLightColor,
+                                      borderRadius: BorderRadius.circular(
+                                        ResponsiveFlutter.of(context)
+                                            .moderateScale(25),
+                                      ),
                                     ),
+<<<<<<< HEAD
                                   ),
                                 ),
                                 Padding(
@@ -251,87 +226,187 @@ class LoginScreenState extends State<LoginScreen> {
                                           shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(30.0),
+=======
+                                    child: SingleChildScrollView(
+                                      child: Column(
+                                        children: [
+                                          commonTestField(
+                                            context: context,
+                                            controller: email,
+                                            hintText: Strings.emailAddress,
+                                            image: ImagePath.email,
+                                            keyboardType:
+                                                TextInputType.emailAddress,
+                                            icon: true,
+>>>>>>> parent of c04395b (Merge pull request #11 from Pao7o/crucial_test_branch)
                                           ),
-                                          color: Colors.white,
-                                          textColor: Colors.black,
-                                          padding: const EdgeInsets.fromLTRB(
-                                              10, 10, 10, 10),
-                                          child: Row(
-                                            children: [
-                                              Image.asset(
-                                                "assets/images/ic_google.png",
-                                                width: ResponsiveFlutter.of(
-                                                        context)
-                                                    .scale(25),
-                                                height: ResponsiveFlutter.of(
-                                                        context)
-                                                    .verticalScale(25),
-                                              ),
-                                              SizedBox(
-                                                  width: ResponsiveFlutter.of(
-                                                          context)
-                                                      .scale(10)),
-                                              const Text(
-                                                'Sign in with Google',
-                                                style: TextStyle(
-                                                  fontFamily: 'Google',
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                              ),
-                                            ],
+                                          SizedBox(
+                                              height:
+                                                  ResponsiveFlutter.of(context)
+                                                      .verticalScale(20)),
+                                          commonTestField(
+                                            context: context,
+                                            controller: password,
+                                            hintText: Strings.password,
+                                            image: ImagePath.password,
+                                            keyboardType:
+                                                TextInputType.visiblePassword,
+                                            obscureText: true,
+                                            icon: true,
                                           ),
-                                        ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: ResponsiveFlutter.of(context)
+                                            .moderateScale(55)),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.pushAndRemoveUntil(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const BottomBarScreen(),
+                                          ),
+                                          (route) => false,
+                                        );
+                                      },
+                                      child: commonButton(
+                                        context: context,
+                                        title: Strings.login,
                                       ),
                                     ),
                                   ),
                                 ],
                               ),
-                            ),
-                            SizedBox(
-                              height: ResponsiveFlutter.of(context)
-                                  .verticalScale(10),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Column(
-                                  children: [
-                                    MyTextView(
-                                      Strings.doNotHaveAnAccount,
+                              SizedBox(height:ResponsiveFlutter.of(context)
+                                  .verticalScale(7) ,),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                      const ForgotPasswordScreen(),
+                                    ),
+                                  );
+                                },
+                                child: Align(
+                                  alignment:Alignment.center ,
+                                  child: Padding(
+                                    padding:EdgeInsets.all(ResponsiveFlutter.of(context)
+                                        .moderateScale(5)) ,
+                                    child: MyTextView(
+                                      Strings.forgotPassword,
                                       textAligntNew: TextAlign.center,
                                       styleNew: MyTextStyle(
-                                        colorNew: appColors.mediumGrayColor,
-                                        fontWeightNew: FontWeight.w400,
+                                        colorNew: appColors.lightColor,
+                                        fontWeightNew: FontWeight.bold,
                                         size: ResponsiveFlutter.of(context)
-                                            .fontSize(1.8),
+                                            .fontSize(2),
                                       ),
                                     ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                const SignUpScreen(),
-                                          ),
-                                        );
-                                      },
-                                      child: MyTextView(
-                                        Strings.signUp,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                  height: ResponsiveFlutter.of(context)
+                                      .verticalScale(8)),
+                                  SizedBox(height: ResponsiveFlutter.of(context)
+                                      .verticalScale(40),
+                                  width: double.infinity,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                          GestureDetector(
+                            onTap: () {
+                              // code à exécuter lorsque le GestureDetector est tapé
+                            },
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Container(
+                                width:ResponsiveFlutter.of(context)
+                                    .scale(170),
+                                height: ResponsiveFlutter.of(context)
+                                    .verticalScale(40),
+                                child: MaterialButton(
+                                  onPressed: () {
+
+                                  },
+                                  child: Row(
+                                    children: [
+                                      Image.asset(
+                                        "assets/images/ic_google.png",
+                                        width: ResponsiveFlutter.of(context)
+                                            .scale(25),
+                                        height: ResponsiveFlutter.of(context)
+                                            .verticalScale(25),
+                                      ),
+                                      SizedBox(width: ResponsiveFlutter.of(context)
+                                          .scale(10)),
+                                      Text('Sign in with Google',style: TextStyle(
+                                        fontFamily: 'Google',
+                                        fontWeight: FontWeight.w600,
+                                      ),),
+                                    ],
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30.0),
+                                  ),
+                                  color: Colors.white,
+                                  textColor: Colors.black,
+                                  padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                ),
+                              ),
+                            ),
+                          ),
+                                    ],
+                                  ),
+                                  ),
+                              SizedBox(height:ResponsiveFlutter.of(context)
+                                  .verticalScale(10),),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Column(
+                                    children: [
+                                      MyTextView(
+                                        Strings.doNotHaveAnAccount,
                                         textAligntNew: TextAlign.center,
                                         styleNew: MyTextStyle(
-                                          colorNew: appColors.lightPinkColor,
-                                          fontWeightNew: FontWeight.bold,
+                                          colorNew: appColors.mediumGrayColor,
+                                          fontWeightNew: FontWeight.w400,
                                           size: ResponsiveFlutter.of(context)
-                                              .fontSize(2),
+                                              .fontSize(1.8),
+                                        ),
+                                      ),GestureDetector(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => const SignUpScreen(),
+                                            ),
+                                          );
+                                        },
+                                        child: MyTextView(
+                                          Strings.signUp,
+                                          textAligntNew: TextAlign.center,
+                                          styleNew: MyTextStyle(
+                                            colorNew: appColors.lightPinkColor,
+                                            fontWeightNew: FontWeight.bold,
+                                            size: ResponsiveFlutter.of(context)
+                                                .fontSize(2),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
