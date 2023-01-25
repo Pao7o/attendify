@@ -237,7 +237,7 @@ class LoginScreenState extends State<LoginScreen> {
                                 children: [
                                   GestureDetector(
                                     onTap: () {
-                                      // code à exécuter lorsque le GestureDetector est tapé.
+                                      // code à exécuter lorsque le GestureDetector est tapé
                                     },
                                     child: Align(
                                       alignment: Alignment.center,
