@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
 class Strings {
   static const String appName = "Attendify";
   static const String ok = "Ok";
@@ -13,12 +12,14 @@ class Strings {
   static const String loading = "Loading....";
   static String android = "Android";
   static const String ios = "iOS";
-  static const String networkError = "Your internet is not available, please try again later";
+  static const String networkError =
+      "Your internet is not available, please try again later";
   static const String dioError = "Something went wrong, Please try again...";
 
   static const String login = "Login";
-  static const String pleaseFillTheDetails = "Please fill the details to continue.";
-  static const String emailAddress = "Email Address or Phone Number";
+  static const String pleaseFillTheDetails =
+      "Please fill the details to continue.";
+  static const String emailAddress = "Email Address";
   static const String password = "Password";
   static const String doNotHaveAnAccount = "Don't have an account?";
 
@@ -27,13 +28,16 @@ class Strings {
   static const String lastName = "Last Name";
 
   static const String forgotPassword = "Forgot Password";
-  static const String pleaseFillYourEmail = "Please fill your email address or phone number associated with your account";
+  static const String pleaseFillYourEmail =
+      "Please fill your email address or phone number associated with your account";
   static const String submit = "SUBMIT";
 
   static const String verification = "Verification";
-  static const String enterTheVerificationCode = "Enter the verification code we just sent you on email address";
+  static const String enterTheVerificationCode =
+      "Enter the verification code we just sent you on email address";
   static const String verify = "VERIFY";
-  static const String ifYouDidNotReceivedACode = "If you didn't received a code";
+  static const String ifYouDidNotReceivedACode =
+      "If you didn't received a code";
   static const String resend = "Resend?";
 
   static const String settings = "SETTINGS";
@@ -72,7 +76,8 @@ class Strings {
   static const String location = "Location";
   static const String enterEmailDetails = "Enter event details";
   static const String hurray = "Hurray!";
-  static const String yourEventSuccessfullyCreated = "Your event successfully created.";
+  static const String yourEventSuccessfullyCreated =
+      "Your event successfully created.";
 
   static const String wallet = "Wallet";
   static const String myBalance = "My Balance";
@@ -98,11 +103,13 @@ class Strings {
   static const String payPal = "Paypal";
 
   static const String addedMoneySuccessful = "Added money\nSuccessful!";
-  static const String yourAmountSuccessfullyAdded = "Your amount successfully added in\nyour wallet";
+  static const String yourAmountSuccessfullyAdded =
+      "Your amount successfully added in\nyour wallet";
   static const String backToHome = "BACK TO HOME";
 
   static const String withdrawalCancelled = "Withdrawal\nCancelled";
-  static const String yourAmountCanAdded = "Your amount Can't added in\nyour wallet";
+  static const String yourAmountCanAdded =
+      "Your amount Can't added in\nyour wallet";
   static const String tryAgain = "Try Again";
 
   static const String favorites = "Favorites";
@@ -122,7 +129,8 @@ class Strings {
   static const String pay = "PAY";
 
   static const String paymentSuccessed = "Payment Successed!";
-  static const String youHaveSuccessfullyMade = "You have successfully made your\ntransaction.";
+  static const String youHaveSuccessfullyMade =
+      "You have successfully made your\ntransaction.";
 
   static const String notification = "Notification";
   static const String clearAll = "Clear All";
@@ -151,7 +159,8 @@ class Strings {
 
   /*<------------------- Dummy Text ------------------->*/
 
-  static const String dummyText1 = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet.";
+  static const String dummyText1 =
+      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet.";
   static const String dummyText2 = "(+1) 595 595 5940";
   static const String dummyText3 = "contact@aliplay.in";
   static const String dummyText4 =
@@ -168,7 +177,8 @@ class Strings {
   static const String dummyText11 =
       "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat. Stet clita kasd gubergren no sea takimata sanctus est Lorem ipsum dolor sit amet.";
   static const String dummyText12 = "2. What is Lorem Ipsum?";
-  static const String dummyText13 = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, Stet clita kasd gubergren";
+  static const String dummyText13 =
+      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, Stet clita kasd gubergren";
   static const String dummyText14 =
       "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.  Lorem ipsum dolor sit amet. mpor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.";
   static const String dummyText15 = "\$ 8623.00";
@@ -183,12 +193,15 @@ class Strings {
   static const String dummyText24 = "San Francisco";
   static const String dummyText25 = "Hello,\nLauren Martin";
   static const String dummyText26 = "Tomorrow land";
-  static const String dummyText27 = "Some artists will really blow you away with their humility and inspire you to be better human being...";
+  static const String dummyText27 =
+      "Some artists will really blow you away with their humility and inspire you to be better human being...";
   static const String dummyText28 = "Your contact Elvina John is on attendify.";
   static const String dummyText29 = "Jian Fera & 5 joined Austin's event.";
   static const String dummyText30 = "Profile updated successfully.";
-  static const String dummyText31 = "Elina John Invited to joining Austin event.";
-  static const String dummyText32 = "Congrats! Your event created successfully.";
+  static const String dummyText31 =
+      "Elina John Invited to joining Austin event.";
+  static const String dummyText32 =
+      "Congrats! Your event created successfully.";
   static const String dummyText33 = "Pinnacle john is joined your event.";
   static const String dummyText34 = "Successfully withdrawn money.";
   static const String dummyText35 = "Your payment was success!";
@@ -196,71 +209,65 @@ class Strings {
   static const String dummyText37 = "Alvina Martin";
   static const String dummyText38 = "Musical Event 2021";
   static const String dummyText39 = "Map";
-
-
-
 }
 
-
-
-TextStyle textsize12 = TextStyle(
+TextStyle textsize12 = const TextStyle(
   fontSize: 12,
   color: Colors.black,
 );
 
-TextStyle textsize14 = TextStyle(
+TextStyle textsize14 = const TextStyle(
   fontSize: 14,
   color: Colors.black,
 );
-TextStyle textsize16 = TextStyle(
+TextStyle textsize16 = const TextStyle(
   fontSize: 16,
   color: Colors.black,
 );
-TextStyle textsize20 = TextStyle(
+TextStyle textsize20 = const TextStyle(
   fontSize: 20,
   color: Colors.black,
 );
 
-TextStyle textsizeMediam12 = TextStyle(
+TextStyle textsizeMediam12 = const TextStyle(
   fontSize: 12,
   fontWeight: FontWeight.w600,
   color: Colors.black,
 );
 
-TextStyle textsizeMediam14 = TextStyle(
+TextStyle textsizeMediam14 = const TextStyle(
   fontSize: 14,
   fontWeight: FontWeight.w600,
   color: Colors.black,
 );
-TextStyle textsizeMediam16 = TextStyle(
+TextStyle textsizeMediam16 = const TextStyle(
   fontSize: 16,
   fontWeight: FontWeight.w600,
   color: Colors.black,
 );
-TextStyle textsizeMediam20 = TextStyle(
+TextStyle textsizeMediam20 = const TextStyle(
   fontSize: 20,
   fontWeight: FontWeight.w600,
   color: Colors.black,
 );
 
-
-TextStyle textsizeBold12 = TextStyle(
+TextStyle textsizeBold12 = const TextStyle(
   fontSize: 12,
   fontWeight: FontWeight.bold,
   color: Colors.black,
 );
 
-TextStyle textsizeBold14 = TextStyle(
+TextStyle textsizeBold14 = const TextStyle(
   fontSize: 14,
   fontWeight: FontWeight.bold,
   color: Colors.black,
 );
-TextStyle textsizeBold16 = TextStyle(
+TextStyle textsizeBold16 = const TextStyle(
   fontSize: 16,
   fontWeight: FontWeight.bold,
   color: Colors.black,
 );
-TextStyle textsizeBold20 = TextStyle(
+TextStyle textsizeBold20 = const TextStyle(
   fontSize: 20,
   fontWeight: FontWeight.bold,
   color: Colors.black,

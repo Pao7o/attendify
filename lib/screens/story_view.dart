@@ -12,7 +12,6 @@ import '../features/common/story_model.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../features/common/strings.dart';
-import '../responsive/responsive_flutter.dart';
 
 class StoryFeedView extends StatefulWidget {
   const StoryFeedView(
@@ -21,7 +20,6 @@ class StoryFeedView extends StatefulWidget {
 
   final List<dynamic> stories;
   final String herotagString;
-
   @override
   _StoryFeedViewState createState() => _StoryFeedViewState();
 }
@@ -34,12 +32,6 @@ class _StoryFeedViewState extends State<StoryFeedView>
   VideoPlayerController? _videoPlayerController;
   int _currentIndex = 0;
   final _pageNotifier = ValueNotifier(0.0);
-
-  FocusNode _focusNode = FocusNode();
-
-
-
-
 
   @override
   void initState() {
@@ -86,7 +78,6 @@ class _StoryFeedViewState extends State<StoryFeedView>
   @override
   Widget build(BuildContext context) {
     final Story story = widget.stories[_currentIndex];
-
 
     var borderside = const BorderSide(
       color: Colors.white,
@@ -176,7 +167,6 @@ class _StoryFeedViewState extends State<StoryFeedView>
                                 top: 10.0,
                                 left: 10.0,
                                 right: 10.0,
-                                bottom: 70.0,
                                 child: SafeArea(
                                   top: false,
                                   child: Column(
@@ -233,61 +223,65 @@ class _StoryFeedViewState extends State<StoryFeedView>
                                       SizedBox(
                                         width: 10,
                                       ),
+                                      GestureDetector(
+                                        child: Container(
+                                          padding: EdgeInsets.all(4),
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              border: Border.all(
+                                                color: Colors.grey.shade300,
+                                              )),
+                                          child: Icon(
+                                            Icons.camera_alt_rounded,
+                                            color: Colors.white,
+                                            size: 20,
+                                          ),
+                                        ),
+                                      ),
                                       SizedBox(
                                         width: 10,
                                       ),
                                       Expanded(
-                                        child: InkWell(
-                                          onTap: () {
-                                            _focusNode.requestFocus();
-                                          },
-
-
-                                          child: TextField(
-                                            focusNode: _focusNode,
-                                            style: textsize12.copyWith(
-                                                color: Colors.white),
-                                            cursorColor: Colors.white,
-                                            decoration: InputDecoration(
-                                                errorBorder: outlineInput,
-                                                hintText: 'Send Message',
-                                                hintStyle: textsize12.copyWith(
-                                                  color: Colors.white,
-                                                  fontSize: ResponsiveFlutter.of(
-                                                          context)
-                                                      .fontSize(2),
-                                                ),
-                                                disabledBorder: outlineInput
-                                                    .copyWith(
-                                                        borderSide:
-                                                            borderside.copyWith(
-                                                                color: Colors.grey
-                                                                    .shade300)),
-                                                focusedBorder: outlineInput,
-                                                enabledBorder:
-                                                    outlineInput.copyWith(
-                                                        borderSide:
-                                                            borderside.copyWith(
-                                                                color: Colors.grey
-                                                                    .shade300)),
-                                                border: outlineInput,
-                                                isDense: true,
-                                                suffixIconConstraints:
-                                                    BoxConstraints(
-                                                        maxHeight: 20,
-                                                        maxWidth: 20),
-                                                contentPadding:
-                                                    EdgeInsets.fromLTRB(
-                                                        10, 35, 6, 0),
-                                                suffixIcon: Padding(
-                                                    padding:
-                                                        EdgeInsets.only(right: 6),
-                                                    child: Icon(
-                                                      Icons.more_vert_rounded,
-                                                      color: Colors.white,
-                                                      size: 10,
-                                                    ))),
-                                          ),
+                                        child: TextField(
+                                          style: textsize12.copyWith(
+                                              color: Colors.white),
+                                          cursorColor: Colors.white,
+                                          decoration: InputDecoration(
+                                              errorBorder: outlineInput,
+                                              hintText: 'Send Message',
+                                              hintStyle: textsize12.copyWith(
+                                                  color: Colors.white),
+                                              disabledBorder: outlineInput
+                                                  .copyWith(
+                                                      borderSide:
+                                                          borderside.copyWith(
+                                                              color: Colors.grey
+                                                                  .shade300)),
+                                              focusedBorder: outlineInput,
+                                              enabledBorder:
+                                                  outlineInput.copyWith(
+                                                      borderSide:
+                                                          borderside.copyWith(
+                                                              color: Colors.grey
+                                                                  .shade300)),
+                                              border: outlineInput,
+                                              isDense: true,
+                                              suffixIconConstraints:
+                                                  BoxConstraints(
+                                                      maxHeight: 20,
+                                                      maxWidth: 20),
+                                              contentPadding:
+                                                  EdgeInsets.fromLTRB(
+                                                      10, 6, 6, 5),
+                                              suffixIcon: Padding(
+                                                  padding:
+                                                      EdgeInsets.only(right: 6),
+                                                  child: Icon(
+                                                    Icons.more_vert_rounded,
+                                                    color: Colors.white,
+                                                    size: 10,
+                                                  ))),
                                         ),
                                       ),
                                       IconButton(
@@ -427,7 +421,6 @@ class AnimatedBar extends StatelessWidget {
   final AnimationController animationController;
   final int position;
   final int currentindex;
-
   @override
   Widget build(BuildContext context) {
     return Flexible(
@@ -470,5 +463,4 @@ class AnimatedBar extends StatelessWidget {
 }
 
 num degToRad(num deg) => deg * (pi / 180.0);
-
 num radToDeg(num deg) => deg * (180.0 / pi);
