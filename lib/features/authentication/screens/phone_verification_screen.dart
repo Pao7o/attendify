@@ -1,7 +1,8 @@
 import 'dart:async';
 
+import 'package:attendify/features/firebase/controller/firebase_auth_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../responsive/responsive_flutter.dart';
@@ -53,27 +54,33 @@ class EmailVerificationScreen extends StatelessWidget {
               height: 80,
                 width: 80,
                 child: LottieBuilder.asset("assets/lottie/sent.json", repeat: true)),*/
-                SizedBox(height: 19,),
-                  const PinCodeVerificationScreen(phoneNumber: "+33749363363",)
-                    ]),
+          const SizedBox(
+            height: 19,
+          ),
+          PinCodeVerificationScreen(
+            phoneNumber: phoneNumber,
+            verificationId: verificationId,
+          )
+        ]),
       ),
                 );
   }
 
-}class PinCodeVerificationScreen extends StatefulWidget {
-  const PinCodeVerificationScreen({
-    Key? key,
-    this.phoneNumber,
-  }) : super(key: key);
+class PinCodeVerificationScreen extends ConsumerStatefulWidget {
+  const PinCodeVerificationScreen(
+      {Key? key, required this.phoneNumber, required this.verificationId})
+      : super(key: key);
 
-  final String? phoneNumber;
+  final String phoneNumber;
+  final String verificationId;
 
   @override
-  State<PinCodeVerificationScreen> createState() =>
+  ConsumerState<PinCodeVerificationScreen> createState() =>
       _PinCodeVerificationScreenState();
 }
 
-class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
+class _PinCodeVerificationScreenState
+    extends ConsumerState<PinCodeVerificationScreen> {
   TextEditingController textEditingController = TextEditingController();
   // ..text = "123456";
 
@@ -125,8 +132,8 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                 text: "Enter the code sent to ",
                 children: [
                   TextSpan(
-                    text: "${widget.phoneNumber}",
-                    style:  TextStyle(
+                    text: widget.phoneNumber,
+                    style: TextStyle(
                       color: AppColors().lightColor,
                       fontWeight: FontWeight.bold,
                       fontSize: ResponsiveFlutter.of(context).fontSize(1.7),
@@ -241,13 +248,26 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
             Container(
               margin:
               const EdgeInsets.symmetric(vertical: 16.0, horizontal: 30),
+              decoration: BoxDecoration(
+                  color: Colors.green.shade300,
+                  borderRadius: BorderRadius.circular(5),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.green.shade200,
+                        offset: const Offset(1, -2),
+                        blurRadius: 5),
+                    BoxShadow(
+                        color: Colors.green.shade200,
+                        offset: const Offset(-1, 2),
+                        blurRadius: 5)
+                  ]),
               child: ButtonTheme(
                 height: 50,
                 child: TextButton(
                   onPressed: () {
                     formKey.currentState!.validate();
                     // conditions for validating
-                    if (currentText.length != 6 || currentText != "123456") {
+                    if (currentText.length != 6) {
                       errorController!.add(ErrorAnimationType
                           .shake); // Triggering error shake animation
                       setState(() => hasError = true);
@@ -255,7 +275,10 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                       setState(
                             () {
                           hasError = false;
-                          snackBar("Number verified.");
+                          ref.read(firebaseAutheControllerProvider).verifySms(
+                              context: context,
+                              verificationId: widget.verificationId,
+                              smsCode: currentText);
                         },
                       );
                     }
@@ -272,19 +295,6 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                   ),
                 ),
               ),
-              decoration: BoxDecoration(
-                  color: Colors.green.shade300,
-                  borderRadius: BorderRadius.circular(5),
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.green.shade200,
-                        offset: const Offset(1, -2),
-                        blurRadius: 5),
-                    BoxShadow(
-                        color: Colors.green.shade200,
-                        offset: const Offset(-1, 2),
-                        blurRadius: 5)
-                  ]),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
