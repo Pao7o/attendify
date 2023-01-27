@@ -1,4 +1,3 @@
-import 'package:attendify/features/authentication/screens/phone_number_screen.dart';
 import 'package:attendify/features/common/app_colors.dart';
 import 'package:attendify/features/common/common_widget.dart';
 import 'package:attendify/features/common/image_path.dart';
@@ -11,6 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_pw_validator/flutter_pw_validator.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'email_verification_screen.dart';
+
 class SignUpScreen extends ConsumerStatefulWidget {
   static const String routeName = "/signup_screen";
   const SignUpScreen({Key? key}) : super(key: key);
@@ -22,22 +23,12 @@ class SignUpScreen extends ConsumerStatefulWidget {
 class SignUpScreenState extends ConsumerState<SignUpScreen> {
   AppColors appColors = AppColors();
   ImagePath imagePath = ImagePath();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController firstNameController = TextEditingController();
-  TextEditingController lastNameController = TextEditingController();
+  TextEditingController? email = TextEditingController();
+  TextEditingController? password = TextEditingController();
+  TextEditingController? firstName = TextEditingController();
+  TextEditingController? lastName = TextEditingController();
   bool isLoading = false;
   final _formKey = GlobalKey<FormState>();
-
-  @override
-  void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
-    firstNameController.dispose();
-    lastNameController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -63,7 +54,7 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
                               children: [
                                 Container(
                                   height: ResponsiveFlutter.of(context)
-                                      .verticalScale(240),
+                                      .verticalScale(260),
                                   width: double.infinity,
                                   color: appColors.appDarkColor,
                                 ),
@@ -151,7 +142,7 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
                                   children: [
                                     Container(
                                       height: ResponsiveFlutter.of(context)
-                                          .verticalScale(180),
+                                          .verticalScale(170),
                                       padding: EdgeInsets.symmetric(
                                         vertical: ResponsiveFlutter.of(context)
                                             .moderateScale(20),
@@ -192,8 +183,7 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
                                                         return null;
                                                       },
                                                       context: context,
-                                                      controller:
-                                                          firstNameController,
+                                                      controller: firstName,
                                                       hintText:
                                                           Strings.firstName,
                                                       image: ImagePath.avatar,
@@ -218,8 +208,7 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
                                                         return null;
                                                       },
                                                       context: context,
-                                                      controller:
-                                                          lastNameController,
+                                                      controller: lastName,
                                                       hintText:
                                                           Strings.lastName,
                                                       image: ImagePath.avatar,
@@ -248,7 +237,7 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
                                                   return null;
                                                 },
                                                 context: context,
-                                                controller: emailController,
+                                                controller: email,
                                                 hintText: Strings.emailAddress,
                                                 image: ImagePath.email,
                                                 keyboardType:
@@ -269,7 +258,7 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
                                                   return null;
                                                 },
                                                 context: context,
-                                                controller: passwordController,
+                                                controller: password,
                                                 hintText: Strings.password,
                                                 image: ImagePath.password,
                                                 keyboardType: TextInputType
@@ -283,8 +272,7 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
                                                     height: 150,
                                                     minLength: 0,
                                                     onSuccess: () {},
-                                                    controller:
-                                                        passwordController),
+                                                    controller: password!),
                                               )
                                             ],
                                           ),
@@ -303,25 +291,23 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
                                               .validate()) {
                                             Utils().sendingEmailDialog(
                                                 context: context,
-                                                email: emailController.text
-                                                    .trim());
+                                                email: email!.text.trim());
                                             await ref
                                                 .read(
                                                     firebaseAutheControllerProvider)
                                                 .signupWithEmailandPassword(
-                                                  ref: ref,
-                                                  context: context,
-                                                  email: emailController.text
-                                                      .trim(),
-                                                  password:
-                                                      passwordController.text,
-                                                  firstName: firstNameController
-                                                      .text
-                                                      .trim(),
-                                                  lastName: lastNameController
-                                                      .text
-                                                      .trim(),
-                                                );
+                                                    context: context,
+                                                    email: email!.text.trim(),
+                                                    password: password!.text)
+                                                .then((value) {
+                                              if (value == true) {
+                                                Navigator.pop(context);
+                                                Navigator.pushNamed(context,
+                                                    EmailVerification.routeName,
+                                                    arguments:
+                                                        email!.text.trim());
+                                              }
+                                            });
                                           }
                                         },
                                         child: commonButton(
@@ -332,171 +318,86 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
                                     ),
                                   ],
                                 ),
-                                SizedBox(
-                                    height: ResponsiveFlutter.of(context)
-                                        .verticalScale(10)),
-                                Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.all(
-                                            ResponsiveFlutter.of(context)
-                                                .moderateScale(8.5)),
-                                        child: Align(
-                                          alignment: Alignment.center,
-                                          child: SizedBox(
-                                            width: ResponsiveFlutter.of(context)
-                                                .scale(120),
-                                            height:
-                                                ResponsiveFlutter.of(context)
-                                                    .verticalScale(35),
-                                            child: MaterialButton(
-                                              onPressed: () {
-                                                ref
-                                                    .read(
-                                                        firebaseAutheControllerProvider)
-                                                    .signUpWithGoogle(context);
-                                              },
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(30.0),
+                                GestureDetector(
+                                  onTap: () {
+                                    // code à exécuter lorsque le GestureDetector est tapé
+                                  },
+                                  child: Padding(
+                                    padding: EdgeInsets.all(ResponsiveFlutter.of(context)
+                                        .moderateScale(8.5)),
+                                    child: Align(
+                                      alignment: Alignment.center,
+                                      child: Container(
+                                        width:ResponsiveFlutter.of(context)
+                                            .scale(170),
+                                        height: ResponsiveFlutter.of(context)
+                                            .verticalScale(35),
+                                        child: MaterialButton(
+                                          onPressed: () {
+                                          },
+                                          child: Row(
+                                            children: [
+                                              Image.asset(
+                                                "assets/images/ic_google.png",
+                                                width: ResponsiveFlutter.of(context)
+                                                    .scale(25),
+                                                height: ResponsiveFlutter.of(context)
+                                                    .verticalScale(25),
                                               ),
-                                              color: Colors.white,
-                                              textColor: Colors.black,
-                                              padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      10, 10, 10, 10),
-                                              child: Row(
-                                                children: [
-                                                  Image.asset(
-                                                    "assets/images/ic_google.png",
-                                                    width: ResponsiveFlutter.of(
-                                                            context)
-                                                        .scale(25),
-                                                    height:
-                                                        ResponsiveFlutter.of(
-                                                                context)
-                                                            .verticalScale(25),
-                                                  ),
-                                                  SizedBox(
-                                                      width:
-                                                          ResponsiveFlutter.of(
-                                                                  context)
-                                                              .scale(10)),
-                                                  const Text(
-                                                    'Sign up',
-                                                    style: TextStyle(
-                                                      fontFamily: 'Google',
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
+                                              SizedBox(width: ResponsiveFlutter.of(context)
+                                                  .scale(10)),
+                                              Text('Sign up with Google',style: TextStyle(
+                                                fontFamily: 'Google',
+                                                fontWeight: FontWeight.w600,
+                                              ),),
+                                            ],
                                           ),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(30.0),
+                                          ),
+                                          color: Colors.white,
+                                          textColor: Colors.black,
+                                          padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
                                         ),
                                       ),
-                                      Padding(
-                                        padding: EdgeInsets.all(
-                                            ResponsiveFlutter.of(context)
-                                                .moderateScale(8.5)),
-                                        child: Align(
-                                          alignment: Alignment.center,
-                                          child: SizedBox(
-                                            width: ResponsiveFlutter.of(context)
-                                                .scale(120),
-                                            height:
-                                                ResponsiveFlutter.of(context)
-                                                    .verticalScale(35),
-                                            child: MaterialButton(
-                                              onPressed: () {
-                                                Navigator.pushNamed(
-                                                    context,
-                                                    PhoneNumberScreen
-                                                        .routeName);
-                                              },
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(30.0),
-                                              ),
-                                              color: Colors.white,
-                                              textColor: Colors.black,
-                                              padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      10, 10, 10, 10),
-                                              child: Row(
-                                                children: [
-                                                  Image.asset(
-                                                    "assets/images/ic_phone_blue.png",
-                                                    width: ResponsiveFlutter.of(
-                                                            context)
-                                                        .scale(25),
-                                                    height:
-                                                        ResponsiveFlutter.of(
-                                                                context)
-                                                            .verticalScale(25),
-                                                  ),
-                                                  SizedBox(
-                                                      width:
-                                                          ResponsiveFlutter.of(
-                                                                  context)
-                                                              .scale(10)),
-                                                  const Text(
-                                                    'Sign up',
-                                                    style: TextStyle(
-                                                      fontFamily: 'Google',
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ]),
+                                    ),
+                                  ),
+                                ),
+                                Align(
+                                  alignment: Alignment.center,
+                                  child: MyTextView(
+                                    Strings.doNotHaveAnAccount,
+                                    textAligntNew: TextAlign.center,
+                                    styleNew: MyTextStyle(
+                                      colorNew: appColors.mediumGrayColor,
+                                      fontWeightNew: FontWeight.w400,
+                                      size: ResponsiveFlutter.of(context)
+                                          .fontSize(1.8),
+                                    ),
+                                  ),
+                                ),
                                 SizedBox(
                                     height: ResponsiveFlutter.of(context)
-                                        .verticalScale(15)),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    MyTextView(
-                                      Strings.doNotHaveAnAccount,
+                                        .verticalScale(2)),
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    child: MyTextView(
+                                      Strings.login,
                                       textAligntNew: TextAlign.center,
                                       styleNew: MyTextStyle(
-                                        colorNew: appColors.mediumGrayColor,
-                                        fontWeightNew: FontWeight.w400,
+                                        colorNew: appColors.lightPinkColor,
+                                        fontWeightNew: FontWeight.bold,
                                         size: ResponsiveFlutter.of(context)
-                                            .fontSize(1.8),
+                                            .fontSize(2),
                                       ),
                                     ),
-                                    SizedBox(
-                                        width: ResponsiveFlutter.of(context)
-                                            .verticalScale(2)),
-                                    GestureDetector(
-                                      onTap: () {
-                                        Navigator.pop(context);
-                                      },
-                                      child: Align(
-                                        alignment: Alignment.center,
-                                        child: MyTextView(
-                                          Strings.login,
-                                          textAligntNew: TextAlign.center,
-                                          styleNew: MyTextStyle(
-                                            colorNew: appColors.lightPinkColor,
-                                            fontWeightNew: FontWeight.bold,
-                                            size: ResponsiveFlutter.of(context)
-                                                .fontSize(2),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+                                  ),
                                 ),
+
                               ],
                             ),
                           ),
