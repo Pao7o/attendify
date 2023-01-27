@@ -63,7 +63,7 @@ class AppColors {
   Color appDarkColor =
       Constants.darkTheme ? const Color(0xFF261E39) : const Color(0xFFFFFFFF);
   Color appMediumColor =
-      Constants.darkTheme ? const Color(0xFF2F2644) : const Color(0xFFF6F6F6);
+        Constants.darkTheme ? const Color(0xFF2F2644) : const Color(0xFFF6F6F6);
   Color appLightColor =
       Constants.darkTheme ? const Color(0xFF392F51) : const Color(0xFFFFFFFF);
 
