@@ -1,31 +1,23 @@
 import 'package:attendify/features/authentication/screens/email_verification_screen.dart';
-import 'package:attendify/features/authentication/screens/phone_verification_screen.dart';
 import 'package:attendify/features/authentication/screens/set_username_screen.dart';
 import 'package:attendify/features/common/repository/shared_pref.dart';
 import 'package:attendify/features/common/utils.dart';
 import 'package:attendify/features/firebase/controller/firebase_firestore_controller.dart';
 import 'package:attendify/features/firebase/models/app_user_model.dart';
 import 'package:attendify/features/firebase/repository/firebase_authentication.dart';
-import 'package:attendify/screens/bottom_bar_screen.dart';
-import 'package:attendify/utils/app_constants.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class FirebaseAuthController {
-  final FirebaseAuthentication firebaseAuthentication;
-  final FirebaseCloudFirestoreController firebaseCloudFirestoreController;
+  final FirebaseAuthentication _firebaseAuthentication;
 
-  FirebaseAuthController(
-      {required this.firebaseAuthentication,
-      required this.firebaseCloudFirestoreController});
+  FirebaseAuthController(this._firebaseAuthentication);
 
   Stream authStateChanges() {
-    return firebaseAuthentication.checkUserAuthState();
+    return _firebaseAuthentication.checkUserAuthState();
   }
 
-  Future signupWithEmailandPassword(
+  Future<bool> signupWithEmailandPassword(
       {required BuildContext context,
       required String email,
       required String password,
@@ -174,11 +166,7 @@ class FirebaseAuthController {
 
 final firebaseAutheControllerProvider = Provider((ref) {
   final authRepository = ref.watch(firebaseAuthenticationProvider);
-  final firestoreController =
-      ref.watch(firebaseCloudFirestoreControllerProvider);
-  return FirebaseAuthController(
-      firebaseAuthentication: authRepository,
-      firebaseCloudFirestoreController: firestoreController);
+  return FirebaseAuthController(authRepository);
 });
 
 final userAuthStateProvider = StreamProvider((ref) {
