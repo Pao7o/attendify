@@ -114,28 +114,38 @@ class FirebaseAuthController {
   }
 
   Future signInWithPhone(String phone, BuildContext context) async {
-    await firebaseAuthentication.loginWithPhone(
-        phoneNumber: phone,
-        onCompleted: (PhoneAuthCredential credential) async {
-          await firebaseAuthentication.firebaseAuth
-              .signInWithCredential(credential)
-              .then((value) {
-            signupSuccess(
-                credential: value, context: context, isPhoneAuth: true);
-          });
-        },
-        onFailed: (FirebaseAuthException exception) {
-          Utils().errorDialog(context: context, error: exception.toString());
-          print("Phone authentication error ${exception.toString()}");
-        },
-        codeSent: (String verificationId, int? resendToken) {
-          Navigator.pushNamed(context, PhoneVerificationScreen.routeName,
-              arguments: {
-                'verificationId': verificationId,
-                "phoneNumber": phone
+    await InternetConnectionChecker().hasConnection.then((value) async {
+      if (value) {
+        await firebaseAuthentication.loginWithPhone(
+            phoneNumber: phone,
+            onCompleted: (PhoneAuthCredential credential) async {
+              await firebaseAuthentication.firebaseAuth
+                  .signInWithCredential(credential)
+                  .then((value) {
+                signupSuccess(
+                    credential: value, context: context, isPhoneAuth: true);
               });
-        },
-        codeTimeout: (String verificationId) {});
+            },
+            onFailed: (FirebaseAuthException exception) {
+              Navigator.pop(context);
+              Utils()
+                  .errorDialog(context: context, error: exception.toString());
+              print("Phone authentication error ${exception.toString()}");
+            },
+            codeSent: (String verificationId, int? resendToken) {
+              Navigator.pushNamed(context, PhoneVerificationScreen.routeName,
+                  arguments: {
+                    'verificationId': verificationId,
+                    "phoneNumber": phone
+                  });
+            },
+            codeTimeout: (String verificationId) {});
+      } else {
+        Navigator.pop(context);
+        Utils().errorDialog(
+            context: context, error: "Please check your internet connection");
+      }
+    });
   }
 
   Future verifySms(
