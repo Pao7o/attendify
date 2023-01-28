@@ -8,7 +8,6 @@ import 'package:attendify/screens/bottom_bar_screen.dart';
 import 'package:attendify/screens/forgot_password_screen.dart';
 import 'package:attendify/features/authentication/screens/signup_screen.dart';
 
-
 class LoginScreen extends StatefulWidget {
   static const routeName = '/login_screen';
   const LoginScreen({Key? key}) : super(key: key);
@@ -99,8 +98,8 @@ class LoginScreenState extends State<LoginScreen> {
                                 Strings.login,
                                 styleNew: MyTextStyle(
                                   colorNew: appColors.lightColor,
-                                  size:
-                                      ResponsiveFlutter.of(context).fontSize(3.7),
+                                  size: ResponsiveFlutter.of(context)
+                                      .fontSize(3.7),
                                   fontWeightNew: FontWeight.bold,
                                 ),
                               ),
@@ -111,8 +110,8 @@ class LoginScreenState extends State<LoginScreen> {
                                 Strings.pleaseFillTheDetails,
                                 styleNew: MyTextStyle(
                                   colorNew: appColors.mediumGrayColor,
-                                  size:
-                                      ResponsiveFlutter.of(context).fontSize(1.8),
+                                  size: ResponsiveFlutter.of(context)
+                                      .fontSize(1.8),
                                   fontWeightNew: FontWeight.w400,
                                 ),
                               ),
@@ -141,163 +140,51 @@ class LoginScreenState extends State<LoginScreen> {
                                             .moderateScale(25),
                                       ),
                                     ),
-<<<<<<< HEAD
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: ResponsiveFlutter.of(context)
-                                          .moderateScale(55)),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      Navigator.pushAndRemoveUntil(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const BottomBarScreen(),
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal:
+                                              ResponsiveFlutter.of(context)
+                                                  .moderateScale(55)),
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          Navigator.pushAndRemoveUntil(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const BottomBarScreen(),
+                                            ),
+                                            (route) => false,
+                                          );
+                                        },
+                                        child: commonButton(
+                                          context: context,
+                                          title: Strings.login,
                                         ),
-                                        (route) => false,
-                                      );
-                                    },
-                                    child: commonButton(
-                                      context: context,
-                                      title: Strings.login,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: ResponsiveFlutter.of(context)
-                                  .verticalScale(7),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        const ForgotPasswordScreen(),
-                                  ),
-                                );
-                              },
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: Padding(
-                                  padding: EdgeInsets.all(
-                                      ResponsiveFlutter.of(context)
-                                          .moderateScale(5)),
-                                  child: MyTextView(
-                                    Strings.forgotPassword,
-                                    textAligntNew: TextAlign.center,
-                                    styleNew: MyTextStyle(
-                                      colorNew: appColors.lightColor,
-                                      fontWeightNew: FontWeight.bold,
-                                      size: ResponsiveFlutter.of(context)
-                                          .fontSize(2),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                                height: ResponsiveFlutter.of(context)
-                                    .verticalScale(8)),
-                            SizedBox(
-                              height: ResponsiveFlutter.of(context)
-                                  .verticalScale(40),
-                              width: double.infinity,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      // code à exécuter lorsque le GestureDetector est tapé
-                                    },
-                                    child: Align(
-                                      alignment: Alignment.center,
-                                      child: SizedBox(
-                                        width: ResponsiveFlutter.of(context)
-                                            .scale(170),
-                                        height: ResponsiveFlutter.of(context)
-                                            .verticalScale(40),
-                                        child: MaterialButton(
-                                          onPressed: () {},
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(30.0),
-=======
-                                    child: SingleChildScrollView(
-                                      child: Column(
-                                        children: [
-                                          commonTestField(
-                                            context: context,
-                                            controller: email,
-                                            hintText: Strings.emailAddress,
-                                            image: ImagePath.email,
-                                            keyboardType:
-                                                TextInputType.emailAddress,
-                                            icon: true,
->>>>>>> parent of c04395b (Merge pull request #11 from Pao7o/crucial_test_branch)
-                                          ),
-                                          SizedBox(
-                                              height:
-                                                  ResponsiveFlutter.of(context)
-                                                      .verticalScale(20)),
-                                          commonTestField(
-                                            context: context,
-                                            controller: password,
-                                            hintText: Strings.password,
-                                            image: ImagePath.password,
-                                            keyboardType:
-                                                TextInputType.visiblePassword,
-                                            obscureText: true,
-                                            icon: true,
-                                          ),
-                                        ],
                                       ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: ResponsiveFlutter.of(context)
-                                            .moderateScale(55)),
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        Navigator.pushAndRemoveUntil(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                const BottomBarScreen(),
-                                          ),
-                                          (route) => false,
-                                        );
-                                      },
-                                      child: commonButton(
-                                        context: context,
-                                        title: Strings.login,
-                                      ),
-                                    ),
-                                  ),
+                                  )
                                 ],
                               ),
-                              SizedBox(height:ResponsiveFlutter.of(context)
-                                  .verticalScale(7) ,),
+                              SizedBox(
+                                height: ResponsiveFlutter.of(context)
+                                    .verticalScale(7),
+                              ),
                               GestureDetector(
                                 onTap: () {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
-                                      const ForgotPasswordScreen(),
+                                          const ForgotPasswordScreen(),
                                     ),
                                   );
                                 },
                                 child: Align(
-                                  alignment:Alignment.center ,
+                                  alignment: Alignment.center,
                                   child: Padding(
-                                    padding:EdgeInsets.all(ResponsiveFlutter.of(context)
-                                        .moderateScale(5)) ,
+                                    padding: EdgeInsets.all(
+                                        ResponsiveFlutter.of(context)
+                                            .moderateScale(5)),
                                     child: MyTextView(
                                       Strings.forgotPassword,
                                       textAligntNew: TextAlign.center,
@@ -314,59 +201,188 @@ class LoginScreenState extends State<LoginScreen> {
                               SizedBox(
                                   height: ResponsiveFlutter.of(context)
                                       .verticalScale(8)),
-                                  SizedBox(height: ResponsiveFlutter.of(context)
-                                      .verticalScale(40),
-                                  width: double.infinity,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                          GestureDetector(
-                            onTap: () {
-                              // code à exécuter lorsque le GestureDetector est tapé
-                            },
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: Container(
-                                width:ResponsiveFlutter.of(context)
-                                    .scale(170),
+                              SizedBox(
                                 height: ResponsiveFlutter.of(context)
                                     .verticalScale(40),
-                                child: MaterialButton(
-                                  onPressed: () {
-
-                                  },
-                                  child: Row(
-                                    children: [
-                                      Image.asset(
-                                        "assets/images/ic_google.png",
-                                        width: ResponsiveFlutter.of(context)
-                                            .scale(25),
-                                        height: ResponsiveFlutter.of(context)
-                                            .verticalScale(25),
+                                width: double.infinity,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        // code à exécuter lorsque le GestureDetector est tapé
+                                      },
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: SizedBox(
+                                          width: ResponsiveFlutter.of(context)
+                                              .scale(170),
+                                          height: ResponsiveFlutter.of(context)
+                                              .verticalScale(40),
+                                          child: MaterialButton(
+                                            onPressed: () {},
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(30.0),
+                                            ),
+                                            child: SingleChildScrollView(
+                                              child: Column(
+                                                children: [
+                                                  commonTestField(
+                                                      context: context,
+                                                      controller: email,
+                                                      hintText:
+                                                          Strings.emailAddress,
+                                                      image: ImagePath.email,
+                                                      keyboardType:
+                                                          TextInputType
+                                                              .emailAddress,
+                                                      icon: true),
+                                                  SizedBox(
+                                                      height: ResponsiveFlutter
+                                                              .of(context)
+                                                          .verticalScale(20)),
+                                                  commonTestField(
+                                                    context: context,
+                                                    controller: password,
+                                                    hintText: Strings.password,
+                                                    image: ImagePath.password,
+                                                    keyboardType: TextInputType
+                                                        .visiblePassword,
+                                                    obscureText: true,
+                                                    icon: true,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
                                       ),
-                                      SizedBox(width: ResponsiveFlutter.of(context)
-                                          .scale(10)),
-                                      Text('Sign in with Google',style: TextStyle(
-                                        fontFamily: 'Google',
-                                        fontWeight: FontWeight.w600,
-                                      ),),
-                                    ],
-                                  ),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30.0),
-                                  ),
-                                  color: Colors.white,
-                                  textColor: Colors.black,
-                                  padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal:
+                                              ResponsiveFlutter.of(context)
+                                                  .moderateScale(55)),
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          Navigator.pushAndRemoveUntil(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const BottomBarScreen(),
+                                            ),
+                                            (route) => false,
+                                          );
+                                        },
+                                        child: commonButton(
+                                          context: context,
+                                          title: Strings.login,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ),
-                          ),
-                                    ],
+                              SizedBox(
+                                height: ResponsiveFlutter.of(context)
+                                    .verticalScale(7),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ForgotPasswordScreen(),
+                                    ),
+                                  );
+                                },
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Padding(
+                                    padding: EdgeInsets.all(
+                                        ResponsiveFlutter.of(context)
+                                            .moderateScale(5)),
+                                    child: MyTextView(
+                                      Strings.forgotPassword,
+                                      textAligntNew: TextAlign.center,
+                                      styleNew: MyTextStyle(
+                                        colorNew: appColors.lightColor,
+                                        fontWeightNew: FontWeight.bold,
+                                        size: ResponsiveFlutter.of(context)
+                                            .fontSize(2),
+                                      ),
+                                    ),
                                   ),
-                                  ),
-                              SizedBox(height:ResponsiveFlutter.of(context)
-                                  .verticalScale(10),),
+                                ),
+                              ),
+                              SizedBox(
+                                  height: ResponsiveFlutter.of(context)
+                                      .verticalScale(8)),
+                              SizedBox(
+                                height: ResponsiveFlutter.of(context)
+                                    .verticalScale(40),
+                                width: double.infinity,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        // code à exécuter lorsque le GestureDetector est tapé
+                                      },
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: SizedBox(
+                                          width: ResponsiveFlutter.of(context)
+                                              .scale(170),
+                                          height: ResponsiveFlutter.of(context)
+                                              .verticalScale(40),
+                                          child: MaterialButton(
+                                            onPressed: () {},
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(30.0),
+                                            ),
+                                            color: Colors.white,
+                                            textColor: Colors.black,
+                                            padding: const EdgeInsets.fromLTRB(
+                                                10, 10, 10, 10),
+                                            child: Row(
+                                              children: [
+                                                Image.asset(
+                                                  "assets/images/ic_google.png",
+                                                  width: ResponsiveFlutter.of(
+                                                          context)
+                                                      .scale(25),
+                                                  height: ResponsiveFlutter.of(
+                                                          context)
+                                                      .verticalScale(25),
+                                                ),
+                                                SizedBox(
+                                                    width: ResponsiveFlutter.of(
+                                                            context)
+                                                        .scale(10)),
+                                                const Text(
+                                                  'Sign in with Google',
+                                                  style: TextStyle(
+                                                    fontFamily: 'Google',
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: ResponsiveFlutter.of(context)
+                                    .verticalScale(10),
+                              ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -381,12 +397,14 @@ class LoginScreenState extends State<LoginScreen> {
                                           size: ResponsiveFlutter.of(context)
                                               .fontSize(1.8),
                                         ),
-                                      ),GestureDetector(
+                                      ),
+                                      GestureDetector(
                                         onTap: () {
                                           Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                              builder: (context) => const SignUpScreen(),
+                                              builder: (context) =>
+                                                  const SignUpScreen(),
                                             ),
                                           );
                                         },
