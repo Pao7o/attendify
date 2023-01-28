@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'chat_screen.dart';
+import 'create_screen.dart';
 import 'my_booking_screen.dart';
 
 class BottomBarScreen extends StatefulWidget {
@@ -157,7 +158,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                       GestureDetector(
                         onTap: () {
                           setState(() {
-                            tabBar = const CreateEventScreen();
+                            tabBar = CreateScreen();
                             home = false;
                             favorites = false;
                             create = true;
