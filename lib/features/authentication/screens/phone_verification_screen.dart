@@ -270,7 +270,9 @@ class _PinCodeVerificationScreenState
                           ref.read(firebaseAutheControllerProvider).verifySms(
                               context: context,
                               verificationId: widget.verificationId,
-                              smsCode: currentText);
+                              smsCode: currentText,
+                            ref:ref
+                          );
                         },
                       );
                     }
