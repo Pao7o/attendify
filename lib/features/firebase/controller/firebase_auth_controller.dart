@@ -1,26 +1,32 @@
 import 'package:attendify/features/authentication/screens/email_verification_screen.dart';
-import 'package:attendify/features/authentication/screens/set_username_screen.dart';
+import 'package:attendify/features/authentication/screens/phone_verification_screen.dart';
+import 'package:attendify/features/common/app_constants.dart';
 import 'package:attendify/features/common/repository/shared_pref.dart';
-import 'package:attendify/features/common/story_data.dart';
 import 'package:attendify/features/common/utils.dart';
 import 'package:attendify/features/firebase/controller/firebase_firestore_controller.dart';
 import 'package:attendify/features/firebase/models/app_user.dart';
-import 'package:attendify/features/firebase/models/app_user_model.dart';
+
 import 'package:attendify/features/firebase/repository/firebase_authentication.dart';
+import 'package:attendify/screens/bottom_bar_screen.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class FirebaseAuthController {
-  final FirebaseAuthentication _firebaseAuthentication;
+  final FirebaseAuthentication firebaseAuthentication;
+  final FirebaseCloudFirestoreController firebaseCloudFirestoreController;
 
-  FirebaseAuthController(this._firebaseAuthentication);
+  FirebaseAuthController(
+      {required this.firebaseAuthentication,
+      required this.firebaseCloudFirestoreController});
 
   Stream authStateChanges() {
-    return _firebaseAuthentication.checkUserAuthState();
+    return firebaseAuthentication.checkUserAuthState();
   }
 
-  Future<bool> signupWithEmailandPassword(
+  Future signupWithEmailandPassword(
       {required BuildContext context,
       required String email,
       required String password,
@@ -29,7 +35,7 @@ class FirebaseAuthController {
       required WidgetRef ref}) async {
     await InternetConnectionChecker().hasConnection.then((value) async {
       if (value) {
-        return await _firebaseAuthentication
+        return await firebaseAuthentication
             .signUpWithEmailAndPassword(
                 context: context, emailAddress: email, password: password)
             .then((userCredential) async {
@@ -71,18 +77,11 @@ class FirebaseAuthController {
   Future signUpWithGoogle(BuildContext context) async {
     print("sign up with google controller");
     await firebaseAuthentication.signInWithGoogle().then((credential) {
-      signupSuccess(
-        credential: credential,
-        context: context,
-        isPhoneAuth: false,
-      );
+      signupSuccess(credential, context);
     });
   }
 
-  void signupSuccess(
-      {required UserCredential credential,
-      required BuildContext context,
-      required bool isPhoneAuth}) {
+  void signupSuccess(UserCredential credential, BuildContext context) {
     if (credential.additionalUserInfo!.isNewUser) {
       firebaseCloudFirestoreController
           .addNewUser(AppUser(
@@ -94,13 +93,8 @@ class FirebaseAuthController {
               phoneNumber: '',
               profilePhotoUrl: credential.user!.photoURL ?? ""))
           .then((value) {
-        if (isPhoneAuth) {
-          Navigator.pushNamedAndRemoveUntil(
-              context, SetUsernameScreen.routeName, ((route) => false));
-        } else {
-          Navigator.pushNamedAndRemoveUntil(
-              context, BottomBarScreen.routeName, ((route) => false));
-        }
+        Navigator.pushNamedAndRemoveUntil(
+            context, BottomBarScreen.routeName, ((route) => false));
       });
     } else {
       Navigator.pushNamedAndRemoveUntil(
@@ -109,38 +103,27 @@ class FirebaseAuthController {
   }
 
   Future signInWithPhone(String phone, BuildContext context) async {
-    await InternetConnectionChecker().hasConnection.then((value) async {
-      if (value) {
-        await firebaseAuthentication.loginWithPhone(
-            phoneNumber: phone,
-            onCompleted: (PhoneAuthCredential credential) async {
-              await firebaseAuthentication.firebaseAuth
-                  .signInWithCredential(credential)
-                  .then((value) {
-                signupSuccess(
-                    credential: value, context: context, isPhoneAuth: true);
+    await firebaseAuthentication.loginWithPhone(
+        phoneNumber: phone,
+        onCompleted: (PhoneAuthCredential credential) async {
+          await firebaseAuthentication.firebaseAuth
+              .signInWithCredential(credential)
+              .then((value) {
+            signupSuccess(value, context);
+          });
+        },
+        onFailed: (FirebaseAuthException exception) {
+          Utils().errorDialog(context: context, error: exception.toString());
+          print("Phone authentication error ${exception.toString()}");
+        },
+        codeSent: (String verificationId, int? resendToken) {
+          Navigator.pushNamed(context, PhoneVerificationScreen.routeName,
+              arguments: {
+                'verificationId': verificationId,
+                "phoneNumber": phone
               });
-            },
-            onFailed: (FirebaseAuthException exception) {
-              Navigator.pop(context);
-              Utils()
-                  .errorDialog(context: context, error: exception.toString());
-              print("Phone authentication error ${exception.toString()}");
-            },
-            codeSent: (String verificationId, int? resendToken) {
-              Navigator.pushNamed(context, PhoneVerificationScreen.routeName,
-                  arguments: {
-                    'verificationId': verificationId,
-                    "phoneNumber": phone
-                  });
-            },
-            codeTimeout: (String verificationId) {});
-      } else {
-        Navigator.pop(context);
-        Utils().errorDialog(
-            context: context, error: "Please check your internet connection");
-      }
-    });
+        },
+        codeTimeout: (String verificationId) {});
   }
 
   Future verifySms(
@@ -153,7 +136,7 @@ class FirebaseAuthController {
       firebaseAuthentication.firebaseAuth
           .signInWithCredential(value)
           .then((value) {
-        signupSuccess(credential: value, context: context, isPhoneAuth: true);
+        signupSuccess(value, context);
       });
     });
   }
@@ -169,7 +152,11 @@ class FirebaseAuthController {
 
 final firebaseAutheControllerProvider = Provider((ref) {
   final authRepository = ref.watch(firebaseAuthenticationProvider);
-  return FirebaseAuthController(authRepository);
+  final firestoreController =
+      ref.watch(firebaseCloudFirestoreControllerProvider);
+  return FirebaseAuthController(
+      firebaseAuthentication: authRepository,
+      firebaseCloudFirestoreController: firestoreController);
 });
 
 final userAuthStateProvider = StreamProvider((ref) {

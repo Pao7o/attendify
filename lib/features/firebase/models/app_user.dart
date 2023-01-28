@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class AppUser {
   String firstName;
   String lastName;
@@ -7,31 +5,32 @@ class AppUser {
   String email;
   String uid;
   String phoneNumber;
-  AppUser({
-    required this.firstName,
-    required this.lastName,
-    required this.username,
-    required this.email,
-    required this.uid,
-    required this.phoneNumber,
-  });
+  String profilePhotoUrl;
+  AppUser(
+      {required this.firstName,
+      required this.lastName,
+      required this.username,
+      required this.email,
+      required this.uid,
+      required this.phoneNumber,
+      required this.profilePhotoUrl});
 
-  AppUser copyWith({
-    String? firstName,
-    String? lastName,
-    String? username,
-    String? email,
-    String? uid,
-    String? phoneNumber,
-  }) {
+  AppUser copyWith(
+      {String? firstName,
+      String? lastName,
+      String? username,
+      String? email,
+      String? uid,
+      String? phoneNumber,
+      String? profilePhotoUrl}) {
     return AppUser(
-      firstName: firstName ?? this.firstName,
-      lastName: lastName ?? this.lastName,
-      username: username ?? this.username,
-      email: email ?? this.email,
-      uid: uid ?? this.uid,
-      phoneNumber: phoneNumber ?? this.phoneNumber,
-    );
+        firstName: firstName ?? this.firstName,
+        lastName: lastName ?? this.lastName,
+        username: username ?? this.username,
+        email: email ?? this.email,
+        uid: uid ?? this.uid,
+        phoneNumber: phoneNumber ?? this.phoneNumber,
+        profilePhotoUrl: profilePhotoUrl ?? this.profilePhotoUrl);
   }
 
   Map<String, dynamic> toMap() {
@@ -43,25 +42,46 @@ class AppUser {
     result.addAll({'email': email});
     result.addAll({'uid': uid});
     result.addAll({'phoneNumber': phoneNumber});
+    result.addAll({"profilePhotoUrl": profilePhotoUrl});
 
     return result;
   }
 
   factory AppUser.fromMap(Map<String, dynamic> map) {
     return AppUser(
-      firstName: map['firstName'] ?? '',
-      lastName: map['lastName'] ?? '',
-      username: map['username'] ?? '',
-      email: map['email'] ?? '',
-      uid: map['uid'] ?? '',
-      phoneNumber: map['phoneNumber'] ?? '',
-    );
+        firstName: map['firstName'] ?? '',
+        lastName: map['lastName'] ?? '',
+        username: map['username'] ?? '',
+        email: map['email'] ?? '',
+        uid: map['uid'] ?? '',
+        phoneNumber: map['phoneNumber'] ?? '',
+        profilePhotoUrl: map['profilePhotoUrl'] ?? '');
   }
 
-  String toJson() => json.encode(toMap());
+  Map<String, dynamic> toJson() {
+    final result = <String, dynamic>{};
 
-  factory AppUser.fromJson(String source) =>
-      AppUser.fromMap(json.decode(source));
+    result.addAll({'firstName': firstName});
+    result.addAll({'lastName': lastName});
+    result.addAll({'username': username});
+    result.addAll({'email': email});
+    result.addAll({'uid': uid});
+    result.addAll({'phoneNumber': phoneNumber});
+    result.addAll({'profilePhotoUrl': profilePhotoUrl});
+
+    return result;
+  }
+
+  factory AppUser.fromJson(Map<String, dynamic> map) {
+    return AppUser(
+        firstName: map['firstName'] ?? '',
+        lastName: map['lastName'] ?? '',
+        username: map['username'] ?? '',
+        email: map['email'] ?? '',
+        uid: map['uid'] ?? '',
+        phoneNumber: map['phoneNumber'] ?? '',
+        profilePhotoUrl: map['profilePhotoUrl'] ?? '');
+  }
 
   @override
   String toString() {
@@ -78,7 +98,8 @@ class AppUser {
         other.username == username &&
         other.email == email &&
         other.uid == uid &&
-        other.phoneNumber == phoneNumber;
+        other.phoneNumber == phoneNumber &&
+        other.profilePhotoUrl == profilePhotoUrl;
   }
 
   @override
@@ -88,6 +109,7 @@ class AppUser {
         username.hashCode ^
         email.hashCode ^
         uid.hashCode ^
-        phoneNumber.hashCode;
+        phoneNumber.hashCode ^
+        profilePhotoUrl.hashCode;
   }
 }
