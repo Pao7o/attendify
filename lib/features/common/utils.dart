@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:attendify/features/common/app_colors.dart';
 import 'package:attendify/features/common/common_dialog.dart';
 import 'package:attendify/features/common/common_widget.dart';
@@ -13,11 +12,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:material_dialogs/material_dialogs.dart';
-import 'package:lottie/lottie.dart';
-
 
 class Utils {
   AppColors appColors = AppColors();
@@ -354,6 +352,16 @@ class Utils {
       msg: "Sending verification email to $email",
       title: "Sending....",
       lottieBuilder: LottieBuilder.asset("assets/lottie/email_plane.json"),
+    );
+  }
+
+  void sendingOtpDialog(
+      {required BuildContext context, required String phone}) {
+    Dialogs.materialDialog(
+      context: context,
+      msg: "Sending otp sms to $phone",
+      title: "Sending....",
+      lottieBuilder: LottieBuilder.asset("assets/lottie/otp.json"),
     );
   }
 

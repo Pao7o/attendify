@@ -2,21 +2,18 @@ import 'package:attendify/features/common/app_colors.dart';
 import 'package:attendify/features/common/constants.dart';
 import 'package:attendify/features/common/image_path.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
-import 'package:attendify/screens/create_event_screen.dart';
-import 'package:attendify/screens/favorites_screen.dart';
 import 'package:attendify/screens/home_page_screen.dart';
 import 'package:attendify/screens/location_map.dart';
 import 'package:attendify/screens/setting_screen.dart';
 import 'package:attendify/screens/username_screen.dart';
-import 'package:attendify/screens/wallet_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'chat_screen.dart';
-import 'my_booking_screen.dart';
+import 'create_screen.dart';
 
 class BottomBarScreen extends StatefulWidget {
   final String isFrom;
+  static const routeName = '/bottom_bar_screen';
   const BottomBarScreen({Key? key, this.isFrom = ""}) : super(key: key);
 
   @override
@@ -33,7 +30,6 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
   bool? create = false;
   bool? wallet = false;
   bool? setting = false;
-
 
   @override
   void initState() {
@@ -157,7 +153,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                       GestureDetector(
                         onTap: () {
                           setState(() {
-                            tabBar = const CreateEventScreen();
+                            tabBar = CreateScreen();
                             home = false;
                             favorites = false;
                             create = true;
@@ -174,7 +170,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                       GestureDetector(
                         onTap: () {
                           setState(() {
-                            tabBar =  UsernameScreen();
+                            tabBar = UsernameScreen();
                             home = false;
                             favorites = false;
                             create = false;

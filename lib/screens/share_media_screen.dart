@@ -10,23 +10,19 @@ import 'package:image_picker/image_picker.dart';
 import 'package:open_filex/open_filex.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:permission_handler/permission_handler.dart';
-
 
 class ImageViewScreen extends StatefulWidget {
-final String name;
+  final String name;
 
-  ImageViewScreen(this.name);
+  const ImageViewScreen(this.name);
 
   @override
   State<ImageViewScreen> createState() => _ImageViewScreenState();
-
 }
 
 class _ImageViewScreenState extends State<ImageViewScreen> {
   final List<types.Message> _messages = [];
   final _user = const types.User(id: '82091008-a484-4a89-ae75-a22bf8d6f3ac');
-
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +31,12 @@ class _ImageViewScreenState extends State<ImageViewScreen> {
         title: Text(widget.name),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.checklist),
+            icon: const Icon(Icons.checklist),
             onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Tasklist(),
+                  builder: (context) => const Tasklist(),
                 ),
               );
             },
@@ -56,10 +52,10 @@ class _ImageViewScreenState extends State<ImageViewScreen> {
         onPreviewDataFetched: _handlePreviewDataFetched,
         showUserAvatars: true,
         showUserNames: true,
-
       ),
     );
   }
+
   void _handleImageSelection() async {
     final result = await ImagePicker().pickImage(
       imageQuality: 70,
@@ -87,9 +83,9 @@ class _ImageViewScreenState extends State<ImageViewScreen> {
   }
 
   void _handlePreviewDataFetched(
-      types.TextMessage message,
-      types.PreviewData previewData,
-      ) {
+    types.TextMessage message,
+    types.PreviewData previewData,
+  ) {
     final index = _messages.indexWhere((element) => element.id == message.id);
     final updatedMessage = (_messages[index] as types.TextMessage).copyWith(
       previewData: previewData,
@@ -99,11 +95,13 @@ class _ImageViewScreenState extends State<ImageViewScreen> {
       _messages[index] = updatedMessage;
     });
   }
+
   void _addMessage(types.Message message) {
     setState(() {
       _messages.insert(0, message);
     });
   }
+
   void _handleMessageTap(BuildContext _, types.Message message) async {
     if (message is types.FileMessage) {
       var localPath = message.uri;
@@ -112,9 +110,9 @@ class _ImageViewScreenState extends State<ImageViewScreen> {
         try {
           // Update tapped file message to show loading spinner
           final index =
-          _messages.indexWhere((element) => element.id == message.id);
+              _messages.indexWhere((element) => element.id == message.id);
           final updatedMessage =
-          (_messages[index] as types.FileMessage).copyWith(
+              (_messages[index] as types.FileMessage).copyWith(
             isLoading: true,
           );
 
@@ -135,9 +133,9 @@ class _ImageViewScreenState extends State<ImageViewScreen> {
         } finally {
           // In case of error or success, reset loading spinner
           final index =
-          _messages.indexWhere((element) => element.id == message.id);
+              _messages.indexWhere((element) => element.id == message.id);
           final updatedMessage =
-          (_messages[index] as types.FileMessage).copyWith(
+              (_messages[index] as types.FileMessage).copyWith(
             isLoading: null,
           );
 
@@ -160,12 +158,11 @@ class _ImageViewScreenState extends State<ImageViewScreen> {
     );
 
     _addMessage(textMessage);
+  }
+
+  String randomString() {
+    final random = Random.secure();
+    final values = List<int>.generate(16, (i) => random.nextInt(255));
+    return base64UrlEncode(values);
+  }
 }
-String randomString() {
-  final random = Random.secure();
-  final values = List<int>.generate(16, (i) => random.nextInt(255));
-  return base64UrlEncode(values);
-  }
-
-  }
-
