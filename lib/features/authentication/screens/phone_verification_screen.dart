@@ -7,50 +7,38 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../responsive/responsive_flutter.dart';
 import '../../common/app_colors.dart';
-import '../../common/constants.dart';
 import '../../common/image_path.dart';
 
-class EmailVerificationScreen extends StatelessWidget {
+class PhoneVerificationScreen extends StatelessWidget {
   static const String routeName = "/email_verification_screen";
-
-
-
-  const EmailVerificationScreen({Key? key})
+  final String phoneNumber;
+  final String verificationId;
+  const PhoneVerificationScreen(
+      {Key? key, required this.phoneNumber, required this.verificationId})
       : super(key: key);
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors().appMediumColor,
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-                height: ResponsiveFlutter.of(context)
-                    .verticalScale(40)),
-            Image.asset(
-              ImagePath.logo,
-              height: ResponsiveFlutter.of(context)
-                  .verticalScale(30),
+        child: Column(children: [
+          SizedBox(height: ResponsiveFlutter.of(context).verticalScale(40)),
+          Image.asset(
+            ImagePath.logo,
+            height: ResponsiveFlutter.of(context).verticalScale(30),
+          ),
+          Container(
+            height: ResponsiveFlutter.of(context).verticalScale(300),
+            padding: EdgeInsets.symmetric(
+                horizontal: ResponsiveFlutter.of(context).moderateScale(25)),
+            child: Image.asset(
+              ImagePath.mailSent,
+              alignment: Alignment.bottomCenter,
             ),
+          ),
 
-            Container(
-              height: ResponsiveFlutter.of(context)
-                  .verticalScale(300),
-              padding: EdgeInsets.symmetric(
-                  horizontal: ResponsiveFlutter.of(context)
-                      .moderateScale(25)),
-              child: Image.asset(
-                ImagePath.mailSent,
-                alignment: Alignment.bottomCenter,
-              ),
-            ),
-
-            /*SizedBox(
+          /*SizedBox(
               height: 80,
                 width: 80,
                 child: LottieBuilder.asset("assets/lottie/sent.json", repeat: true)),*/
@@ -63,8 +51,9 @@ class EmailVerificationScreen extends StatelessWidget {
           )
         ]),
       ),
-                );
+    );
   }
+}
 
 class PinCodeVerificationScreen extends ConsumerStatefulWidget {
   const PinCodeVerificationScreen(
@@ -113,10 +102,11 @@ class _PinCodeVerificationScreenState
       ),
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(5)),
+      padding: EdgeInsets.all(ResponsiveFlutter.of(context).moderateScale(5)),
       child: SizedBox(
         height: ResponsiveFlutter.of(context).moderateScale(339),
         width: double.infinity,
@@ -124,7 +114,10 @@ class _PinCodeVerificationScreenState
           children: [
             Text(
               'Phone Number Verification',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: ResponsiveFlutter.of(context).fontSize(3),color: AppColors().lightColor),
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: ResponsiveFlutter.of(context).fontSize(3),
+                  color: AppColors().lightColor),
               textAlign: TextAlign.center,
             ),
             RichText(
@@ -140,9 +133,9 @@ class _PinCodeVerificationScreenState
                     ),
                   ),
                 ],
-                style:  TextStyle(
+                style: TextStyle(
                   color: AppColors().greyTextColor,
-                  fontSize:ResponsiveFlutter.of(context).fontSize(1.7),
+                  fontSize: ResponsiveFlutter.of(context).fontSize(1.7),
                 ),
               ),
               textAlign: TextAlign.center,
@@ -224,13 +217,12 @@ class _PinCodeVerificationScreenState
                 ),
               ),
             ),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   "Didn't receive the code? ",
-                style: TextStyle(color: AppColors().lightColor, fontSize: 15),
+                  style: TextStyle(color: AppColors().lightColor, fontSize: 15),
                 ),
                 TextButton(
                   onPressed: () => snackBar("Code resent !"),
@@ -247,7 +239,7 @@ class _PinCodeVerificationScreenState
             ),
             Container(
               margin:
-              const EdgeInsets.symmetric(vertical: 16.0, horizontal: 30),
+                  const EdgeInsets.symmetric(vertical: 16.0, horizontal: 30),
               decoration: BoxDecoration(
                   color: Colors.green.shade300,
                   borderRadius: BorderRadius.circular(5),
@@ -273,7 +265,7 @@ class _PinCodeVerificationScreenState
                       setState(() => hasError = true);
                     } else {
                       setState(
-                            () {
+                        () {
                           hasError = false;
                           ref.read(firebaseAutheControllerProvider).verifySms(
                               context: context,
@@ -302,7 +294,10 @@ class _PinCodeVerificationScreenState
                 Flexible(
                   child: Center(
                     child: TextButton(
-                      child: Text("Clear",style: TextStyle(color: AppColors().lightColor),),
+                      child: Text(
+                        "Clear",
+                        style: TextStyle(color: AppColors().lightColor),
+                      ),
                       onPressed: () {
                         textEditingController.clear();
                       },
@@ -313,8 +308,7 @@ class _PinCodeVerificationScreenState
             )
           ],
         ),
-
-    ),
+      ),
     );
   }
 }

@@ -1,12 +1,15 @@
 import 'package:attendify/features/authentication/screens/email_verification_screen.dart';
 import 'package:attendify/features/authentication/screens/set_username_screen.dart';
 import 'package:attendify/features/common/repository/shared_pref.dart';
+import 'package:attendify/features/common/story_data.dart';
 import 'package:attendify/features/common/utils.dart';
 import 'package:attendify/features/firebase/controller/firebase_firestore_controller.dart';
+import 'package:attendify/features/firebase/models/app_user.dart';
 import 'package:attendify/features/firebase/models/app_user_model.dart';
 import 'package:attendify/features/firebase/repository/firebase_authentication.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class FirebaseAuthController {
   final FirebaseAuthentication _firebaseAuthentication;
@@ -26,7 +29,7 @@ class FirebaseAuthController {
       required WidgetRef ref}) async {
     await InternetConnectionChecker().hasConnection.then((value) async {
       if (value) {
-        return await firebaseAuthentication
+        return await _firebaseAuthentication
             .signUpWithEmailAndPassword(
                 context: context, emailAddress: email, password: password)
             .then((userCredential) async {
