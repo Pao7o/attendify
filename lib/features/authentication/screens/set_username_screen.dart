@@ -154,10 +154,7 @@ class SetUsernameScreenState extends State<SetUsernameScreen> {
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
                                                 children: <Widget>[
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 65.0),
+                                                  Expanded(
                                                     child: Text(
                                                       "Continue",
                                                       style: TextStyle(

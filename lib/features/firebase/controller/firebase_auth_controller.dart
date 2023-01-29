@@ -1,5 +1,6 @@
 import 'package:attendify/features/authentication/screens/email_verification_screen.dart';
 import 'package:attendify/features/authentication/screens/phone_verification_screen.dart';
+import 'package:attendify/features/authentication/screens/set_username_screen.dart';
 import 'package:attendify/features/common/app_constants.dart';
 import 'package:attendify/features/common/repository/shared_pref.dart';
 import 'package:attendify/features/common/utils.dart';
@@ -74,14 +75,20 @@ class FirebaseAuthController {
     await firebaseAuthentication.resendEmailVerification();
   }
 
-  Future signUpWithGoogle({required BuildContext context,required WidgetRef ref}) async {
+  Future signUpWithGoogle(
+      {required BuildContext context, required WidgetRef ref}) async {
     print("sign up with google controller");
     await firebaseAuthentication.signInWithGoogle().then((credential) {
-      signupSuccess(credential : credential, context :context,ref:ref);
+      signupSuccess(
+          credential: credential, context: context, ref: ref, isPhone: false);
     });
   }
 
-  void signupSuccess({required UserCredential credential, required BuildContext context,required WidgetRef ref}) {
+  void signupSuccess(
+      {required UserCredential credential,
+      required BuildContext context,
+      required WidgetRef ref,
+      required bool isPhone}) {
     AppUser appUser = AppUser(
         email: credential.user?.email ?? "",
         firstName: credential.user?.displayName?.split(" ")[0] ?? "",
@@ -91,31 +98,38 @@ class FirebaseAuthController {
         phoneNumber: '',
         profilePhotoUrl: credential.user!.photoURL ?? "");
     if (credential.additionalUserInfo!.isNewUser) {
-      firebaseCloudFirestoreController
-          .addNewUser(appUser)
-          .then((value) async {
+      firebaseCloudFirestoreController.addNewUser(appUser).then((value) async {
         await ref
             .read(sharedprefProvider)
             .saveObject(SHARED_PREFS_APP_USER_KEY, appUser)
             .then((value) {
-          Navigator.pushNamedAndRemoveUntil(
-              context, BottomBarScreen.routeName, ((route) => false));
-        });});
-
+          if (isPhone) {
+            Navigator.pushNamedAndRemoveUntil(
+                context, SetUsernameScreen.routeName, ((route) => false));
+          } else {
+            Navigator.pushNamedAndRemoveUntil(
+                context, BottomBarScreen.routeName, ((route) => false));
+          }
+        });
+      });
     } else {
       Navigator.pushNamedAndRemoveUntil(
           context, BottomBarScreen.routeName, ((route) => false));
     }
   }
 
-  Future signInWithPhone({required String phone, required BuildContext context,required WidgetRef ref}) async {
+  Future signInWithPhone(
+      {required String phone,
+      required BuildContext context,
+      required WidgetRef ref}) async {
     await firebaseAuthentication.loginWithPhone(
         phoneNumber: phone,
         onCompleted: (PhoneAuthCredential credential) async {
           await firebaseAuthentication.firebaseAuth
               .signInWithCredential(credential)
               .then((value) {
-            signupSuccess(credential: value, context :context,ref:ref);
+            signupSuccess(
+                credential: value, context: context, ref: ref, isPhone: true);
           });
         },
         onFailed: (FirebaseAuthException exception) {
@@ -136,15 +150,15 @@ class FirebaseAuthController {
       {required BuildContext context,
       required String verificationId,
       required String smsCode,
-        required WidgetRef ref
-      }) async {
+      required WidgetRef ref}) async {
     await firebaseAuthentication
         .verifySms(verificationId: verificationId, smsCode: smsCode)
         .then((value) {
       firebaseAuthentication.firebaseAuth
           .signInWithCredential(value)
           .then((value) {
-        signupSuccess(credential :value, context :context,ref :ref);
+        signupSuccess(
+            credential: value, context: context, ref: ref, isPhone: true);
       });
     });
   }
