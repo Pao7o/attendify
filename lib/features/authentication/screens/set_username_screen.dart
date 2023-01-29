@@ -100,36 +100,62 @@ class SetUsernameScreenState extends State<SetUsernameScreen> {
                                     key: _formKey,
                                     child: Column(
                                       children: <Widget>[
-                                        TextFormField(
-                                          style: TextStyle(
-                                              color: appColors.lightColor),
-                                          cursorColor: appColors.lightColor,
-                                          cursorHeight: 25,
-                                          controller: _usernameController,
-                                          decoration: InputDecoration(
-                                              border: InputBorder.none,
-                                              labelText: "Username",
-                                              labelStyle: TextStyle(
-                                                  color: appColors.lightColor)),
-                                          validator: (value) {
-                                            if (value!.isEmpty) {
-                                              return "Please enter a username";
-                                            }
-                                            if (value.length < 4) {
-                                              return "Username must be more than 4 characters";
-                                            }
-                                            if (value.length > 30) {
-                                              return "Username must be less than 30 characters";
-                                            }
-                                            if (value.contains(" ")) {
-                                              return "Username cannot contain spaces";
-                                            }
-                                            if (!RegExp(r"^[a-zA-Z0-9._]+$")
-                                                .hasMatch(value)) {
-                                              return "Username can only contain letters, numbers, '.' and '_'";
-                                            }
-                                            return null;
-                                          },
+                                        Row(
+                                                children: [
+                                                  Expanded(
+                                                    child: commonTestField(
+                                                      validateFunction: (p0) {
+                                                        if (p0 == null ||
+                                                            p0.isEmpty) {
+                                                          return "Enter First Name";
+                                                        }
+                                                        if (!RegExp(
+                                                                r'^[a-zA-Z]')
+                                                            .hasMatch(p0)) {
+                                                          return "Enter a valid First Name";
+                                                        }
+                                                        return null;
+                                                      },
+                                                      context: context,
+                                                      controller:
+                                                          firstNameController,
+                                                      hintText:
+                                                          Strings.firstName,
+                                                      image: ImagePath.avatar,
+                                                      keyboardType:
+                                                          TextInputType.name,
+                                                      obscureText: false,
+                                                      icon: true,
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    child: commonTestField(
+                                                      validateFunction: (p0) {
+                                                        if (p0 == null ||
+                                                            p0.isEmpty) {
+                                                          return "Enter Last Name";
+                                                        }
+                                                        if (!RegExp(
+                                                                r'^[a-zA-Z]')
+                                                            .hasMatch(p0)) {
+                                                          return "Enter a valid First Name";
+                                                        }
+                                                        return null;
+                                                      },
+                                                      context: context,
+                                                      controller:
+                                                          lastNameController,
+                                                      hintText:
+                                                          Strings.lastName,
+                                                      image: ImagePath.avatar,
+                                                      keyboardType:
+                                                          TextInputType.name,
+                                                      obscureText: false,
+                                                      icon: true,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
                                         ),
                                         const SizedBox(height: 16.0),
                                         SizedBox(
@@ -146,7 +172,7 @@ class SetUsernameScreenState extends State<SetUsernameScreen> {
                                                       color: Colors.black)),
                                               onPressed: () {
                                                 if (_formKey.currentState!
-                                                    .validate()) {
+                                                    .validat()) {
                                                   // Save the username
                                                 }
                                               },
@@ -188,6 +214,8 @@ class SetUsernameScreenState extends State<SetUsernameScreen> {
                   ),
                 ],
               ),
-            )));
+            ),
+            ),
+            )
   }
 }
