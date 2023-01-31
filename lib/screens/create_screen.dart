@@ -1,4 +1,5 @@
 import 'package:attendify/screens/create_event_screen.dart';
+import 'package:attendify/screens/new_event_name_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../features/common/app_colors.dart';
@@ -51,13 +52,13 @@ class _CreateScreenState extends State<CreateScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => CreateEventScreen(),
+                            builder: (context) => NewEventName(),
                           ),
                         );
                       },
                       child: Container(
-                        width: 300,
-                        height: 300,
+                        width: 200,
+                        height: 200,
                         decoration: BoxDecoration(
                           color: Colors.purple[50],
                           borderRadius: BorderRadius.circular(20),
@@ -87,8 +88,8 @@ class _CreateScreenState extends State<CreateScreen> {
                     GestureDetector(
                       onTap: () {},
                       child: Container(
-                        width: 300,
-                        height: 300,
+                        width: 200,
+                        height: 200,
                         decoration: BoxDecoration(
                           color: Colors.purple[50],
                           borderRadius: BorderRadius.circular(20),
@@ -104,6 +105,37 @@ class _CreateScreenState extends State<CreateScreen> {
                             SizedBox(height: 10),
                             Text(
                               "New Post",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.purple,
+                                fontSize: 30,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        width: 200,
+                        height: 200,
+                        decoration: BoxDecoration(
+                          color: Colors.purple[50],
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Icon(
+                              Icons.group,
+                              size: 50,
+                              color: Colors.purple,
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              "New Group",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.purple,
