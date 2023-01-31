@@ -95,27 +95,32 @@ class FirebaseAuthController {
         lastName: credential.user?.displayName?.split(" ")[1] ?? "",
         username: " ",
         uid: credential.user!.uid,
-        phoneNumber: '',
+        phoneNumber: credential.user?.phoneNumber ?? "",
         profilePhotoUrl: credential.user!.photoURL ?? "");
     if (credential.additionalUserInfo!.isNewUser) {
-      firebaseCloudFirestoreController.addNewUser(appUser).then((value) async {
-        await ref
-            .read(sharedprefProvider)
-            .saveObject(SHARED_PREFS_APP_USER_KEY, appUser)
-            .then((value) {
-          if (isPhone) {
-            Navigator.pushNamedAndRemoveUntil(
-                context, SetUsernameScreen.routeName, ((route) => false));
-          } else {
-            Navigator.pushNamedAndRemoveUntil(
-                context, BottomBarScreen.routeName, ((route) => false));
-          }
-        });
-      });
+      if (isPhone) {
+        Navigator.pushNamedAndRemoveUntil(
+            context, SetUsernameScreen.routeName, ((route) => false),
+            arguments: appUser);
+      } else {
+        addUser(appUser, ref, context);
+      }
     } else {
       Navigator.pushNamedAndRemoveUntil(
           context, BottomBarScreen.routeName, ((route) => false));
     }
+  }
+
+  void addUser(AppUser appUser, WidgetRef ref, BuildContext context) {
+    firebaseCloudFirestoreController.addNewUser(appUser).then((value) async {
+      await ref
+          .read(sharedprefProvider)
+          .saveObject(SHARED_PREFS_APP_USER_KEY, appUser)
+          .then((value) {
+        Navigator.pushNamedAndRemoveUntil(
+            context, BottomBarScreen.routeName, ((route) => false));
+      });
+    });
   }
 
   Future signInWithPhone(

@@ -2,18 +2,23 @@ import 'package:attendify/features/common/app_colors.dart';
 import 'package:attendify/features/common/common_widget.dart';
 import 'package:attendify/features/common/image_path.dart';
 import 'package:attendify/features/common/strings.dart';
+import 'package:attendify/features/firebase/controller/firebase_auth_controller.dart';
+import 'package:attendify/features/firebase/models/app_user.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SetUsernameScreen extends StatefulWidget {
+class SetUsernameScreen extends ConsumerStatefulWidget {
   static const String routeName = "set_username_screen";
-  const SetUsernameScreen({super.key});
+
+  final AppUser user;
+  const SetUsernameScreen({super.key, required this.user});
 
   @override
   SetUsernameScreenState createState() => SetUsernameScreenState();
 }
 
-class SetUsernameScreenState extends State<SetUsernameScreen> {
+class SetUsernameScreenState extends ConsumerState<SetUsernameScreen> {
   AppColors appColors = AppColors();
   ImagePath imagePath = ImagePath();
 
@@ -103,6 +108,9 @@ class SetUsernameScreenState extends State<SetUsernameScreen> {
                                     color: appColors.lightColor,
                                     fontSize: ResponsiveFlutter.of(context)
                                         .fontSize(1.5))),
+                            const SizedBox(
+                              height: 12,
+                            ),
                             Padding(
                               padding: const EdgeInsets.all(16.0),
                               child: Form(
@@ -154,7 +162,7 @@ class SetUsernameScreenState extends State<SetUsernameScreen> {
                                       ),
                                     ],
                                   ),
-                                  const SizedBox(height: 16.0),
+                                  const SizedBox(height: 32.0),
                                   SizedBox(
                                     width: 250,
                                     height: 50,
@@ -169,7 +177,15 @@ class SetUsernameScreenState extends State<SetUsernameScreen> {
                                         onPressed: () {
                                           if (_formKey.currentState!
                                               .validate()) {
-                                            // Save the username
+                                            widget.user.firstName =
+                                                firstNameController.text.trim();
+                                            widget.user.lastName =
+                                                lastNameController.text.trim();
+                                            ref
+                                                .read(
+                                                    firebaseAutheControllerProvider)
+                                                .addUser(
+                                                    widget.user, ref, context);
                                           }
                                         },
                                         child: Row(
