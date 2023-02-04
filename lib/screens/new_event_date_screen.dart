@@ -344,7 +344,7 @@ class _NewEventDateState extends State<NewEventDate> {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              NewEventLocation(),
+                                              NewEventLocation(eventName:widget.eventName,eventDuration: calculateDuration(),),
                                         ));
                                   } else {
                                     ScaffoldMessenger.of(context)
@@ -456,16 +456,35 @@ class _NewEventDateState extends State<NewEventDate> {
   }
 
   bool dateIsValide() {
+    if(startSelectedTime == "Start time" ||
+        endSelectedTime == "End time"){
+      return false;
+    }
     return DateFormat("dd / MM / yyyy")
             .parse(startDate!)
             .isBefore(DateFormat("dd / MM / yyyy").parse(endDate!)) ||
         (DateFormat("dd / MM / yyyy").parse(startDate!).isAtSameMomentAs(
                 DateFormat("dd / MM / yyyy").parse(endDate!)) &&
             int.parse(startSelectedTime!.split(":")[0]) * 60 +
-                    int.parse(startSelectedTime!.split(":")[1]) <
+                int.parse(startSelectedTime!.split(":")[1]) <
                 int.parse(endSelectedTime!.split(":")[0]) * 60 +
                     int.parse(endSelectedTime!.split(":")[1]));
+
   }
+  String calculateDuration() {
+    Duration duration =
+    DateFormat("dd / MM / yyyy HH:mm").parse('$endDate ${endSelectedTime!}')
+        .difference(DateFormat("dd / MM / yyyy HH:mm").parse('$startDate ${startSelectedTime!}'));
+
+    if (duration.inDays > 0) {
+      return '${duration.inDays} day(s)';
+    } else if (duration.inHours > 0) {
+      return '${duration.inHours} hour(s)';
+    } else {
+      return '${duration.inMinutes} minute(s)';
+    }
+  }
+
 
   startTime(BuildContext context1) async {
     final TimeOfDay? timeOfDay = await showTimePicker(
@@ -476,10 +495,7 @@ class _NewEventDateState extends State<NewEventDate> {
     if (timeOfDay != null && timeOfDay != time) {
       time = timeOfDay;
       debugPrint("time ------------- >>>> $timeOfDay");
-      startSelectedTime = timeOfDay.hour.toString() +
-          " : " +
-          (timeOfDay.minute < 10 ? "0" : "") +
-          timeOfDay.minute.toString();
+      startSelectedTime = "${timeOfDay.hour< 10 ? "0" : ""}${timeOfDay.hour}:${timeOfDay.minute < 10 ? "0" : ""}${timeOfDay.minute}";
       setState(() {});
     } else {
       debugPrint("<<<< ------------- Time Not Selected ------------- >>>>");
@@ -495,10 +511,7 @@ class _NewEventDateState extends State<NewEventDate> {
     if (timeOfDay != null && timeOfDay != time2) {
       time2 = timeOfDay;
       debugPrint("time ------------- >>>> $timeOfDay");
-      endSelectedTime = timeOfDay.hour.toString() +
-          " : " +
-          (timeOfDay.minute < 10 ? "0" : "") +
-          timeOfDay.minute.toString();
+      endSelectedTime = "${timeOfDay.hour< 10 ? "0" : ""}${timeOfDay.hour}:${timeOfDay.minute < 10 ? "0" : ""}${timeOfDay.minute}";
 
       setState(() {});
     } else {
