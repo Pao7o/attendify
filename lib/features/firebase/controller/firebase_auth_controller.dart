@@ -1,5 +1,6 @@
 import 'package:attendify/features/authentication/screens/email_verification_screen.dart';
 import 'package:attendify/features/authentication/screens/phone_verification_screen.dart';
+import 'package:attendify/features/authentication/screens/set_username_screen.dart';
 import 'package:attendify/features/common/app_constants.dart';
 import 'package:attendify/features/common/repository/shared_pref.dart';
 import 'package:attendify/features/common/utils.dart';
@@ -74,42 +75,66 @@ class FirebaseAuthController {
     await firebaseAuthentication.resendEmailVerification();
   }
 
-  Future signUpWithGoogle(BuildContext context) async {
+  Future signUpWithGoogle(
+      {required BuildContext context, required WidgetRef ref}) async {
     print("sign up with google controller");
     await firebaseAuthentication.signInWithGoogle().then((credential) {
-      signupSuccess(credential, context);
+      signupSuccess(
+          credential: credential, context: context, ref: ref, isPhone: false);
     });
   }
 
-  void signupSuccess(UserCredential credential, BuildContext context) {
+  void signupSuccess(
+      {required UserCredential credential,
+      required BuildContext context,
+      required WidgetRef ref,
+      required bool isPhone}) {
+    AppUser appUser = AppUser(
+        email: credential.user?.email ?? "",
+        firstName: credential.user?.displayName?.split(" ")[0] ?? "",
+        lastName: credential.user?.displayName?.split(" ")[1] ?? "",
+        username: " ",
+        uid: credential.user!.uid,
+        phoneNumber: credential.user?.phoneNumber ?? "",
+        profilePhotoUrl: credential.user!.photoURL ?? "");
     if (credential.additionalUserInfo!.isNewUser) {
-      firebaseCloudFirestoreController
-          .addNewUser(AppUser(
-              email: credential.user?.email ?? "",
-              firstName: credential.user?.displayName?[0] ?? "",
-              lastName: credential.user?.displayName?[1] ?? "",
-              username: " ",
-              uid: credential.user!.uid,
-              phoneNumber: '',
-              profilePhotoUrl: credential.user!.photoURL ?? ""))
-          .then((value) {
+      if (isPhone) {
         Navigator.pushNamedAndRemoveUntil(
-            context, BottomBarScreen.routeName, ((route) => false));
-      });
+            context, SetUsernameScreen.routeName, ((route) => false),
+            arguments: appUser);
+      } else {
+        addUser(appUser, ref, context);
+      }
     } else {
       Navigator.pushNamedAndRemoveUntil(
           context, BottomBarScreen.routeName, ((route) => false));
     }
   }
 
-  Future signInWithPhone(String phone, BuildContext context) async {
+  void addUser(AppUser appUser, WidgetRef ref, BuildContext context) {
+    firebaseCloudFirestoreController.addNewUser(appUser).then((value) async {
+      await ref
+          .read(sharedprefProvider)
+          .saveObject(SHARED_PREFS_APP_USER_KEY, appUser)
+          .then((value) {
+        Navigator.pushNamedAndRemoveUntil(
+            context, BottomBarScreen.routeName, ((route) => false));
+      });
+    });
+  }
+
+  Future signInWithPhone(
+      {required String phone,
+      required BuildContext context,
+      required WidgetRef ref}) async {
     await firebaseAuthentication.loginWithPhone(
         phoneNumber: phone,
         onCompleted: (PhoneAuthCredential credential) async {
           await firebaseAuthentication.firebaseAuth
               .signInWithCredential(credential)
               .then((value) {
-            signupSuccess(value, context);
+            signupSuccess(
+                credential: value, context: context, ref: ref, isPhone: true);
           });
         },
         onFailed: (FirebaseAuthException exception) {
@@ -129,14 +154,16 @@ class FirebaseAuthController {
   Future verifySms(
       {required BuildContext context,
       required String verificationId,
-      required String smsCode}) async {
+      required String smsCode,
+      required WidgetRef ref}) async {
     await firebaseAuthentication
         .verifySms(verificationId: verificationId, smsCode: smsCode)
         .then((value) {
       firebaseAuthentication.firebaseAuth
           .signInWithCredential(value)
           .then((value) {
-        signupSuccess(value, context);
+        signupSuccess(
+            credential: value, context: context, ref: ref, isPhone: true);
       });
     });
   }
