@@ -8,7 +8,7 @@ import 'package:attendify/features/common/shared_pref.dart';
 import 'package:attendify/features/common/utils.dart';
 import 'package:attendify/features/firebase/repository/firebase_authentication.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
-import 'package:attendify/screens/home_page_screen.dart';
+import 'package:attendify/screens/bottom_bar_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -60,7 +60,7 @@ class SplashScreenState extends ConsumerState<SplashScreen> {
               context, LoginScreen.routeName, (route) => false);
         } else {
           Navigator.pushNamedAndRemoveUntil(
-              context, HomeScreen.routeName, (route) => false);
+              context, BottomBarScreen.routeName, (route) => false);
         }
       });
 

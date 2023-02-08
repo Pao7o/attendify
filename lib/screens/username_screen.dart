@@ -153,13 +153,15 @@ class _UsernameScreenState extends State<UsernameScreen> {
                                             child: Row(
                                               mainAxisAlignment: MainAxisAlignment.center,
                                               children: <Widget>[
-                                                Padding(
-                                                  padding: const EdgeInsets.only(left: 65.0),
-                                                  child: Text("Continue",style: TextStyle(color: appColors.lightColor,
-                                                      fontSize:ResponsiveFlutter.of(context)
-                                                      .fontSize(2) ),),
+                                                Expanded(
+                                                  child: Padding(
+                                                    padding: const EdgeInsets.only(left: 24.0),
+                                                    child: Text("Continue",style: TextStyle(color: appColors.lightColor,
+                                                        fontSize:ResponsiveFlutter.of(context)
+                                                        .fontSize(2) ),),
+                                                  ),
                                                 ),
-                                                SizedBox(width: 50,),
+                                                const SizedBox(width: 50,),
                                                 Icon(Icons.arrow_forward, color: appColors.lightColor)
                                               ],
                                             )

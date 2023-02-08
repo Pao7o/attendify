@@ -157,7 +157,7 @@ class _PinCodeVerificationScreenState
                     fontWeight: FontWeight.bold,
                   ),
                   length: 6,
-                  obscureText: true,
+                  obscureText: false,
                   obscuringCharacter: '*',
 
                   blinkWhenObscuring: true,
@@ -172,7 +172,7 @@ class _PinCodeVerificationScreenState
                     fieldWidth: 40,
                     activeFillColor: Colors.white,
                   ),
-                  cursorColor: Colors.black,
+                  cursorColor: Colors.white,
                   animationDuration: const Duration(milliseconds: 300),
                   enableActiveFill: true,
                   errorAnimationController: errorController,
@@ -270,7 +270,9 @@ class _PinCodeVerificationScreenState
                           ref.read(firebaseAutheControllerProvider).verifySms(
                               context: context,
                               verificationId: widget.verificationId,
-                              smsCode: currentText);
+                              smsCode: currentText,
+                            ref:ref
+                          );
                         },
                       );
                     }

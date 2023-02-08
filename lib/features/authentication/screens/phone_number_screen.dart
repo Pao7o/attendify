@@ -130,8 +130,8 @@ class PhoneNumberInputPageState extends ConsumerState<PhoneNumberInputPage> {
                           if (isValidPhoneNumber) {
                             ref
                                 .read(firebaseAutheControllerProvider)
-                                .signInWithPhone(
-                                    number1.phoneNumber ?? "", context);
+                                .signInWithPhone(phone:
+                                    number1.phoneNumber ?? "", context :context,ref:ref);
                           }
                         },
                         child: const Text('Send SMS verification'),
