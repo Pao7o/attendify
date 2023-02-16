@@ -4,6 +4,7 @@ import 'package:attendify/features/common/image_path.dart';
 import 'package:attendify/features/common/repository/shared_pref.dart';
 import 'package:attendify/features/common/strings.dart';
 import 'package:attendify/features/firebase/models/app_user.dart';
+import 'package:attendify/features/home/controller/home_controller.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
 import 'package:attendify/screens/favorites_screen.dart';
 import 'package:attendify/screens/location_controller.dart';
@@ -13,6 +14,7 @@ import 'package:attendify/screens/popular_event_screen.dart';
 import 'package:attendify/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:geocoding/geocoding.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   static const routeName = '/home_page_screen';
@@ -84,15 +86,39 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
                             width:
                                 ResponsiveFlutter.of(context).moderateScale(8)),
                         GestureDetector(
-                          child: MyTextView(
-                            Strings.dummyText24,
-                            textAligntNew: TextAlign.start,
-                            maxLineWrap: true,
-                            styleNew: MyTextStyle(
-                              colorNew: appColors.lightColor,
-                              fontWeightNew: FontWeight.w500,
-                              size: ResponsiveFlutter.of(context).fontSize(2.2),
-                            ),
+                          child: FutureBuilder<List<Placemark>>(
+                            future: ref
+                                .read(homeControllerProvider)
+                                .getCurrentLocation(),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.done) {
+                                if (snapshot.hasData) {
+                                  return MyTextView(
+                                    snapshot.data!.first.name ?? "0.0",
+                                    textAligntNew: TextAlign.start,
+                                    maxLineWrap: true,
+                                    styleNew: MyTextStyle(
+                                      colorNew: appColors.lightColor,
+                                      fontWeightNew: FontWeight.w500,
+                                      size: ResponsiveFlutter.of(context)
+                                          .fontSize(2.2),
+                                    ),
+                                  );
+                                }
+                              }
+                              return MyTextView(
+                                Strings.dummyText24,
+                                textAligntNew: TextAlign.start,
+                                maxLineWrap: true,
+                                styleNew: MyTextStyle(
+                                  colorNew: appColors.lightColor,
+                                  fontWeightNew: FontWeight.w500,
+                                  size: ResponsiveFlutter.of(context)
+                                      .fontSize(2.2),
+                                ),
+                              );
+                            },
                           ),
                           onTap: () {
                             Navigator.push(

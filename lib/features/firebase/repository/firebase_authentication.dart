@@ -37,7 +37,7 @@ class FirebaseAuthentication {
     return userCredential;
   }
 
-  Future checkIfEmailIsVerified() async {
+  Future<bool> checkIfEmailIsVerified() async {
     bool isVerified = false;
     try {
       await firebaseAuth.currentUser!.reload().then((value) async {
