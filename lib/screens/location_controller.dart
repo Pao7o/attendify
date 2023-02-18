@@ -20,8 +20,8 @@ class LocationTest extends StatefulWidget {
 }
 
 class _LocationTestState extends State<LocationTest> {
-  String googleApikey = "AIzaSyDG_znTnwlDEfiJ_VoaxMO23bRnwhlDH7g";
-  GoogleMapController? mapController; //contrller for Google map
+  String googleApikey = "AIzaSyD5MSB1CS_v2naDJIcRIKGg9fXWXcKmRyQ";
+  GoogleMapController? mapController; //controller for Google map
   CameraPosition? cameraPosition;
   LatLng startLocation = LatLng(48.866667, 2.333333);
   static String location = "Search location";
@@ -145,7 +145,7 @@ class _LocationTestState extends State<LocationTest> {
             ],
           ),
 
-          //search autoconplete input
+          //search autocomplete input
           Positioned(
               //search input bar
               top: ResponsiveFlutter.of(context).moderateScale(10),
