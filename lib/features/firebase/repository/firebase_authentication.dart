@@ -37,7 +37,34 @@ class FirebaseAuthentication {
     return userCredential;
   }
 
-  Future checkIfEmailIsVerified() async {
+  Future<UserCredential?> signInWithEmailAndPassword(
+      {required BuildContext context,
+      required String emailAddress,
+      required String password}) async {
+    UserCredential? userCredential;
+    try {
+      userCredential = await firebaseAuth.signInWithEmailAndPassword(
+        email: emailAddress,
+        password: password,
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        Utils().errorDialog(
+            context: context, error: "No user found for that email.");
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        Utils().errorDialog(
+            context: context, error: "Wrong password provided for that user.");
+        print('Wrong password provided for that user.');
+      }
+    } catch (e) {
+      Utils().errorDialog(context: context, error: e.toString());
+      print("The error for sign up with email is ${e.toString()}");
+    }
+    return userCredential;
+  }
+
+  Future<bool> checkIfEmailIsVerified() async {
     bool isVerified = false;
     try {
       await firebaseAuth.currentUser!.reload().then((value) async {

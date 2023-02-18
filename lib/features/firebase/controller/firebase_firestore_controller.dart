@@ -11,9 +11,14 @@ class FirebaseCloudFirestoreController {
     await firebaseCloudFirestore.addNewUser(user);
   }
 
-  Future getCurrentUser() async {
+  Future<AppUser?> getCurrentUser() async {
+    AppUser? user;
     String currentUserUid = FirebaseAuth.instance.currentUser!.uid;
-    await firebaseCloudFirestore.getUser(currentUserUid);
+    await firebaseCloudFirestore.getUser(currentUserUid).then((value) {
+      user = AppUser.fromMap(value!.data() as Map<String, dynamic>);
+    });
+
+    return user;
   }
 }
 

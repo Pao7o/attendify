@@ -2,7 +2,7 @@ import 'package:attendify/features/common/app_colors.dart';
 import 'package:attendify/features/common/constants.dart';
 import 'package:attendify/features/common/image_path.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
-import 'package:attendify/screens/home_page_screen.dart';
+import 'package:attendify/features/home/screens/home_page_screen.dart';
 import 'package:attendify/screens/location_map.dart';
 import 'package:attendify/screens/setting_screen.dart';
 import 'package:attendify/screens/username_screen.dart';

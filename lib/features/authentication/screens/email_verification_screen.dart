@@ -1,13 +1,15 @@
-import 'package:attendify/features/authentication/screens/phone_number_screen.dart';
+import 'package:attendify/features/common/utils.dart';
+import 'package:attendify/features/firebase/controller/firebase_auth_controller.dart';
+import 'package:attendify/screens/bottom_bar_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:open_mail_app/open_mail_app.dart';
 
 import '../../../responsive/responsive_flutter.dart';
-import '../../../screens/profile_screen.dart';
 import '../../common/app_colors.dart';
 import '../../common/image_path.dart';
 
-class EmailVerification extends StatelessWidget {
+class EmailVerification extends ConsumerWidget {
   final String emailAddress;
   static const String routeName = "/email_verification";
 
@@ -15,7 +17,7 @@ class EmailVerification extends StatelessWidget {
       : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       backgroundColor: AppColors().appMediumColor,
       body: Column(children: [
@@ -95,12 +97,19 @@ class EmailVerification extends StatelessWidget {
                           borderRadius: BorderRadius.circular(18.0),
                           side: const BorderSide(color: Colors.red)))),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const PhoneNumberScreen(),
-                  ),
-                );
+                ref
+                    .read(firebaseAutheControllerProvider)
+                    .checkIfEmailVerified()
+                    .then((value) {
+                  if (value) {
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, BottomBarScreen.routeName, ((route) => false));
+                  } else {
+                    Utils().errorDialog(
+                        context: context,
+                        error: "Please check email and verify");
+                  }
+                });
               },
               child: Center(
                 child: Text(
