@@ -71,6 +71,50 @@ class FirebaseAuthController {
     });
   }
 
+  Future signInWithEmailandPassword(
+      {required BuildContext context,
+      required String email,
+      required String password,
+      required WidgetRef ref}) async {
+    await InternetConnectionChecker().hasConnection.then((value) async {
+      if (value) {
+        await firebaseAuthentication
+            .signInWithEmailAndPassword(
+                context: context, emailAddress: email, password: password)
+            .then((userCredential) async {
+          await ref
+              .read(firebaseAutheControllerProvider)
+              .checkIfEmailVerified()
+              .then((value) async {
+            if (value) {
+              await firebaseCloudFirestoreController
+                  .getCurrentUser()
+                  .then((value) async {
+                await ref
+                    .read(sharedprefProvider)
+                    .saveObject(SHARED_PREFS_APP_USER_KEY, value)
+                    .then((value) {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, BottomBarScreen.routeName, ((route) => false));
+                });
+              });
+            } else {
+              await userCredential!.user!.sendEmailVerification().then((value) {
+                Navigator.pushNamed(context, EmailVerification.routeName,
+                    arguments: email);
+              });
+            }
+          });
+        });
+      } else {
+        Navigator.pop(context);
+        Utils().errorDialog(
+            context: context,
+            error: "Please check your connection and try again");
+      }
+    });
+  }
+
   Future resendVerificationEmail() async {
     await firebaseAuthentication.resendEmailVerification();
   }

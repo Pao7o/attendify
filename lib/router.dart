@@ -7,7 +7,7 @@ import 'package:attendify/features/firebase/models/app_user.dart';
 import 'package:attendify/features/splash/screens/splash_screen.dart';
 import 'package:attendify/features/authentication/screens/login_screen.dart';
 import 'package:attendify/screens/bottom_bar_screen.dart';
-import 'package:attendify/screens/home_page_screen.dart';
+import 'package:attendify/features/home/screens/home_page_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'features/authentication/screens/email_verification_screen.dart';

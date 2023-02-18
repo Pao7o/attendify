@@ -115,6 +115,7 @@ dependencies:
   cloud_firestore: ^4.3.1
   internet_connection_checker: ^1.0.0+1
   lottie: ^2.2.0
+  geocoder2: ^1.4.0
 
 dev_dependencies:
   flutter_test:

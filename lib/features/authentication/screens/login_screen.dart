@@ -1,14 +1,16 @@
+import 'package:attendify/features/firebase/controller/firebase_auth_controller.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:attendify/features/common/app_colors.dart';
 import 'package:attendify/features/common/common_widget.dart';
 import 'package:attendify/features/common/image_path.dart';
 import 'package:attendify/features/common/strings.dart';
 import 'package:attendify/responsive/responsive_flutter.dart';
-import 'package:attendify/screens/bottom_bar_screen.dart';
 import 'package:attendify/screens/forgot_password_screen.dart';
 import 'package:attendify/features/authentication/screens/signup_screen.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends ConsumerStatefulWidget {
   static const routeName = '/login_screen';
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -16,11 +18,12 @@ class LoginScreen extends StatefulWidget {
   LoginScreenState createState() => LoginScreenState();
 }
 
-class LoginScreenState extends State<LoginScreen> {
+class LoginScreenState extends ConsumerState<LoginScreen> {
   AppColors appColors = AppColors();
   ImagePath imagePath = ImagePath();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -140,32 +143,45 @@ class LoginScreenState extends State<LoginScreen> {
                                     ),
                                   ),
                                   child: SingleChildScrollView(
-                                    child: Column(
-                                      children: [
-                                        commonTestField(
-                                          context: context,
-                                          controller: email,
-                                          hintText: Strings.emailAddress,
-                                          image: ImagePath.email,
-                                          keyboardType:
-                                              TextInputType.emailAddress,
-                                          icon: true,
-                                        ),
-                                        SizedBox(
-                                            height:
-                                                ResponsiveFlutter.of(context)
-                                                    .verticalScale(20)),
-                                        commonTestField(
-                                          context: context,
-                                          controller: password,
-                                          hintText: Strings.password,
-                                          image: ImagePath.password,
-                                          keyboardType:
-                                              TextInputType.visiblePassword,
-                                          obscureText: true,
-                                          icon: true,
-                                        ),
-                                      ],
+                                    child: Form(
+                                      key: _formKey,
+                                      child: Column(
+                                        children: [
+                                          commonTestField(
+                                            validateFunction: (p0) {
+                                              if (p0 == null || p0.isEmpty) {
+                                                return ("Please Enter your email address");
+                                              }
+                                              if (!EmailValidator.validate(
+                                                  p0)) {
+                                                return "Enter a valid Email Address";
+                                              }
+                                              return null;
+                                            },
+                                            context: context,
+                                            controller: email,
+                                            hintText: Strings.emailAddress,
+                                            image: ImagePath.email,
+                                            keyboardType:
+                                                TextInputType.emailAddress,
+                                            icon: true,
+                                          ),
+                                          SizedBox(
+                                              height:
+                                                  ResponsiveFlutter.of(context)
+                                                      .verticalScale(20)),
+                                          commonTestField(
+                                            context: context,
+                                            controller: password,
+                                            hintText: Strings.password,
+                                            image: ImagePath.password,
+                                            keyboardType:
+                                                TextInputType.visiblePassword,
+                                            obscureText: true,
+                                            icon: true,
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -175,14 +191,16 @@ class LoginScreenState extends State<LoginScreen> {
                                           .moderateScale(55)),
                                   child: GestureDetector(
                                     onTap: () {
-                                      Navigator.pushAndRemoveUntil(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const BottomBarScreen(),
-                                        ),
-                                        (route) => false,
-                                      );
+                                      if (_formKey.currentState!.validate()) {
+                                        ref
+                                            .read(
+                                                firebaseAutheControllerProvider)
+                                            .signInWithEmailandPassword(
+                                                context: context,
+                                                email: email.text.trim(),
+                                                password: password.text.trim(),
+                                                ref: ref);
+                                      }
                                     },
                                     child: commonButton(
                                       context: context,
@@ -236,9 +254,7 @@ class LoginScreenState extends State<LoginScreen> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   GestureDetector(
-                                    onTap: () {
-                                      // code à exécuter lorsque le GestureDetector est tapé
-                                    },
+                                    onTap: () {},
                                     child: Align(
                                       alignment: Alignment.center,
                                       child: SizedBox(
@@ -247,7 +263,13 @@ class LoginScreenState extends State<LoginScreen> {
                                         height: ResponsiveFlutter.of(context)
                                             .verticalScale(40),
                                         child: MaterialButton(
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            ref
+                                                .read(
+                                                    firebaseAutheControllerProvider)
+                                                .signUpWithGoogle(
+                                                    context: context, ref: ref);
+                                          },
                                           shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(30.0),
