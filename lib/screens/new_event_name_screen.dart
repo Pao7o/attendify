@@ -19,8 +19,8 @@ class _NewEventNameState extends State<NewEventName> {
 
   @override
   Widget build(BuildContext context) {
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.light.copyWith(statusBarColor:appColors.appMediumColor),
+      return AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.light.copyWith(statusBarColor:appColors.appMediumColor),
       child: SafeArea(
         child: Scaffold(
           body: Column(
