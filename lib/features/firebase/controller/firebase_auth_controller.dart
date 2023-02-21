@@ -132,7 +132,7 @@ class FirebaseAuthController {
       {required UserCredential credential,
       required BuildContext context,
       required WidgetRef ref,
-      required bool isPhone}) {
+      required bool isPhone}) async {
     AppUser appUser = AppUser(
         email: credential.user?.email ?? "",
         firstName: credential.user?.displayName?.split(" ")[0] ?? "",
@@ -150,8 +150,17 @@ class FirebaseAuthController {
         addUser(appUser, ref, context);
       }
     } else {
-      Navigator.pushNamedAndRemoveUntil(
-          context, BottomBarScreen.routeName, ((route) => false));
+      await firebaseCloudFirestoreController
+          .getCurrentUser()
+          .then((value) async {
+        await ref
+            .read(sharedprefProvider)
+            .saveObject(SHARED_PREFS_APP_USER_KEY, value)
+            .then((value) {
+          Navigator.pushNamedAndRemoveUntil(
+              context, BottomBarScreen.routeName, ((route) => false));
+        });
+      });
     }
   }
 

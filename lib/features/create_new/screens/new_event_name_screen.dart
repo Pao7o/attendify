@@ -1,13 +1,14 @@
 import 'package:animations/animations.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../features/common/app_colors.dart';
-import '../responsive/responsive_flutter.dart';
+import '../../common/app_colors.dart';
+import '../../../responsive/responsive_flutter.dart';
 import 'new_event_date_screen.dart';
 
 class NewEventName extends StatefulWidget {
+  const NewEventName({super.key});
+
   @override
   _NewEventNameState createState() => _NewEventNameState();
 }
@@ -15,19 +16,20 @@ class NewEventName extends StatefulWidget {
 class _NewEventNameState extends State<NewEventName> {
   AppColors appColors = AppColors();
   final _formKey = GlobalKey<FormState>();
-  TextEditingController _controller = TextEditingController();
+  final TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-      return AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.light.copyWith(statusBarColor:appColors.appMediumColor),
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.light
+          .copyWith(statusBarColor: appColors.appMediumColor),
       child: SafeArea(
         child: Scaffold(
           body: Column(
             children: [
               Expanded(
                 child: Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     gradient: LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
@@ -42,11 +44,11 @@ class _NewEventNameState extends State<NewEventName> {
                     child: Center(
                       child: Column(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
-                          Text(
-                            "New event",
+                          const Text(
+                            "Create a New event",
                             style: TextStyle(
                               fontSize: 30,
                               fontWeight: FontWeight.bold,
@@ -54,11 +56,11 @@ class _NewEventNameState extends State<NewEventName> {
                               fontFamily: 'OpenSans',
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Image.asset('assets/images/calendar_create.png'),
-                          Text(
+                          const Text(
                             "Event name :",
                             style: TextStyle(
                               fontSize: 24,
@@ -68,17 +70,18 @@ class _NewEventNameState extends State<NewEventName> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 8, horizontal: 16),
                             child: Form(
                               key: _formKey,
                               child: TextFormField(
                                 controller: _controller,
                                 validator: (value) {
                                   if (value!.isEmpty) {
-                                    return "Please enter a name";
+                                    return "Please enter an event name";
                                   }
                                   if (value.length > 30) {
-                                    return "name must be less than 30 characters";
+                                    return "Event name must be less than 30 characters";
                                   }
                                   if (!RegExp(r"^[a-zA-Z0-9._ ]+$")
                                       .hasMatch(value)) {
@@ -86,13 +89,12 @@ class _NewEventNameState extends State<NewEventName> {
                                   }
                                   return null;
                                 },
-
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
                                       borderSide: BorderSide.none),
                                   hintText: 'Event name',
-                                  prefixIcon: Icon(Icons.cake),
+                                  prefixIcon: const Icon(Icons.cake),
                                   filled: true,
                                   fillColor: Colors.white,
                                   hintStyle: TextStyle(
@@ -103,43 +105,50 @@ class _NewEventNameState extends State<NewEventName> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           SizedBox(
                             width: 250,
                             height: 50,
                             child: MaterialButton(
-                                color: Colors.green[400],
+                                color: appColors.btnColor,
                                 elevation: 10,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15.0),
-                                    side: BorderSide(color: Colors.black)),
+                                    side:
+                                        const BorderSide(color: Colors.black)),
                                 onPressed: () {
                                   if (_formKey.currentState!.validate()) {
                                     Navigator.push(
                                       context,
                                       PageRouteBuilder(
-                                        pageBuilder: (context, animation, secondaryAnimation) => NewEventDate(eventName: _controller.text),
-                                        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                        pageBuilder: (context, animation,
+                                                secondaryAnimation) =>
+                                            NewEventDate(
+                                                eventName: _controller.text),
+                                        transitionsBuilder: (context, animation,
+                                            secondaryAnimation, child) {
                                           return SharedAxisTransition(
-                                            child: child,
                                             animation: animation,
-                                            transitionType: SharedAxisTransitionType.horizontal,
-                                            secondaryAnimation: secondaryAnimation,
-
+                                            transitionType:
+                                                SharedAxisTransitionType
+                                                    .horizontal,
+                                            secondaryAnimation:
+                                                secondaryAnimation,
+                                            child: child,
                                           );
                                         },
                                       ),
                                     );
                                   }
                                 },
-
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
                                     Padding(
-                                      padding: const EdgeInsets.only(left: 65.0),
+                                      padding:
+                                          const EdgeInsets.only(left: 65.0),
                                       child: Text(
                                         "Continue",
                                         style: TextStyle(
@@ -149,69 +158,75 @@ class _NewEventNameState extends State<NewEventName> {
                                                     .fontSize(2)),
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 50,
                                     ),
                                     Icon(Icons.arrow_forward,
                                         color: appColors.lightColor)
                                   ],
-
                                 )),
                           ),
-                          SizedBox(height: 40,),
+                          const SizedBox(
+                            height: 40,
+                          ),
                           SizedBox(
                             width: 250,
                             height: 50,
                             child: MaterialButton(
-                                color: Colors.red[800],
+                                color: appColors.blurBtnColor,
                                 elevation: 10,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15.0),
-                                    side: BorderSide(color: Colors.black)),
+                                    side:
+                                        const BorderSide(color: Colors.black)),
                                 onPressed: () {
                                   Navigator.pop(context);
                                 },
-
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
                                   children: <Widget>[
                                     Icon(Icons.arrow_back,
                                         color: appColors.lightColor),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 30,
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.only(left: 35.0),
+                                      padding:
+                                          const EdgeInsets.only(left: 35.0),
                                       child: Text(
                                         "Back",
                                         style: TextStyle(
                                             color: appColors.lightColor,
                                             fontSize:
-                                            ResponsiveFlutter.of(context)
-                                                .fontSize(2)),
+                                                ResponsiveFlutter.of(context)
+                                                    .fontSize(2)),
                                       ),
                                     ),
-                                    SizedBox(width: 80,)
+                                    const SizedBox(
+                                      width: 80,
+                                    )
                                   ],
-
                                 )),
-
                           ),
-                          SizedBox(height: 40,),
+                          const SizedBox(
+                            height: 40,
+                          ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal:84),
+                            padding: const EdgeInsets.symmetric(horizontal: 84),
                             child: Stack(
                               children: [
                                 LinearProgressIndicator(
                                   backgroundColor: Colors.grey[200],
-                                  valueColor: AlwaysStoppedAnimation<Color>(Colors.purple),
+                                  valueColor:
+                                      const AlwaysStoppedAnimation<Color>(
+                                          Colors.purple),
                                   value: 0.0,
                                 ),
-
                                 Container(
                                   alignment: Alignment.center,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
+                                  child: const Padding(
+                                    padding: EdgeInsets.all(8.0),
                                     child: Text('0%'),
                                   ),
                                 ),
