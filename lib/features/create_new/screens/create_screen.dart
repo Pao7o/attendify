@@ -2,9 +2,11 @@ import 'package:attendify/screens/create_event_screen.dart';
 import 'package:attendify/screens/new_event_name_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../features/common/app_colors.dart';
+import '../../common/app_colors.dart';
 
 class CreateScreen extends StatefulWidget {
+  const CreateScreen({super.key});
+
   @override
   _CreateScreenState createState() => _CreateScreenState();
 }
@@ -19,7 +21,7 @@ class _CreateScreenState extends State<CreateScreen> {
         body: Stack(
           children: <Widget>[
             Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
@@ -36,7 +38,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text(
+                    const Text(
                       "Hi Paolo ! \nWhat do you want to create?",
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -46,7 +48,7 @@ class _CreateScreenState extends State<CreateScreen> {
                         color: Colors.white,
                       ),
                     ),
-                    SizedBox(height: 40),
+                    const SizedBox(height: 40),
                     GestureDetector(
                       onTap: () {
                         Navigator.push(
@@ -65,7 +67,7 @@ class _CreateScreenState extends State<CreateScreen> {
                         ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
+                          children: const <Widget>[
                             Icon(
                               Icons.event,
                               size: 50,
@@ -84,7 +86,7 @@ class _CreateScreenState extends State<CreateScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     GestureDetector(
                       onTap: () {},
                       child: Container(
@@ -96,7 +98,7 @@ class _CreateScreenState extends State<CreateScreen> {
                         ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
+                          children: const <Widget>[
                             Icon(
                               Icons.create,
                               size: 50,
@@ -115,7 +117,7 @@ class _CreateScreenState extends State<CreateScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     GestureDetector(
                       onTap: () {},
                       child: Container(
@@ -127,7 +129,7 @@ class _CreateScreenState extends State<CreateScreen> {
                         ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
+                          children: const <Widget>[
                             Icon(
                               Icons.group,
                               size: 50,
@@ -158,21 +160,21 @@ class _CreateScreenState extends State<CreateScreen> {
 }
 
 class AppTextStyles {
-  static final TextStyle heading = TextStyle(
+  static final TextStyle heading = const TextStyle(
     fontWeight: FontWeight.bold,
     fontSize: 24,
     fontFamily: 'Montserrat',
     color: Colors.white,
   );
 
-  static final TextStyle subHeading = TextStyle(
+  static final TextStyle subHeading = const TextStyle(
     fontWeight: FontWeight.bold,
     fontSize: 18,
     fontFamily: 'Montserrat',
     color: Colors.white,
   );
 
-  static final TextStyle body = TextStyle(
+  static final TextStyle body = const TextStyle(
     fontSize: 16,
     fontFamily: 'Montserrat',
     color: Colors.white,

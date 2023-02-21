@@ -72,7 +72,7 @@ dependencies:
   image_cropper: ^3.0.1
 
   #Story/social plugin
-  cached_network_image: ^3.2.0
+  cached_network_image: ^3.2.3
   video_player: ^2.2.18
   dashed_circle: ^0.0.2
   rect_getter: ^1.1.0
