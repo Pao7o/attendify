@@ -12,6 +12,7 @@ import 'package:attendify/screens/near_by_event_screen.dart';
 import 'package:attendify/screens/notification_screen.dart';
 import 'package:attendify/screens/popular_event_screen.dart';
 import 'package:attendify/screens/profile_screen.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geocoding/geocoding.dart';
@@ -229,20 +230,39 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
                             );
                           },
                           child: Container(
-                            height:
-                                ResponsiveFlutter.of(context).moderateScale(50),
-                            width:
-                                ResponsiveFlutter.of(context).moderateScale(50),
-                            decoration: BoxDecoration(
-                              color: appColors.appMediumColor,
-                              shape: BoxShape.circle,
-                            ),
-                            child: Image.asset(
-                              ImagePath.image_3,
                               height: ResponsiveFlutter.of(context)
-                                  .moderateScale(25),
-                            ),
-                          ),
+                                  .moderateScale(50),
+                              width: ResponsiveFlutter.of(context)
+                                  .moderateScale(50),
+                              decoration: BoxDecoration(
+                                color: appColors.appMediumColor,
+                                shape: BoxShape.circle,
+                              ),
+                              child: FutureBuilder<AppUser>(
+                                future: getUserName,
+                                builder: (context, snapshot) {
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.done) {
+                                    if (snapshot.hasData) {
+                                      return ClipOval(
+                                        child: CachedNetworkImage(
+                                          imageUrl:
+                                              snapshot.data!.profilePhotoUrl,
+                                          height: ResponsiveFlutter.of(context)
+                                              .moderateScale(25),
+                                          width: ResponsiveFlutter.of(context)
+                                              .moderateScale(25),
+                                        ),
+                                      );
+                                    }
+                                  }
+                                  return Image.asset(
+                                    ImagePath.image_3,
+                                    height: ResponsiveFlutter.of(context)
+                                        .moderateScale(25),
+                                  );
+                                },
+                              )),
                         ),
                       ],
                     ),

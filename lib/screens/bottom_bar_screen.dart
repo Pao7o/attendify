@@ -9,7 +9,7 @@ import 'package:attendify/screens/username_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'create_screen.dart';
+import '../features/create_new/screens/create_screen.dart';
 
 class BottomBarScreen extends StatefulWidget {
   final String isFrom;
@@ -153,7 +153,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                       GestureDetector(
                         onTap: () {
                           setState(() {
-                            tabBar = CreateScreen();
+                            tabBar = const CreateScreen();
                             home = false;
                             favorites = false;
                             create = true;
