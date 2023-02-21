@@ -14,42 +14,33 @@ class NewEventsDetails extends StatefulWidget {
 }
 
 class _NewEventsDetailsState extends State<NewEventsDetails>with SingleTickerProviderStateMixin {
-  int _radioValue = 0;
+
   bool _showInfo = false;
 
-  late AnimationController _animationController;
-  @override
-  void initState() {
-    super.initState();
-    _animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 500),
-    );
-  }
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
-  }
-
-
-  void _handleRadioValueChange(int? value) {
-    if (value != null) {
-      setState(() {
-        _radioValue = value;
-      });
-    }
-  }
-
   int _currentQuestionIndex = 0;
-  List<Question> _questions = [
-    Question("What is the scope of your event ?", ["Public", "Friends only", "Private"]),
-    Question("What is your favorite animal?", ["Dog", "Cat", "Bird"]),
-    Question("What is your favorite food?", ["Pizza", "Burger", "Sushi"]),
+
+
+  List<QuestionBase> _questions = [    Question(      "What is the scope of your event?",      ["Public", "Friends only", "Private"],
+    [1, 2, 2],"If you choose 'private', only invited members \n will be able to join your event",
+
+  ),
+    Question(
+      "What type of validation do you choose?",
+      ["I accept everyone", "I choose who I accept"],
+      [2,2],"This will limit who can join your event"
+    ),
+    TextQuestion("How many people minimum ?",[3, 3],"If your event is paying, it may be interesting \nto put a minimum to be profitable."),
+    TextQuestion("How many people maximum ?",[4,4],"Make sure you don't get overwhelmed by the events ;)"),
+    TextQuestion("Price of the event ?",[4,4],"Your event can absolutely be free."),
   ];
+
+
+
 
   @override
   Widget build(BuildContext context) {
+    bool isAnswerSelected = _questions[_currentQuestionIndex].selectedIndex != null;
+
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.light
           .copyWith(statusBarColor: appColors.appMediumColor),
@@ -106,34 +97,37 @@ class _NewEventsDetailsState extends State<NewEventsDetails>with SingleTickerPro
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 20),
                             child: Column(
-                              children: [
-                                SlideTransition(
-                                    position: Tween<Offset>(
-                                      begin: const Offset(1, 0),
-                                      end: Offset.zero,
-                                    ).animate(_animationController),
-                                    child: Text(_questions[_currentQuestionIndex].text)),
-                                Column(
-                                  children: _questions[_currentQuestionIndex]
-                                      .answers
-                                      .asMap()
-                                      .entries
-                                      .map((entry) => RadioListTile(
-                                            title: Text(entry.value),
-                                            value: entry.key,
-                                            groupValue: _questions[
-                                                    _currentQuestionIndex]
-                                                .selectedIndex,
-                                            onChanged: (value) {
-                                              setState(() {
-                                                _questions[_currentQuestionIndex]
-                                                        .selectedIndex =
-                                                    int.parse(value.toString());
-                                              });
-                                            },
-                                          ))
-                                      .toList(),
-                                ),
+                              children: [Text(_questions[_currentQuestionIndex].text),
+                                if (_questions[_currentQuestionIndex] is Question)
+                                  Column(
+                                    children: (_questions[_currentQuestionIndex] as Question)
+                                        .answers
+                                        .asMap()
+                                        .entries
+                                        .map(
+                                          (entry) => RadioListTile(
+                                        title: Text(entry.value),
+                                        value: entry.key,
+                                        groupValue:
+                                        (_questions[_currentQuestionIndex] as Question).selectedIndex,
+                                        onChanged: (value) {
+                                          setState(() {
+                                            (_questions[_currentQuestionIndex] as Question).selectedIndex =
+                                                int.parse(value.toString());
+                                          });
+                                        },
+                                      ),
+                                    )
+                                        .toList(),
+                                  ),
+                                if (_questions[_currentQuestionIndex] is TextQuestion)
+                                  TextField(
+                                    decoration: InputDecoration(labelText: "Enter your answer"),
+                                    onChanged: (value) {
+                                      // TODO: Save the user's answer
+                                    },
+                                  ),
+
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
@@ -159,18 +153,15 @@ class _NewEventsDetailsState extends State<NewEventsDetails>with SingleTickerPro
                                             ),
                                             margin: EdgeInsets.only(top: 8.0),
                                             padding: EdgeInsets.all(8.0),
-                                            child: Wrap(
+                                            child: Column(
                                               children: [
                                                 Text(
-                                                  "If you choose 'private', only invited members \n will be able to join your event",
+                                                  _questions[_currentQuestionIndex].info ?? "",
                                                   style: TextStyle(
                                                     color: Colors.white,
                                                     fontSize: 12.0,
                                                   ),
-                                                  maxLines: 2,
-                                                  softWrap: true,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
+                                                  textAlign: TextAlign.center,
                                                 ),
                                               ],
                                             ),
@@ -196,16 +187,27 @@ class _NewEventsDetailsState extends State<NewEventsDetails>with SingleTickerPro
                                           onPressed: () {
                                             setState(() {
                                               if (_currentQuestionIndex > 0) {
-                                                _currentQuestionIndex--;
-                                                _animationController.reverse();
-
+                                                if (_questions[_currentQuestionIndex].getNextQuestionIndex() != -1) {
+                                                  // Revenir à la première question ayant une question précédente
+                                                  int firstIndex = 0;
+                                                  for (int i = 0; i < _currentQuestionIndex; i++) {
+                                                    if (_questions[i].getNextQuestionIndex() != -1) {
+                                                      firstIndex = i;
+                                                      break;
+                                                    }
+                                                  }
+                                                  _currentQuestionIndex = firstIndex;
+                                                } else {
+                                                  // Revenir à la première question de la liste
+                                                  _currentQuestionIndex = 0;
+                                                }
                                               } else {
                                                 // If this is the first question, exit the screen
                                                 Navigator.pop(context);
                                               }
                                             });
-
                                           },
+
                                           child: Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
@@ -239,18 +241,37 @@ class _NewEventsDetailsState extends State<NewEventsDetails>with SingleTickerPro
                                               side: BorderSide(
                                                   color: Colors.black)),
                                           onPressed: () {
-                                            setState(() {
-                                              if (_currentQuestionIndex < _questions.length - 1) {
-                                                _currentQuestionIndex++;
-                                                _animationController.forward(from: 0.0);
-                                              } else {
-                                                 Navigator.push(
-                                              context,
-                                              MaterialPageRoute(builder: (context) => NewEventsPicture()),
+                                            // Vérifier si au moins une réponse est sélectionnée
+                                            bool isAnswerSelected = _questions[_currentQuestionIndex].selectedIndex != -1;
+
+                                            if (isAnswerSelected) {
+                                              setState(() {
+                                                int nextQuestionIndex = _questions[_currentQuestionIndex].getNextQuestionIndex();
+
+                                                if (nextQuestionIndex != -1) {
+                                                  _currentQuestionIndex = nextQuestionIndex;
+                                                } else if (_currentQuestionIndex < _questions.length - 1) {
+                                                  _currentQuestionIndex++;
+                                                } else {
+                                                  // Passer à la page suivante
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(builder: (context) => NewEventsPicture()),
+                                                  );
+                                                }
+                                              });
+                                            } else {
+                                              // Afficher un message d'erreur si aucune réponse n'est sélectionnée
+                                              ScaffoldMessenger.of(context).showSnackBar(
+                                                SnackBar(
+                                                  content: Text('Veuillez sélectionner une réponse'),
+                                                  duration: Duration(seconds: 2),
+                                                ),
                                               );
-                                              }
-                                            });
+                                            }
                                           },
+
+
 
                                           child: Row(
                                             mainAxisAlignment:
@@ -288,11 +309,60 @@ class _NewEventsDetailsState extends State<NewEventsDetails>with SingleTickerPro
     );
   }
 }
-
-class Question {
+abstract class QuestionBase {
   final String text;
-  final List<String> answers;
-  int selectedIndex = -1;
+  final String info;
+  int _selectedIndex = 0;
 
-  Question(this.text, this.answers);
+  QuestionBase(this.text,this.info);
+
+  int get selectedIndex => _selectedIndex;
+  set selectedIndex(int value) {
+    _selectedIndex = value;
+  }
+
+  int getNextQuestionIndex() {
+    return -1;
+  }
 }
+
+class Question extends QuestionBase {
+  final List<String> answers;
+  final List<int> _nextQuestionIndexes;
+
+  Question(String text, this.answers, this._nextQuestionIndexes,String info)
+      : super(text,info);
+
+  @override
+  int getNextQuestionIndex() {
+    if (_nextQuestionIndexes == null || _nextQuestionIndexes.isEmpty) {
+      return -1;
+    } else {
+      return _nextQuestionIndexes[selectedIndex];
+    }
+  }
+}
+
+class TextQuestion extends QuestionBase {
+  final List<int> _nextQuestionIndexes;
+
+  TextQuestion(String text, this._nextQuestionIndexes, String info)
+      : super(text,info);
+
+  @override
+  int getNextQuestionIndex() {
+    if (_nextQuestionIndexes == null || _nextQuestionIndexes.isEmpty) {
+      return -1;
+    } else {
+      return _nextQuestionIndexes[selectedIndex];
+    }
+  }
+}
+
+
+
+
+
+
+
+
