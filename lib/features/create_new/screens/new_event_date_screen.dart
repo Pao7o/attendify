@@ -74,7 +74,9 @@ class _NewEventDateState extends State<NewEventDate> {
                           const SizedBox(
                             height: 20,
                           ),
-                          Image.asset('assets/images/new_event_date.png'),
+                          Image.asset(
+                            'assets/images/new_event_date.png',
+                          ),
                           const Text(
                             "Date and time of the event :",
                             style: TextStyle(
@@ -90,56 +92,17 @@ class _NewEventDateState extends State<NewEventDate> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                GestureDetector(
-                                  onTap: () async {
-                                    final DateTime? picked =
-                                        await showDatePicker(
-                                      context: context,
-                                      initialDate: DateTime.now(),
-                                      firstDate: DateTime.now(),
-                                      lastDate: DateTime(2035),
-                                    );
-                                    if (picked != null) {
-                                      startDate = picked;
-                                      setState(() {});
-                                    }
-                                  },
-                                  child: Container(
-                                    height: ResponsiveFlutter.of(context)
-                                        .verticalScale(50),
-                                    width: ResponsiveFlutter.of(context)
-                                        .scale(150),
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: ResponsiveFlutter.of(context)
-                                          .moderateScale(20),
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: appColors.appLightColor,
-                                      borderRadius: BorderRadius.circular(
-                                        ResponsiveFlutter.of(context)
-                                            .moderateScale(20),
-                                      ),
-                                      border: Border.all(
-                                        color: appColors.borderColor,
-                                        width: 1.5,
-                                      ),
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                Column(
+                                  children: [
+                                    Row(
                                       children: [
-                                        Expanded(
-                                          child: MyTextView(
-                                            startDate.toString(),
-                                            textAligntNew: TextAlign.center,
-                                            styleNew: MyTextStyle(
-                                              colorNew: appColors.lightColor,
-                                              fontWeightNew: FontWeight.w400,
-                                              size:
-                                                  ResponsiveFlutter.of(context)
-                                                      .fontSize(1.8),
-                                            ),
-                                          ),
+                                        MyTextView(
+                                          "Start Date",
+                                          styleNew: const TextStyle(
+                                              color: Colors.white),
+                                        ),
+                                        const SizedBox(
+                                          width: 4,
                                         ),
                                         Image.asset(
                                           ImagePath.pinkCalendar,
@@ -149,58 +112,81 @@ class _NewEventDateState extends State<NewEventDate> {
                                         )
                                       ],
                                     ),
-                                  ),
+                                    const SizedBox(
+                                      height: 4,
+                                    ),
+                                    GestureDetector(
+                                      onTap: () async {
+                                        final DateTime? picked =
+                                            await showDatePicker(
+                                          context: context,
+                                          initialDate: DateTime.now(),
+                                          firstDate: DateTime.now(),
+                                          lastDate: DateTime(2035),
+                                        );
+                                        if (picked != null) {
+                                          startDate = picked;
+                                          setState(() {});
+                                        }
+                                      },
+                                      child: Container(
+                                        height: ResponsiveFlutter.of(context)
+                                            .verticalScale(50),
+                                        width: ResponsiveFlutter.of(context)
+                                            .scale(150),
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal:
+                                              ResponsiveFlutter.of(context)
+                                                  .moderateScale(20),
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: appColors.appLightColor,
+                                          borderRadius: BorderRadius.circular(
+                                            ResponsiveFlutter.of(context)
+                                                .moderateScale(20),
+                                          ),
+                                          border: Border.all(
+                                            color: appColors.borderColor,
+                                            width: 1.5,
+                                          ),
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Expanded(
+                                              child: MyTextView(
+                                                DateFormat.yMd()
+                                                    .format(startDate),
+                                                textAligntNew: TextAlign.center,
+                                                styleNew: MyTextStyle(
+                                                  colorNew:
+                                                      appColors.lightColor,
+                                                  fontWeightNew:
+                                                      FontWeight.w400,
+                                                  size: ResponsiveFlutter.of(
+                                                          context)
+                                                      .fontSize(1.8),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                GestureDetector(
-                                  onTap: () async {
-                                    final DateTime? picked =
-                                        await showDatePicker(
-                                      context: context,
-                                      initialDate: DateTime.now(),
-                                      firstDate: DateTime.now(),
-                                      lastDate: DateTime(2035),
-                                    );
-                                    if (picked != null) {
-                                      endDate = picked;
-                                      setState(() {});
-                                    }
-                                  },
-                                  child: Container(
-                                    height: ResponsiveFlutter.of(context)
-                                        .verticalScale(50),
-                                    width: ResponsiveFlutter.of(context)
-                                        .scale(150),
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: ResponsiveFlutter.of(context)
-                                          .moderateScale(20),
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: appColors.appLightColor,
-                                      borderRadius: BorderRadius.circular(
-                                        ResponsiveFlutter.of(context)
-                                            .moderateScale(20),
-                                      ),
-                                      border: Border.all(
-                                        color: appColors.borderColor,
-                                        width: 1.5,
-                                      ),
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                Column(
+                                  children: [
+                                    Row(
                                       children: [
-                                        Expanded(
-                                          child: MyTextView(
-                                            endDate.toString(),
-                                            textAligntNew: TextAlign.center,
-                                            styleNew: MyTextStyle(
-                                              colorNew: appColors.lightColor,
-                                              fontWeightNew: FontWeight.w400,
-                                              size:
-                                                  ResponsiveFlutter.of(context)
-                                                      .fontSize(1.8),
-                                            ),
-                                          ),
+                                        MyTextView(
+                                          "End Date",
+                                          styleNew: const TextStyle(
+                                              color: Colors.white),
+                                        ),
+                                        const SizedBox(
+                                          width: 4,
                                         ),
                                         Image.asset(
                                           ImagePath.pinkCalendar,
@@ -210,7 +196,69 @@ class _NewEventDateState extends State<NewEventDate> {
                                         )
                                       ],
                                     ),
-                                  ),
+                                    const SizedBox(
+                                      height: 4,
+                                    ),
+                                    GestureDetector(
+                                      onTap: () async {
+                                        final DateTime? picked =
+                                            await showDatePicker(
+                                          context: context,
+                                          initialDate: DateTime.now(),
+                                          firstDate: DateTime.now(),
+                                          lastDate: DateTime(2035),
+                                        );
+                                        if (picked != null) {
+                                          endDate = picked;
+                                          setState(() {});
+                                        }
+                                      },
+                                      child: Container(
+                                        height: ResponsiveFlutter.of(context)
+                                            .verticalScale(50),
+                                        width: ResponsiveFlutter.of(context)
+                                            .scale(150),
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal:
+                                              ResponsiveFlutter.of(context)
+                                                  .moderateScale(20),
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: appColors.appLightColor,
+                                          borderRadius: BorderRadius.circular(
+                                            ResponsiveFlutter.of(context)
+                                                .moderateScale(20),
+                                          ),
+                                          border: Border.all(
+                                            color: appColors.borderColor,
+                                            width: 1.5,
+                                          ),
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Expanded(
+                                              child: MyTextView(
+                                                DateFormat.yMd()
+                                                    .format(endDate),
+                                                textAligntNew: TextAlign.center,
+                                                styleNew: MyTextStyle(
+                                                  colorNew:
+                                                      appColors.lightColor,
+                                                  fontWeightNew:
+                                                      FontWeight.w400,
+                                                  size: ResponsiveFlutter.of(
+                                                          context)
+                                                      .fontSize(1.8),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
@@ -221,46 +269,17 @@ class _NewEventDateState extends State<NewEventDate> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    startTime(context);
-                                  },
-                                  child: Container(
-                                    height: ResponsiveFlutter.of(context)
-                                        .verticalScale(50),
-                                    width: ResponsiveFlutter.of(context)
-                                        .scale(150),
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: ResponsiveFlutter.of(context)
-                                          .moderateScale(20),
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: appColors.appLightColor,
-                                      borderRadius: BorderRadius.circular(
-                                        ResponsiveFlutter.of(context)
-                                            .moderateScale(20),
-                                      ),
-                                      border: Border.all(
-                                        color: appColors.borderColor,
-                                        width: 1.5,
-                                      ),
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                Column(
+                                  children: [
+                                    Row(
                                       children: [
-                                        Expanded(
-                                          child: MyTextView(
-                                            startSelectedTime.toString(),
-                                            textAligntNew: TextAlign.center,
-                                            styleNew: MyTextStyle(
-                                              colorNew: appColors.lightColor,
-                                              fontWeightNew: FontWeight.w400,
-                                              size:
-                                                  ResponsiveFlutter.of(context)
-                                                      .fontSize(1.8),
-                                            ),
-                                          ),
+                                        MyTextView(
+                                          "Start Time",
+                                          styleNew: const TextStyle(
+                                              color: Colors.white),
+                                        ),
+                                        const SizedBox(
+                                          width: 4,
                                         ),
                                         Image.asset(
                                           ImagePath.pinkTime,
@@ -270,48 +289,71 @@ class _NewEventDateState extends State<NewEventDate> {
                                         ),
                                       ],
                                     ),
-                                  ),
+                                    const SizedBox(
+                                      height: 4,
+                                    ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        startTime(context);
+                                      },
+                                      child: Container(
+                                        height: ResponsiveFlutter.of(context)
+                                            .verticalScale(50),
+                                        width: ResponsiveFlutter.of(context)
+                                            .scale(150),
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal:
+                                              ResponsiveFlutter.of(context)
+                                                  .moderateScale(20),
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: appColors.appLightColor,
+                                          borderRadius: BorderRadius.circular(
+                                            ResponsiveFlutter.of(context)
+                                                .moderateScale(20),
+                                          ),
+                                          border: Border.all(
+                                            color: appColors.borderColor,
+                                            width: 1.5,
+                                          ),
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Expanded(
+                                              child: MyTextView(
+                                                DateFormat.Hm()
+                                                    .format(startSelectedTime),
+                                                textAligntNew: TextAlign.center,
+                                                styleNew: MyTextStyle(
+                                                  colorNew:
+                                                      appColors.lightColor,
+                                                  fontWeightNew:
+                                                      FontWeight.w400,
+                                                  size: ResponsiveFlutter.of(
+                                                          context)
+                                                      .fontSize(1.8),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                GestureDetector(
-                                  onTap: () {
-                                    endTime(context);
-                                  },
-                                  child: Container(
-                                    height: ResponsiveFlutter.of(context)
-                                        .verticalScale(50),
-                                    width: ResponsiveFlutter.of(context)
-                                        .scale(150),
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: ResponsiveFlutter.of(context)
-                                          .moderateScale(20),
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: appColors.appLightColor,
-                                      borderRadius: BorderRadius.circular(
-                                        ResponsiveFlutter.of(context)
-                                            .moderateScale(20),
-                                      ),
-                                      border: Border.all(
-                                        color: appColors.borderColor,
-                                        width: 1.5,
-                                      ),
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                Column(
+                                  children: [
+                                    Row(
                                       children: [
-                                        Expanded(
-                                          child: MyTextView(
-                                            endSelectedTime.toString(),
-                                            textAligntNew: TextAlign.center,
-                                            styleNew: MyTextStyle(
-                                              colorNew: appColors.lightColor,
-                                              fontWeightNew: FontWeight.w400,
-                                              size:
-                                                  ResponsiveFlutter.of(context)
-                                                      .fontSize(1.8),
-                                            ),
-                                          ),
+                                        MyTextView(
+                                          "End Time",
+                                          styleNew: const TextStyle(
+                                              color: Colors.white),
+                                        ),
+                                        const SizedBox(
+                                          width: 4,
                                         ),
                                         Image.asset(
                                           ImagePath.pinkTime,
@@ -321,7 +363,59 @@ class _NewEventDateState extends State<NewEventDate> {
                                         ),
                                       ],
                                     ),
-                                  ),
+                                    const SizedBox(
+                                      height: 4,
+                                    ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        endTime(context);
+                                      },
+                                      child: Container(
+                                        height: ResponsiveFlutter.of(context)
+                                            .verticalScale(50),
+                                        width: ResponsiveFlutter.of(context)
+                                            .scale(150),
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal:
+                                              ResponsiveFlutter.of(context)
+                                                  .moderateScale(20),
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: appColors.appLightColor,
+                                          borderRadius: BorderRadius.circular(
+                                            ResponsiveFlutter.of(context)
+                                                .moderateScale(20),
+                                          ),
+                                          border: Border.all(
+                                            color: appColors.borderColor,
+                                            width: 1.5,
+                                          ),
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Expanded(
+                                              child: MyTextView(
+                                                DateFormat.Hm()
+                                                    .format(endSelectedTime),
+                                                textAligntNew: TextAlign.center,
+                                                styleNew: MyTextStyle(
+                                                  colorNew:
+                                                      appColors.lightColor,
+                                                  fontWeightNew:
+                                                      FontWeight.w400,
+                                                  size: ResponsiveFlutter.of(
+                                                          context)
+                                                      .fontSize(1.8),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
