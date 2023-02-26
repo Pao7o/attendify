@@ -424,7 +424,7 @@ class _NewEventDateState extends State<NewEventDate> {
                             width: 250,
                             height: 50,
                             child: MaterialButton(
-                                color: Colors.green[400],
+                                color: appColors.btnColor,
                                 elevation: 10,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15.0),
@@ -479,7 +479,7 @@ class _NewEventDateState extends State<NewEventDate> {
                             width: 250,
                             height: 50,
                             child: MaterialButton(
-                                color: Colors.red[800],
+                                color: appColors.blurBtnColor,
                                 elevation: 10,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15.0),
@@ -553,20 +553,17 @@ class _NewEventDateState extends State<NewEventDate> {
   }
 
   bool dateIsValide() {
-    if (startSelectedTime == "Start time" || endSelectedTime == "End time") {
+    if (startSelectedTime == DateTime.now() ||
+        endSelectedTime == DateTime.now()) {
       return false;
     }
-    return DateFormat("dd / MM / yyyy")
-            .parse(startDate.toString())
-            .isBefore(DateFormat("dd / MM / yyyy").parse(endDate.toString())) ||
-        (DateFormat("dd / MM / yyyy")
-                .parse(startDate.toString())
-                .isAtSameMomentAs(
-                    DateFormat("dd / MM / yyyy").parse(endDate.toString())) &&
-            int.parse(startSelectedTime.toString().split(":")[0]) * 60 +
-                    int.parse(startSelectedTime.toString().split(":")[1]) <
-                int.parse(endSelectedTime.toString().split(":")[0]) * 60 +
-                    int.parse(endSelectedTime.toString().split(":")[1]));
+    return startDate.isBefore(endDate) || startDate.isAtSameMomentAs(endDate);
+
+    // &&
+    // int.parse(startSelectedTime.toString().split(":")[0]) * 60 +
+    // int.parse(startSelectedTime.toString().split(":")[1]) <
+    //int.parse(endSelectedTime.toString().split(":")[0]) * 60 +
+    //int.parse(endSelectedTime.toString().split(":")[1]));
   }
 
   String calculateDuration() {
