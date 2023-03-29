@@ -10,10 +10,10 @@ class NewEventName extends StatefulWidget {
   const NewEventName({super.key});
 
   @override
-  _NewEventNameState createState() => _NewEventNameState();
+  NewEventNameState createState() => NewEventNameState();
 }
 
-class _NewEventNameState extends State<NewEventName> {
+class NewEventNameState extends State<NewEventName> {
   AppColors appColors = AppColors();
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _controller = TextEditingController();
