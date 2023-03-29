@@ -567,6 +567,7 @@ class _NewEventDateState extends State<NewEventDate> {
   }
 
   String calculateDuration() {
+  
     Duration duration = DateFormat("dd / MM / yyyy HH:mm")
         .parse('$endDate $endSelectedTime')
         .difference(DateFormat("dd / MM / yyyy HH:mm")
